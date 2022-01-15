@@ -17,6 +17,7 @@ module.exports = (sequelize) => {
             allowNull: false
         },
         status:{
+            // EMUN for the state of the order 
             type: DataTypes.ENUM("Created","Processing","cancelled","Completed","Send"),
             allowNull: false
         },
@@ -28,5 +29,3 @@ module.exports = (sequelize) => {
         timestamps:true
     })
 }
-
-// Enum(Created, Processing, Canceled, Completed,Send)
