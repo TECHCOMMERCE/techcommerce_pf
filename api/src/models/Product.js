@@ -27,7 +27,7 @@ module.exports = (sequelize) => {
         type: DataTypes.NUMBER,
         allowNull: false,
       },
-      conditiion: {
+      condition: {
         type: DataTypes.ENUM("new", "used"),
         allowNull: false,
       },
