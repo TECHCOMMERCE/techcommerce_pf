@@ -5,29 +5,29 @@ module.exports = (sequelize) => {
   sequelize.define(
     "product",
     {
-      ProductId: {
+      productid: {
         type: DataTypes.UUID,
         primaryKey: true,
         autoIncrement: true,
       },
-      Name: {
+      name: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true,
       },
-      Price: {
+      price: {
         type: DataTypes.NUMBER,
         allowNull: false,
       },
-      Stock: {
+      stock: {
         type: DataTypes.NUMBER,
         allowNull: false,
       },
-      Sold_Quantity: {
+      sold_quantity: {
         type: DataTypes.NUMBER,
         allowNull: false,
       },
-      Conditiion: {
+      conditiion: {
         type: DataTypes.ENUM("new", "used"),
         allowNull: false,
       },
