@@ -5,7 +5,7 @@ module.exports = (sequelize) => {
   sequelize.define(
     "brand",
     {
-      BrandId: {
+      brandid: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
