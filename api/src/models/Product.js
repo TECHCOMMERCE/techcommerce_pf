@@ -8,7 +8,7 @@ module.exports = (sequelize) => {
       productid: {
         type: DataTypes.UUID,
         primaryKey: true,
-        autoIncrement: true,
+        defaultValue: DataTypes.UUIDV4
       },
       name: {
         type: DataTypes.STRING,
@@ -16,18 +16,18 @@ module.exports = (sequelize) => {
         unique: true,
       },
       price: {
-        type: DataTypes.NUMBER,
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
       stock: {
-        type: DataTypes.NUMBER,
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
       sold_quantity: {
-        type: DataTypes.NUMBER,
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
-      conditiion: {
+      condition: {
         type: DataTypes.ENUM("new", "used"),
         allowNull: false,
       },
