@@ -4,6 +4,8 @@ Para traer cambios hechos desde la rama master deberan dirigirse a la rama, medi
 
 ```bash
   git checkout master
+
+  git pull
 ```
 
 Este comando les traera los cambios hechos en todas las ramas, una vez tengan los cambios traidos, vuelven a su rama
