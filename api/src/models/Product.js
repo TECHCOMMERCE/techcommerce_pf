@@ -16,7 +16,7 @@ module.exports = (sequelize) => {
         unique: true,
       },
       price: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.FLOAT,
         allowNull: false,
       },
       stock: {
