@@ -5,7 +5,7 @@ import styled from "styled-components";
 import {ShoppingCart} from '@styled-icons/entypo/ShoppingCart';
 import {Search} from '@styled-icons/material/Search';
 import mobile from "../../responsive";
-
+import TechC from "../../assets/Imgs/TechC.gif";
 const Container = styled.div`
   height: 60px;
   ${mobile({ height: "50px" })}
@@ -44,7 +44,12 @@ const Center = styled.div`
   flex: 1;
 `;
 
-const Logo = styled.h1`
+const Logo = styled.img`
+  display: block;
+  width: 100px;
+  height: 50px;
+  margin-left: 150px;
+  padding: 10px;
   text-align: center;
   ${mobile({ fontSize: "24px" })}
 `;
@@ -85,7 +90,7 @@ const Header = () => {
           </SearchContainer>
         </Left>
         <Center>
-          <Logo>Tech-C</Logo>
+          <Logo src={TechC}/>
         </Center>
         <Right>
           <MenuItem>REGISTER</MenuItem>

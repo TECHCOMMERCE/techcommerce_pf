@@ -15,9 +15,9 @@ export const sliderItems = [
   },
   {
     id: 3,
-    img: "khjaskdjakshdjh",
+    img: "https://i.ibb.co/PxPyDJW/perifericos/3.jpg",
     title: "jhaskdhjaskdajskh",
-    desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
+    desc: "kjaksdjaksdkash",
     bg: "fbf0f4",
   },
 ];
