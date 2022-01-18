@@ -2,7 +2,7 @@ const { Router } = require('express');
 const products = require('./products')
 
 //importing the routes
-const productPostingRoute = require('../controllers/Products/PostProduct.js')
+//const productPostingRoute = require('../controllers/Products/PostProduct.js')
 
 const router = Router();
 

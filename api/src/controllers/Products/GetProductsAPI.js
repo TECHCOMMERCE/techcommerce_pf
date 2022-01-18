@@ -38,7 +38,9 @@ async function GetProductsAPI(){
           let request = await axios.get(`https://api.mercadolibre.com/sites/MLA/search?has_pictures=true&offset=${auxoffset}&category=${categories[i].id}`);
 
           request.data.results.forEach(async p=>{
-            if(getBrand(p.attributes.filter(elem=>elem.id ==="BRAND"))){
+            let search=await Product.findOne({where:{name: p.title.trim()}})
+            //console.log(`search`, search)
+            if(getBrand(p.attributes.filter(elem=>elem.id ==="BRAND")) && !search){
               let cproduct= await Product.create({
                     name: p.title.trim(),
                     price:p.price,
@@ -57,7 +59,6 @@ async function GetProductsAPI(){
           
         }
       }
-
     }
     count = await Product.count(); //Cuento los productos registrados en mi db
     console.log("Fueron registrados productos en la DB", count)
@@ -69,8 +70,6 @@ async function GetProductsAPI(){
 
 
 async function getBrand(att){
-  //console.log("data att",att)
-
   if(att.length>0 && att[0].hasOwnProperty("value_name")){
     let att_name= att[0].value_name
     let brand = await Brand.findOne({
