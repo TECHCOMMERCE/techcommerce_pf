@@ -1,8 +1,8 @@
 const axios = require('axios');
-const { Router } = require('express')
+//const { Router } = require('express')
 const {Product, Category} = require('../../db');
 
-const router = Router();
+
 
 const createNewProduct = async ( req, res, next )=>{
   //getting the info from the front to create a new product
@@ -35,6 +35,6 @@ const createNewProduct = async ( req, res, next )=>{
   }
 }
 
-router.post('/', createNewProduct)
 
-module.exports = router;
+
+module.exports = createNewProduct;
