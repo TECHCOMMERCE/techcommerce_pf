@@ -62,8 +62,8 @@ Product.belongsToMany(Order, {through: Detail, foreignKey: 'productid'});
 Order.belongsToMany(Product, {through: Detail, foreignKey: 'orderid'});
 
 // Product <---> Category N:N
-Product.belongsToMany(Category, {through: "products_category", foreignKey: 'productid'});
-Category.belongsToMany(Product, {through: "products_category", foreignKey: 'categoryid'});
+Product.belongsToMany(Category, {through: "products_category"/* , foreignKey: 'productid'*/} );
+Category.belongsToMany(Product, {through: "products_category"/* , foreignKey: 'categoryid'*/} );
 
 // Product <--- Brand N:1
 Brand.hasMany(Product, {foreignKey: "brandid"});
