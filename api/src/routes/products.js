@@ -5,7 +5,7 @@ const postProduct = require("../controllers/Products/postProduct");
 
 const router = Router();
 
-router.get("/products", async (req, res) => {
+router.get("/", async (req, res) => {
   // carga products desde la API de Meli (No debría formar pate del código)
   await loadProducts();
 
@@ -14,7 +14,7 @@ router.get("/products", async (req, res) => {
   res.json(products);
 });
 
-router.post("/product", async (req, res) => {
+router.post("/", async (req, res) => {
   const productCreated = await postProduct(req.body);
 
   productCreated ? res.send("Producto creado") : res.send("Producto existente");

@@ -3,13 +3,16 @@ const products = require("./products")
 const categories = require("./categories");
 const brands = require("./brands");
 
+//importing the routes
+//const productPostingRoute = require('../controllers/Products/PostProduct.js')
 
 const router = Router();
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
-router.use(products);
-router.use(categories);
-router.use(brands);
+router.use("/categories", categories);
+router.use("/brands", brands);
+router.use('/products', products)
+//router.use('/', productPostingRoute)
 
 module.exports = router;

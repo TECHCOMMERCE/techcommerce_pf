@@ -13,7 +13,7 @@ module.exports = (sequelize) => {
       name: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true,
+        /* unique: true, */
       },
       price: {
         type: DataTypes.FLOAT,
@@ -39,6 +39,10 @@ module.exports = (sequelize) => {
         type: DataTypes.JSON,
         allowNull: false,
       },
+      status:{
+        type: DataTypes.BOOLEAN,
+        defaultValue: true
+      }
     },
     { timestamps: false }
   );
