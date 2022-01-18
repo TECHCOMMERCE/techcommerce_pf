@@ -39,6 +39,10 @@ module.exports = (sequelize) => {
         type: DataTypes.JSON,
         allowNull: false,
       },
+      status:{
+        type: DataTypes.BOOLEAN,
+        defaultValue: true
+      }
     },
     { timestamps: false }
   );
