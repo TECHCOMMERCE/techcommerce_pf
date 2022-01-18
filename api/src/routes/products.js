@@ -6,5 +6,6 @@ const router = Router();
 
 
 //router.post('/', createNewProduct)
+router.get("/")
 
 module.exports = router;
