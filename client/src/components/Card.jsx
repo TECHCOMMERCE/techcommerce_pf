@@ -1,7 +1,6 @@
 import s from "../assets/styles/Card.module.css";
 
 const Card = ({img, name, price}) => {
-    console.log(img)
     return (
         <div className={s.container}>
             <div className={s.left}>
