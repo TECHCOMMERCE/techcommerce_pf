@@ -6,7 +6,7 @@ const {
   DB_USER, DB_PASSWORD, DB_HOST, DB_NAME
 } = process.env;
 const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`, {
-  //logging: false,  //set to console.log to see the raw SQL queries
+  logging: false,  //set to console.log to see the raw SQL queries
   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
 });
 sequelize.authenticate().then(()=>console.log('conexion success')).catch(e=>console.log('conexion fail',e))
@@ -62,8 +62,8 @@ Product.belongsToMany(Order, {through: Detail, foreignKey: 'productid'});
 Order.belongsToMany(Product, {through: Detail, foreignKey: 'orderid'});
 
 // Product <---> Category N:N
-Product.belongsToMany(Category, {through: "products_category", foreignKey: 'productid'});
-Category.belongsToMany(Product, {through: "products_category", foreignKey: 'categoryid'});
+Product.belongsToMany(Category, {through: "products_category"/* , foreignKey: 'productid'*/} );
+Category.belongsToMany(Product, {through: "products_category"/* , foreignKey: 'categoryid'*/} );
 
 // Product <--- Brand N:1
 Brand.hasMany(Product, {foreignKey: "brandid"});
