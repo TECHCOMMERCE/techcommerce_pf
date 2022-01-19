@@ -1,12 +1,17 @@
 const {Category} = require('../../db');
 
-const updateCategory = async(res, req, next) =>{
-  const { id } = req.params;
+const updateCategory = async( req, res, next) =>{
+  const id  = req.params.id;
   const { name } = req.body;
 
   try {
-    
-    res.send()
+    const categoryUpdate = await Category.update(
+      {name: name},
+      {where:{categoryid : id}}
+    )
+    // console.log(categoryUpdate);
+
+    res.json(categoryUpdate)
 
   } catch (error) {
     console.log(error);
