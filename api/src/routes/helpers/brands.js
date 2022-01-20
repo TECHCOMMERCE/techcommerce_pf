@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const getBrands = require("../controllers/Brand/GetBrands");
+const getBrands = require("../../controllers/Brand/GetBrands");
 
 router.get("/", async(req, res) => {  
   const brands = await getBrands();
