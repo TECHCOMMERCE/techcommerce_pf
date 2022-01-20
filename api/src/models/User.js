@@ -13,17 +13,12 @@ module.exports = (sequelize) => {
             required: true,
             allowNull: false,
         },
-
         name: {
             type: DataTypes.STRING
         },
         lastname:{
             type:DataTypes.TEXT,
             allowNull:false,
-        },
-
-        lastname: {
-            type: DataTypes.STRING
         },
         email: {
             type: DataTypes.STRING,
@@ -77,7 +72,6 @@ module.exports = (sequelize) => {
             type:DataTypes.INTEGER,
             allowNull:false,
         },
-
     },{
         timestamps:false
     });
