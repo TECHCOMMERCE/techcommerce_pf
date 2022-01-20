@@ -1,8 +1,9 @@
 const { Product, Category, Brand } = require("../../db.js");
 
-const getProducts = async () => {
+// Get a 1 producto por id
+const getProductById = async (id) => {
   try {
-    return await Product.findAll({
+    return await Product.findByPk(id, {
       include: [
         {
           model: Category,
@@ -20,4 +21,4 @@ const getProducts = async () => {
   }
 };
 
-module.exports = getProducts;
+module.exports = getProductById;

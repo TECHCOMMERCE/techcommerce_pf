@@ -45,7 +45,7 @@ const {
   Product,
   Review,
   User,
-  WishList,
+  // Post,
 } = sequelize.models;
 
 // Aca vendrian las relaciones
@@ -62,12 +62,12 @@ Product.belongsToMany(Order, {through: Detail, foreignKey: 'productid'});
 Order.belongsToMany(Product, {through: Detail, foreignKey: 'orderid'});
 
 // Product <---> Category N:N
-Product.belongsToMany(Category, {through: "products_category"/* , foreignKey: 'productid'*/} );
-Category.belongsToMany(Product, {through: "products_category"/* , foreignKey: 'categoryid'*/} );
+Product.belongsToMany(Category, {through: "products_category", timestamps: false/* , foreignKey: 'productid'*/} );
+Category.belongsToMany(Product, {through: "products_category", timestamps: false/* , foreignKey: 'categoryid'*/} );
 
 // Product <--- Brand N:1
-Brand.hasMany(Product, {foreignKey: "brandid"});
-Product.belongsTo(Brand, {foreignKey: "brandid"});
+Brand.hasMany(Product);
+Product.belongsTo(Brand);
 
 // User ---> Order 1:N
 User.hasMany(Order);
