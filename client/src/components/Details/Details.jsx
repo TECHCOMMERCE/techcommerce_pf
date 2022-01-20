@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { useDispatch,useSelector } from 'react-redux';
 import { useParams } from "react-router-dom";
 import { getDetails } from '../../Store/actions/products';
-import { Main, Attributes, Name, Img, Stock } from './styles';
+import { Main, Attributes, Name, Img, Stock, Content } from './styles';
 import { Button } from '@mui/material';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import AddIcon from '@mui/icons-material/Add';
@@ -33,9 +33,10 @@ const Details= (props) => {
 
     return(
       <Main>
-        <Img src={product.image}/>
-        <h1 style={{textAlign: 'center'}}>{product.name}</h1>
-        <p style={{color: '#2EB8B0', marginTop: '30px', fontSize: '27px', marginBottom: '20px'}}>{product.condition.toUpperCase()}!</p>
+        <Img src={product?.image}/>
+        <Content>
+        <h1 style={{textAlign: 'center', marginRight: '5%'}}>{product?.name}</h1>
+        <p style={{color: '#2EB8B0', marginTop: '30px', fontSize: '27px', marginBottom: '20px'}}>{product.condition === 'new' ? product.condition?.toUpperCase() : product.condition}!</p>
         <div style={{borderBottom: '1px solid black', borderTop: '1px solid black'}}>
         {
           product?.attributes?.length?
@@ -56,6 +57,7 @@ const Details= (props) => {
       </Stock>
 
       <Button style={{backgroundColor: '#2EB8B0', color: 'white'}} variant="contained">Add to Cart</Button>
+      </Content>
       </Main>
     )
 }

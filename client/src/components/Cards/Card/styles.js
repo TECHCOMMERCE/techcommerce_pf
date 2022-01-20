@@ -18,6 +18,8 @@ export const Main = styled.div `
 `
 
 
+
+
 export const Name = styled.p `
   
   font-size: 18px;
