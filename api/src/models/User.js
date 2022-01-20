@@ -13,15 +13,13 @@ module.exports = (sequelize) => {
             required: true,
             allowNull: false,
         },
-
         name: {
             type: DataTypes.STRING
         },
-
-        lastname: {
-            type: DataTypes.STRING
+        lastname:{
+            type:DataTypes.TEXT,
+            allowNull:false,
         },
-
         email: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -36,12 +34,10 @@ module.exports = (sequelize) => {
             required: true,
             allowNull: false
         },
-
         changepassword:{
             type:DataTypes.BOOLEAN,
             defaultValue: false
         },
-
         phone:{
             type: DataTypes.STRING,
             allowNull:false
@@ -49,7 +45,33 @@ module.exports = (sequelize) => {
         photo:{
             type:DataTypes.TEXT,
             allowNull:true,
-        }
+        },
+        force:{
+            type:DataTypes.BOOLEAN,
+            allowNull:false,
+            defaultValue: false
+        },  
+        status:{
+            type:DataTypes.BOOLEAN,
+            allowNull:false,
+            defaultValue: true
+        },
+        address:{
+            type:DataTypes.STRING(255),
+            allowNull:false,
+        },
+        country:{
+            type:DataTypes.TEXT,
+            allowNull:false,
+        },
+        city:{
+            type:DataTypes.TEXT,
+            allowNull:false,
+        },
+        postalcode:{
+            type:DataTypes.INTEGER,
+            allowNull:false,
+        },
     },{
         timestamps:false
     });

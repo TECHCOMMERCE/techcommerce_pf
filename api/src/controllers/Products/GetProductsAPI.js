@@ -10,79 +10,82 @@ let categories = [
     id: "MLA1648",
     name: "Computación"
   },
-  {
+   {
     id: "MLA1144",
     name: "Consolas y Videojuegos"
-  }
+  } 
 ];
-let limit = 1; //Defino el limite de Productos por categoria
+let limit = 200; //Defino el limite de Productos por categoria
 
 
 async function GetProductsAPI(){
-  let count = await Product.count(); //Cuento los productos registrados en mi db
-  console.log("Productos registrados en la DB", count)
-  
-  if(!count){ //Si conteo es 0, registro productos
-    let names=categories.map(c=>{ //filtro los nombres de las categorias y hago el registro
-      return {
-        name: c.name
+  try {
+    let count = await Product.count(); //Cuento los productos registrados en mi db
+    console.log("Productos registrados en la DB", count)
+    
+    if(!count){ //Si conteo es 0, registro productos
+      let names=categories.map(c=>{ //filtro los nombres de las categorias y hago el registro
+        return {
+          name: c.name
+        }
+      })
+      await Category.bulkCreate(names)
+    
+    
+      for(let i=0; i<categories.length;i++){
+       let auxoffset=0;
+        while(auxoffset<limit){
+          let request = await axios.get(`https://api.mercadolibre.com/sites/MLA/search?has_pictures=true&offset=${auxoffset}&category=${categories[i].id}`);
+
+          request.data.results.forEach(async p=>{
+            let search=await Product.findOne({where:{name: p.title.trim()}})
+            //console.log(`search`, search)
+            if(getBrand(p.attributes.filter(elem=>elem.id ==="BRAND")) && !search){
+              let cproduct= await Product.create({
+                    name: p.title.trim(),
+                    price:p.price,
+                    stock: p.available_quantity,
+                    sold_quantity: p.sold_quantity,
+                    condition: p.condition,
+                    attributes: p.attributes,
+                    image: p.thumbnail,
+                    brandid: await getBrand(p.attributes.filter(elem=>elem.id ==="BRAND")) //verifico si existe la marca, sino la creo
+                })
+                await cproduct.addCategory(await getCategory(categories[i].name))
+            }
+          })
+          auxoffset+=50;
+          console.log("auxoffset",auxoffset) 
+          
+        }
       }
-    })
-    await Category.bulkCreate(names)
+    }
+    count = await Product.count(); //Cuento los productos registrados en mi db
+    console.log("Fueron registrados productos en la DB", count)
+  } catch (error) {
+    console.log(error)
   }
-  
-  for(let i=0; i<1/* categories.length */;i++){
-    let request = await axios.get(`https://api.mercadolibre.com/sites/MLA/search?has_pictures=true&offset=${0}&limit=${limit}&category=${categories[i].id}`);
-
-    request.data.results.forEach(async p=>{
-      let cproduct= await Product.create({//findOrCreate({
-       /*  where: {name: p.title},
-        defaults:{ */
-            name: p.title,
-            price:p.price,
-            stock: p.available_quantity,
-            sold_quantity: p.sold_quantity,
-            condition: p.condition,
-            attributes: p.attributes,
-            image: p.thumbnail,
-            brandid: await getBrand(p.attributes.filter(elem=>elem.id ==="BRAND")) //verifico si existe la marca, sino la creo
-         /*  } */
-        })
-
-        //console.log("idCategory",await getCategory(categories[i].name))
-        //await cproduct.addCategory(await getCategory(categories[i].name))
-        //let cat=await getCategory(categories[i].name)
-        //cat.addProduct(cproduct)
-      //cproduct.setCategory(await getCategory(categories[i].name))
-      //console.log(cproduct)
-    })
-  }
-
-  //console.log(data)
 
 }
 
-
 async function getBrand(att){
-  console.log(att)
-  let att_name=att[0].value_name
-  console.log(att_name)
-  let brand = await Brand.findOrCreate({
-    where:{name: att_name}
-  })
-  //console.log("idbrand",brand[0].dataValues.brandid)
-  return brand[0].dataValues.brandid
+  if(att.length>0 && att[0].hasOwnProperty("value_name")){
+    let att_name= att[0].value_name
+    let brand = await Brand.findOne({
+      where:{name: att_name}
+    })
+    return (Array.isArray(brand))?brand[0].dataValues.brandid:null;
+  }
+  return null;
 }
 
 async function getCategory(name){
   let category = await Category.findOrCreate({
     where:{name: name}
   })
-  return category//[0].dataValues.categoryid
+  return category[0].dataValues.categoryid
 }
 
 module.exports= {
   GetProductsAPI
 }
-
-
