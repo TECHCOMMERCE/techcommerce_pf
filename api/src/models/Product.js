@@ -6,14 +6,14 @@ module.exports = (sequelize) => {
     "product",
     {
       productid: {
-        type: DataTypes.UUID,
+        type: DataTypes.STRING,
         primaryKey: true,
         defaultValue: DataTypes.UUIDV4
       },
       name: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true,
+        /* unique: true, */
       },
       price: {
         type: DataTypes.FLOAT,
@@ -39,6 +39,11 @@ module.exports = (sequelize) => {
         type: DataTypes.JSON,
         allowNull: false,
       },
+      status:{
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: true
+      }
     },
     { timestamps: false }
   );

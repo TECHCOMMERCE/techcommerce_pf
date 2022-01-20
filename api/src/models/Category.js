@@ -5,14 +5,19 @@ module.exports = (sequelize) => {
   sequelize.define(
     "category",
     {
-      categoryid:{
-        type: DataTypes.INTEGER,
+      categoryid: {
+        type: DataTypes.STRING,
         primaryKey: true,
-        autoIncrement: true,
+        defaultValue: DataTypes.UUIDV4,
       },
       name: {
         type: DataTypes.STRING,
         allowNull: false,
+      },
+      status: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: true,
       },
     },
     { timestamps: false }
