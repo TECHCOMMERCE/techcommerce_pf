@@ -14,7 +14,11 @@ const updateCategory = async( req, res, next) =>{
     res.json(categoryUpdate)
 
   } catch (error) {
-    console.log(error);
+    // console.log(error);
+
+    res.status(500).send(error, {
+      message:`Could not update Category with Id = ${id}`
+    })
   }
 }
 
