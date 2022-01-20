@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const products = require('./products');
-const categories = require('./category')
+const categories = require('./helpers/category')
 
 //importing the routes
 const productPostingRoute = require('../controllers/Products/PostProduct.js')
