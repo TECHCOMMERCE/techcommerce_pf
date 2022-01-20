@@ -1,7 +1,6 @@
 const { Router } = require("express");
 const getProducts = require("../controllers/Products/GetProducts");
 const getProductsByQuery = require("../controllers/Products/GetProductsByQuery");
-
 const router = Router();
 
 // Get de todos los productos o de los productos similares por query
