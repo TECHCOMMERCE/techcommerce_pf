@@ -1,0 +1,8 @@
+const GET_PRODUCTS= 'GET_PRODUCTS';
+const GET_DETAILS = 'GET_DETAILS';
+
+
+module.exports= {
+  GET_PRODUCTS,
+  GET_DETAILS
+}
