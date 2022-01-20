@@ -7,9 +7,9 @@ const products = async ( req, res, next )=>{
 
     let data = null;
 
-    const {search} = req.query;
+    const {search, category} = req.query;
 
-    console.log(search);
+    console.log(category);
 
     if(search){
       data = await Product.findAll({where: {
@@ -20,8 +20,6 @@ const products = async ( req, res, next )=>{
     }else{
       data = await Product.findAll();
     }
-
-    // console.log(data);
 
     products = data.map( ({dataValues}) => {
       return {
