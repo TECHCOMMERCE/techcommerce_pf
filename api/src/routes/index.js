@@ -18,6 +18,6 @@ router.use('/categories', categories)
 
 router.use('/brand', brand)
 
-router.use('/review', review)
+// router.use('/review', review)
 
 module.exports = router;
