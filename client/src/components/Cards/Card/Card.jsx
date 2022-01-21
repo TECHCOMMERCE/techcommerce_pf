@@ -22,14 +22,14 @@ const Card = ({id, name, stock, image , price}) => {
     <Main>
       <Img src={image} alt=''  />
       <Link  href={`/Details/${id}`}><Name>{name}</Name></Link>
-      <p><b>$ </b>{price}</p>
+      <p style={{color: '#2EB8B0'}}><b>$ </b>{price}</p>
       <p>{stock} {stock===0 ? 'Agotado': 'disponibles!'}</p>
-      <Stock>
+      {/* <Stock>
       <Button onClick={add} size='small' style={{ height: '30px'}} variant="text"><AddIcon/> </Button>
       <p style={{marginRight: '20px', marginLeft: '20px', marginTop: '5px'}}>{qty}</p>
       <Button onClick={remove} style={{ height: '30px'}} variant="text"><RemoveIcon/> </Button>
-      </Stock>
-      <Button style={{backgroundColor: '#2EB8B0', color: 'white'}} variant="contained"><AddShoppingCartIcon/></Button>
+      </Stock> */}
+      <Link  href={`/Details/${id}`}><Button style={{backgroundColor: '#2EB8B0', color: 'white'}} variant="contained">Detalles</Button></Link>
     </Main>
   )
 }
