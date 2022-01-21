@@ -12,8 +12,8 @@ let categories = [
   },
    {
     id: "MLA1144",
-    name: "Consolas y Videojuegos"
-  } 
+    name: "Consolas y Videojuegos" 
+  }
 ];
 let limit = 200; //Defino el limite de Productos por categoria
 
@@ -40,23 +40,34 @@ async function GetProductsAPI(){
           request.data.results.forEach(async p=>{
             let search=await Product.findOne({where:{name: p.title.trim()}})
             //console.log(`search`, search)
-            if(getBrand(p.attributes.filter(elem=>elem.id ==="BRAND")) && !search){
-              let cproduct= await Product.create({
-                    name: p.title.trim(),
-                    price:p.price,
-                    stock: p.available_quantity,
-                    sold_quantity: p.sold_quantity,
-                    condition: p.condition,
-                    attributes: p.attributes,
-                    image: p.thumbnail,
-                    brandid: await getBrand(p.attributes.filter(elem=>elem.id ==="BRAND")) //verifico si existe la marca, sino la creo
-                })
-                await cproduct.addCategory(await getCategory(categories[i].name))
+            if(!search){
+              let newProduct={
+                name: p.title.trim(),
+                price:p.price,
+                stock: p.available_quantity,
+                sold_quantity: p.sold_quantity,
+                condition: p.condition,
+                attributes: await getAttributes(p.id),
+                image: p.thumbnail,
+              }
+              if(newProduct.attributes.filter(att=>att.name=="Marca").length>0){
+                let cproduct= await Product.create(newProduct) //Registro el producto
+                  //await getCategory(categories[i].name)
+                let namebrand=await getBrand(newProduct.attributes.filter(att=>att.name=="Marca"))  
+                //console.log(namebrand)
+                let brand = await Brand.findOne({ where: { name: namebrand } });
+                await brand.addProduct(cproduct)
+
+                const category = await Category.findOne({
+                  where: { name: categories[i].name },
+                });
+
+                cproduct.addCategory(category);
+              }
             }
           })
           auxoffset+=50;
           console.log("auxoffset",auxoffset) 
-          
         }
       }
     }
@@ -68,22 +79,27 @@ async function GetProductsAPI(){
 
 }
 
-async function getBrand(att){
-  if(att.length>0 && att[0].hasOwnProperty("value_name")){
-    let att_name= att[0].value_name
-    let brand = await Brand.findOne({
-      where:{name: att_name}
-    })
-    return (Array.isArray(brand))?brand[0].dataValues.brandid:null;
-  }
-  return null;
+async function getBrand(obj){
+  //console.log(obj)
+  let name=obj[0].value
+  await Brand.findOrCreate({
+    where: { name },
+    defaults: {
+      name: name,
+    },
+  });
+  return name;
 }
 
-async function getCategory(name){
-  let category = await Category.findOrCreate({
-    where:{name: name}
+
+async function getAttributes(id){
+  let {data} = await axios.get(`https://api.mercadolibre.com/items/${id}`);
+  //console.log(data.attributes)
+  return data.attributes.map(el=>{
+    if(el.id!=="GTIN" || el.id!=="EXCLUSIVE_CHANNEL"||el.id!=="BRAND"){
+      return {name:el.name, value:el.value_name}
+    }
   })
-  return category[0].dataValues.categoryid
 }
 
 module.exports= {
