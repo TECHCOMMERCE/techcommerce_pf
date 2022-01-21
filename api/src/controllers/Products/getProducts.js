@@ -1,10 +1,11 @@
 const { Product, Category, Brand } = require("../../db.js");
+const json = require("./DataProducts.json");
 
 const getProducts = async (page) => {
   try {
     if(page > -1) {  
     return await Product.findAll({
-      
+      where: {status: true},
       include: [
         {
           model: Category,
