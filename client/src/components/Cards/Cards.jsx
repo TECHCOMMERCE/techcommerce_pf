@@ -29,8 +29,8 @@ const Cards = () => {
 //hola
   useEffect(() => {
     
-    dispatch(getProducts());
-}, []);
+    dispatch(getProducts(page));
+}, [page]);
 
   return (
     <Items>

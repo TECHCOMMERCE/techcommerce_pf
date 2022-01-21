@@ -3,10 +3,10 @@ import { GET_PRODUCTS, ERROR_MESSAGE, GET_DETAILS} from '../constanst/actionsTyp
 
 const url = 'localhost:3001';
 
-export function getProducts() {
+export function getProducts(page) {
 	return (dispatch) => {
 		axios
-			.get(`http://${url}/products`)
+			.get(`http://${url}/products?page=${page}`)
 			.then((res) => {
 				console.log('res', res.data)
 				if (res.status === 200) {

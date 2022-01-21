@@ -1,8 +1,10 @@
 const { Product, Category, Brand } = require("../../db.js");
 
-const getProducts = async () => {
+const getProducts = async (page) => {
   try {
+
     return await Product.findAll({
+      
       include: [
         {
           model: Category,
@@ -14,6 +16,8 @@ const getProducts = async () => {
           model: Brand,
         },
       ],
+      limit: 9,
+      offset: page * 9,
     });
   } catch (error) {
     console.log(error);
