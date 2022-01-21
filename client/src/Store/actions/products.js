@@ -3,27 +3,32 @@ import { GET_PRODUCTS, ERROR_MESSAGE, GET_DETAILS} from '../constanst/actionsTyp
 
 const url = 'localhost:3001';
 
-export function getProducts(page) {
+export function getProducts(page, name, category) {
 	return (dispatch) => {
+		// va armando la url donde hará la petición, agregando las query strings si es que existen
+		let finalUrl = `http://${url}/products${category || name ? '?' : ''}${category ? 'category=' + category : ''}${category && name ? '&' : ''}${name ? 'name=' + name : ''}`;
+
+		console.log(finalUrl);
+
 		axios
-			.get(`http://${url}/products?page=${page}`)
-			.then((res) => {
-				console.log('res', res.data)
-				if (res.status === 200) {
-					dispatch({
-						type: GET_PRODUCTS,
-						products: res.data,
-					});
-				} else {
-					dispatch({
-						type: ERROR_MESSAGE,
-						message: 'Error al mostrar productos',
-					});
-				}
-			})
-			.catch((err) => {
-				console.log(err);
-			});
+		.get(finalUrl)
+		.then((res) => {
+			// console.log('res', res.data)
+			if (res.status === 200) {
+				dispatch({
+					type: GET_PRODUCTS,
+					products: res.data,
+				});
+			} else {
+				dispatch({
+					type: ERROR_MESSAGE,
+					message: 'Error al mostrar productos',
+				});
+			}
+		})
+		.catch((err) => {
+			console.log(err);
+		});
 	};
 }
 

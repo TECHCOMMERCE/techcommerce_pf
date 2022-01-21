@@ -46,7 +46,7 @@ const CategoryItem = ({ item }) => {
       <Image src={item.img}></Image>
       <Info>
       <Title>{item.title}</Title>
-      <Link to={`/products?category=${item.title}`}><Button>SHOP NOW</Button></Link>
+      <Link to={`/products?categories=${item.id}`}><Button>SHOP NOW</Button></Link>
       </Info>
     </Container>
   );
