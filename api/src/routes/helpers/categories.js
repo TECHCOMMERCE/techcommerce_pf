@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const getCategories = require("../controllers/Categories/getCategories");
+const getCategories = require("../../controllers/Categories/getCategories");
 
 router.get("/", async(req, res) => {
   const categories = await getCategories();

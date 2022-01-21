@@ -22,10 +22,18 @@ router.get("/", async (req, res) => {
     
     return;
   }
-  
-  console.log("sin query");
+
+//   const {page} = req.query;
+//   if(req.query.name){
+//     const products = await getProductsByQuery(req.query.name);
+
+//     return products ? res.send(products) : res.send([]);
+//   }
+//   const products = await getProducts(page);
+
+//   console.log("sin query");
   const products = await getProducts();
-  return res.json(products);
+  return products ? res.send(products) : res.send([]);
 });
 
 module.exports = router;
