@@ -11,14 +11,14 @@ module.exports = (sequelize) => {
         type: {
             type: DataTypes.ENUM("admin","user"),
             required: true,
-            allowNull: false,
         },
         name: {
-            type: DataTypes.STRING
+            type: DataTypes.STRING,
+            allowNull: false,
         },
         lastname:{
             type:DataTypes.TEXT,
-            allowNull:false,
+            allowNull: false,
         },
         email: {
             type: DataTypes.STRING,
@@ -40,37 +40,29 @@ module.exports = (sequelize) => {
         },
         phone:{
             type: DataTypes.STRING,
-            allowNull:false
         },
         photo:{
             type:DataTypes.TEXT,
-            allowNull:true,
         },
         force:{
             type:DataTypes.BOOLEAN,
-            allowNull:false,
             defaultValue: false
         },  
         status:{
             type:DataTypes.BOOLEAN,
-            allowNull:false,
             defaultValue: true
         },
         address:{
             type:DataTypes.STRING(255),
-            allowNull:false,
         },
         country:{
             type:DataTypes.TEXT,
-            allowNull:false,
         },
         city:{
             type:DataTypes.TEXT,
-            allowNull:false,
         },
         postalcode:{
             type:DataTypes.INTEGER,
-            allowNull:false,
         },
     },{
         timestamps:false
