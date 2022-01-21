@@ -42,7 +42,7 @@ router.post("/", async(req, res) => {
       return res.status(200).send({code: 2, message: "Ya existe un usuario con esos datos"});
     }
   }catch(e){
-    return res.status(400).send({code: 1, message: "Revise los campos"});
+    return res.status(200).send({code: 1, message: "Revise los campos"});
   }
 
 })

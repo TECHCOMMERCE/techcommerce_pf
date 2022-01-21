@@ -1,6 +1,9 @@
-import { useState } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import s from "../../assets/styles/Register.module.css";
+
+import Swal from "sweetalert2";
 
 const Register = () => {
     const [step, setStep] = useState(1);
@@ -20,6 +23,26 @@ const Register = () => {
         postalcode: ""
     });
 
+    const [formStatus, setFormStatus] = useState(null);
+
+    useEffect(async() => {
+        console.log(formStatus)
+        if(formStatus && formStatus.code === 0){
+            setStep(prev => prev+1);
+        }else if(formStatus && formStatus.code === 1){
+            Swal.fire({
+                icon: "error",
+                title: "ERROR!",
+                text: formStatus.message
+            })
+        }else if(formStatus && formStatus.code === 2){
+            Swal.fire({
+                icon: "warning",
+                title: "Cuidado!",
+                text: formStatus.message
+            })
+        }
+    }, [formStatus]);
 
     return(
         <div className={s.container}>
@@ -33,10 +56,12 @@ const Register = () => {
 
                         <div className={s.sep}></div>
 
-                        <form className={s.form} onSubmit={e => {
+                        <form className={s.form} onSubmit={async(e) => {
                             e.preventDefault();
 
-                            setStep(prev => prev+1);
+                            const res = await axios.post("http://localhost:3001/user", data);
+
+                            setFormStatus(res.data);
                         }}>
                             
                             <input 
@@ -112,7 +137,7 @@ const Register = () => {
 
                         <div className={s.sep}></div>
 
-                        <form className={s.form} onSubmit={e => {
+                        <form className={s.form} onSubmit={async(e) => {
                             e.preventDefault();
 
                             setStep(prev => prev+1);
