@@ -6,18 +6,28 @@ const url = 'localhost:3001';
 export function getProducts(page, name, category) {
 	return (dispatch) => {
 		// va armando la url donde hará la petición, agregando las query strings si es que existen
-		let finalUrl = `http://${url}/products${category || name ? '?' : ''}${category ? 'category=' + category : ''}${category && name ? '&' : ''}${name ? 'name=' + name : ''}`;
+		let finalUrl = `http://${url}/products${category || name ? '?' : ''}${category ? 'categories=' + category : ''}${category && name ? '&' : ''}${name ? 'name=' + name : ''}`;
 
 		console.log(finalUrl);
+
+		let products = [];
 
 		axios
 		.get(finalUrl)
 		.then((res) => {
-			// console.log('res', res.data)
+			
+			if(res.data[0].categoryid){
+				products.push(...res.data.map(cat => cat.products));
+
+				products = products.flat();
+			}else{
+				products.push(...res.data);
+			}
+
 			if (res.status === 200) {
 				dispatch({
 					type: GET_PRODUCTS,
-					products: res.data,
+					products,
 				});
 			} else {
 				dispatch({
