@@ -2,8 +2,10 @@ const { Product, Category, Brand } = require("../../db.js");
 
 // Get a 1 producto por id
 const getProductById = async (id) => {
+  console.log('id', id)
   try {
-    return await Product.findByPk(id, {
+    console.log
+    return await Product.findByPk(id , {
       include: [
         {
           model: Category,
@@ -15,7 +17,7 @@ const getProductById = async (id) => {
           model: Brand,
         },
       ],
-    });
+    } );
   } catch (error) {
     console.log(error);
   }

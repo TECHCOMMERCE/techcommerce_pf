@@ -5,13 +5,14 @@ const router = Router();
 
 // Get de todos los productos o de los productos similares por query
 router.get("/", async (req, res) => {
+  const {page} = req.query;
   if(req.query.name){
     const products = await getProductsByQuery(req.query.name);
 
     return products ? res.send(products) : res.send([]);
   }
 
-  const products = await getProducts();
+  const products = await getProducts(page);
   
   res.json(products);
 });
