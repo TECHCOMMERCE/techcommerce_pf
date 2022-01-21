@@ -15,7 +15,7 @@ let categories = [
     name: "Consolas y Videojuegos" 
   }
 ];
-let limit = 200; //Defino el limite de Productos por categoria
+let limit = 100; //Defino el limite de Productos por categoria
 
 
 async function GetProductsAPI(){

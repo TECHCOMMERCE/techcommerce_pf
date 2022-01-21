@@ -1,0 +1,17 @@
+[
+  {
+      "categoryid": "37de9a19-ccde-422c-9602-12f014310501",
+      "name": "Celulares y Teléfonos",
+      "status": true
+  },
+  {
+      "categoryid": "7e009c8e-b689-4f9a-bdc9-bb36c7991ef7",
+      "name": "Computación",
+      "status": true
+  },
+  {
+      "categoryid": "f8287826-57dc-4511-89c0-1ed6e436ae9b",
+      "name": "Consolas y Videojuegos",
+      "status": true
+  }
+]
