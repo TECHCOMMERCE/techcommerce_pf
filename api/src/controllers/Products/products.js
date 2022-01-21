@@ -4,12 +4,9 @@ const {Product, Category} = require('../../db');
 const products = async ( req, res, next )=>{
   try {
     let products = null;
-
     let data = null;
 
     const {search, category} = req.query;
-
-    console.log(category);
 
     if(search){
       data = await Product.findAll({where: {
@@ -32,7 +29,6 @@ const products = async ( req, res, next )=>{
     
     res.status(200).send(products);
   } catch (error) {
-    console.log(error);
     res.status(404).send({error})
   }
 }

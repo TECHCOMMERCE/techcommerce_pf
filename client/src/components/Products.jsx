@@ -10,18 +10,19 @@ import s from "../assets/styles/Products.module.css";
 
 const Products = () => {
     const [products, setProducts] = useState(undefined);
-    const [search, setSearch] = useState("");
+    const [name, setName] = useState("");
     
     const [searchParams, setSearchParams] = useSearchParams();
 
     const [category, setCategory] = useState(searchParams.get("category") || "");
 
+    // name
     useEffect(async () => {
-        const search = searchParams.get("search");
+        const name = searchParams.get("name");
 
         let res = null;
 
-        let url = "http://localhost:3001/products" + (category || search ? "?" : "") + (category ? "category=" + category : "") + (category && search ? "&" : "") + (search ? "search=" + search : "");
+        let url = "http://localhost:3001/products" + (category || name ? "?" : "") + (category ? "category=" + category : "") + (category && name ? "&" : "") + (name ? "name=" + name : "");
 
         console.log(url);
         
@@ -41,17 +42,17 @@ const Products = () => {
                     queries["category"] = category;
                 }
 
-                if(search){
-                    queries["search"] = search
+                if(name){
+                    queries["name"] = name
                 }
 
                 setSearchParams(queries);
             }}>
                 <input 
-                    value={search}
+                    value={name}
                     type="text"
                     className={s.searchBar}
-                    onChange={e => setSearch(e.target.value)}
+                    onChange={e => setName(e.target.value)}
                 />
             </form>
 
@@ -59,9 +60,9 @@ const Products = () => {
                 if(products){
                     if(products.length > 0){
                         return(
-                            products.map(({id, name, image, price}) => {
+                            products.map(({productid, name, image, price}) => {
                                 return(
-                                    <Card key={id} name={name} img={image} price={price}/>
+                                    <Card key={productid} name={name} img={image} price={price}/>
                                 );
                             })
                         )

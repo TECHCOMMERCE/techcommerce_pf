@@ -1,0 +1,218 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import s from "../../assets/styles/Register.module.css";
+
+const Register = () => {
+    const [step, setStep] = useState(1);
+
+    const [data, setData] = useState({
+        name: "",
+        lastname: "",
+        email: "",
+        password: ""
+    });
+
+    const [aditionalData, setAditionalData] = useState({
+        phone: "",
+        address: "",
+        country: "",
+        city: "",
+        postalcode: ""
+    });
+
+
+    return(
+        <div className={s.container}>
+            {(() => {
+                if(step === 1){
+                    return(<>
+                        <div className={s.left}>
+                            <h1 className={s.step}>paso {step}</h1>
+                            <span className={s.description}>Primero ingresa los campos de registro de usuario</span>
+                        </div>
+
+                        <div className={s.sep}></div>
+
+                        <form className={s.form} onSubmit={e => {
+                            e.preventDefault();
+
+                            setStep(prev => prev+1);
+                        }}>
+                            
+                            <input 
+                                type="text" 
+                                value={data.name} 
+                                placeholder="name"
+                                className={s.input}
+                                onChange={e => {
+                                    console.log("aaa")
+                                    setData(prev => {
+                                        return {
+                                            ...prev,
+                                            name: e.target.value
+                                        }
+                                    })
+                                }}
+                            />
+                                
+                            <input 
+                                type="text" 
+                                value={data.lastname}
+                                placeholder="lastname"
+                                className={s.input}
+                                onChange={e => {
+                                    setData(prev => {
+                                        return {
+                                            ...prev,
+                                            lastname: e.target.value
+                                        }
+                                    })
+                                }}
+                            />
+                                
+                            <input 
+                                type="email" 
+                                value={data.email} 
+                                placeholder="email"
+                                className={s.input}
+                                onChange={e => {
+                                    setData(prev => {
+                                        return {
+                                            ...prev,
+                                            email: e.target.value
+                                        }
+                                    })
+                                }}
+                            />
+                                
+                            <input 
+                                type="password" 
+                                value={data.password} 
+                                placeholder="password"
+                                className={s.input}
+                                onChange={e => {
+                                    setData(prev => {
+                                        return {
+                                            ...prev,
+                                            password: e.target.value
+                                        }
+                                    })
+                                }}
+                            />
+
+                            <input type="submit" className={`${s.input} ${s.button}`} value="enviar"/>
+                        </form>
+                    </>)
+                }else if(step === 2){
+                    return(<>
+                        <div className={s.left}>
+                            <h1 className={s.step}>paso {step}</h1>
+                            <span className={s.description}>Ahora Ingrese los datos adicionales</span>
+                        </div>
+
+                        <div className={s.sep}></div>
+
+                        <form className={s.form} onSubmit={e => {
+                            e.preventDefault();
+
+                            setStep(prev => prev+1);
+                        }}>
+                            <input
+                                type="text" 
+                                value={aditionalData.phone} 
+                                placeholder="phone"
+                                className={s.input}
+                                onChange={e => {
+                                    setAditionalData(prev => {
+                                        return {
+                                            ...prev,
+                                            phone: e.target.value
+                                        }
+                                    })
+                                }}
+                            />
+
+                            <input
+                                type="text" 
+                                value={aditionalData.address} 
+                                placeholder="address"
+                                className={s.input}
+                                onChange={e => {
+                                    setAditionalData(prev => {
+                                        return {
+                                            ...prev,
+                                            address: e.target.value
+                                        }
+                                    })
+                                }}
+                            />
+                            
+                            <input
+                                type="text" 
+                                value={aditionalData.country} 
+                                placeholder="country"
+                                className={s.input}
+                                onChange={e => {
+                                    setAditionalData(prev => {
+                                        return {
+                                            ...prev,
+                                            country: e.target.value
+                                        }
+                                    })
+                                }}
+                            />
+                            
+                            <input
+                                type="text" 
+                                value={aditionalData.city} 
+                                placeholder="city"
+                                className={s.input}
+                                onChange={e => {
+                                    setAditionalData(prev => {
+                                        return {
+                                            ...prev,
+                                            city: e.target.value
+                                        }
+                                    })
+                                }}
+                            />
+
+                            <input
+                                type="text" 
+                                value={aditionalData.postalcode} 
+                                placeholder="postalcode"
+                                className={s.input}
+                                onChange={e => {
+                                    setAditionalData(prev => {
+                                        return {
+                                            ...prev,
+                                            postalcode: e.target.value
+                                        }
+                                    })
+                                }}
+                            />
+
+                            <input type="submit" className={`${s.input} ${s.button}`} value="enviar"/>
+                        </form>
+                    </>)
+                }else if(step === 3){
+                    return(<>
+                        <div className={s.left}>
+                            <h1 className={s.step}>paso {step}</h1>
+                            <span className={s.description}>Listo, solo falta iniciar sesión con tu nueva cuenta</span>
+                        </div>
+
+                        <div className={s.sep}></div>
+
+                        <div className={s.form}>
+                            <span className={s.link}><Link to="/login">Ir al login</Link></span>
+                        </div>
+                    </>)
+                }
+            })()}
+        </div>
+    )
+
+}
+
+export default Register

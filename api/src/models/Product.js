@@ -6,7 +6,7 @@ module.exports = (sequelize) => {
     "product",
     {
       productid: {
-        type: DataTypes.UUID,
+        type: DataTypes.STRING,
         primaryKey: true,
         defaultValue: DataTypes.UUIDV4
       },
@@ -41,6 +41,7 @@ module.exports = (sequelize) => {
       },
       status:{
         type: DataTypes.BOOLEAN,
+        allowNull: false,
         defaultValue: true
       }
     },

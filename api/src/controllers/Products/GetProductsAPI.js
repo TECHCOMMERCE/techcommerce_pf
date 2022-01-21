@@ -68,7 +68,6 @@ async function GetProductsAPI(){
 
 }
 
-
 async function getBrand(att){
   if(att.length>0 && att[0].hasOwnProperty("value_name")){
     let att_name= att[0].value_name
@@ -90,5 +89,3 @@ async function getCategory(name){
 module.exports= {
   GetProductsAPI
 }
-
-
