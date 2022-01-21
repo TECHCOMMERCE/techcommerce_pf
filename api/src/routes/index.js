@@ -2,7 +2,9 @@ const { Router } = require("express");
 const products = require("./products");
 const product = require("./product");
 const categories = require('./helpers/category')
+const category = require('./helpers/category')
 const brand = require('./helpers/brand')
+const brands = require('./helpers/brands')
 const review = require('./helpers/review')
 
 const user = require("../controllers/User/user");
@@ -15,13 +17,13 @@ const router = Router();
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 router.use("/categories", categories);
-router.use("/brands", brand);
+router.use("/brands", brands);
 router.use("/product", product);
 router.use("/products", products);
 // router.use(posts);
 router.use("/user", user);
 //router.use('/', productPostingRoute)
-router.use('/categories', categories)
+router.use('/categories', category)
 
 router.use('/brand', brand)
 

@@ -40,6 +40,7 @@ module.exports = (sequelize) => {
         },
         phone:{
             type: DataTypes.STRING,
+            defaultValue: "-"
         },
         photo:{
             type:DataTypes.TEXT,
@@ -55,15 +56,19 @@ module.exports = (sequelize) => {
         },
         address:{
             type:DataTypes.STRING(255),
+            defaultValue: "-"
         },
         country:{
             type:DataTypes.TEXT,
+            defaultValue: "-"
         },
         city:{
             type:DataTypes.TEXT,
+            defaultValue: "-"
         },
         postalcode:{
             type:DataTypes.INTEGER,
+            defaultValue: 0
         },
     },{
         timestamps:false

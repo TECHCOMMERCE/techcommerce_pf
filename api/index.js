@@ -16,7 +16,12 @@ server.listen(process.env.PORT||3001/* 5000 */,  () => {
         name: "admin",
         lastname: "admin",
         email: "admin@gmail.com",
-        password: "admin123"
+        password: "admin123",
+        phone: 0,
+        address: "-",
+        country: "-",
+        city: "-",
+        postalcode: 0
       }
     });
 

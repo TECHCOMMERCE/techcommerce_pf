@@ -5,9 +5,10 @@ const PutProduct = require("../controllers/Product/PutProduct");
 
 // Get de 1 producto por id
 router.get("/:id", async(req, res) => {
+  console.log(req.params)
   const product = await getProductById(req.params.id);
 
-  product ? res.send(product) : res.send([]);
+  product ? res.json(product) : res.send([]);
 });
 
 // Post de 1 producto

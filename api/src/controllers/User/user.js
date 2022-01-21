@@ -35,6 +35,8 @@ router.post("/", async(req, res) => {
         ...data
       }
     });
+
+    
   
     if(created){
       return res.status(200).send({code: 0, message: "El usuario se creó con éxito", userid: user.userid});
@@ -42,6 +44,7 @@ router.post("/", async(req, res) => {
       return res.status(200).send({code: 2, message: "Ya existe un usuario con esos datos"});
     }
   }catch(e){
+    console.log(e);
     return res.status(200).send({code: 1, message: "Revise los campos"});
   }
 });
