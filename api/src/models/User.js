@@ -43,6 +43,7 @@ module.exports = (sequelize) => {
         },
         photo:{
             type:DataTypes.TEXT,
+            defaultValue: "https://icon-library.com/images/no-user-image-icon/no-user-image-icon-3.jpg"
         },
         force:{
             type:DataTypes.BOOLEAN,

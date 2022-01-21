@@ -20,12 +20,12 @@ const users = [
 ]
 
 router.post("/", async(req, res) => {
-  const {idUser, type = "user", name, lastname, email, password = "-", from} = req.body;
+  const {userid, type = "user", name, lastname, email, password = "-", from} = req.body;
 
   const data = {type, name, lastname, email, password};
 
-  if(idUser){
-    data["idUser"] = idUser;
+  if(userid){
+    data["userid"] = userid;
   }
 
   try{
@@ -37,14 +37,28 @@ router.post("/", async(req, res) => {
     });
   
     if(created){
-      return res.status(200).send({code: 0, message: "El usuario se creó con éxito"});
+      return res.status(200).send({code: 0, message: "El usuario se creó con éxito", userid: user.userid});
     }else{
       return res.status(200).send({code: 2, message: "Ya existe un usuario con esos datos"});
     }
   }catch(e){
     return res.status(200).send({code: 1, message: "Revise los campos"});
   }
+});
 
-})
+router.put("/", async(req, res) => {
+  try{
+    const user = await User.findOne({where: {
+      userid: req.body.userid
+    }});
+
+    user.update({...req.body})
+
+
+    return res.status(200).send({code: 0, message: "Usuario creado Con éxito"});
+  }catch(e){
+    return res.status(200).send({code: 1, message: "Revise los campos"});
+  }
+});
 
 module.exports = router;
