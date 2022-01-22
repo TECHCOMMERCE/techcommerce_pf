@@ -1,4 +1,5 @@
 import React from "react";
+import { Link, NavLink } from "react-router-dom";
 import styled from "styled-components";
 import mobile from "../../responsive";
 
@@ -44,8 +45,8 @@ const CategoryItem = ({ item }) => {
     <Container>
       <Image src={item.img}></Image>
       <Info>
-        <Title>{item.title}</Title>
-        <Button>SHOP NOW</Button>
+      <Title>{item.title}</Title>
+      <Link to={`/products?categories=${item.id}`}><Button>SHOP NOW</Button></Link>
       </Info>
     </Container>
   );
