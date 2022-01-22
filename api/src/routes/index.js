@@ -6,6 +6,7 @@ const category = require('./helpers/category')
 const brand = require('./helpers/brand')
 const brands = require('./helpers/brands')
 const review = require('./helpers/review')
+const user = require("./user");
 
 //importing the routes
 //const productPostingRoute = require('../controllers/Products/PostProduct.js')
@@ -24,6 +25,7 @@ router.use("/products", products);
 router.use('/categories', category)
 
 router.use('/brand', brand)
+router.use('/user', user)
 
 // router.use('/review', review)
 

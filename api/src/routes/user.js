@@ -1,5 +1,7 @@
 const router = require("express").Router();
 
+const {auth} = require('../controllers/User/Auth/auth.js')
+
 const users = [
   {
     name: "Fernando",
@@ -21,5 +23,7 @@ const users = [
 router.post("/users", async(req, res) => {
   
 })
+
+router.post("/login", auth)
 
 module.exports = router;
