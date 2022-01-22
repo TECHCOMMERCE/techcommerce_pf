@@ -11,14 +11,14 @@ module.exports = (sequelize) => {
         type: {
             type: DataTypes.ENUM("admin","user"),
             required: true,
-            allowNull: false,
         },
         name: {
-            type: DataTypes.STRING
+            type: DataTypes.STRING,
+            allowNull: false,
         },
         lastname:{
             type:DataTypes.TEXT,
-            allowNull:false,
+            allowNull: false,
         },
         email: {
             type: DataTypes.STRING,
@@ -40,37 +40,35 @@ module.exports = (sequelize) => {
         },
         phone:{
             type: DataTypes.STRING,
-            allowNull:false
+            defaultValue: "-"
         },
         photo:{
             type:DataTypes.TEXT,
-            allowNull:true,
+            defaultValue: "https://icon-library.com/images/no-user-image-icon/no-user-image-icon-3.jpg"
         },
         force:{
             type:DataTypes.BOOLEAN,
-            allowNull:false,
             defaultValue: false
         },  
         status:{
             type:DataTypes.BOOLEAN,
-            allowNull:false,
             defaultValue: true
         },
         address:{
             type:DataTypes.STRING(255),
-            allowNull:false,
+            defaultValue: "-"
         },
         country:{
             type:DataTypes.TEXT,
-            allowNull:false,
+            defaultValue: "-"
         },
         city:{
             type:DataTypes.TEXT,
-            allowNull:false,
+            defaultValue: "-"
         },
         postalcode:{
             type:DataTypes.INTEGER,
-            allowNull:false,
+            defaultValue: 0
         },
     },{
         timestamps:false

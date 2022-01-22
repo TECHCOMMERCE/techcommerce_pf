@@ -6,6 +6,10 @@ import {ShoppingCart} from '@styled-icons/entypo/ShoppingCart';
 import {Search} from '@styled-icons/material/Search';
 import mobile from "../../responsive";
 import TechC from "../../assets/Imgs/TechC.gif";
+import { Link, NavLink } from "react-router-dom";
+
+import s from "../../assets/styles/General.module.css";
+
 const Container = styled.div`
   height: 60px;
   ${mobile({ height: "50px" })}
@@ -88,17 +92,17 @@ const Header = () => {
             <Input placeholder="Search"></Input>
              <S size={25} />
           </SearchContainer>
+          <Link to="/products">Productos</Link>
         </Left>
         <Center>
           <Logo src={TechC}/>
         </Center>
         <Right>
-          <MenuItem>REGISTER</MenuItem>
-          <MenuItem>LOGIN</MenuItem>
+          <Link to="/register"><MenuItem>REGISTER</MenuItem></Link>
+          <Link to="/login"><MenuItem>LOGIN</MenuItem></Link>
+          
           <MenuItem>
-            
               <ShoppCart size={20} />
-           
           </MenuItem>
         </Right>
       </Wrapper>
