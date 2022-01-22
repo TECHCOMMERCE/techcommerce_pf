@@ -7,8 +7,8 @@ export const Main = styled.div `
   justify-content: space-around;
   align-items: center;
   flex-direction: column;
-  width: 25%;
-  height: 500px;
+  width: 300px;
+  height: 400px;
   margin-top: 50px;
   margin-right: 3%;
   background-color: white;

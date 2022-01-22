@@ -1,6 +1,5 @@
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
-
 const loadDataFromApi = require("./src/controllers/Products/LoadDataFromApi");
 const {GetProductsAPI} = require("./src/controllers/Products/GetProductsAPI");
 
