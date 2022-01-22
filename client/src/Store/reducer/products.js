@@ -2,7 +2,7 @@ import { GET_PRODUCTS, GET_DETAILS} from "../constanst/actionsTypes";
 
 
 const initialState={
-	products: [],
+	products: undefined,
   product: {} 
     
 }

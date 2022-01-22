@@ -15,10 +15,11 @@ export function getProducts(page, name, category) {
 		axios
 		.get(finalUrl)
 		.then((res) => {
-			
 			if(res.data[0].categoryid){
+				// Si se le aplicó el filtrado por categorías se arma un array que contenga los arrays de productosd e cáda categoría
 				products.push(...res.data.map(cat => cat.products));
 
+				// Luego se aplana para que esten en un solo array (osea lo normalizo)
 				products = products.flat();
 			}else{
 				products.push(...res.data);
@@ -37,7 +38,10 @@ export function getProducts(page, name, category) {
 			}
 		})
 		.catch((err) => {
-			console.log(err);
+			dispatch({
+				type: GET_PRODUCTS,
+				products: [],
+			});
 		});
 	};
 }
