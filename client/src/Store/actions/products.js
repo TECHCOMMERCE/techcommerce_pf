@@ -27,8 +27,6 @@ export function getProducts(page) {
 	};
 }
 
-
-
 export const getDetails = (id) => async(dispatch) => {
 	console.log('entre')
 	const data = await axios.get(`http://${url}/product/${id}`)

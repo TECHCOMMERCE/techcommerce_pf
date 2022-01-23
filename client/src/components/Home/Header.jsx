@@ -6,6 +6,7 @@ import {ShoppingCart} from '@styled-icons/entypo/ShoppingCart';
 import {Search} from '@styled-icons/material/Search';
 import mobile from "../../responsive";
 import TechC from "../../assets/Imgs/TechC.gif";
+import {Link} from "react-router-dom";
 const Container = styled.div`
   height: 60px;
   ${mobile({ height: "50px" })}
@@ -95,6 +96,7 @@ const Header = () => {
         <Right>
           <MenuItem>REGISTER</MenuItem>
           <MenuItem>LOGIN</MenuItem>
+          <Link to="/product/create">PRODUCT</Link>
           <MenuItem>
             
               <ShoppCart size={20} />
