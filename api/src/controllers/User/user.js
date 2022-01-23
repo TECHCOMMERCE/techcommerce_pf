@@ -64,4 +64,28 @@ router.put("/", async(req, res) => {
   }
 });
 
+router.get("/", async(req, res) => {
+  try{
+    const users = await User.findAll();
+
+    return res.status(200).send(users.map(user => user.dataValues));
+  }catch(e){
+    return res.status(200).send({code: 1, message: "Hay error", error: e});
+  }
+});
+
+router.delete("/", async(req, res) => {
+  try{
+    const {userid} = req.body;
+
+    await User.destroy({where: {
+      userid
+    }})
+
+    return res.status(200).send({code: 0, message: "eliminado con éxito"});
+  }catch(e){
+    return res.status(200).send({code: 1, message: "Hay error", error: e});
+  }
+});
+
 module.exports = router;
