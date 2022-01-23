@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { getProducts, getBrand, getCategories } from '../../Store/actions/products.js';
+import { getProductsFront, getBrand, getCategories } from '../../Store/actions/products.js';
 import { useDispatch, useSelector } from 'react-redux';
 import Card from './Card/Card';
 import { Items, Buttons, Filters, Main, Select, Options, Null } from './styles';
@@ -7,7 +7,7 @@ import { Button } from '@mui/material';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Footer from '../../components/Home/Footer';
-import Table from 'react-bootstrap/Table'
+
 
 
 const Cards = () => {
@@ -48,21 +48,21 @@ const Cards = () => {
         sort: ''
       })
       setPage(0);
-      dispatch(getProducts(obj, page));
+      dispatch(getProductsFront(obj, page));
     }else if(e.target.value === 'asc' || e.target.value === 'desc') {
       setObj({
         ...obj,
         sort: e.target.value
       })
       setPage(0);
-      dispatch(getProducts(obj, page))
+      dispatch(getProductsFront(obj, page))
     }else if(e.target.value ==='/'){
       setObj({
         ...obj,
         sort: ''
       })
       setPage(0);
-      dispatch(getProducts(obj, page))
+      dispatch(getProductsFront(obj, page))
     }else if(e.target.value === '-'){
       setObj({
         ...obj,
@@ -70,7 +70,7 @@ const Cards = () => {
         sort: ''
       })
       setPage(0);
-      dispatch(getProducts(obj, page))
+      dispatch(getProductsFront(obj, page))
     }
     else{
       setObj({
@@ -79,7 +79,7 @@ const Cards = () => {
         sort: ''
       })
       setPage(0);
-      dispatch(getProducts(obj, page))  
+      dispatch(getProductsFront(obj, page))  
     }
   }
 
@@ -88,7 +88,7 @@ const Cards = () => {
 //hola
   useEffect(async() => {
     
-    await dispatch(getProducts(obj, page));
+    await dispatch(getProductsFront(obj, page));
     await dispatch(getBrand())
     await dispatch(getCategories())
 }, [page, obj, dispatch]);
