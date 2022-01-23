@@ -21,7 +21,10 @@ const Card = ({id, name, stock, image , price}) => {
   return (
     <Main>
       <Img src={image} alt=''  />
+
+      <div style={{height: '40px', overflow: 'hidden'}}>
       <Link  href={`/Details/${id}`}><Name>{name}</Name></Link>
+      </div>
       <p style={{color: '#2EB8B0'}}><b>$ </b>{price}</p>
       <p>{stock} {stock===0 ? 'Agotado': 'disponibles!'}</p>
       {/* <Stock>

@@ -3,11 +3,13 @@
 import React from "react";
 import styled from "styled-components";
 import {ShoppingCart} from '@styled-icons/entypo/ShoppingCart';
+
 import mobile from "../../responsive";
 import TechC from "../../assets/Imgs/TechC.gif";
 import Logoo from "../../assets/Imgs/Logoo.png";
 import Tech from "../../assets/Imgs/Tech.png";
 import { Link } from "react-router-dom";
+
 
 
 
@@ -29,11 +31,13 @@ const Left = styled.div`
   display: flex;
 `;
 
+
 const Center = styled.div`
   flex: 1;
   text-align: center;
   font-size: 50px;
   margin-bottom: 20px; 
+
 `;
 
 const Logo = styled.img`
@@ -45,6 +49,7 @@ const Logo = styled.img`
   text-align: center;
   ${mobile({ fontSize: "24px" })}
 `;
+
 const TechC = styled.img`
    display: block;
   width: 100px;
@@ -78,7 +83,6 @@ const MenuItem = styled.div`
 const ShoppCart = styled(ShoppingCart)`
 `
 
-  
 
 //-----------------------------------------------------
 
@@ -87,6 +91,7 @@ const Header = () => {
     <Container>
       <Wrapper>
         <Left>
+
           <Logo src={Logoo} />
           <Link to="/products">Productos</Link>
         </Left>
@@ -97,6 +102,7 @@ const Header = () => {
           {/* <MenuItem>REGISTER</MenuItem>
           <MenuItem>LOGIN</MenuItem> */}
           <Link to="/product/create">PRODUCT</Link>
+
           <Link to="/register"><MenuItem>REGISTER</MenuItem></Link>
           <Link to="/login"><MenuItem>LOGIN</MenuItem></Link>
           
