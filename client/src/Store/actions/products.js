@@ -5,7 +5,7 @@ const url = 'localhost:3001';
 
 
 
-
+//porque no me deja
 
 export const getCategories = () => async(dispatch) => {
 	const data= await axios.get(`http://${url}/categories`)
@@ -14,7 +14,6 @@ export const getCategories = () => async(dispatch) => {
 		payload: data.data
 	})
 }
-
 
 
 export const getDetails = (id) => async(dispatch) => {
