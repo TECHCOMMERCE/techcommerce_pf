@@ -6,7 +6,8 @@ import { Items, Buttons, Filters, Main, Select, Options, Null } from './styles';
 import { Button } from '@mui/material';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import Footer from '../../components/Home/Footer'
+import Footer from '../../components/Home/Footer';
+import Table from 'react-bootstrap/Table'
 
 
 const Cards = () => {
@@ -147,7 +148,7 @@ const Cards = () => {
     </Main>
     <Buttons>
       <Button onClick={back} disabled={page === 0} style={{ margin: '100px'}} variant="text"><ArrowBackIcon style={{color: '#000000'}}/></Button>
-      <Button onClick={foward} disabled={products.length <= 0 } style={{  margin: '0px'}} variant="text"><ArrowForwardIcon style={{color: '#000000'}}/></Button>
+      <Button onClick={foward} disabled={products.length <= 0 } style={{  margin: '100px'}} variant="text"><ArrowForwardIcon style={{color: '#000000'}}/></Button>
       </Buttons>  
     <Footer/>
     </>
