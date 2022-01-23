@@ -4,7 +4,7 @@ const { Product, Category, Brand } = require("../../db");
 const getProductsByQuery = async (query) => {
   try {
     // recibe un string desde el searchbar
-    if (query.name)
+    if (query.name) {
       return await Product.findAll({
         where: {
           name: {
@@ -25,7 +25,8 @@ const getProductsByQuery = async (query) => {
             model: Brand,
           },
         ],
-      });
+      })
+    }
 
     // debe recibir un array de strings con los ids de las categorías
     if (query.categories) {
