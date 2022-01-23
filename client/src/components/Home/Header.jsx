@@ -3,11 +3,10 @@
 import React from "react";
 import styled from "styled-components";
 import {ShoppingCart} from '@styled-icons/entypo/ShoppingCart';
-import {Search} from '@styled-icons/material/Search';
 import mobile from "../../responsive";
 import Logoo from "../../assets/Imgs/Logoo.png";
 import Tech from "../../assets/Imgs/Tech.png";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
 
@@ -46,10 +45,15 @@ const Logo = styled.img`
   ${mobile({ fontSize: "24px" })}
 `;
 const TechC = styled.img`
-  display: block;
-  
+   display: block;
+  width: 100px;
+  height: 50px;
+  margin-left: 150px;
+  padding: 10px;
+  text-align: center;
   ${mobile({ fontSize: "24px" })}
 `;
+ 
 
 
 
@@ -72,9 +76,8 @@ const MenuItem = styled.div`
 
 const ShoppCart = styled(ShoppingCart)`
 `
-const S = styled(Search)`
-padding: 5px;
-  `
+
+  
 
 //-----------------------------------------------------
 
