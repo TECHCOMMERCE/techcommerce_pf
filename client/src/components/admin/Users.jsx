@@ -51,10 +51,10 @@ const Users = () => {
                             return(<div>
                                 <span>cantidad de usuarios: {users.length}</span>
                                 
-                                <table>
+                                <table className={s.table}>
                                     <thead>
                                         
-                                        <tr>
+                                        <tr className={s.thead}>
                                             <th>type</th>
                                             <th>name</th>
                                             <th>lastname</th>
@@ -65,12 +65,14 @@ const Users = () => {
                                             <th>city</th>
                                             <th>postalcode</th>
                                             <th>force password</th>
+                                            <th>Controls</th>
                                         </tr>
                                     </thead>
 
                                     <tbody>
-                                        {users.map(user => {
-                                            return(<tr key={user.userid}>
+                                        {users.map((user, i) => {
+                                            console.log(user.force)
+                                            return(<tr key={user.userid} className={i%2!=0 ? s.row1 : null}>
                                                 <td>{user.type}</td>
                                                 <td>{user.name}</td>
                                                 <td>{user.lastname}</td>
@@ -81,6 +83,11 @@ const Users = () => {
                                                 <td>{user.City}</td>
                                                 <td>{user.postalcode}</td>
                                                 <td>{user.force}</td>
+                                                <td>
+                                                    <button>Force</button>
+                                                    <button>Editar</button>
+                                                    <button>Eliminar</button>
+                                                </td>
                                             </tr>)
                                         })}
                                     </tbody>
