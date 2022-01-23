@@ -18,6 +18,14 @@ import { Button } from '@mui/material';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
+//import Table from 'react-bootstrap/Table';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
 
 
 // const url = 'localhost:3001';
@@ -62,7 +70,9 @@ const Product = () => {
 				<div className={s.cont_prin}>
 					<Row>
 						<Col xs={12} md={12} lg={8} className={s.cont_img}>
-							<img src={product.image} style={{height: '40%', width: '20%'}} alt={product.name}></img>
+
+							<img src={product.image} style={{height: '40%', width: '15%'}}></img>
+
 						</Col>
 						<Col xs={12} md={12} lg={4} className={s.cont_info}>
 							<div className={s.infog}>
@@ -94,16 +104,29 @@ const Product = () => {
 										<p style={{color: '#2EB8B0'}} >Escribir comentario</p>
 									</div>
 								</div>
-								<div className={s.attributesContainer}>
-									{product.attributes ?
-										product.attributes.map((x, i) => {
-											return(
-											<div key={i} className={s.attributes}>
-												<p style={{fontSize: '17px'}}><b>{x.name}:	</b></p>
-												<p style={{fontSize: '16px'}}className={s.attributesName}>{x.value}</p>
-											</div>)
-										}) : null
-								}
+
+								<div className={s.attributesContainer} >
+
+									<table>
+										<thead>
+											<tr >
+												 <th>Caracteristicas</th>
+												 <th></th>
+											</tr>
+										</thead>
+										<tbody >
+											{ product?.attributes ?
+												product?.attributes?.map(x => {
+												return(
+														<tr style={{marginTop: '30px'}}>
+															 <td style={{marginTop: '30px'}} ><b>{x.name}</b></td>
+															 <td style={{marginTop: '30px'}}>{x.value}</td>
+														</tr>
+												)
+											}) : null }
+											</tbody>
+										</table>
+
 								</div>
 								
 								
@@ -139,7 +162,7 @@ const Product = () => {
 										<Button className={s.buttonCar} >
 											Agregar al carrito
 										</Button> */}
-										<Button variant='contained' style={{marginRight: '20px', backgroundColor: '#2EB8B0'}}>Añadir al carrito</Button>
+										<Button variant='contained' style={{marginRight: '15%', backgroundColor: '#2EB8B0'}}>Añadir al carrito</Button>
 										
 										
 									</div>

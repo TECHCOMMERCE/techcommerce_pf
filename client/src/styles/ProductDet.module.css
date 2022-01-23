@@ -6,7 +6,7 @@
 	margin-bottom: 10%;
 	height: 60%;
 	width: 80%;
-	margin-left: 12%;
+	margin-left: 11%;
 	border-radius: 4px;
 }
 .cont_prin {
@@ -199,6 +199,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	margin-right: 10%;
 }
 
 .agotadoProct {
@@ -214,7 +215,23 @@
 	background-color: rgb(247, 7, 7) !important;
 }
 .attributesContainer{
-	margin-bottom: 5%;
+	height: 600px;
+	overflow-y: scroll;
+	margin-top: 10%;
+	margin-bottom: 10%;
+	
+	width: 90%;
+	
+	
+}
+
+@media (max-width: 900px) {
+	.attributesContainer{
+		height: 600px;
+		width: 100%;
+		
+		
+	}
 }
 
 .attributes{
@@ -226,7 +243,25 @@
 
 .attributesName{
 	position: absolute;
-	left: 32%;
+	left: 40%;
 	font-size: 19px;
 	color:red;
+}
+
+
+th {
+	border-bottom: 1px solid black;
+	
+}
+
+table{
+	border: 1px solid #ccc;
+	width: 100%;
+	
+}
+
+tr:nth-child(even) {background-color: #f2f2f2;}
+
+table tbody tr td {
+	padding: 10px;
 }
