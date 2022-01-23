@@ -7,7 +7,7 @@ import { Button } from '@mui/material';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Footer from '../../components/Home/Footer';
-
+import NavBar from '../../components/NavBar';
 
 
 const Cards = () => {
@@ -87,15 +87,16 @@ const Cards = () => {
 
   
 //hola
-  useEffect(async() => {
+ /*  useEffect(async() => {
     
     await dispatch(getProductsFront(obj, page));
     await dispatch(getBrand())
     await dispatch(getCategories())
-}, [page, obj, dispatch]);
+}, [page, obj, dispatch]); */
 
   return (
     <>
+    <NavBar/>
     <Main>
     <Filters>
       <Select>

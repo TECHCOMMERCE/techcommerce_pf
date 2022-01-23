@@ -19,7 +19,6 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 
 
-
 // const url = 'localhost:3001';
 
 // <---------------------------Componente--------------------------->
@@ -60,7 +59,9 @@ const Product = () => {
 
 	return (
 		<div>
+			
 		   	<Container className={s.container}>
+				
 				<div className={s.cont_prin}>
 					<Row>
 						<Col xs={12} md={12} lg={8} className={s.cont_img}>
@@ -110,7 +111,7 @@ const Product = () => {
 												 <th></th>
 											</tr>
 										</thead>
-										<tbody >
+									{/* 	<tbody >
 											{ product?.attributes ?
 												product?.attributes?.map(x => {
 												return(
@@ -120,7 +121,7 @@ const Product = () => {
 														</tr>
 												)
 											}) : null }
-											</tbody>
+											</tbody> */}
 										</table>
 
 								</div>

@@ -56,7 +56,9 @@ const Logo = styled.img`
 const TechC = styled.img`
   display: flex;
   width: 21%;
-  margin-left: 150px;
+  margin-left: 150px;}
+ 
+  
   text-align: center;
   ${mobile({ fontSize: "24px" })}
 `;
@@ -87,7 +89,7 @@ const Header = () => {
   return (
     <Container>
       <Wrapper>
-        <Left>
+        <Left> 
           <Logo src={Logoo} />
           <Link to="/products">Productos</Link>
         </Left>
