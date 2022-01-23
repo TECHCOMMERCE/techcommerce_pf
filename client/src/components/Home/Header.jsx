@@ -5,10 +5,11 @@ import styled from "styled-components";
 import {ShoppingCart} from '@styled-icons/entypo/ShoppingCart';
 import {Search} from '@styled-icons/material/Search';
 import mobile from "../../responsive";
-import TechC from "../../assets/Imgs/TechC.gif";
+import Logoo from "../../assets/Imgs/Logoo.png";
+import Tech from "../../assets/Imgs/Tech.png";
 import { Link, NavLink } from "react-router-dom";
 
-import s from "../../assets/styles/General.module.css";
+
 
 const Container = styled.div`
   height: 60px;
@@ -28,24 +29,11 @@ const Left = styled.div`
   display: flex;
 `;
 
-
-
-const SearchContainer = styled.div`
-  border: 0.5px solid lightgray;
-  display: flex;
-  align-items: center;
-  margin-left: 25px;
-  padding: 5px;
-
-  ${mobile({ marginLeft: "10px" })}
-`;
-const Input = styled.input`
-  border: none;
-  ${mobile({ width: "50px" })}
-`;
-
 const Center = styled.div`
   flex: 1;
+  text-align: center;
+  font-size: 50px;
+  margin-bottom: 20px; 
 `;
 
 const Logo = styled.img`
@@ -87,15 +75,11 @@ const Header = () => {
     <Container>
       <Wrapper>
         <Left>
-          {/* <Logo> */}
-          <SearchContainer>
-            <Input placeholder="Search"></Input>
-             <S size={25} />
-          </SearchContainer>
+          <Logo src={Logoo} />
           <Link to="/products">Productos</Link>
         </Left>
         <Center>
-          <Logo src={TechC}/>
+         <Logo src={Tech}/>
         </Center>
         <Right>
           <Link to="/register"><MenuItem>REGISTER</MenuItem></Link>
