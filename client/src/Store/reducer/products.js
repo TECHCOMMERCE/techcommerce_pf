@@ -1,3 +1,4 @@
+
 import { GET_PRODUCTS, GET_PRODUCTS_PAGINADO, GET_DETAILS, GET_BRANDS_PRODUCTS, GET_CATEGORIES_PRODUCTS} from "../constanst/actionsTypes";
 
 
@@ -20,17 +21,20 @@ export function productsReducer(state = initialState, action) {
           ...state,
           products: action.products
         }
+
         case GET_PRODUCTS_PAGINADO:
         return {
           ...state,
           products: action.products
         }
+
       case GET_DETAILS :
         console.log(action.payload)
         return {
           ...state,
           product: action.payload
         }
+
       case GET_BRANDS_PRODUCTS: 
         return {
           ...state, 
@@ -42,6 +46,7 @@ export function productsReducer(state = initialState, action) {
           categories: action.payload
         }  
       
+
            
         default: 
 		return state;    

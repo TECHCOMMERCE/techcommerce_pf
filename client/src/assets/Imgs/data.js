@@ -1,23 +1,26 @@
 export const sliderItems = [
   {
     id: 1,
-    img: "https://i.ibb.co/H28CSCg/descarga/1.jpg",
-    title: "Aca promos",
-    desc: "jahsdjhasjdajshj.",
+
+    img: "https://games.mail.ru/pre_895x0_resize/hotbox/content_files/news/2021/09/27/d59d65700d47427fa17d9907bbf186cb.jpg?quality=85&format=webp&resize=895:0",
+    title: "Consolas y mas...", 
+    desc: "Promos en Consolas.",
     bg: "f5fafd",
   },
   {
     id: 2,
-    img: "https://i.ibb.co/zSrdfH9/hardware/2.jpg",
-    title: "jhasdhajshdjahs",
-    desc: "jhajsdhjashdjashd.",
+    img: "https://www.infotechnology.com/files/image/101/101511/618e8c83532b6.jpg",
+    title: "pantalla chica",
+    desc: "promos en tablets y celulares.",
+
     bg: "fcf1ed",
   },
   {
     id: 3,
-    img: "https://i.ibb.co/PxPyDJW/perifericos/3.jpg",
-    title: "jhaskdhjaskdajskh",
-    desc: "kjaksdjaksdkash",
+
+    img: "https://www.muycomputer.com/wp-content/uploads/2018/07/PCGaming-1000x600.jpg",
+    title: "hardware pc",
+    desc: "promos en PC.",
     bg: "fbf0f4",
   },
 ];

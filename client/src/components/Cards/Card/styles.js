@@ -29,7 +29,7 @@ export const Name = styled.p `
   margin-right: 10%;
   text-align: center;
   
-  
+
   `
 
 

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 
+
 export const Main = styled.div `
 
   display: flex;
@@ -11,6 +12,7 @@ export const Main = styled.div `
   
 `
 
+
 export const Items = styled.div `
 
   display: flex;
@@ -19,6 +21,7 @@ export const Items = styled.div `
   flex-wrap: wrap;
   margin-left: 4%;
   width: 90%;
+
 
 `
 
@@ -75,5 +78,6 @@ export const Options = styled.select`
   margin-left: 10%;
   text-align: center;
   font-size: 15px;
+
 
 `

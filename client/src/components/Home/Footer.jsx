@@ -86,7 +86,10 @@ const Footer = () => {
       <Left>
         <Logo>Tech-C</Logo>
         <Description>
-        Aca va la descripcion
+
+        Tech-C is a technology-oriented E-commerce that offers a wide variety of quality and high-end products.
+        Sit down and browse our online store.
+
         </Description>
         <SocialContainer>
           <SocialIcon color="3B5999">
@@ -106,15 +109,11 @@ const Footer = () => {
       <Center>
         <Title>USEFUL LINKS</Title>
         <List>
-          <ListItem>Home aca van los link de las paginas </ListItem>
-          <ListItem>xxxx</ListItem>
-          <ListItem>xxxxxx</ListItem>
-          <ListItem>xxxxxx</ListItem>
-          <ListItem>Accessories</ListItem>
-          <ListItem>My Account</ListItem>
-          <ListItem>xxxx</ListItem>
-          <ListItem>xx</ListItem>
-          <ListItem>xx</ListItem>
+          <ListItem><a href="http://localhost:3000/">Home</a></ListItem>
+          <ListItem><a href="http://localhost:3000/products">Productos</a></ListItem>
+          <ListItem><a href="http://localhost:3000/register">Register</a></ListItem>
+          <ListItem><a href="http://localhost:3000/login">Login</a></ListItem>
+
         </List>
       </Center>
       <Right>

@@ -27,6 +27,7 @@ const Cards = () => {
    const removeAccents = (str) => {
     return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
   } 
+
   function back () {
     setPage(page - 1)
     window.scrollTo(0, 0)
@@ -41,7 +42,7 @@ const Cards = () => {
 
   function onChange(e) {
     e.preventDefault();
-    if(e.target.value === 'Celulares y Teléfonos' || e.target.value === 'Computación' || e.target.value === 'Consolas y Videojuegos' || e.target.value===''){
+    if(e.target.value === 'Celulares y Telefonos' || e.target.value === 'Computacion' || e.target.value === 'Consolas y Videojuegos' || e.target.value===''){
       setObj({
         category: e.target.value,
         brand: '',
@@ -152,6 +153,7 @@ const Cards = () => {
       </Buttons>  
     <Footer/>
     </>
+
   )
 }
 

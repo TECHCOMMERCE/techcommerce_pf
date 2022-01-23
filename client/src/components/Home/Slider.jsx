@@ -61,7 +61,9 @@ const ImgContainer = styled.div`
 `;
 
 const Image = styled.img`
-  height: 65%;
+
+  height: 80%;
+
 
   ${mobile({ height: "50%" })}
 `;

@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 import { GET_PRODUCTS,GET_PRODUCTS_PAGINADO, ERROR_MESSAGE, GET_DETAILS , GET_BRANDS_PRODUCTS, GET_CATEGORIES_PRODUCTS } from '../constanst/actionsTypes';
 
 const url = 'localhost:3001';
@@ -36,6 +37,7 @@ export const getBrand = () => async(dispatch) => {
 		payload: data.data
 	})
 } 
+
 
 export function getProducts(page, name, category) {
 	return (dispatch) => {
@@ -80,6 +82,7 @@ export function getProducts(page, name, category) {
 	};
 }
 
+
 export function getProductsFront(obj, page) {
 	const {category, brand, sort} =obj;
 	
@@ -106,4 +109,6 @@ export function getProductsFront(obj, page) {
 	};
 }
 	
+
+
 

@@ -18,7 +18,7 @@ import { Button } from '@mui/material';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
-//import Table from 'react-bootstrap/Table';
+
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -26,6 +26,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+
 
 
 // const url = 'localhost:3001';
@@ -42,10 +43,12 @@ const Product = () => {
     setQty(qty - 1)
   }
 	const { id } = useParams();
+
 	const dispatch= useDispatch();
 	const {product} = useSelector(state => state.products)
 	console.log('productdetail', product);
 	console.log('id', id)
+
 	//let objP = {};
 	/* var objProduct = productsP.find((d) => {
 		return d.id === id;
@@ -71,7 +74,9 @@ const Product = () => {
 					<Row>
 						<Col xs={12} md={12} lg={8} className={s.cont_img}>
 
+
 							<img src={product.image} style={{height: '40%', width: '15%'}}></img>
+
 
 						</Col>
 						<Col xs={12} md={12} lg={4} className={s.cont_info}>
@@ -129,6 +134,7 @@ const Product = () => {
 
 								</div>
 								
+
 								
 								<div className={s.cont_cant}>
 									{product.stock > 0 ? (
@@ -162,7 +168,9 @@ const Product = () => {
 										<Button className={s.buttonCar} >
 											Agregar al carrito
 										</Button> */}
+
 										<Button variant='contained' style={{marginRight: '15%', backgroundColor: '#2EB8B0'}}>Añadir al carrito</Button>
+
 										
 										
 									</div>
