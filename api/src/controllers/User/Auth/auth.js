@@ -13,7 +13,7 @@ async function auth(req, res, next) {
         password: password
       },
       attributes: {
-        exclude: ["password","changepassword","force","phone","photo","address","country"]
+        exclude: ["password","changepassword","force","phone","address","country"]
       },
     })
     //res.json({result: await search}).status(200)
