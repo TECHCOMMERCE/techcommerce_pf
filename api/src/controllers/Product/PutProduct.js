@@ -1,25 +1,8 @@
 const { Product, Brand, Category } = require("../../db.js");
 
-// Es necesario que se cree el producto, la marca y la o las categorías en rutas separadas.
-
 const PutProduct = async (product) => {
   try {
-    // busca la marca en la BD
-    const brandExist = await Brand.findByPk(product[0].brand);
-
-    // actualiza o crea la marca sino existe
-    // if(!brandExist?.dataValues.name){
-    //   console.log("entré");
-
-    //   const brandUpdated = await Brand.update(
-    //     { name: product[0].brand.name },
-    //     {
-    //       where: { brandid: product[0].brand.brandid },
-    //     }
-    //   );
-    // }
-
-    // actualiza el producto
+    // Actualiza el producto y la marca
     const productUpdated = await Product.update(
       {
         name: product[0].name,
@@ -30,23 +13,32 @@ const PutProduct = async (product) => {
         image: product[0].image,
         attributes: product[0].attributes,
         status: product[0].status,
+        brandBrandid: product[0].brandid,
       },
-      { where: { productid: product[0].productid } }
+      {
+        where: { productid: product[0].productid },
+      }
     );
 
-    // mixin
-    brandExist.addProduct(product[0].productid);
+    // Busca el producto
+    const targetProduct = await Product.findByPk(product[0].productid);
 
-    // busca las categorías
-    product[0].categories.map(async (c) => {
-      const category = await Category.findOne({ where: { name: c } });
-
-      console.log(category.dataValues);
-      // mixin
-      category.addProduct(product[0].productid);
+    // Busca todas las categorias viejas
+    const oldCategories = await Category.findAll({
+      include: { model: Product, where: { productid: product[0].productid } },
     });
 
-    return productUpdated;
+    // le remueve todas las categorías al producto
+    await targetProduct.removeCategories(oldCategories);
+
+    // Itera las categorías nuevas para agregarlas al producto
+    product[0].categories.map(async (newCat) => {
+      // busca la nueva categoría
+      const newCategory = await Category.findOne({ where: { name: newCat } });
+
+      // Relaciona a la categoría con el producto
+      await newCategory.addProduct(targetProduct);
+    });
   } catch (error) {
     console.log(error);
   }
