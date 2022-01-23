@@ -148,7 +148,7 @@ const Cards = () => {
     </Main>
     <Buttons>
       <Button onClick={back} disabled={page === 0} style={{ margin: '100px'}} variant="text"><ArrowBackIcon style={{color: '#000000'}}/></Button>
-      <Button onClick={foward} disabled={products.length <= 0 } style={{  margin: '100px'}} variant="text"><ArrowForwardIcon style={{color: '#000000'}}/></Button>
+      <Button onClick={foward} disabled={products?.length <= 0 } style={{  margin: '100px'}} variant="text"><ArrowForwardIcon style={{color: '#000000'}}/></Button>
       </Buttons>  
     <Footer/>
     </>
