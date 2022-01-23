@@ -70,7 +70,7 @@ const Product = () => {
 				<div className={s.cont_prin}>
 					<Row>
 						<Col xs={12} md={12} lg={8} className={s.cont_img}>
-							<img src={product.image} style={{height: '40%', width: '20%'}}></img>
+							<img src={product.image} style={{height: '40%', width: '15%'}}></img>
 						</Col>
 						<Col xs={12} md={12} lg={4} className={s.cont_info}>
 							<div className={s.infog}>
