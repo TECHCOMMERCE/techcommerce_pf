@@ -45,6 +45,14 @@ const Logo = styled.img`
   text-align: center;
   ${mobile({ fontSize: "24px" })}
 `;
+const TechC = styled.img`
+  display: block;
+  
+  ${mobile({ fontSize: "24px" })}
+`;
+
+
+
 const Right = styled.div`
   flex: 1;
   display: flex;
@@ -79,7 +87,7 @@ const Header = () => {
           <Link to="/products">Productos</Link>
         </Left>
         <Center>
-         <Logo src={Tech}/>
+         <TechC src={Tech}/>
         </Center>
         <Right>
           <Link to="/register"><MenuItem>REGISTER</MenuItem></Link>
