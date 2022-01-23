@@ -3,12 +3,13 @@
 import React from "react";
 import styled from "styled-components";
 import {ShoppingCart} from '@styled-icons/entypo/ShoppingCart';
-import {Search} from '@styled-icons/material/Search';
 import mobile from "../../responsive";
 import TechC from "../../assets/Imgs/TechC.gif";
-import { Link, NavLink } from "react-router-dom";
+import Logoo from "../../assets/Imgs/Logoo.png";
+import Tech from "../../assets/Imgs/Tech.png";
+import { Link } from "react-router-dom";
 
-import s from "../../assets/styles/General.module.css";
+
 
 const Container = styled.div`
   height: 60px;
@@ -28,24 +29,11 @@ const Left = styled.div`
   display: flex;
 `;
 
-
-
-const SearchContainer = styled.div`
-  border: 0.5px solid lightgray;
-  display: flex;
-  align-items: center;
-  margin-left: 25px;
-  padding: 5px;
-
-  ${mobile({ marginLeft: "10px" })}
-`;
-const Input = styled.input`
-  border: none;
-  ${mobile({ width: "50px" })}
-`;
-
 const Center = styled.div`
   flex: 1;
+  text-align: center;
+  font-size: 50px;
+  margin-bottom: 20px; 
 `;
 
 const Logo = styled.img`
@@ -57,6 +45,19 @@ const Logo = styled.img`
   text-align: center;
   ${mobile({ fontSize: "24px" })}
 `;
+const TechC = styled.img`
+   display: block;
+  width: 100px;
+  height: 50px;
+  margin-left: 150px;
+  padding: 10px;
+  text-align: center;
+  ${mobile({ fontSize: "24px" })}
+`;
+ 
+
+
+
 const Right = styled.div`
   flex: 1;
   display: flex;
@@ -76,9 +77,8 @@ const MenuItem = styled.div`
 
 const ShoppCart = styled(ShoppingCart)`
 `
-const S = styled(Search)`
-padding: 5px;
-  `
+
+  
 
 //-----------------------------------------------------
 
@@ -87,17 +87,16 @@ const Header = () => {
     <Container>
       <Wrapper>
         <Left>
-          {/* <Logo> */}
-          <SearchContainer>
-            <Input placeholder="Search"></Input>
-             <S size={25} />
-          </SearchContainer>
+          <Logo src={Logoo} />
           <Link to="/products">Productos</Link>
         </Left>
         <Center>
-          <Logo src={TechC}/>
+         <TechC src={Tech}/>
         </Center>
         <Right>
+          {/* <MenuItem>REGISTER</MenuItem>
+          <MenuItem>LOGIN</MenuItem> */}
+          <Link to="/product/create">PRODUCT</Link>
           <Link to="/register"><MenuItem>REGISTER</MenuItem></Link>
           <Link to="/login"><MenuItem>LOGIN</MenuItem></Link>
           
