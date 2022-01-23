@@ -62,7 +62,7 @@ const Product = () => {
 	
 	useEffect(() => {
 		dispatch(getDetails(id))
-	}, [dispatch]);
+	}, [dispatch, id]);
 
 	return (
 		<div>
@@ -70,7 +70,9 @@ const Product = () => {
 				<div className={s.cont_prin}>
 					<Row>
 						<Col xs={12} md={12} lg={8} className={s.cont_img}>
+
 							<img src={product.image} style={{height: '40%', width: '15%'}}></img>
+
 						</Col>
 						<Col xs={12} md={12} lg={4} className={s.cont_info}>
 							<div className={s.infog}>
@@ -102,6 +104,7 @@ const Product = () => {
 										<p style={{color: '#2EB8B0'}} >Escribir comentario</p>
 									</div>
 								</div>
+
 								<div className={s.attributesContainer} >
 
 									<table>
@@ -123,7 +126,7 @@ const Product = () => {
 											}) : null }
 											</tbody>
 										</table>
-						
+
 								</div>
 								
 								

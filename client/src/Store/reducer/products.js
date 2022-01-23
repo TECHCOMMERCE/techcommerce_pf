@@ -2,10 +2,12 @@ import { GET_PRODUCTS, GET_PRODUCTS_PAGINADO, GET_DETAILS, GET_BRANDS_PRODUCTS, 
 
 
 const initialState={
-	products: [],
-  product: {},
+
+	products: undefined,
+  product: {}, 
   brands: null,
   categories: null
+
     
 }
 
