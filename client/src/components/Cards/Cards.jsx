@@ -42,7 +42,7 @@ const Cards = () => {
 
   function onChange(e) {
     e.preventDefault();
-    if(e.target.value === 'Celulares y Telefonos' || e.target.value === 'Computacion' || e.target.value === 'Consolas y Videojuegos' || e.target.value===''){
+    if(e.target.value === 'Celulares y Teléfonos' || e.target.value === 'Computación' || e.target.value === 'Consolas y Videojuegos' || e.target.value===''){
       setObj({
         category: e.target.value,
         brand: '',
