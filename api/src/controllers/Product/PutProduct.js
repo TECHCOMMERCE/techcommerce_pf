@@ -1,8 +1,10 @@
 const { Product, Brand, Category } = require("../../db.js");
 
+
 const PutProduct = async (product) => {
   try {
     // Actualiza el producto y la marca
+
     const productUpdated = await Product.update(
       {
         name: product[0].name,
@@ -13,6 +15,7 @@ const PutProduct = async (product) => {
         image: product[0].image,
         attributes: product[0].attributes,
         status: product[0].status,
+
         brandBrandid: product[0].brandid,
       },
       {
@@ -39,6 +42,7 @@ const PutProduct = async (product) => {
       // Relaciona a la categoría con el producto
       await newCategory.addProduct(targetProduct);
     });
+
   } catch (error) {
     console.log(error);
   }
