@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const {getProducts, getProductsFiltered} = require("../controllers/Products/GetProducts");
+const {getProductsFiltered} = require("../controllers/Products/GetProducts");
 const getProductsByQuery = require("../controllers/Products/GetProductsByQuery");
 const router = Router();
 
@@ -38,7 +38,8 @@ router.get("/", async (req, res) => {
 
 router.get('/all', async(req, res)=> {
   const {page} =req.query;
-  const products = await getProductsFiltered(req.body, page);
+  console.log('body',req.query)
+  const products = await getProductsFiltered(req.query, page);
   return products ? res.json(products) : res.send([]);
 })
 

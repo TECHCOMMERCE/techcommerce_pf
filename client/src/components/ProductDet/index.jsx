@@ -95,12 +95,13 @@ const Product = () => {
 									</div>
 								</div>
 								<div className={s.attributesContainer}>
+									<h2 style={{marginBottom: '5%'}}>Caracteristicas</h2>
 									{product.attributes ?
 										product.attributes.map(x => {
 											return(
 											<div className={s.attributes}>
 												<p style={{fontSize: '17px'}}><b>{x.name}:	</b></p>
-												<p style={{fontSize: '16px'}}className={s.attributesName}>{x.value_name}</p>
+												<p style={{fontSize: '16px'}}className={s.attributesName}>{x.value}</p>
 											</div>)
 										}) : null
 								}
