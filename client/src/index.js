@@ -2,7 +2,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
-import { Provider } from "react-redux";
+import {firebaseconf} from './config/firebase';
+import {FirebaseAppProvider} from 'reactfire';
+import {Provider} from "react-redux";
 import store from "./Store/store";
 
 import App from "./App";
@@ -10,11 +12,15 @@ import App from "./App";
 import "./index.css";
 
 ReactDOM.render(
-  <Provider store={store}>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </Provider>,
-  document.getElementById("root")
+  <React.StrictMode>
+    <Provider store={store}>
+      <BrowserRouter>
+        <FirebaseAppProvider firebaseConfig={firebaseconf}>
+          <App />
+        </FirebaseAppProvider>
+      </BrowserRouter>
+    </Provider>
+  </React.StrictMode>,
+  document.getElementById('root')
 );
 
