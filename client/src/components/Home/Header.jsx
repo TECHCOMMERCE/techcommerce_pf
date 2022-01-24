@@ -3,7 +3,7 @@
 import React from "react";
 import styled from "styled-components";
 import {ShoppingCart} from '@styled-icons/entypo/ShoppingCart';
-
+import { Badge } from "@material-ui/core";
 import mobile from "../../responsive";
 
 import Logoo from "../../assets/Imgs/Logoo.png";
@@ -86,6 +86,7 @@ const ShoppCart = styled(ShoppingCart)`
 //-----------------------------------------------------
 
 const Header = () => {
+  let cart=[2,2,2]
   return (
     <Container>
       <Wrapper>
@@ -105,7 +106,9 @@ const Header = () => {
           <Link to="/login"><MenuItem>LOGIN</MenuItem></Link>
           
           <MenuItem>
-              <ShoppCart size={20} />
+          <Badge badgeContent={cart.length? cart.length : 0 } color="primary">
+              <Link to='/cart'><ShoppCart size={20} /></Link>
+              </Badge>
           </MenuItem>
         </Right>
       </Wrapper>

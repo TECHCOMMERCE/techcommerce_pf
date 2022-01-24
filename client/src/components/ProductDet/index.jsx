@@ -111,7 +111,7 @@ const Product = () => {
 												 <th></th>
 											</tr>
 										</thead>
-									{/* 	<tbody >
+									 	<tbody >
 											{ product?.attributes ?
 												product?.attributes?.map(x => {
 												return(
@@ -121,7 +121,7 @@ const Product = () => {
 														</tr>
 												)
 											}) : null }
-											</tbody> */}
+											</tbody> 
 										</table>
 
 								</div>
@@ -135,19 +135,7 @@ const Product = () => {
 											<Button onClick={add} size='small' style={{ height: '30px', marginTop: '10px'}} variant="text"><AddIcon/> </Button>
 											<p style={{marginRight: '20px', marginLeft: '20px', marginTop: '10px', fontSize: '15px'}}>{qty}</p>
 											<Button onClick={remove} style={{ height: '30px', marginTop: '10px'}} variant="text"><RemoveIcon/> </Button>
-											{/* <select
-												name='Cantidad'
-												id='Cantidad'
-												className={s.select}
-												value={qty}
-												onChange={(e) => {
-													setQty(e.target.value);
-												}}
-											>
-												{[...Array(product.stock).keys()].map((x) => {
-													return <option value={x + 1}>{x + 1}</option>;
-												})}
-											</select> */}
+											
 											<p style={{fontSize: '17px', marginLeft: '2%'}}> {product.stock}-Unidades Disponibles</p>
 										</div>
 									) : (
@@ -156,11 +144,7 @@ const Product = () => {
 								</div>
 								{product.stock > 0 && (
 									<div className={s.cont_button}>
-										{/* <Button className={s.buttonCom}>Comprar ahora</Button>
-										<Button className={s.buttonCar} >
-											Agregar al carrito
-										</Button> */}
-
+										
 										<Button variant='contained' style={{marginRight: '15%', backgroundColor: '#2EB8B0'}}>Añadir al carrito</Button>
 
 										

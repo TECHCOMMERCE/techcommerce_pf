@@ -1,8 +1,10 @@
 import { Badge } from "@material-ui/core";
 import { Search, ShoppingCartOutlined } from "@material-ui/icons";
+import { Link } from "react-router-dom";
 import React from "react";
 import styled from "styled-components";
 import mobile from "../responsive";
+import Cart from "./Cart/Cart";
 
 
 const Container = styled.div`
@@ -10,6 +12,7 @@ const Container = styled.div`
   ${mobile({ height: "50px" })}
   border-bottom:solid 1px grey;
 `;
+
 
 const Wrapper = styled.div`
   padding: 10px 20px;
@@ -62,6 +65,8 @@ const MenuItem = styled.div`
 `;
 
 const NavBar = () => {
+
+  let cart=[2,2,2]
   return (
     <Container>
       <Wrapper>
@@ -73,12 +78,12 @@ const NavBar = () => {
           </SearchContainer>
         </Left>
         <Center>
-          <Logo>Tech-C</Logo>
+         <Link to='/' style={{textDecoration: 'none', color: '#000000'}}><Logo>Tech-C</Logo></Link> 
         </Center>
         <Right>
           <MenuItem>
-            <Badge badgeContent={0} color="primary">
-              <ShoppingCartOutlined></ShoppingCartOutlined>
+            <Badge badgeContent={cart.length? cart.length : 0 } color="primary">
+             <Link to='/cart'> <ShoppingCartOutlined/></Link>
             </Badge>
           </MenuItem>
         </Right>

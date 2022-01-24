@@ -78,6 +78,7 @@ export const Options = styled.select`
   margin-left: 10%;
   text-align: center;
   font-size: 15px;
+  font-family: 'Poppins'
 
 
 `
