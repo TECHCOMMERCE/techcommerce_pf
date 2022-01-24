@@ -265,7 +265,6 @@ const Users = () => {
 
                                     <tbody>
                                         {users.map((user, i) => {
-                                            console.log(user.force);
 
                                             return(<tr key={user.userid} className={`${s.row} ${i%2 != 0 ? s.row1 : null}`}>
                                                 <td className={s.col}>{user.type}</td>
@@ -282,7 +281,7 @@ const Users = () => {
                                                     <button
                                                         onClick={async() => {
                                                             await axios.put("http://localhost:3001/user/" + user.userid, {force: true});
-                                                            
+
                                                             actualizarTabla();
                                                         }}
                                                     >Force</button>
