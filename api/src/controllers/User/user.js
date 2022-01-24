@@ -75,6 +75,21 @@ router.put("/", async(req, res) => {
   }
 });
 
+router.put("/:userid", async(req, res) => {
+  try{
+    const user = await User.findOne({where: {
+      userid: req.params.userid
+    }});
+
+    user.update({...req.body})
+
+
+    return res.status(200).send({code: 0, message: "Usuario creado Con éxito"});
+  }catch(e){
+    return res.status(200).send({code: 1, message: "Revise los campos"});
+  }
+});
+
 router.get("/", async(req, res) => {
   try{
     const users = await User.findAll({where: {

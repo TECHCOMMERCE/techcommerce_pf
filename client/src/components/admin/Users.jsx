@@ -279,7 +279,13 @@ const Users = () => {
                                                 <td>{user.postalcode}</td>
                                                 <td>{user.force ? "bad" : "good"}</td>      {/* Si está en true, significa que debe cambiarla, de lo contrario está en good*/}
                                                 <td>
-                                                    <button>Force</button>
+                                                    <button
+                                                        onClick={async() => {
+                                                            await axios.put("http://localhost:3001/user/" + user.userid, {force: true});
+                                                            
+                                                            actualizarTabla();
+                                                        }}
+                                                    >Force</button>
                                                     <button
                                                         onClick={() => {
                                                             setData({
