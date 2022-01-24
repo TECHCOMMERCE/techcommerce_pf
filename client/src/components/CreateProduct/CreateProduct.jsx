@@ -142,30 +142,16 @@ const CreateProduct = () => {
           min="0"
         />
 
-        <div>
-          <FormLabel id="condition">Condition</FormLabel>
-          <RadioGroup
-            aria-labelledby="condition"
-            defaultValue={input.condition}
-            name="radio-buttons-group"
-            row
-          >
-            <FormControlLabel
-              name="condition"
-              value="new"
-              onChange={handleInputs}
-              control={<Radio />}
-              label="New"
-            />
-            <FormControlLabel
-              name="condition"
-              value="used"
-              onChange={handleInputs}
-              control={<Radio />}
-              label="Used"
-            />
-          </RadioGroup>
-        </div>
+        <label htmlFor="condition">Condition</label>
+        <select
+          name="condition"
+          id="condition"
+          defaultValue={input.condition}
+          onChange={handleInputs}
+        >
+          <option value="new">New</option>
+          <option value="used">Used</option>
+        </select>
 
         <label htmlFor="image">Image</label>
         <input
@@ -210,9 +196,15 @@ const CreateProduct = () => {
               </option>
             ))}
         </select>
-        <ul>
+        <ul style={{ fontSize: 11, listStyle: "none" }}>
           {input.categories?.map((c) => (
-            <Link to="#" name={c} key={c} onClick={handleTags}>
+            <Link
+              style={{ fontWeight: "bold", color: "cadetblue" }}
+              to="#"
+              name={c}
+              key={c}
+              onClick={handleTags}
+            >
               <li name={c}>{c}</li>
             </Link>
           ))}

@@ -191,32 +191,12 @@ const EditProduct = () => {
             max="1000000"
           />
 
-          <div>
-            <FormLabel id="labe-condition">Condition</FormLabel>
-            <RadioGroup
-              id="condition"
-              aria-labelledby="label-condition"
-              defaultValue={productDetail.condition}
-              name="condition"
-              row
-            >
-              <FormControlLabel
-                name="condition"
-                value="new"
-                onChange={handleInputs}
-                control={<Radio />}
-                label="New"
-              />
-              <FormControlLabel
-                name="condition"
-                value="used"
-                onChange={handleInputs}
-                control={<Radio />}
-                label="Used"
-              />
-            </RadioGroup>
-            <h6>{`Current condition: ${productDetail.condition}`}</h6>
-          </div>
+          <label htmlFor="condition">Condition</label>
+          <select name="condition" id="condition" defaultValue={productDetail.condition} onChange={handleInputs}>
+            <option value="new">New</option>
+            <option value="used">Used</option>
+          </select>
+          <h6 style={{fontWeight: "bold", color: "cadetblue"}}>{`Current condition: ${productDetail.condition}`}</h6>
 
           <label htmlFor="image">Image</label>
           <input
@@ -234,34 +214,34 @@ const EditProduct = () => {
           <select name="brand" id="brand" label="Brand" onChange={handleInputs}>
             <option>Select here...</option>
             {brands?.length &&
-              brands?.map((b) => (
-                <option key={b.brandid} value={b.brandid}>
+              brands?.map((b, i) => (
+                <option key={i} value={b.brandid}>
                   {b.name}
                 </option>
               ))}
           </select>
           {productDetail.hasOwnProperty("brand") && (
-            <h6>{`Current Brand: ${productDetail.brand?.name}`}</h6>
+            <h6 style={{fontWeight: "bold", color: "cadetblue"}}>{`Current Brand: ${productDetail.brand?.name}`}</h6>
           )}
 
           <label id="categories">Categories</label>
           <select name="categories" id="categories" onChange={handleInputs}>
             <option>Select here...</option>
             {categories?.length &&
-              categories?.map((c) => (
-                <option key={c.categoryid} value={c.name}>
+              categories?.map((c, i) => (
+                <option key={i} value={c.name}>
                   {c.name}
                 </option>
               ))}
           </select>
 
-          <h6>Current Categories:</h6>
+          <h6 style={{fontWeight: "bold", color: "cadetblue"}}>Current Categories:</h6>
           <ul style={{ fontSize: 11, listStyle: "none" }}>
             {inputs.categories?.length
-              ? inputs.categories?.map((c) => <li key={c.categoryid} onClick={handleTags}>{c.name}</li>)
+              ? inputs.categories?.map((c, i) => <li style={{fontWeight: "bold", color: "cadetblue"}} key={i} onClick={handleTags}>{c.name }</li>)
               : productDetail.categories?.length &&
-                productDetail.categories?.map((c) => (
-                  <li key={c.categoryid} onClick={handleTags}>
+                productDetail.categories?.map((c, i) => (
+                  <li style={{fontWeight: "bold", color: "cadetblue"}} key={i} onClick={handleTags}>
                     {c.name}
                   </li>
                 ))}
