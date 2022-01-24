@@ -12,12 +12,12 @@ export function cartsReducer(state = initialState, action) {
     case GET_PRODUCTS_CART:
       return {
         ...state,
-        cart: action.payload,
+        productscart: action.payload,
       };
       case CLEAR_CART:
         return {
           ...state,
-          cart: [],
+          productscart: [],
         };
 
     default:

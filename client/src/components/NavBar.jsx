@@ -109,7 +109,7 @@ const NavBar = () => {
           </SearchContainer>
         </Left>
         <Center>
-         <Link to='/' style={{textDecoration: 'none', color: '#000000'}}><Logo>Tech-C</Logo></Link> 
+         <Link to='/products' style={{textDecoration: 'none', color: '#000000'}}><Logo>Tech-C</Logo></Link> 
         </Center>
         <Right>
           {user.token&&user.user?<Tooltip title="Account settings">
@@ -174,7 +174,7 @@ const NavBar = () => {
           {/* <MenuItem > */}
             <Link to='/cart' className='nav_links' >
               <Badge badgeContent={cart.length} color="secondary">
-                <ShoppingCartOutlined fontSize='large' color='primary'></ShoppingCartOutlined>{cart.length}
+                <ShoppingCartOutlined fontSize='large' color='primary'></ShoppingCartOutlined>
               </Badge>
             </Link>
           {/* </MenuItem> */}
