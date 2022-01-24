@@ -87,7 +87,7 @@ export function deleteItemFromCart(idProduct, userId){
     try{
       if(!userId){
         let cart = JSON.parse(localStorage.getItem("cart")) || [];
-        cart = cart.filter((p) => p.idProduct != idProduct)
+        cart = cart.filter((p) => p.productid != idProduct)
         localStorage.setItem("cart", JSON.stringify(cart));
         return dispatch ({
           type: GET_PRODUCTS_CART,

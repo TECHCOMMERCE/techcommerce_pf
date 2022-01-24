@@ -1,44 +1,69 @@
-import React from 'react';
+import React, {  useEffect, useState } from 'react'
 import style from '../../styles/Cart/Cart.module.css';
 import Card from './Card';
 import { Button } from '@mui/material';
 import Navbar from '../NavBar';
 import Footer from '../Home/Footer';
-
-
-
-let data= [{
-  productid: "06cb97f1-7b24-4fe9-bc0f-7008a6507852",
-  name: "Xiaomi Mi 11 Lite 5g Ne Dual Sim 128 Gb Negro Trufa 8 Gb Ram",
-  price: 85469,
-  image: "http://http2.mlstatic.com/D_768134-MLA48496137270_122021-I.jpg",
-  qty: 1
-},{
-productid: "70b3eddd-61e0-42ab-91cf-95481cf30383",
-name: "Moto E6i 32 Gb Gris Metálico 2 Gb Ram",
-price: 19999,
-image: "http://http2.mlstatic.com/D_618420-MLA45656016205_042021-I.jpg",
-qty: 2
-}, {
-productid: "154a2cda-7a52-4e28-8896-306fb6117f57",
-name: "LG K62 128 Gb Sky Blue 4 Gb Ram",
-price: 35999,
-image: "http://http2.mlstatic.com/D_973809-MLA48041270287_102021-I.jpg",
-qty: 1
-}
-
-]
-
-function total (array) {
-  let totalprice=0;
-  array.map(x => {
-    totalprice= totalprice + x.price
-  } )
-  return totalprice
-}
-
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate} from 'react-router-dom';
+import {getProductsCartUser, changeAmount, deleteItemFromCart, clearCart} from '../../Store/actions/carts.js'
+import {getuser} from '../../Store/actions/users.js'
+import Swal from 'sweetalert2';
 
 const Cart = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate()
+  const data = useSelector(state => state.cart.productscart);
+  const user = JSON.parse(localStorage.getItem("user"));
+  const idUser = !user?null:user.user.userid;
+  const [total,setTotal] = useState(0)
+
+  useEffect(() => {
+    dispatch(getuser())
+    dispatch(getProductsCartUser(idUser)); 
+}, [dispatch]); 
+
+useEffect(() => {
+  gettotal(data)
+}, [data]); 
+
+const handleDeleteItem = (idproduct) => {
+  dispatch(deleteItemFromCart(idproduct, idUser))
+  Swal.fire({
+      icon: 'success',
+      text: 'Producto eliminado correctamente!',
+      showConfirmButton: false,
+      timer: 3000
+    })
+}
+
+const handlerChangeAmount = (product,idUser,e) => {
+  e.preventDefault()
+  const { value } = e.target;
+  if (value <= product.stock && value >= 1) {
+      let auxProducts=data.map(p=>{
+          if(p.productid===product.productid){
+              return {
+                  ...p,
+                  quantity:value
+              }
+          }
+          return p;
+      })
+      dispatch(changeAmount(auxProducts, idUser));
+  };
+}
+
+function gettotal (array) {
+  let totalprice=0;
+  array.map(x => {
+    totalprice= totalprice + (x.price*x.quantity)
+  } )
+  console.log(totalprice)
+  setTotal(totalprice)
+  //return totalprice
+}
+
   return(
     <>
     <Navbar/>
@@ -47,20 +72,29 @@ const Cart = () => {
       <div className={style.cards}>
         {
           data.length ? 
-          data.map(x => {
+          data.map((x) => {
             return(
-              <Card  productid={x.productid} name={x.name} image={x.image} price={x.price} qty={x.qty} />
+              <Card key={x.productid} productid={x.productid} name={x.name} image={x.image} price={x.price} qty={x.quantity} row={x} idUser={idUser} handlerChangeAmount={handlerChangeAmount} handleDeleteItem={handleDeleteItem}/>
             )
           }) : <p>Tu carrito está vacio!</p>
         }
       </div>
       <div className={style.total}>
-        <h2>TOTAL : ${total(data)}</h2>
+        <h2>TOTAL : ${total}</h2>
       </div>
       <div className={style.buttonContainer}>
-      <Button variant='contained' style={{backgroundColor: '#2EB8B0'}} className={style.button}> Pagar </Button>
+      <Button variant='contained' style={{backgroundColor: '#2EB8B0'}} className={style.button} 
+      onClick={()=>{
+        Swal.fire({
+          icon: "info",
+          text: 'Por el momento, esta función aun no esta activa',
+        })
+      }}> Pagar </Button>
       </div>
-      
+      <div className={style.buttonContainer}>
+      <Button variant='contained' style={{backgroundColor: '#EB2020'}} className={style.button} 
+      onClick={()=>{dispatch(clearCart())}}> Vaciar Carrito </Button>
+      </div>
     </div>
     <Footer/>
     </>

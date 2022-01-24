@@ -11,7 +11,10 @@
   padding: 3%;
 }
 
-
+.container img{
+  max-width: 80px;
+  max-height: 80px;
+}
 .name{
   width:50%;
   height:max-content;
@@ -22,8 +25,8 @@
 
 .button{
   width: 4%;
-  height: 20%;
-  background-color: black;
+  height: 30%;
+  background-color: rgb(235, 32, 32);
   color: white;
   border-radius: 10%;
 }
