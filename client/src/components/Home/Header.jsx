@@ -5,7 +5,6 @@ import styled from "styled-components";
 import {ShoppingCart} from '@styled-icons/entypo/ShoppingCart';
 
 import mobile from "../../responsive";
-
 import Logoo from "../../assets/Imgs/Logoo.png";
 import Tech from "../../assets/Imgs/Tech.png";
 import { Link } from "react-router-dom";

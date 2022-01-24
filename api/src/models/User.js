@@ -34,10 +34,6 @@ module.exports = (sequelize) => {
             required: true,
             allowNull: false
         },
-        changepassword:{
-            type:DataTypes.BOOLEAN,
-            defaultValue: false
-        },
         phone:{
             type: DataTypes.STRING,
             defaultValue: "-"
