@@ -37,7 +37,7 @@
 	/* background-color: fuchsia; */
 	border-top: none;
 	border-bottom: none;
-	
+	font-family: 'Poppins';
 	border-right: none;
 	display: flex;
 	justify-content: center;
@@ -49,28 +49,28 @@
 	color: #243363;
 	font-size: 1.5em;
 	font-weight: bold;
-	font-family: 'Source Sans Pro', sans-serif;
+	font-family: 'Poppins';
 	margin-top: 10px;
 }
 .cont_info h4 {
 	color: #4cced8;
 	font-weight: normal;
 	font-size: 1.4em;
-	font-family: 'Source Sans Pro', sans-serif;
+	font-family: 'Poppins';
 	margin-top: 15px;
 }
 .cont_info h6 {
 	color: #243363;
 	font-weight: bolder;
 	font-size: 0.65em;
-	font-family: 'Source Sans Pro', sans-serif;
+	font-family: 'Poppins';
 	margin-top: 15px;
 }
 .cont_info p {
 	color: #243363;
 	font-weight: normal;
 	font-size: 0.8em;
-	font-family: 'Source Sans Pro', sans-serif;
+	font-family: 'Poppins';
 
 	margin-right: 5%;
 	margin-top: 15px;
@@ -96,13 +96,13 @@
 	color: #243363;
 	font-weight: bold;
 	font-size: 0.8em;
-	font-family: 'Source Sans Pro', sans-serif;
+	font-family: 'Poppins';
 }
 .cont_cant h6 {
 	color: #243363;
 	font-weight: normal;
 	font-size: 0.6;
-	font-family: 'Source Sans Pro', sans-serif;
+	font-family: 'Poppins';
 	margin-left: 5%;
 	padding-bottom: 11px;
 }
@@ -116,7 +116,7 @@
 	color: #ef9635 !important;
 	background-color: white !important;
 	border: 1px solid #ef9635 !important;
-	font-family: 'Source Sans Pro', sans-serif !important;
+	font-family: 'Poppins' !important;
 	font-weight: bold !important;
 	width: 130px !important;
 	height: 40px !important;
@@ -128,7 +128,7 @@
 	color: white !important;
 	background-color: #ef9635 !important;
 	border: 1px solid #ef9635 !important;
-	font-family: 'Source Sans Pro', sans-serif !important;
+	font-family: 'Poppins' !important;
 	font-weight: bold !important;
 	width: 130px !important;
 	height: 40px !important;
@@ -150,7 +150,7 @@
 .contReviw .addReview p {
 	padding-top: 3%;
 	padding-left: 1%;
-	font-family: 'Source Sans Pro', sans-serif;
+	font-family: 'Poppins';
 	font-size: 0.8em;
 	color: #4cced8 !important;
 	font-weight: bold;
@@ -196,6 +196,7 @@
 	font-size: 1.5em;
 	/* width: 0%; */
 	color: #ef9635;
+	font-family: 'Poppins';
 }
 .cont_cant2 {
 	display: flex;
@@ -207,7 +208,7 @@
 }
 
 .agotadoProct {
-	font-family: 'Source Sans Pro', sans-serif !important;
+	font-family: 'Poppins' !important;
 	/* font-size: 30px !important; */
 	color: black !important;
 	-webkit-text-stroke: 1px red;
@@ -251,6 +252,7 @@
 	position: absolute;
 	left: 40%;
 	font-size: 19px;
+	font-family: 'Poppins';
 	color:red;
 }
 

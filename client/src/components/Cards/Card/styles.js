@@ -48,6 +48,7 @@ export const Name = styled.p `
 
   export const Link = styled.a`
   text-decoration: none;
+  font-family: 'Poppins';
   color: #000000;
   &:hover{
     color: grey;
