@@ -4,7 +4,7 @@ import React from "react";
 import styled from "styled-components";
 import {ShoppingCart} from '@styled-icons/entypo/ShoppingCart';
 import mobile from "../../responsive";
-import TechC from "../../assets/Imgs/TechC.gif";
+// import TechC from "../../assets/Imgs/TechC.gif";
 import Logoo from "../../assets/Imgs/Logoo.png";
 import Tech from "../../assets/Imgs/Tech.png";
 import { Link } from "react-router-dom";
@@ -96,7 +96,6 @@ const Header = () => {
         <Right>
           {/* <MenuItem>REGISTER</MenuItem>
           <MenuItem>LOGIN</MenuItem> */}
-          <Link to="/product/create">PRODUCT</Link>
           <Link to="/register"><MenuItem>REGISTER</MenuItem></Link>
           <Link to="/login"><MenuItem>LOGIN</MenuItem></Link>
           

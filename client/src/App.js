@@ -9,18 +9,11 @@ import Register from "./components/User/Register";
 
 import Product from "./components/ProductDet/index";
 import Cards from "./components/Cards/Cards";
-import FormProduct from "./components/FormProduct/FormProduct";
-import { useDispatch } from "react-redux";
-import { getBrands } from "./Store/actions/brands";
-import { getCategories } from "./Store/actions/categories";
+import ListProducts from "./components/ListProducts/ListProducts";
+import CreateProduct from "./components/CreateProduct/CreateProduct";
+import EditProduct from "./components/EditProduct/EditProduct";
 
 function App() {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getBrands());
-    dispatch(getCategories());
-  }, [dispatch]);
 
   return (
     <div className="App">
@@ -29,7 +22,9 @@ function App() {
         {/*   <Route path="/Login" element={<Login />} /> */}
         <Route path="/Details/:id" element={<Product />} />
         <Route path="/products" element={<Cards />} />
-        <Route path="/product/create" element={<FormProduct />} />
+        <Route exact path="/products/list" element={<ListProducts />} />
+        <Route exact path="/product/create" element={<CreateProduct />} />
+        <Route exact path="/product/edit/:productid" element={<EditProduct />} />
         <Route path="/register" element={<Register />} />
       </Routes>
     </div>

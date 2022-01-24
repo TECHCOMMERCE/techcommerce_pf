@@ -5,34 +5,34 @@ const PutProduct = async (product) => {
     // Actualiza el producto y la marca
     const productUpdated = await Product.update(
       {
-        name: product[0].name,
-        price: product[0].price,
-        stock: product[0].stock,
-        sold_quantity: product[0].sold_quantity,
-        condition: product[0].condition,
-        image: product[0].image,
-        attributes: product[0].attributes,
-        status: product[0].status,
-        brandBrandid: product[0].brandid,
+        name: product.name,
+        price: product.price,
+        stock: product.stock,
+        sold_quantity: product.sold_quantity,
+        condition: product.condition,
+        image: product.image,
+        attributes: product.attributes,
+        status: product.status,
+        brandBrandid: product.brandid,
       },
       {
-        where: { productid: product[0].productid },
+        where: { productid: product.productid },
       }
     );
 
     // Busca el producto
-    const targetProduct = await Product.findByPk(product[0].productid);
+    const targetProduct = await Product.findByPk(product.productid);
 
     // Busca todas las categorias viejas
     const oldCategories = await Category.findAll({
-      include: { model: Product, where: { productid: product[0].productid } },
+      include: { model: Product, where: { productid: product.productid } },
     });
 
     // le remueve todas las categorías al producto
     await targetProduct.removeCategories(oldCategories);
 
     // Itera las categorías nuevas para agregarlas al producto
-    product[0].categories.map(async (newCat) => {
+    product.categories.map(async (newCat) => {
       // busca la nueva categoría
       const newCategory = await Category.findOne({ where: { name: newCat } });
 

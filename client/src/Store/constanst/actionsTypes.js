@@ -3,3 +3,7 @@ export const GET_PRODUCTS = 'GET_PRODUCTS';
 export const GET_BRANDS = "GET_BRANDS";
 export const GET_CATEGORIES = "GET_CATEGORIES";
 export const GET_DETAILS = 'GET_DETAILS';
+export const POST_PRODUCT = 'POST_PRODUCT';
+export const PUT_PRODUCT = 'PUT_PRODUCT';
+export const GET_PRODUCT_BY_ID = 'GET_PRODUCT_BY_ID';
+export const RESET_PRODUCT_DETAIL = "RESET_PRODUCT_DETAIL";

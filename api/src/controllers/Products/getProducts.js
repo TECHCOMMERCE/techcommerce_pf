@@ -22,7 +22,7 @@ const getProducts = async (page) => {
     })}
     else {
       return await Product.findAll({
-      
+        where: {status: true},
         include: [
           {
             model: Category,
