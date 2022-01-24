@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useState } from "react";
+
 import {
   FormControl,
   RadioGroup,
@@ -8,15 +8,11 @@ import {
   FormLabel,
   InputLabel,
   Input,
-  Select,
-  MenuItem,
-  Menu,
   FormGroup,
 } from "@mui/material";
 
 const FormProduct = () => {
-  const brands = useSelector((state) => state.brandsReducer);
-  const categories = useSelector((state) => state.categoriesReducer);
+ 
 
   const [input, setInput] = useState({
     name: "",

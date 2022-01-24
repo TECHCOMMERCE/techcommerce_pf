@@ -12,7 +12,6 @@ export const sliderItems = [
     img: "https://www.infotechnology.com/files/image/101/101511/618e8c83532b6.jpg",
     title: "pantalla chica",
     desc: "promos en tablets y celulares.",
-
     bg: "fcf1ed",
   },
   {

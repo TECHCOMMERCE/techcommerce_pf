@@ -33,6 +33,7 @@ function Login() {
   useEffect(() => {
     if(user.token) navigate('/products')
     if(user.error) swal.fire({title:'Error', text:user.error, icon: 'error'})
+    if(user.user?.force) swal.fire({title:'Informacion', text:'¡Advertencia! Se sugiere, realizar un cambio de contraseña', icon:"warning"})
   },[user])
 
   const handlerChange = (e) => {

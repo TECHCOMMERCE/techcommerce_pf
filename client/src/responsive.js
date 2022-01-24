@@ -1,6 +1,5 @@
 import { css } from "styled-components";
 
-import React from "react";
 
 const mobile = (props) => {
   return css`

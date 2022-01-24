@@ -7,7 +7,6 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 // Bootstrap
 import {  Col, Container, Row } from 'react-bootstrap';
-import { connect } from 'react-redux';
 // React-Router-Dom
 import { useParams } from 'react-router-dom';
 //import { getProducts } from '../../Store/actions/products';
@@ -15,18 +14,9 @@ import { useParams } from 'react-router-dom';
 import s from '../../styles/ProductDet.module.css';
 import Footer from '../Home/Footer';
 import { Button } from '@mui/material';
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
-
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-
 
 
 // const url = 'localhost:3001';
@@ -69,7 +59,9 @@ const Product = () => {
 
 	return (
 		<div>
+			
 		   	<Container className={s.container}>
+				
 				<div className={s.cont_prin}>
 					<Row>
 						<Col xs={12} md={12} lg={8} className={s.cont_img}>
@@ -119,7 +111,7 @@ const Product = () => {
 												 <th></th>
 											</tr>
 										</thead>
-										<tbody >
+									{/* 	<tbody >
 											{ product?.attributes ?
 												product?.attributes?.map(x => {
 												return(
@@ -129,7 +121,7 @@ const Product = () => {
 														</tr>
 												)
 											}) : null }
-											</tbody>
+											</tbody> */}
 										</table>
 
 								</div>

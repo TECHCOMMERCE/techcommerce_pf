@@ -5,7 +5,6 @@ import {
 
 const initialState = {
     token:null,
-    data: null,
     error: null,
     user:null
 };
