@@ -19,11 +19,15 @@ const Users = () => {
         type: "user"
     })
 
+    const [mode, setMode] = useState("add");
+
+    async function actualizarTabla(){
+        const res = await axios.get("http://localhost:3001/user");
+        setUsers(res.data);
+    }
+
     useEffect(() => {
-        (async() => {
-            const res = await axios.get("http://localhost:3001/user");
-            setUsers(res.data);
-        })()
+        actualizarTabla()
     }, []);
 
     return(
@@ -34,9 +38,17 @@ const Users = () => {
                 <form className={s.form} onSubmit={async(e) => {
                     e.preventDefault();
 
-                    await axios.post("http://localhost:3001/user", data);
-                    const res = await axios.get("http://localhost:3001/user");
-                    setUsers(res.data);
+                    if(mode === "add"){
+                        console.log("voy a agregar");
+                        await axios.post("http://localhost:3001/user", data);
+                    }else{
+                        console.log("voy a editar")
+                        await axios.put("http://localhost:3001/user", data);
+                        
+                        setMode("add")
+                    }
+                    
+                    actualizarTabla();
 
                     setData({
                         name: "",
@@ -211,13 +223,20 @@ const Users = () => {
                                     }
                                 })
                             }}
+                            value={data.type}
                         >
                             <option value="user">user</option>
                             <option value="admin">admin</option>
                         </select>     
                         
                     </div>
-                    <input className={`${s.button} ${s.input}`} type="submit" value="crear usuario"/>           
+
+                    {mode === "add" ? <>
+                        <input className={`${s.button} ${s.input}`} type="submit" value="crear usuario"/>
+                    </> : <>
+                        <input className={`${s.button} ${s.input}`} type="submit" value="editar"/>
+                    </>}
+                               
 
                 </form>
                 
@@ -229,7 +248,6 @@ const Users = () => {
                                 
                                 <table className={s.table}>
                                     <thead>
-                                        
                                         <tr className={s.thead}>
                                             <th>type</th>
                                             <th>name</th>
@@ -262,12 +280,30 @@ const Users = () => {
                                                 <td>{user.force ? "bad" : "good"}</td>      {/* Si está en true, significa que debe cambiarla, de lo contrario está en good*/}
                                                 <td>
                                                     <button>Force</button>
-                                                    <button>Editar</button>
+                                                    <button
+                                                        onClick={() => {
+                                                            setData({
+                                                                userid: user.userid,
+                                                                name: user.name,
+                                                                lastname: user.lastname,
+                                                                email: user.email,
+                                                                password: user.password,
+                                                                phone: user.phone,
+                                                                address: user.address,
+                                                                country: user.country,
+                                                                city: user.city,
+                                                                postalcode: user.postalcode,
+                                                                type: user.type
+                                                            })
+
+                                                            setMode("edit");
+                                                        }
+                                                    }>Editar</button>
                                                     <button
                                                         onClick={async() => {
                                                             await axios.delete("http://localhost:3001/user/" + user.userid);
-                                                            const res = await axios.get("http://localhost:3001/user");
-                                                            setUsers(res.data);
+                                                            
+                                                            actualizarTabla();
                                                         }
                                                     }>Eliminar</button>
                                                 </td>

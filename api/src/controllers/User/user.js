@@ -43,7 +43,7 @@ router.post("/", async(req, res) => {
 
   try{
     const [user, created] = await User.findOrCreate({
-      where: { email, password },
+      where: { email, password, status: "true" },
       defaults: {
         ...data
       }
@@ -98,37 +98,37 @@ router.get("/", async(req, res) => {
 });
 
 // opción de simplemente eliminarlo
-// router.delete("/", async(req, res) => {
-//   try{
-//     const {userid} = req.body;
-
-//     await User.destroy({where: {
-//       userid
-//     }})
-
-//     return res.status(200).send({code: 0, message: "eliminado con éxito"});
-//   }catch(e){
-//     return res.status(200).send({code: 1, message: "Hay error", error: e});
-//   }
-// });
-
-// opción de cambiarle el status
 router.delete("/:userid", async(req, res) => {
   try{
     const {userid} = req.params;
-    
-    const user = await User.findOne({where: {
-      userid,
-    }});
 
-    
-    user.update({status: false});
-    
+    await User.destroy({where: {
+      userid
+    }})
+
     return res.status(200).send({code: 0, message: "eliminado con éxito"});
   }catch(e){
     return res.status(200).send({code: 1, message: "Hay error", error: e});
   }
 });
+
+// opción de cambiarle el status
+// router.delete("/:userid", async(req, res) => {
+//   try{
+//     const {userid} = req.params;
+    
+//     const user = await User.findOne({where: {
+//       userid,
+//     }});
+
+    
+//     user.update({status: false});
+    
+//     return res.status(200).send({code: 0, message: "eliminado con éxito"});
+//   }catch(e){
+//     return res.status(200).send({code: 1, message: "Hay error", error: e});
+//   }
+// });
 
 
 module.exports = router;
