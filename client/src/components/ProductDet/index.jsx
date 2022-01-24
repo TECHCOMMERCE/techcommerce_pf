@@ -20,6 +20,7 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import { addToCart } from '../../Store/actions/carts';
 import {getProductsCartUser} from '../../Store/actions/carts.js'
 import NavBar from '../NavBar';
+import Swal from 'sweetalert2';
 
 
 // const url = 'localhost:3001';
@@ -52,6 +53,10 @@ const Product = () => {
 
 	const addCart = (product) => {
 		dispatch(addToCart({...product,quantity: qty},idUser,cart))
+		Swal.fire({
+      icon: 'success',
+      text: 'Producto agregado correctamente!',
+    })
 	}
 
 	return (
