@@ -8,5 +8,7 @@ export const GET_BRANDS= 'GET_BRANDS';
 export const GET_CATEGORIES= 'GET_CATEGORIES';
 export const SET_USER_DATA = 'SET_USER_DATA';
 export const SET_USER_ERROR = 'SET_USER_ERROR';
+export const GET_PRODUCTS_CART = 'GET_PRODUCTS_CART';
+export const CLEAR_CART = 'CLEAR_CART';
 
 

@@ -39,6 +39,7 @@ function App() {
         <Route path='/products' element={<Cards/>} />
         <Route path='/users' element={isAdmin ? <Users/> : <h1>No tenes acceso a esta página</h1>} />
         <Route path="/product/create" element={<FormProduct />} />
+        {/* <Route path="/cart" element={<Cart />} /> */}
       </Routes>  
     </div>
   );

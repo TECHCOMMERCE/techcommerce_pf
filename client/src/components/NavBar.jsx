@@ -12,6 +12,7 @@ import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
+import {Link} from 'react-router-dom'
 import {useNavigate} from 'react-router-dom'
 import {getuser} from '../Store/actions/users.js'
 
@@ -74,7 +75,8 @@ const MenuItem = styled.div`
 const NavBar = () => {
   const dispatch=useDispatch();
   const navigate=useNavigate();
-  let user=useSelector(state=>state.users)
+  const user=useSelector(state=>state.users)
+  const cart = useSelector(state => state.cart.productscart)
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const [userData, setUserData] = useState(null);
@@ -166,11 +168,13 @@ const NavBar = () => {
             </MenuItem>
             <Divider />
           </Menu>
-          <MenuItem>
-            <Badge badgeContent={0} color="primary">
-              <ShoppingCartOutlined></ShoppingCartOutlined>
-            </Badge>
-          </MenuItem>
+          {/* <MenuItem > */}
+            <Link to='/cart' className='nav_links' >
+              <Badge badgeContent={cart.length} color="secondary">
+                <ShoppingCartOutlined fontSize='large' color='primary'></ShoppingCartOutlined>{cart.length}
+              </Badge>
+            </Link>
+          {/* </MenuItem> */}
         </Right>
       </Wrapper>
     </Container>

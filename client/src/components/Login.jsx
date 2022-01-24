@@ -89,7 +89,6 @@ function Login() {
                 email: res.user.email
             };
             dispatch(loginAccount({...dataU, type:'external'}))
-            //dispatch(login(data));
         })
     }).catch((error) => {
         if(error.message.split("/")[1] === "account-exists-with-different-credential)."){

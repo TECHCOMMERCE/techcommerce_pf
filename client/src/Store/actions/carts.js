@@ -1,3 +1,36 @@
+import axios from 'axios'
+import {
+  GET_PRODUCTS_CART,
+  CLEAR_CART
+} from '../constanst/actionsTypes'
+const SERVER = 'http://localhost:3001';
+
+export function getProductsCartUser(userId){
+  return async function (dispatch){
+    try{
+      if(!userId){
+        const itemsCart = JSON.parse(localStorage.getItem("cart")) || [];
+        return dispatch({
+            type: GET_PRODUCTS_CART,
+            payload: itemsCart
+        })
+          
+      }else{
+        const {data}= await axios.get(`${SERVER}/users/cart/${userId}`)
+        const localCart = JSON.parse(localStorage.getItem("cart")) || [] //orderId es el estado para la orden de ese usuario
+        localStorage.removeItem("cart")
+        const res= await axios.put(`${SERVER}/users/cart/${userId}`,{productsInfo: [...data.cart,...localCart]})
+        return dispatch ({
+            type: GET_PRODUCTS_CART,
+            payload: res.data.cart
+        })
+      }
+    }catch(err){
+      console.log(err)
+    }
+  }
+}
+
 export const addToCart = (product, userId,cart) => (dispatch) => {
   if (!userId) {
     let products = JSON.parse(localStorage.getItem("cart")) || [];
@@ -18,7 +51,7 @@ export const addToCart = (product, userId,cart) => (dispatch) => {
     products= products.filter(p=>p.quantity>0)
     localStorage.setItem("cart", JSON.stringify(products));
     return dispatch({ 
-      type: ADD_TO_CART,
+      type: GET_PRODUCTS_CART,
       payload: products 
     });
   }
@@ -41,7 +74,7 @@ if (userId) {
       .put(`${SERVER}/users/cart/${userId}`, body)
       .then((response) => {
         dispatch({ 
-          type: ADD_TO_CART_FROM_DB,
+          type: GET_PRODUCTS_CART,
           payload: response.data.cart 
         });
       })
@@ -81,13 +114,13 @@ export function changeAmount(products, userId){
       if(userId){
         const qtyProduct = await axios.put(`${SERVER}/users/cart/${userId}`,{productsInfo: products})
         return dispatch({
-            type: CHANGE_QTY,
+            type: GET_PRODUCTS_CART,
             payload: qtyProduct.data.cart
         })
       }else{
         localStorage.setItem("cart", JSON.stringify(products));
         return dispatch({
-            type: CHANGE_QTY,
+            type: GET_PRODUCTS_CART,
             payload: products
         })
       }
@@ -100,11 +133,11 @@ export function changeAmount(products, userId){
 export function clearCart(idUser){
   return async function(dispatch){
     if(idUser)
-        await axios.delete(`${SERVER}/users/cart/${idUser}`);
+      await axios.delete(`${SERVER}/users/cart/${idUser}`);
     localStorage.removeItem("cart")
     return dispatch({
-        type: CLEAR_CART,
-        payload: []
+      type: CLEAR_CART,
+      payload: []
     })
   }
 } 

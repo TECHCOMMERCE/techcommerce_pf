@@ -1,4 +1,4 @@
-const {Cart, User} = require("../../../../db");
+const {Cart, User} = require("../../db");
 const deleteUserCart = async(req,res,next)=>{
 try {
   const {userid} = req.params;

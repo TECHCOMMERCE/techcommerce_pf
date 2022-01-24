@@ -6,7 +6,7 @@ import {productsReducer} from "./reducer/products";
 import {brandsReducer} from "./reducer/brands";
 import {categoriesReducer} from "./reducer/categories";
 import {usersReducer} from "./reducer/users";
-
+import {cartsReducer} from './reducer/carts'
 
 import thunk from "redux-thunk" ;
 
@@ -15,8 +15,8 @@ import thunk from "redux-thunk" ;
 const store= createStore(
 	combineReducers({
 		products: productsReducer, brandsReducer, categoriesReducer,
-		users: usersReducer
-
+		users: usersReducer,
+		cart: cartsReducer,
 		
 	}), composeWithDevTools(
 		applyMiddleware(thunk) 

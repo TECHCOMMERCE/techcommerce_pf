@@ -1,19 +1,24 @@
+import {
+  GET_PRODUCTS_CART,
+  CLEAR_CART
+} from '../constanst/actionsTypes'
+
 const initialState = {
-  cart: JSON.parse(localStorage.getItem("cart")) || [],
+  productscart: [],
 }
 
-export function cart(state = initialState, action) {
+export function cartsReducer(state = initialState, action) {
   switch (action.type) {
     case GET_PRODUCTS_CART:
       return {
         ...state,
         cart: action.payload,
       };
-    case ADD_TO_CART_FROM_DB:
-      return {
-        ...state,
-        cart: action.payload,
-      };
+      case CLEAR_CART:
+        return {
+          ...state,
+          cart: [],
+        };
 
     default:
       return state
