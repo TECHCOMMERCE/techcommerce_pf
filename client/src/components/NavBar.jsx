@@ -1,9 +1,19 @@
 import { Badge } from "@material-ui/core";
 import { Search, ShoppingCartOutlined } from "@material-ui/icons";
-import React from "react";
+import React, { useState, useEffect } from 'react';
+import {useDispatch, useSelector} from 'react-redux'
 import styled from "styled-components";
 import mobile from "../responsive";
-
+import Tooltip from '@mui/material/Tooltip';
+import IconButton from '@mui/material/IconButton';
+import Divider from '@mui/material/Divider';
+import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
+import Settings from '@mui/icons-material/Settings';
+import Logout from '@mui/icons-material/Logout';
+import Avatar from '@mui/material/Avatar';
+import Menu from '@mui/material/Menu';
+import {useNavigate} from 'react-router-dom'
+import {getuser} from '../Store/actions/users.js'
 
 const Container = styled.div`
   height: 60px;
@@ -62,6 +72,27 @@ const MenuItem = styled.div`
 `;
 
 const NavBar = () => {
+  const dispatch=useDispatch();
+  const navigate=useNavigate();
+  let user=useSelector(state=>state.users)
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+  const [userData, setUserData] = useState(null);
+  useEffect(() => {
+    dispatch(getuser())
+  },[dispatch])
+
+
+  useEffect(() => {
+    setUserData(user.user)
+  },[user])
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
   return (
     <Container>
       <Wrapper>
@@ -76,6 +107,65 @@ const NavBar = () => {
           <Logo>Tech-C</Logo>
         </Center>
         <Right>
+          {user.token&&user.user?<Tooltip title="Account settings">
+            <IconButton onClick={handleClick} size="small" sx={{ ml: 2 }}>
+              <Avatar src={userData?.photo?userData.photo:null} sx={{ width: 32, height: 32 }}>{userData?.photo?null:userData?.name?.charAt(0)}</Avatar>
+            </IconButton>
+          </Tooltip>:null}
+          <Menu
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+            onClick={handleClose}
+            PaperProps={{
+              elevation: 0,
+              sx: {
+                overflow: 'visible',
+                filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+                mt: 1.5,
+                '& .MuiAvatar-root': {
+                  width: 32,
+                  height: 32,
+                  ml: -0.5,
+                  mr: 1,
+                },
+                '&:before': {
+                  content: '""',
+                  display: 'block',
+                  position: 'absolute',
+                  top: 0,
+                  right: 14,
+                  width: 10,
+                  height: 10,
+                  bgcolor: 'background.paper',
+                  transform: 'translateY(-50%) rotate(45deg)',
+                  zIndex: 0,
+                },
+              },
+            }}
+            transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+            anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+          >
+            <MenuItem>
+              <Avatar /> {userData?.name}
+            </MenuItem>
+            <MenuItem onClick={()=>navigate("/wishList")} >
+              <ShoppingBagIcon /> My Favorites
+            </MenuItem>
+            <MenuItem onClick={()=>navigate("/buyHistory")}>
+              <ShoppingBagIcon /> My Shops
+            </MenuItem>
+            <MenuItem onClick={()=>navigate('/profile')}>
+              <Settings /> Edit Profile
+            </MenuItem>
+            <MenuItem onClick={() => {
+              localStorage.removeItem("user");
+              window.location='/';
+            }}>
+              <Logout /> Log out
+            </MenuItem>
+            <Divider />
+          </Menu>
           <MenuItem>
             <Badge badgeContent={0} color="primary">
               <ShoppingCartOutlined></ShoppingCartOutlined>

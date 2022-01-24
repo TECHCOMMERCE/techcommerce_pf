@@ -37,11 +37,9 @@ function App() {
         {/* <Route path="/Login" element={<Login />} /> */}
         <Route path="/Details/:id" element={<Product />} /> 
         <Route path='/products' element={<Cards/>} />
-
         <Route path='/users' element={isAdmin ? <Users/> : <h1>No tenes acceso a esta página</h1>} />
         <Route path="/product/create" element={<FormProduct />} />
-      </Routes>
-     
+      </Routes>  
     </div>
   );
 }

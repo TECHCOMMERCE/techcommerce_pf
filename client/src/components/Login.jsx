@@ -9,10 +9,17 @@ import { faUser } from '@fortawesome/free-solid-svg-icons'
 import {useDispatch, useSelector} from 'react-redux'
 import {getuser,loginAccount} from '../Store/actions/users'
 import swal from 'sweetalert2'
+import { getAuth, 
+  signInWithPopup, 
+  GoogleAuthProvider,
+  setPersistence, 
+  browserSessionPersistence,
+} from 'firebase/auth';
 
 function Login() {
   const dispatch=useDispatch();
   const navigate=useNavigate();
+  const auth = getAuth();
   let user=useSelector(state=>state.users)
   const validEmail = new RegExp(
     '^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$'
@@ -64,14 +71,41 @@ function Login() {
       dispatch(loginAccount({...data, type:'normal'}))
     }else{
       swal.fire({title:'Error', text:'Error al iniciar sesión debe rellenar nos campos', icon: 'error'})
-    }
-    
+    } 
   }
 
-  return (
+  const extLogin = async (e)=>{
+    e.preventDefault();
+    let provider = new GoogleAuthProvider();
+    setPersistence(auth, browserSessionPersistence)
+    .then(()=>{
+        return signInWithPopup(auth, provider).then(res=>{
+            let dataU = {
+                password:'-',
+                uid: res.user.uid,
+                name: res.user.displayName.split(" ")[0],
+                lastname: res.user.displayName.split(" ")[1],
+                photo: res.user.photoURL,
+                email: res.user.email
+            };
+            dispatch(loginAccount({...dataU, type:'external'}))
+            //dispatch(login(data));
+        })
+    }).catch((error) => {
+        if(error.message.split("/")[1] === "account-exists-with-different-credential)."){
+            swal.fire({
+                title:'Ya tiene una cuenta con el mismo email',
+                text: "no puede iniciar sesión en una cuenta no registrada en la base de datos que tenga el mismo email. Use la cuenta con la que se haya registrado",
+                icon: 'error'
+            })
+        }
+    });
+}
+
+return (
   <div className={s.container}>
     {!user.token?<div className={s.body}>
-      <form autoComplete='off' onSubmit={handlerSubmit}>
+      <form autoComplete='off' className={s.form} onSubmit={handlerSubmit}>
         <h2 className={s.title}>My Account</h2>
         <FontAwesomeIcon className={s.iconUser} icon={faUser}/>
         <div className={s.formGrup}>
@@ -87,7 +121,7 @@ function Login() {
         <div className={s.buttons}>
           <button type='submit' className={`${s.btn} ${s.btn_login}`}>Login</button>
           <button type='button' className={`${s.btn} ${s.btn_sign}`} onClick={()=>navigate('/register')}>Sign up</button>
-          <button type='button' className={`${s.btn} ${s.btn_google}`}><img src={iconGoogle} width={50}/>Login with Google</button>
+          <button type='button' className={`${s.btn} ${s.btn_google}`} onClick={extLogin}><img src={iconGoogle} width={50}/>Login with Google</button>
           <Link to="/reset" className={s.btn}>Forgot your password?</Link>
         </div>
       </form>
