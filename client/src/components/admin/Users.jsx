@@ -6,6 +6,19 @@ import s from "../../assets/styles/admin/Users.module.css";
 const Users = () => {
     const [users, setUsers] = useState(null);
 
+    const [data, setData] = useState({
+        name: "",
+        lastname: "",
+        email: "",
+        password: "",
+        phone: "",
+        address: "",
+        country: "",
+        city: "",
+        postalcode: "",
+        type: "user"
+    })
+
     useEffect(() => {
         (async() => {
             const res = await axios.get("http://localhost:3001/user");
@@ -18,24 +31,187 @@ const Users = () => {
             <div className={s.elements}>
                 <h1>Usuarios</h1>
 
-                <form className={s.form}>
+                <form className={s.form} onSubmit={async(e) => {
+                    e.preventDefault();
+
+                    await axios.post("http://localhost:3001/user", data);
+                    const res = await axios.get("http://localhost:3001/user");
+                    setUsers(res.data);
+
+                    setData({
+                        name: "",
+                        lastname: "",
+                        email: "",
+                        password: "",
+                        phone: "",
+                        address: "",
+                        country: "",
+                        city: "",
+                        postalcode: "",
+                        type: "user"
+                    })
+                }}>
                     <div className={s.inputs}>
-                        <input className={s.input} type="text" placeholder="name"/>
-                        <input className={s.input} type="text" placeholder="lastname"/>
-                        <input className={s.input} type="text" placeholder="email"/>
-                        <input className={s.input} type="text" placeholder="password"/>
+                        <input 
+                            id="name"
+                            className={s.input} 
+                            type="text" 
+                            placeholder="name"
+                            value={data.name}
+                            onChange={e => {
+                                setData(prev => {
+                                    return {
+                                        ...prev,
+                                        [e.target.id]: e.target.value
+                                    }
+                                })
+                            }}
+                        />
+                            
+                        <input 
+                            id="lastname"
+                            className={s.input} 
+                            type="text" 
+                            placeholder="lastname"
+                            value={data.lastname}
+                            onChange={e => {
+                                setData(prev => {
+                                    return {
+                                        ...prev,
+                                        [e.target.id]: e.target.value
+                                    }
+                                })
+                            }}
+                        />
+
+                        <input 
+                            id="email"
+                            className={s.input} 
+                            type="text" 
+                            placeholder="email"
+                            value={data.email}
+                            onChange={e => {
+                                setData(prev => {
+                                    return {
+                                        ...prev,
+                                        [e.target.id]: e.target.value
+                                    }
+                                })
+                            }}
+                        />
+
+                        <input 
+                            id="password"
+                            className={s.input} 
+                            type="password" 
+                            placeholder="password"
+                            value={data.password}
+                            onChange={e => {
+                                setData(prev => {
+                                    return {
+                                        ...prev,
+                                        [e.target.id]: e.target.value
+                                    }
+                                })
+                            }}
+                        />
                     </div>
                     
                     <div className={s.inputs}>
-                        <input className={s.input} type="text" placeholder="phone"/>
-                        <input className={s.input} type="text" placeholder="address"/>
-                        <input className={s.input} type="text" placeholder="country"/>
-                        <input className={s.input} type="text" placeholder="city"/>
-                        <input className={s.input} type="text" placeholder="postalcode"/>
+                        <input 
+                            id="phone"
+                            className={s.input} 
+                            type="text" 
+                            placeholder="phone"
+                            value={data.phone}
+                            onChange={e => {
+                                setData(prev => {
+                                    return {
+                                        ...prev,
+                                        [e.target.id]: e.target.value
+                                    }
+                                })
+                            }}
+                        />
+
+                        <input 
+                            id="address"
+                            className={s.input} 
+                            type="text" 
+                            placeholder="address"
+                            value={data.address}
+                            onChange={e => {
+                                setData(prev => {
+                                    return {
+                                        ...prev,
+                                        [e.target.id]: e.target.value
+                                    }
+                                })
+                            }}
+                        />
+
+                        <input 
+                            id="country"
+                            className={s.input} 
+                            type="text" 
+                            placeholder="country"
+                            value={data.country}
+                            onChange={e => {
+                                setData(prev => {
+                                    return {
+                                        ...prev,
+                                        [e.target.id]: e.target.value
+                                    }
+                                })
+                            }}
+                        />
+
+                        <input 
+                            id="city"
+                            className={s.input} 
+                            type="text" 
+                            placeholder="city"
+                            value={data.city}
+                            onChange={e => {
+                                setData(prev => {
+                                    return {
+                                        ...prev,
+                                        [e.target.id]: e.target.value
+                                    }
+                                })
+                            }}
+                        />
+
+                        <input 
+                            id="postalcode"
+                            className={s.input} 
+                            type="text" 
+                            placeholder="postalcode"
+                            value={data.postalcode}
+                            onChange={e => {
+                                setData(prev => {
+                                    return {
+                                        ...prev,
+                                        [e.target.id]: e.target.value
+                                    }
+                                })
+                            }}
+                        />
                     </div>
                     
                     <div>
-                        <select className={s.down}>
+                        <select 
+                            id="type" 
+                            className={s.down}
+                            onChange={e => {
+                                setData(prev => {
+                                    return {
+                                        ...prev,
+                                        [e.target.id]: e.target.value
+                                    }
+                                })
+                            }}
+                        >
                             <option value="user">user</option>
                             <option value="admin">admin</option>
                         </select>     
@@ -71,22 +247,29 @@ const Users = () => {
 
                                     <tbody>
                                         {users.map((user, i) => {
-                                            console.log(user.force)
-                                            return(<tr key={user.userid} className={i%2!=0 ? s.row1 : null}>
-                                                <td>{user.type}</td>
+                                            console.log(user.force);
+
+                                            return(<tr key={user.userid} className={`${s.row} ${i%2 != 0 ? s.row1 : null}`}>
+                                                <td className={s.col}>{user.type}</td>
                                                 <td>{user.name}</td>
                                                 <td>{user.lastname}</td>
                                                 <td>{user.email}</td>
                                                 <td>{user.phone}</td>
-                                                <td>{user.adress}</td>
+                                                <td>{user.address}</td>
                                                 <td>{user.country}</td>
-                                                <td>{user.City}</td>
+                                                <td>{user.city}</td>
                                                 <td>{user.postalcode}</td>
-                                                <td>{user.force}</td>
+                                                <td>{user.force ? "bad" : "good"}</td>      {/* Si está en true, significa que debe cambiarla, de lo contrario está en good*/}
                                                 <td>
                                                     <button>Force</button>
                                                     <button>Editar</button>
-                                                    <button>Eliminar</button>
+                                                    <button
+                                                        onClick={async() => {
+                                                            await axios.delete("http://localhost:3001/user/" + user.userid);
+                                                            const res = await axios.get("http://localhost:3001/user");
+                                                            setUsers(res.data);
+                                                        }
+                                                    }>Eliminar</button>
                                                 </td>
                                             </tr>)
                                         })}

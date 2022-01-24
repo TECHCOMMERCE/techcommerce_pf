@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const { Op } = require("sequelize");
 const {User} = require('../../db');
 
 const users = [
@@ -77,9 +78,18 @@ router.put("/", async(req, res) => {
 router.get("/", async(req, res) => {
   try{
     const users = await User.findAll({where: {
-      type: "user",
+      name: {
+        [Op.ne]: "admin"
+      },
+
+      lastname: {
+        [Op.ne]: "admin"
+      },
+
       status: true
     }});
+
+    console.log(users)
 
     return res.status(200).send(users.map(user => user.dataValues));
   }catch(e){
@@ -103,16 +113,17 @@ router.get("/", async(req, res) => {
 // });
 
 // opción de cambiarle el status
-router.delete("/", async(req, res) => {
+router.delete("/:userid", async(req, res) => {
   try{
-    const {userid} = req.body;
-
+    const {userid} = req.params;
+    
     const user = await User.findOne({where: {
       userid,
     }});
 
+    
     user.update({status: false});
-
+    
     return res.status(200).send({code: 0, message: "eliminado con éxito"});
   }catch(e){
     return res.status(200).send({code: 1, message: "Hay error", error: e});
