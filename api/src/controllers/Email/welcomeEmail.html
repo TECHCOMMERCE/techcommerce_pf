@@ -10,7 +10,7 @@
       href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&family=Raleway:wght@300;400;700&display=swap"
       rel="stylesheet"
     />
-    <title>Status Email</title>
+    <title>Welcome Email</title>
     <style>
       /* body */
 
@@ -117,45 +117,9 @@
         flex: none;
         order: 1;
         flex-grow: 0;
-        margin: 0 0 1rem;
+        margin: 3rem 0 4rem;
       }
 
-      /* img section inside container */
-      .img_container {
-        position: absolute;
-        width: 504px;
-        height: 360px;
-        left: 0px;
-        top: 0px;
-
-        background: url(.png);
-      }
-
-      .img {
-        /* heroContainer */
-
-        position: static;
-        width: 504px;
-        height: 361px;
-        left: 20px;
-        top: 93px;
-
-        /* rosado claro  */
-        background: #fff0f0;
-        /* amarillo claro  */
-        /* background: #FFFB9A; */
-        /* morado oscuro  */
-        /* background: #8F98FF; */
-        border-radius: 20px;
-
-        /* Inside auto layout */
-
-        flex: none;
-        order: 1;
-        align-self: stretch;
-        flex-grow: 1;
-        margin: 24px 0px;
-      }
 
       /* Title */
       .title {
@@ -212,10 +176,47 @@
         /* Inside auto layout */
 
         flex: none;
-        /* order: 2; */
+        order: 2;
         align-self: stretch;
         flex-grow: 0;
         margin: 10px 0px;
+      }
+
+
+      /* img section inside container */
+      .img_container {
+        position: absolute;
+        width: 504px;
+        height: 360px;
+        left: 0px;
+        top: 0px;
+
+        background: url(.png);
+      }
+
+      .img {
+        /* heroContainer */
+
+        position: static;
+        width: 504px;
+        height: 361px;
+        left: 20px;
+        top: 93px;
+        /* rosado claro  */
+        /* background: #fff0f0; */
+        /* amarillo claro  */
+        /* background: #FFFB9A; */
+        /* morado oscuro  */
+        background: #8F98FF;
+        border-radius: 20px;
+
+        /* Inside auto layout */
+
+        flex: none;
+        order: 1;
+        align-self: stretch;
+        flex-grow: 1;
+        margin: 24px 0px;
       }
 
       .btn__ {
@@ -223,8 +224,12 @@
 
         /* Auto layout */
 
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
         padding: 13px;
 
+        position: static;
         width: 97px;
         height: 42px;
         left: 223.5px;
@@ -237,14 +242,11 @@
 
         /* Inside auto layout */
 
+        flex: none;
+        order: 3;
+        flex-grow: 0;
         margin: 10px 0px;
         cursor: pointer;
-        transition: background-color 0.5s ease-in, color 0.5s ease-in;
-      }
-
-      .btn__:hover {
-        background-color: #000;
-        color: #fff;
       }
 
       .footer {
@@ -288,27 +290,6 @@
         font-size: 25px;
         font-weight: bold;
       }
-
-      .status {
-        margin: 2rem 0 0;
-        display: flex;
-        justify-content: space-between;
-        gap: 2rem;
-        width: 80%;
-        margin: 0 auto;
-      }
-
-      .status img {
-        width: 50%;
-      }
-
-      .status-article * {
-        margin: 0.5rem 0;
-      }
-      .main-title {
-        margin-top: 7rem;
-        text-align: center;
-      }
     </style>
   </head>
 
@@ -321,33 +302,24 @@
         </div>
         <!-- <div class="logo__box"></div> -->
       </header>
-      <h1 class="main-title">Estado de la Orden</h1>
-      <div class="status">
-        <img src="pics/statusPic.svg" alt="status" />
-        <article class="status-article">
-          <h2>Pendinete</h2>
-          <p>
-            Estamos esperando por alguien que tome tu orden en nuestras oficinas
-          </p>
-          <button class="btn__">Ver orden</button>
-        </article>
-      </div>
       <container class="mail">
         <!-- <div> -->
-
+        <h1 class="title">Email de Confirmacion</h1>
         <!-- </div> -->
+        <div class="text">
+          Grandioso!!! Ya eres parte de nosotros, y te queremos dar la 
+          coordial bienvenida a Techcommerce
+        </div>
         <div class="">
           <img
             class="img"
-            src="./pics/friendDesign.svg"
+            src="pics/welcomeFriend.svg"
             alt="welcome photo"
             height="50%"
           />
         </div>
-        <div class="text">
-          Si ya paso mas de 1 hora y el estado de la orden sigue siendo el mismo porfavor contate al soporte tecnico y con gusto lo estaremos ayudando.
-        </div>
-        <button class="btn__">Contactar</button>
+        
+        <button class="btn__">Comprar !</button>
       </container>
       <hr />
       <footer class="footer">

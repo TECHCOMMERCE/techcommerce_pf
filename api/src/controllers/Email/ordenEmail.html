@@ -10,7 +10,7 @@
       href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&family=Raleway:wght@300;400;700&display=swap"
       rel="stylesheet"
     />
-    <title>Status Email</title>
+    <title>Welcome Email</title>
     <style>
       /* body */
 
@@ -115,46 +115,9 @@
         border: 5px;
         border-color: rgba(182, 65, 65, 0.725);
         flex: none;
-        order: 1;
+        /* order: 1; */
         flex-grow: 0;
-        margin: 0 0 1rem;
-      }
-
-      /* img section inside container */
-      .img_container {
-        position: absolute;
-        width: 504px;
-        height: 360px;
-        left: 0px;
-        top: 0px;
-
-        background: url(.png);
-      }
-
-      .img {
-        /* heroContainer */
-
-        position: static;
-        width: 504px;
-        height: 361px;
-        left: 20px;
-        top: 93px;
-
-        /* rosado claro  */
-        background: #fff0f0;
-        /* amarillo claro  */
-        /* background: #FFFB9A; */
-        /* morado oscuro  */
-        /* background: #8F98FF; */
-        border-radius: 20px;
-
-        /* Inside auto layout */
-
-        flex: none;
-        order: 1;
-        align-self: stretch;
-        flex-grow: 1;
-        margin: 24px 0px;
+        margin: 3rem 0 0;
       }
 
       /* Title */
@@ -218,6 +181,42 @@
         margin: 10px 0px;
       }
 
+      /* img section inside container */
+      .img_container {
+        position: absolute;
+        width: 504px;
+        height: 360px;
+        left: 0px;
+        top: 0px;
+
+        background: url(.png);
+      }
+
+      .img {
+        /* heroContainer */
+
+        position: static;
+        width: 504px;
+        height: 361px;
+        left: 20px;
+        top: 93px;
+        /* rosado claro  */
+        /* background: #fff0f0; */
+        /* amarillo claro  */
+        background: #FFFB9A;
+        /* morado oscuro  */
+        /* background: #8f98ff; */
+        /* border-radius: 20px; */
+
+        /* Inside auto layout */
+
+        flex: none;
+        order: 1;
+        align-self: stretch;
+        flex-grow: 1;
+        margin: 24px 0px;
+      }
+
       .btn__ {
         /* Button */
 
@@ -246,13 +245,13 @@
         background-color: #000;
         color: #fff;
       }
-
       .footer {
         width: 100%;
         text-align: center;
         display: flex;
         flex-direction: column;
         align-items: center;
+        margin-top: 2rem;
       }
 
       .footer-main-text {
@@ -289,25 +288,35 @@
         font-weight: bold;
       }
 
-      .status {
-        margin: 2rem 0 0;
+      .table {
+        margin: 2rem auto;
+        text-align: center;
+        table-layout: fixed;
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      .table tr td {
+        padding: 1rem;
+      }
+
+      .product {
+        text-align: center;
+        margin: 1rem 0;
+      }
+      .product-container {
         display: flex;
         justify-content: space-between;
-        gap: 2rem;
-        width: 80%;
-        margin: 0 auto;
-      }
-
-      .status img {
-        width: 50%;
-      }
-
-      .status-article * {
-        margin: 0.5rem 0;
-      }
-      .main-title {
-        margin-top: 7rem;
+        width: 100%;
         text-align: center;
+      }
+
+      .product-img p {
+        font-weight: bold;
+
+      }
+      .product-img img{
+        background-color: #E2D4FF;
       }
     </style>
   </head>
@@ -321,34 +330,74 @@
         </div>
         <!-- <div class="logo__box"></div> -->
       </header>
-      <h1 class="main-title">Estado de la Orden</h1>
-      <div class="status">
-        <img src="pics/statusPic.svg" alt="status" />
-        <article class="status-article">
-          <h2>Pendinete</h2>
-          <p>
-            Estamos esperando por alguien que tome tu orden en nuestras oficinas
-          </p>
-          <button class="btn__">Ver orden</button>
-        </article>
-      </div>
       <container class="mail">
         <!-- <div> -->
-
+        <h1 class="title">Detalles de tu Orden</h1>
         <!-- </div> -->
+        <div class="text">
+          Muchas Gracias por tu compra estiamado Amigo! Aqui podras ver mas detalles sobre tu orden.
+        </div>
         <div class="">
           <img
             class="img"
-            src="./pics/friendDesign.svg"
+            src="pics/hands.svg"
             alt="welcome photo"
             height="50%"
           />
         </div>
-        <div class="text">
-          Si ya paso mas de 1 hora y el estado de la orden sigue siendo el mismo porfavor contate al soporte tecnico y con gusto lo estaremos ayudando.
-        </div>
-        <button class="btn__">Contactar</button>
       </container>
+      <hr />
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Descripción</th>
+            <th>Cantidad</th>
+            <th>Precio</th>
+            <th>Fecha</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Celular</td>
+            <td>5</td>
+            <td>3200</td>
+            <td>25-23-2022</td>
+          </tr>
+          <tr>
+            <td>Computadora</td>
+            <td>2</td>
+            <td>7600</td>
+            <td>15-23-2022</td>
+          </tr>
+          <tr>
+            <td>Televisión</td>
+            <td>2</td>
+            <td>15,000</td>
+            <td>10-23-2022</td>
+          </tr>
+          <tr>
+            <td>KeyBoard</td>
+            <td>7</td>
+            <td>800</td>
+            <td>10-23-2022</td>
+          </tr>
+        </tbody>
+      </table>
+      <hr />
+
+      <div class="product">
+        <div class="product-container">
+          <div class="product-img">
+            <img src="pics/product1.svg" alt="producto1" />
+            <p>Imac</p>
+          </div>
+          <div class="product-img">
+            <img src="pics/product2.svg" alt="producto2" />
+            <p>Iphone 13 pro</p>
+          </div>
+        </div>
+        <button class="btn__">ir orden</button>
+      </div>
       <hr />
       <footer class="footer">
         <p class="footer-main-text">Techcommerce</p>
