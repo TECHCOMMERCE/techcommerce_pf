@@ -22,6 +22,7 @@ const Container = styled.div`
   border-bottom:solid 1px grey;
 `;
 
+
 const Wrapper = styled.div`
   padding: 10px 20px;
   display: flex;
@@ -95,6 +96,8 @@ const NavBar = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  //let cart=[2,2,2]
   return (
     <Container>
       <Wrapper>
@@ -106,7 +109,7 @@ const NavBar = () => {
           </SearchContainer>
         </Left>
         <Center>
-          <Logo>Tech-C</Logo>
+         <Link to='/' style={{textDecoration: 'none', color: '#000000'}}><Logo>Tech-C</Logo></Link> 
         </Center>
         <Right>
           {user.token&&user.user?<Tooltip title="Account settings">

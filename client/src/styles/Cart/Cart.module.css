@@ -1,0 +1,24 @@
+.container{
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+margin-top: 8%;
+border-bottom: 1px solid black;
+}
+
+
+.total{
+  margin-top: 5%;
+  margin-bottom: 2%;
+  font-family: 'Poppins';
+}
+
+.buttonContainer{
+  margin-bottom: 5%;
+}
+
+.button{
+  width: 13vw;
+  font-family: 'Poppins';
+}

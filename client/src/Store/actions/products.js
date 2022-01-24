@@ -9,6 +9,7 @@ const url = 'localhost:3001';
 
 
 export const getCategories = () => async(dispatch) => {
+	console.log('entre aca categories')
 	const data= await axios.get(`http://${url}/categories`)
 	return dispatch({
 		type: GET_CATEGORIES_PRODUCTS,
@@ -30,8 +31,8 @@ export const getDetails = (id) => async(dispatch) => {
 
 
 export const getBrand = () => async(dispatch) => {
-	const data= await axios.get(`http://${url}/brands`)
-	
+	const data = await axios.get(`http://${url}/brands`)
+	console.log('entro aca',data)
 	return dispatch({
 		type: GET_BRANDS_PRODUCTS,
 		payload: data.data
