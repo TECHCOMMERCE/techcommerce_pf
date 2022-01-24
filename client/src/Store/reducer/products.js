@@ -1,9 +1,14 @@
-import { GET_PRODUCTS, GET_DETAILS} from "../constanst/actionsTypes";
+
+import { GET_PRODUCTS, GET_PRODUCTS_PAGINADO, GET_DETAILS, GET_BRANDS_PRODUCTS, GET_CATEGORIES_PRODUCTS} from "../constanst/actionsTypes";
 
 
 const initialState={
+
 	products: undefined,
-  product: {} 
+  product: {}, 
+  brands: null,
+  categories: null
+
     
 }
 
@@ -16,12 +21,32 @@ export function productsReducer(state = initialState, action) {
           ...state,
           products: action.products
         }
+
+        case GET_PRODUCTS_PAGINADO:
+        return {
+          ...state,
+          products: action.products
+        }
+
       case GET_DETAILS :
         console.log(action.payload)
         return {
           ...state,
           product: action.payload
         }
+
+      case GET_BRANDS_PRODUCTS: 
+        return {
+          ...state, 
+          brands: action.payload
+        }  
+      case GET_CATEGORIES_PRODUCTS:
+        return {
+          ...state,
+          categories: action.payload
+        }  
+      
+
            
         default: 
 		return state;    
