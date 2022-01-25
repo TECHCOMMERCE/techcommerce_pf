@@ -50,8 +50,8 @@ const {
 
 // Aca vendrian las relaciones
 // Product <---> User (Para Cart) N:N
-User.belongsToMany(Product, {through: Cart, foreignKey: 'productid'})
-Product.belongsToMany(User, {through: Cart, foreignKey: 'userid'})
+User.belongsToMany(Product, {through: Cart/* , foreignKey: 'productid'*/} )
+Product.belongsToMany(User, {through: Cart/* , foreignKey: 'userid'*/} )
 
 // Product <---> User (Para las Reviews) N:N
 Product.belongsToMany(User, {through: Review, foreignKey: 'productid'});

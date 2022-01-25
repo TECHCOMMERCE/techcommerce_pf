@@ -1,5 +1,5 @@
 const {Cart, User} = require("../../db");
-const deleteUserCart = async(req,res,next)=>{
+const DeleteUserCart = async(req,res,next)=>{
 try {
   const {userid} = req.params;
   const {productid=null} = req.query;
@@ -12,13 +12,13 @@ try {
   }else{
     cart = await Cart.destroy({
       where:{
-        userid
+        userUserid:userid
       }
     });
   }
 
   let products = await user.getProducts({
-    attributes: ["idProduct","name", "price", "stock","image"]
+    attributes: ["productid","name", "price", "stock","image"]
   });
   products = products.map(el=>{
     const{productid, name, price, stock,image, cart:{quantity}} = el.toJSON()
@@ -34,5 +34,5 @@ try {
 }
 
 module.exports={
-  deleteUserCart
+  DeleteUserCart
 };
