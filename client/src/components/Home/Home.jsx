@@ -6,7 +6,7 @@ import Categories from "./Categories";
 import Slider from "./Slider";
 
 import { Newsletter } from "./Newsletter";
-import NavBar from "../NavBar";
+
 
  
 
@@ -21,7 +21,7 @@ const Heading = styled.h1`
 const Home = () => {
   return (
     <div>
-      <NavBar/>
+     
       <Slider></Slider>
       <Heading>Categories</Heading>
       <Categories></Categories>

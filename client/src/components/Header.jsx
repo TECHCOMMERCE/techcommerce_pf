@@ -1,9 +1,14 @@
+
 import { Badge } from "@material-ui/core";
-import { Search, ShoppingCartOutlined } from "@material-ui/icons";
 import React, { useState, useEffect } from 'react';
 import {useDispatch, useSelector} from 'react-redux'
+
 import styled from "styled-components";
 import mobile from "../responsive";
+import Logoo from "../assets/Imgs/Logoo.png";
+import Tech from "../assets/Imgs/Tech.png";
+
+import { Search, ShoppingCartOutlined } from "@material-ui/icons";
 import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
 import Divider from '@mui/material/Divider';
@@ -16,12 +21,16 @@ import {Link} from 'react-router-dom'
 import {useNavigate} from 'react-router-dom'
 import {getuser} from '../Store/actions/users.js'
 
-const Container = styled.div`
-  height: 60px;
-  ${mobile({ height: "50px" })}
-  border-bottom:solid 1px grey;
-`;
 
+
+const Container = styled.div`
+ background-color: #fcf5f5;
+ height: 60px;
+ margin-bottom: 20px;
+ padding-bottom: 100px;
+ ${mobile({ height: "50px" })}
+
+`;
 
 const Wrapper = styled.div`
   padding: 10px 20px;
@@ -29,6 +38,7 @@ const Wrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   ${mobile({ padding: "10px 0px" })}
+  background-color: #fcf5f5;
 `;
 const Left = styled.div`
   flex: 1;
@@ -36,28 +46,35 @@ const Left = styled.div`
   display: flex;
 `;
 
-const SearchContainer = styled.div`
-  border: 0.5px solid lightgray;
-  display: flex;
-  align-items: center;
-  margin-left: 25px;
-  padding: 5px;
-
-  ${mobile({ marginLeft: "10px" })}
-`;
-const Input = styled.input`
-  border: none;
-  ${mobile({ width: "50px" })}
-`;
 
 const Center = styled.div`
   flex: 1;
+  text-align: center;
+  font-size: 50px;
+  margin-bottom: 20px; 
+
 `;
 
-const Logo = styled.h1`
+const Logo = styled.img`
+  display: flex;
+  position: relative;
+  width: 25%;
+  margin-bottom: 20px;
+  margin-right: 20px;
+  padding-right: 200px;
+  padding-bottom: 50px;
+  ${mobile({ width: "20%" })}
+  ${mobile({ fontSize: "24px" })}
+`;
+
+const TechC = styled.img`
+  display: flex;
+  width: 30%;
+  margin-left: 150px;
   text-align: center;
   ${mobile({ fontSize: "24px" })}
 `;
+ 
 const Right = styled.div`
   flex: 1;
   display: flex;
@@ -72,8 +89,26 @@ const MenuItem = styled.div`
 
   ${mobile({ marginLeft: "5px", fontSize: "12px" })}
 `;
+const SearchContainer = styled.div`
+  border: 0.5px solid lightgray;
+  display: flex;
+  align-items: center;
+  margin-left: 25px;
+  padding: 5px;
 
-const NavBar = () => {
+  ${mobile({ marginLeft: "10px" })}
+`;
+
+
+const Input = styled.input`
+  border: none;
+  width: 100%;
+  height: 20px;
+  ${mobile({ width: "50px" })}
+`;
+
+
+const Header = () => {
   const dispatch=useDispatch();
   const navigate=useNavigate();
   const user=useSelector(state=>state.users)
@@ -97,24 +132,26 @@ const NavBar = () => {
     setAnchorEl(null);
   };
 
-  //let cart=[2,2,2]
+  
+  
   return (
     <Container>
       <Wrapper>
         <Left> 
-          
-         {/* ------------------------  Search --------------------------- */}
-          <SearchContainer>
-            <Input placeholder="Search"></Input>
-            <Search style={{ color: "gray", fontSize: 16 }}></Search>
-          </SearchContainer>
-         {/*-------------------------  Search --------------------------- */}
+          <Logo src={Logoo} />
+          <Link to="/products">Productos</Link>
         </Left>
         <Center>
-         <Link to='/products' style={{textDecoration: 'none', color: '#000000'}}><Logo>Tech-C</Logo></Link> 
+         <TechC src={Tech}/>
+         <SearchContainer>
+            <Input placeholder="Search"></Input>
+            <Search style={{ color: "gray", fontSize: 25}}></Search>
+          </SearchContainer>
         </Center>
-        
         <Right>
+          <Link to="/register"><MenuItem>REGISTER</MenuItem></Link>
+          <Link to="/login"><MenuItem>LOGIN</MenuItem></Link>
+         
           {user.token&&user.user?<Tooltip title="Account settings">
             <IconButton onClick={handleClick} size="small" sx={{ ml: 2 }}>
               <Avatar src={userData?.photo?userData.photo:null} sx={{ width: 32, height: 32 }}>{userData?.photo?null:userData?.name?.charAt(0)}</Avatar>
@@ -174,17 +211,19 @@ const NavBar = () => {
             </MenuItem>
             <Divider />
           </Menu>
-          {/* <MenuItem > */}
-            <Link to='/cart' className='nav_links' >
+
+         
+          <MenuItem>
+          <Link to='/cart' className='nav_links' >
               <Badge badgeContent={cart.length} color="secondary">
                 <ShoppingCartOutlined fontSize='large' color='primary'></ShoppingCartOutlined>
               </Badge>
             </Link>
-          {/* </MenuItem> */}
+        </MenuItem>
         </Right>
       </Wrapper>
     </Container>
   );
 };
 
-export default NavBar;
+export default Header;
