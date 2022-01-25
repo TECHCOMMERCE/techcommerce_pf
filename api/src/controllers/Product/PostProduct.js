@@ -2,19 +2,19 @@ const { Product, Category, Brand } = require("../../db.js");
 
 const postProduct = async (product) => {
   try {
-    const brandBD = await Brand.findByPk(product[0].brand);
+    const brandBD = await Brand.findByPk(product.brand);
 
     const [newProduct, productCreated] = await Product.findOrCreate({
-      where: { name: product[0].name },
+      where: { name: product.name },
       defaults: {
-        name: product[0].name,
-        price: product[0].price,
-        stock: product[0].stock,
-        sold_quantity: product[0].sold_quantity,
-        condition: product[0].condition,
-        image: product[0].image,
-        attributes: product[0].attributes,
-        status: product[0].status,
+        name: product.name,
+        price: product.price,
+        stock: product.stock,
+        sold_quantity: product.sold_quantity,
+        condition: product.condition,
+        image: product.image,
+        attributes: product.attributes,
+        status: product.status,
       },
     });
 
@@ -22,7 +22,7 @@ const postProduct = async (product) => {
     await brandBD.addProduct(newProduct);
 
     // Busca y enlaza las categorías con el producto
-    product[0].categories.map(async (c) => {
+    product.categories.map(async (c) => {
       const category = await Category.findOne({
         where: { name: c },
       });
