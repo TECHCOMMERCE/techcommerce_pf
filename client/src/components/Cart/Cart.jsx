@@ -59,7 +59,6 @@ function gettotal (array) {
   array.map(x => {
     totalprice= totalprice + (x.price*x.quantity)
   } )
-  console.log(totalprice)
   setTotal(totalprice)
 }
 
@@ -92,7 +91,7 @@ function gettotal (array) {
       </div>
       <div className={style.buttonContainer}>
       <Button variant='contained' style={{backgroundColor: '#EB2020'}} className={style.button} 
-      onClick={()=>{dispatch(clearCart())}}> Vaciar Carrito </Button>
+      onClick={()=>{dispatch(clearCart(idUser))}}> Vaciar Carrito </Button>
       </div>
     </div>
     <Footer/>

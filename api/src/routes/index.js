@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const products = require("./products");
 const product = require("./product");
+const cart = require("./cart");
 const categories = require('./helpers/category')
 const category = require('./helpers/category')
 const brand = require('./helpers/brand')
@@ -27,6 +28,7 @@ router.use("/user", user);
 router.use('/categories', category)
 
 router.use('/brand', brand)
+router.use('/cart', cart)
 //router.use('/user', user)
 
 // router.use('/review', review)

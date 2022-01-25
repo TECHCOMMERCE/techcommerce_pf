@@ -1,54 +1,59 @@
 const {Cart, User, Product} = require("../../db");
+const { Op } = require("sequelize");
 
-
-const putUserCart = async (req,res,next)=>{
+const PostCartItems = async (req,res,next)=>{
   try{
-    const {UserId} = req.params;
-    const { productsInfo} = req.body;
+    const {userid} = req.params;
+    const {productsInfo} = req.body;
 
-    let idProduct = productsInfo.map(el=>el.productid)
-
-    //[Busco al usuario
-    let user = await User.findByPk(UserId);
-
-    //[Busco los productos que agregaré al carrito.
-    let products = await Product.findAll({
-      where:{
-        idProduct: idProduct
-      }
-    })
-    //[ Agrego los productos al carrito
-    await user.addProducts(products);
-
-    //[Busco los productos desde la tabla carrito para actualizar la cantidad
-    let cart = await Cart.findAll({
-      where:{
-        UserId
-      }
-    })
-
-    //[Actualizo a la cantidad correspondiente de cada producto del carrito
+    let productsid = productsInfo.map(el=>el.productid)
+    //busco al usuario
+    let user = await User.findByPk(userid);
+    //agrego los productos
+    await user.addProducts(productsid);
+    //actualizo las cantidades
     for(let i=0;i<productsInfo.length;i++){
-      let product = cart.find(el=>el.ProductId===productsInfo[i].idProduct);
-      await product.update({amount:productsInfo[i].amount})
+      let cart = await Cart.update({
+        quantity: productsInfo[i].quantity
+      },{
+        where: {
+          [Op.and]:[
+            {
+              userUserid: userid
+            },
+            {
+              productProductid: productsInfo[i].productid
+            }
+          ]
+        }
+      })
     }
+
+    
     //[Los vuelvo a pedir para enviar los datos correctamente
-    products = await user.getProducts({
-      attributes: ["idProduct","name", "price", "stock","image"]
+    let products = await user.getProducts({
+      attributes: ["productid","name", "price", "stock","image"]
     });
-    products = products.map(el=>{
-      const{idProduct, name, price, stock,image, cart:{quantity}} = el.toJSON()
-      return {idProduct, name, price, stock,image, amount, totalPrice:quantity*price}
+
+    products= products.map(p=>{
+      return{
+        productid: p.productid,
+        name: p.name,
+        price: p.price,
+        quantity: p.cart.quantity,
+        image: p.image,
+        stock: p.stock
+      }
     })
 
-    return res.status(200).json({cart:  products});
+    return res.status(200).json({cart: [...products]});
   }catch(err){
     console.log("Get users/cart/:id", err);
     next(err)
   }
 };
 
-module.exports = {putUserCart};
+module.exports = {PostCartItems};
 
 
 

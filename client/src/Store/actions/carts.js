@@ -16,10 +16,10 @@ export function getProductsCartUser(userId){
         })
           
       }else{
-        const {data}= await axios.get(`${SERVER}/users/cart/${userId}`)
+        const {data}= await axios.get(`${SERVER}/cart/${userId}`)
         const localCart = JSON.parse(localStorage.getItem("cart")) || [] //orderId es el estado para la orden de ese usuario
         localStorage.removeItem("cart")
-        const res= await axios.put(`${SERVER}/users/cart/${userId}`,{productsInfo: [...data.cart,...localCart]})
+        const res= await axios.put(`${SERVER}/cart/${userId}`,{productsInfo: [...data.cart,...localCart]})
         return dispatch ({
             type: GET_PRODUCTS_CART,
             payload: res.data.cart
@@ -58,20 +58,22 @@ export const addToCart = (product, userId,cart) => (dispatch) => {
 if (userId) {
     let exits=false;
     let aux= Array.isArray(cart)?cart.map(p=>{
-        if(p.idProduct===product.idProduct){
+        if(p.productid===product.productid){
           exits=true;
           return {
               ...p,
-              quantity: Number(p.quantity)+Number(product.quantity)
+              quantity: Number(p.quantity) + product.quantity<=p.stock?Number(p.quantity) + product.quantity:p.quantity,
           }
         }
         return p;
     }):[]
 
     if(!exits) aux=[...aux, product]
-    const body = {productsInfo: aux}
+    let user = JSON.parse(localStorage.getItem("user")) || [];
+    const body = {productsInfo: aux,user: user}
+    console.log("body",body)
     return axios
-      .put(`${SERVER}/users/cart/${userId}`, body)
+      .put(`${SERVER}/cart/${userId}`, body)
       .then((response) => {
         dispatch({ 
           type: GET_PRODUCTS_CART,
@@ -95,7 +97,7 @@ export function deleteItemFromCart(idProduct, userId){
         })
       }
       else{
-        const {data} = await axios.delete(`${SERVER}/users/cart/${userId}?idProduct=${idProduct}`)
+        const {data} = await axios.delete(`${SERVER}/cart/${userId}?productid=${idProduct}`)
         return dispatch ({
             type: GET_PRODUCTS_CART,
             payload: data.cart
@@ -112,7 +114,7 @@ export function changeAmount(products, userId){
   try{
     return async (dispatch) => {
       if(userId){
-        const qtyProduct = await axios.put(`${SERVER}/users/cart/${userId}`,{productsInfo: products})
+        const qtyProduct = await axios.put(`${SERVER}/cart/${userId}`,{productsInfo: products})
         return dispatch({
             type: GET_PRODUCTS_CART,
             payload: qtyProduct.data.cart
@@ -133,7 +135,7 @@ export function changeAmount(products, userId){
 export function clearCart(idUser){
   return async function(dispatch){
     if(idUser)
-      await axios.delete(`${SERVER}/users/cart/${idUser}`);
+      await axios.delete(`${SERVER}/cart/${idUser}`);
     localStorage.removeItem("cart")
     return dispatch({
       type: CLEAR_CART,
