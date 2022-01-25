@@ -20,7 +20,7 @@ async function auth(req, res, next) {
       search= await User.findOne({
         where: {
           email: email, 
-          iduser: uid
+          userid: uid
         },
         attributes: {
           exclude: ["password","changepassword","phone","address","country","city","postalcode","email"]
