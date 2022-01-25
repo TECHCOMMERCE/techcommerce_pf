@@ -26,7 +26,7 @@ server.listen(process.env.PORT||3001/* 5000 */,  () => {
     });
 
     console.log('%s listening at 3001'); // eslint-disable-line no-console
-    // loadDataFromApi();
-    GetProductsAPI();
+    //loadDataFromApi();
+     GetProductsAPI();
   })
 });

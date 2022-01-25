@@ -3,6 +3,7 @@ const { Product, Brand, Category } = require("../../db.js");
 const PutProduct = async (product) => {
   try {
     // Actualiza el producto y la marca
+
     const productUpdated = await Product.update(
       {
         name: product.name,

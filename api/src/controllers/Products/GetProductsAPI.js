@@ -1,3 +1,4 @@
+
 const axios = require("axios")
 const { Category, Brand, Product }  = require("../../db")
 
@@ -104,4 +105,5 @@ async function getAttributes(id){
 
 module.exports= {
   GetProductsAPI
+
 }

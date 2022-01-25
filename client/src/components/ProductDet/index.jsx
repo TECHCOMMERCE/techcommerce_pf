@@ -7,7 +7,6 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 // Bootstrap
 import {  Col, Container, Row } from 'react-bootstrap';
-import { connect } from 'react-redux';
 // React-Router-Dom
 import { useParams } from 'react-router-dom';
 //import { getProducts } from '../../Store/actions/products';
@@ -15,9 +14,13 @@ import { useParams } from 'react-router-dom';
 import s from '../../styles/ProductDet.module.css';
 import Footer from '../Home/Footer';
 import { Button } from '@mui/material';
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
+import { addToCart } from '../../Store/actions/carts';
+import {getProductsCartUser} from '../../Store/actions/carts.js'
+import NavBar from '../NavBar';
+import Swal from 'sweetalert2';
 
 
 // const url = 'localhost:3001';
@@ -27,50 +30,70 @@ const Product = () => {
 	const [qty, setQty] = useState(1);
 	
 
-  function add(){
-    setQty(qty + 1)
+  function add(stock){
+    setQty(qty<stock?qty + 1:qty)
   }
   function remove(){
-    setQty(qty - 1)
+    setQty(qty>1?qty - 1:1)
   }
 	const { id } = useParams();
-	const { attributes} = useParams();
 	const dispatch= useDispatch();
 	const {product} = useSelector(state => state.products)
+	const cart = useSelector(state => state.cart.productscart);
+	const user = JSON.parse(localStorage.getItem("user"));
+  const idUser = !user?null:user.user.userid;
 	console.log('productdetail', product);
 	console.log('id', id)
-	
-	//let objP = {};
-	/* var objProduct = productsP.find((d) => {
-		return d.id === id;
-	}); */
-
-	// console.log(objProduct);
-	/* for (let pr in objProduct) {
-		var prop = pr;
-		objP[prop] = objProduct[pr];
-	}
- */
-	// console.log(objP);
 
 	
 	useEffect(() => {
 		dispatch(getDetails(id))
+		dispatch(getProductsCartUser(idUser)); 
 	}, [dispatch, id]);
+
+	const addCart = (product) => {
+		dispatch(addToCart({...product,quantity: qty},idUser,cart))
+		Swal.fire({
+      icon: 'success',
+      text: 'Producto agregado correctamente!',
+    })
+	}
 
 	return (
 		<div>
+				<NavBar/>
 		   	<Container className={s.container}>
+				
 				<div className={s.cont_prin}>
 					<Row>
 						<Col xs={12} md={12} lg={8} className={s.cont_img}>
-							<img src={product.image} style={{height: '40%', width: '20%'}} alt={product.name}></img>
+
+							<img src={product.image} style={{height: '40%', width: '15%'}}></img>
 						</Col>
 						<Col xs={12} md={12} lg={4} className={s.cont_info}>
 							<div className={s.infog}>
 								<h3>{`${product.name}` || `Product Name Here`}</h3>
 								<h4 style={{color: '#2EB8B0'}}>$ {`${product.price}` || `00000`}</h4>
-								
+								<div className={s.cont_cant}>
+									{product.stock > 0 ? (
+										<div className={s.cont_cant2}>
+											<p style={{fontSize: '17px'}}>Candidad:</p>
+											<Button onClick={remove} style={{ height: '30px', marginTop: '10px'}} variant="text"><RemoveIcon/> </Button>
+											<p style={{marginRight: '20px', marginLeft: '20px', marginTop: '10px', fontSize: '15px'}}>{qty}</p>
+											<Button onClick={()=>add(product.stock)} size='small' style={{ height: '30px', marginTop: '10px'}} variant="text"><AddIcon/> </Button>														
+											<p style={{fontSize: '17px', marginLeft: '2%'}}> {product.stock}-Unidades Disponibles</p>
+										</div>
+									) : (
+										<h4 className={s.agotadoProct}> Producto Agotado</h4>
+									)}
+								</div>
+								{product.stock > 0 && (
+									<div className={s.cont_button}>
+										
+										<Button variant='contained' style={{marginRight: '15%', backgroundColor: '#2EB8B0'}} onClick={()=>addCart(product)}>Añadir al carrito</Button>
+
+									</div>
+								)}
 								<div className={s.contReviw}>
 									<div className={s.icon}>
 										<div className={s.emptyStarsCont}>
@@ -92,60 +115,35 @@ const Product = () => {
 											</div>
 										</div>
 									</div>
+									
 									<div className={s.addReview}>
 										<p style={{color: '#2EB8B0'}} >Escribir comentario</p>
 									</div>
 								</div>
-							 {/* 	<div className={s.attributesContainer}>
-									{product.attributes ?
-										product.attributes.map((x, i) => {
-											return(
-											<div key={i} className={s.attributes}>
-												<p style={{fontSize: '17px'}}><b>{x.name}:	</b></p>
-												<p style={{fontSize: '16px'}}className={s.attributesName}>{x.value}</p>
-											</div>)
-										}) : null
-								}
-								</div> */}
-								 
-								
-								<div className={s.cont_cant}>
-									{product.stock > 0 ? (
-										<div className={s.cont_cant2}>
-											<p style={{fontSize: '17px'}}>Candidad:</p>
-											<Button onClick={add} size='small' style={{ height: '30px', marginTop: '10px'}} variant="text"><AddIcon/> </Button>
-											<p style={{marginRight: '20px', marginLeft: '20px', marginTop: '10px', fontSize: '15px'}}>{qty}</p>
-											<Button onClick={remove} style={{ height: '30px', marginTop: '10px'}} variant="text"><RemoveIcon/> </Button>
-											{/* <select
-												name='Cantidad'
-												id='Cantidad'
-												className={s.select}
-												value={qty}
-												onChange={(e) => {
-													setQty(e.target.value);
-												}}
-											>
-												{[...Array(product.stock).keys()].map((x) => {
-													return <option value={x + 1}>{x + 1}</option>;
-												})}
-											</select> */}
-											<p style={{fontSize: '17px', marginLeft: '2%'}}> {product.stock}-Unidades Disponibles</p>
-										</div>
-									) : (
-										<h4 className={s.agotadoProct}> Producto Agotado</h4>
-									)}
+
+								<div className={s.attributesContainer} >
+
+									<table>
+										<thead>
+											<tr >
+												 <th>Caracteristicas</th>
+												 <th></th>
+											</tr>
+										</thead>
+									 	<tbody >
+											{ product?.attributes ?
+												product?.attributes?.map((x,i) => {
+												return(
+														<tr style={{marginTop: '30px'}} key={i}>
+															 <td style={{marginTop: '30px'}} ><b>{x.name}</b></td>
+															 <td style={{marginTop: '30px'}}>{x.value}</td>
+														</tr>
+												)
+											}) : null }
+											</tbody> 
+										</table>
+
 								</div>
-								{product.stock > 0 && (
-									<div className={s.cont_button}>
-										{/* <Button className={s.buttonCom}>Comprar ahora</Button>
-										<Button className={s.buttonCar} >
-											Agregar al carrito
-										</Button> */}
-										<Button variant='contained' style={{marginRight: '20px', backgroundColor: '#2EB8B0'}}>Añadir al carrito</Button>
-										
-										
-									</div>
-								)}
 							</div>
 						</Col>
 					</Row>

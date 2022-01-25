@@ -1,10 +1,11 @@
 import { createStore, applyMiddleware, combineReducers } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
-
-import { productsReducer } from "./reducer/products";
-import { brandsReducer } from "./reducer/brands";
-import { categoriesReducer } from "./reducer/categories";
-import { productReducer } from "./reducer/product";
+import {productsReducer} from "./reducer/products";
+import {productReducer} from "./reducer/product";
+import {brandsReducer} from "./reducer/brands";
+import {categoriesReducer} from "./reducer/categories";
+import {usersReducer} from "./reducer/users";
+import {cartsReducer} from './reducer/carts'
 
 import thunk from "redux-thunk";
 
@@ -14,6 +15,8 @@ const store = createStore(
     brandsReducer,
     categoriesReducer,
     productReducer,
+    users: usersReducer,
+		cart: cartsReducer,
   }),
   composeWithDevTools(applyMiddleware(thunk))
 );

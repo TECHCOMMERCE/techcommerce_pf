@@ -1,0 +1,32 @@
+.container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  width: 700px;
+  height: 100px;
+  margin-bottom: 5%;
+  box-shadow: 0 1rem 2rem hsl(0 0% 0% / 20%);
+  border-radius: 10px;
+  padding: 3%;
+}
+
+.container img{
+  max-width: 80px;
+  max-height: 80px;
+}
+.name{
+  width:50%;
+  height:max-content;
+  overflow-x: hidden;
+  font-family: 'Poppins';
+  
+}
+
+.button{
+  width: 4%;
+  height: 30%;
+  background-color: rgb(235, 32, 32);
+  color: white;
+  border-radius: 10%;
+}

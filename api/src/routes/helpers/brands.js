@@ -3,7 +3,7 @@ const getBrands = require("../../controllers/Brand/GetBrands");
 
 router.get("/", async(req, res) => {  
   const brands = await getBrands();
-  
+  console.log(brands)
   res.send(brands);
 })
 

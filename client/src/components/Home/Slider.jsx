@@ -61,7 +61,9 @@ const ImgContainer = styled.div`
 `;
 
 const Image = styled.img`
+
   height: 80%;
+
 
   ${mobile({ height: "50%" })}
 `;
@@ -110,6 +112,10 @@ const Slider = () => {
     }
   };
 
+  const handleAlert = () => {
+    alert("proximamente esta funcion estara disponible");
+  }
+
   return (
     <Container>
       <Arrow direction="left" onClick={() => handleClick("left")}>
@@ -124,7 +130,7 @@ const Slider = () => {
             <InfoContainer>
               <Title>{item.title}</Title>
               <Desc>{item.desc}</Desc>
-              <Button>SHOW NOW</Button>
+              <Button onClick={() => handleAlert()} >SHOW NOW</Button>
             </InfoContainer>
           </Slide>
         ))}

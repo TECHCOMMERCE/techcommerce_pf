@@ -1,19 +1,20 @@
 
-/* import { Search, ShoppingCartOutlined } from "@material-ui/icons"; */
+
 import React from "react";
 import styled from "styled-components";
 import {ShoppingCart} from '@styled-icons/entypo/ShoppingCart';
+import { Badge } from "@material-ui/core";
 import mobile from "../../responsive";
-// import TechC from "../../assets/Imgs/TechC.gif";
 import Logoo from "../../assets/Imgs/Logoo.png";
 import Tech from "../../assets/Imgs/Tech.png";
 import { Link } from "react-router-dom";
 
 
-
 const Container = styled.div`
-  height: 60px;
-  ${mobile({ height: "50px" })}
+ background-color: #fcf5f5;
+ height: 60px;
+ margin-bottom: 20px;
+ ${mobile({ height: "50px" })}
 `;
 
 const Wrapper = styled.div`
@@ -22,6 +23,7 @@ const Wrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   ${mobile({ padding: "10px 0px" })}
+  background-color: #fcf5f5;
 `;
 const Left = styled.div`
   flex: 1;
@@ -29,35 +31,37 @@ const Left = styled.div`
   display: flex;
 `;
 
+
 const Center = styled.div`
   flex: 1;
   text-align: center;
   font-size: 50px;
   margin-bottom: 20px; 
+
 `;
 
 const Logo = styled.img`
-  display: block;
-  width: 100px;
-  height: 50px;
-  margin-left: 150px;
-  padding: 10px;
-  text-align: center;
+  display: flex;
+  position: relative;
+  width: 15%;
+  margin-bottom: 20px;
+  margin-right: 20px;
+  padding-right: 200px;
+  padding-bottom: 20px;
+  ${mobile({ width: "20%" })}
   ${mobile({ fontSize: "24px" })}
 `;
+
 const TechC = styled.img`
-   display: block;
-  width: 100px;
-  height: 50px;
+  display: flex;
+  width: 21%;
   margin-left: 150px;
-  padding: 10px;
+ 
+  
   text-align: center;
   ${mobile({ fontSize: "24px" })}
 `;
  
-
-
-
 const Right = styled.div`
   flex: 1;
   display: flex;
@@ -78,15 +82,14 @@ const MenuItem = styled.div`
 const ShoppCart = styled(ShoppingCart)`
 `
 
-  
-
 //-----------------------------------------------------
 
 const Header = () => {
+  let cart=[2,2,2]
   return (
     <Container>
       <Wrapper>
-        <Left>
+        <Left> 
           <Logo src={Logoo} />
           <Link to="/products">Productos</Link>
         </Left>
@@ -98,9 +101,10 @@ const Header = () => {
           <MenuItem>LOGIN</MenuItem> */}
           <Link to="/register"><MenuItem>REGISTER</MenuItem></Link>
           <Link to="/login"><MenuItem>LOGIN</MenuItem></Link>
-          
           <MenuItem>
-              <ShoppCart size={20} />
+          <Badge badgeContent={cart.length? cart.length : 0 } color="primary">
+              <Link to='/cart'><ShoppCart size={20} /></Link>
+              </Badge>
           </MenuItem>
         </Right>
       </Wrapper>

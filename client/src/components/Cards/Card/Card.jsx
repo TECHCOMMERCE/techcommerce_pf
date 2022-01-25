@@ -21,9 +21,12 @@ const Card = ({id, name, stock, image , price}) => {
   return (
     <Main>
       <Img src={image} alt=''  />
-      <Link  href={`/Details/${id}`}><Name>{name}</Name></Link>
+
+      <div style={{height: '12%', overflow: 'hidden'}}>
+      <Link  href={`/Details/${id}`}><Name style={{fontFamily: 'Poppins'}}>{name}</Name></Link>
+      </div>
       <p style={{color: '#2EB8B0'}}><b>$ </b>{price}</p>
-      <p>{stock} {stock===0 ? 'Agotado': 'disponibles!'}</p>
+      <p style={{fontFamily: 'Poppins'}}>{stock} {stock===0 ? 'Agotado': 'disponibles!'}</p>
       {/* <Stock>
       <Button onClick={add} size='small' style={{ height: '30px'}} variant="text"><AddIcon/> </Button>
       <p style={{marginRight: '20px', marginLeft: '20px', marginTop: '5px'}}>{qty}</p>

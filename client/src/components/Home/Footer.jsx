@@ -87,8 +87,10 @@ const Footer = () => {
       <Left>
         <Logo>Tech-C</Logo>
         <Description>
+
         Tech-C is a technology-oriented E-commerce that offers a wide variety of quality and high-end products.
         Sit down and browse our online store.
+
         </Description>
         <SocialContainer>
           <SocialIcon color="3B5999">
