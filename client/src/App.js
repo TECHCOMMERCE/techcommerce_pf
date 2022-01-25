@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { Route, Routes } from "react-router-dom";
+import {Route, Routes } from "react-router-dom";
 import "./App.css";
 import Home from "./components/Home/Home";
 import Login from "./components/Login"
@@ -33,7 +33,7 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<Home />} />
-        
+
         <Route path="/Details/:id" element={<Product />} /> 
         <Route path='/products' element={<Cards/>} />
         <Route path='/users' element={isAdmin ? <Users/> : <h1>No tenes acceso a esta página</h1>} />
@@ -41,7 +41,6 @@ function App() {
 
         <Route path="/register" element={<Register />} />
         <Route path='/cart' element={<Cart/>} />
-
       </Routes>
      
     </div>

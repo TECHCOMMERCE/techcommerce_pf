@@ -2,13 +2,14 @@
 
 import React from "react";
 import styled from "styled-components";
-import {ShoppingCart} from '@styled-icons/entypo/ShoppingCart';
+
 import { Badge } from "@material-ui/core";
 import mobile from "../../responsive";
 import Logoo from "../../assets/Imgs/Logoo.png";
 import Tech from "../../assets/Imgs/Tech.png";
 import { Link } from "react-router-dom";
 
+import { ShoppingCartOutlined } from "@material-ui/icons";
 
 const Container = styled.div`
  background-color: #fcf5f5;
@@ -77,12 +78,7 @@ const MenuItem = styled.div`
   ${mobile({ marginLeft: "5px", fontSize: "12px" })}
 `;
 
-//--------------- styles icons ----------------------
 
-const ShoppCart = styled(ShoppingCart)`
-`
-
-//-----------------------------------------------------
 
 const Header = () => {
   let cart=[2,2,2]
@@ -103,12 +99,13 @@ const Header = () => {
 
           <Link to="/register"><MenuItem>REGISTER</MenuItem></Link>
           <Link to="/login"><MenuItem>LOGIN</MenuItem></Link>
-          
           <MenuItem>
-          <Badge badgeContent={cart.length? cart.length : 0 } color="primary">
-              <Link to='/cart'><ShoppCart size={20} /></Link>
+          <Link to='/cart' className='nav_links' >
+              <Badge badgeContent={cart.length} color="secondary">
+                <ShoppingCartOutlined fontSize='large' color='primary'></ShoppingCartOutlined>
               </Badge>
-          </MenuItem>
+            </Link>
+        </MenuItem>
         </Right>
       </Wrapper>
     </Container>
