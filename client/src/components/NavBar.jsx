@@ -101,12 +101,14 @@ const NavBar = () => {
   return (
     <Container>
       <Wrapper>
-        <Left>
-         
+        <Left> 
+          
+         {/* ------------------------  Search --------------------------- */}
           <SearchContainer>
             <Input placeholder="Search"></Input>
             <Search style={{ color: "gray", fontSize: 16 }}></Search>
           </SearchContainer>
+         {/*-------------------------  Search --------------------------- */}
         </Left>
         <Center>
          <Link to='/products' style={{textDecoration: 'none', color: '#000000'}}><Logo>Tech-C</Logo></Link> 

@@ -16,6 +16,7 @@ import { useDispatch } from "react-redux";
 import { getBrands } from "./Store/actions/brands";
 import { getCategories } from "./Store/actions/categories";
 
+import Header from "./components/Home/Header";
 
 function App() {
   const dispatch = useDispatch();
@@ -30,6 +31,7 @@ function App() {
 
   return (
     <div className="App">
+     <Header/>
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<Home />} />
