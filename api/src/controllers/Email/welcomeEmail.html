@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&family=Raleway:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Welcome Email</title>
+    <style>
+      /* body */
+
+      html {
+        box-sizing: border-box;
+        font-family: "Noto Sans";
+      }
+
+      *,
+      *::after,
+      *::before {
+        box-sizing: inherit;
+      }
+      body {
+        /* Auto layout  */
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 40px 0px 0px;
+        margin: 0 auto;
+        position: relative;
+        width: 600px;
+        height: 2253px;
+
+        background: #ffffff;
+      }
+
+      /* Logo  header*/
+
+      .div__logo {
+        /* position: static; */
+        /* width: 123px; */
+        /* height: 40px; */
+        /* left: 238.5px; */
+        /* top: 40px; */
+        position: relative;
+        width: 100%;
+        height: 50px;
+        /* Inside auto layout */
+
+        /* flex: none; */
+        /* order: 0; */
+        /* flex-grow: 0; */
+        /* margin: 40px 0px; */
+      }
+
+      .logo__box {
+        /* background-color: #ad8383; */
+        background-color: #ffffff;
+        position: absolute;
+        height: 50px;
+        width: 80%;
+        transform: translateX(12.5%);
+        bottom: 0;
+        z-index: 100;
+      }
+
+      .logo__box_up {
+        background-color: #ffffff;
+        padding: 2rem;
+        position: absolute;
+        width: 500px;
+        height: 5px;
+      }
+      /* div logo  */
+      .logo {
+        /* position: absolute; */
+        margin: 0 auto;
+        /* height: 49px; */
+        /* left: 10px; */
+        /* top: -4pxs; */
+
+        width: 80%;
+
+        font-style: normal;
+        font-weight: bold;
+        font-size: 36px;
+        line-height: 49px;
+        /* identical to box height */
+        color: #000000;
+        height: 400px;
+      }
+      .logo img {
+        width: 100%;
+        display: block;
+        height: 100px;
+        object-fit: contain;
+      }
+
+      /* Heroes */
+      /* Auto layout */
+      .mail {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+        width: 100%;
+        height: 636px;
+
+        /* Inside auto layout */
+        border: 5px;
+        border-color: rgba(182, 65, 65, 0.725);
+        flex: none;
+        order: 1;
+        flex-grow: 0;
+        margin: 3rem 0 4rem;
+      }
+
+
+      /* Title */
+      .title {
+        position: static;
+        width: 504px;
+        left: calc(50% - 504px / 2);
+        top: 3.14%;
+        bottom: 89.15%;
+
+        /* Big Title */
+
+        font-family: "Noto Sans", sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 36px;
+        line-height: 49px;
+        /* identical to box height */
+
+        text-align: center;
+
+        color: #000000;
+
+        /* Inside auto layout */
+
+        flex: none;
+        order: 0;
+        align-self: stretch;
+        flex-grow: 0;
+        margin: 24px 0px;
+      }
+
+      .text {
+        /* Text */
+
+        position: static;
+        width: 504px;
+        left: calc(50% - 504px / 2);
+        top: 75.16%;
+        bottom: 13.52%;
+
+        /* Texts */
+
+        font-family: "Noto Sans";
+        font-style: normal;
+        font-weight: normal;
+        font-size: 19px;
+        line-height: 24px;
+        /* or 126% */
+
+        text-align: center;
+
+        color: #000000;
+
+        /* Inside auto layout */
+
+        flex: none;
+        order: 2;
+        align-self: stretch;
+        flex-grow: 0;
+        margin: 10px 0px;
+      }
+
+
+      /* img section inside container */
+      .img_container {
+        position: absolute;
+        width: 504px;
+        height: 360px;
+        left: 0px;
+        top: 0px;
+
+        background: url(.png);
+      }
+
+      .img {
+        /* heroContainer */
+
+        position: static;
+        width: 504px;
+        height: 361px;
+        left: 20px;
+        top: 93px;
+        /* rosado claro  */
+        /* background: #fff0f0; */
+        /* amarillo claro  */
+        /* background: #FFFB9A; */
+        /* morado oscuro  */
+        background: #8F98FF;
+        border-radius: 20px;
+
+        /* Inside auto layout */
+
+        flex: none;
+        order: 1;
+        align-self: stretch;
+        flex-grow: 1;
+        margin: 24px 0px;
+      }
+
+      .btn__ {
+        /* Button */
+
+        /* Auto layout */
+
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        padding: 13px;
+
+        position: static;
+        width: 97px;
+        height: 42px;
+        left: 223.5px;
+        top: 574px;
+
+        background: #ffffff;
+        border: 1px solid #000000;
+        box-sizing: border-box;
+        border-radius: 4px;
+
+        /* Inside auto layout */
+
+        flex: none;
+        order: 3;
+        flex-grow: 0;
+        margin: 10px 0px;
+        cursor: pointer;
+      }
+
+      .footer {
+        width: 100%;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .footer-main-text {
+        font-size: 20px;
+        margin: 5px 0 10px;
+      }
+
+      .footer-img-container,
+      .footer-text-container {
+        display: flex;
+        gap: 20px;
+      }
+      .footer-img-container {
+        gap: 4rem;
+      }
+
+      .footer-img-container img {
+        margin: 20px 0;
+        width: 40px;
+        height: 40px;
+      }
+
+      .footer-text-container p {
+        font-size: 16px;
+        margin: 0;
+      }
+
+      .footer-text-container {
+        flex-direction: column;
+      }
+
+      .footer-logo {
+        font-size: 25px;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div>
+      <header class="div__logo">
+        <div class="logo">
+          <!--   <div class="logo__box_up"></div> -->
+          <img src="pics/logo1.png" alt="logo" />
+        </div>
+        <!-- <div class="logo__box"></div> -->
+      </header>
+      <container class="mail">
+        <!-- <div> -->
+        <h1 class="title">Email de Confirmacion</h1>
+        <!-- </div> -->
+        <div class="text">
+          Grandioso!!! Ya eres parte de nosotros, y te queremos dar la 
+          coordial bienvenida a Techcommerce
+        </div>
+        <div class="">
+          <img
+            class="img"
+            src="pics/welcomeFriend.svg"
+            alt="welcome photo"
+            height="50%"
+          />
+        </div>
+        
+        <button class="btn__">Comprar !</button>
+      </container>
+      <hr />
+      <footer class="footer">
+        <p class="footer-main-text">Techcommerce</p>
+        <p class="footer-main-text">Sigue nuestro contenido</p>
+        <div class="footer-img-container">
+          <img src="pics/twitter.png" alt="twiter" />
+          <img src="pics/instagram.png" alt="instagram" />
+          <img src="pics/youtube.png" alt="youtube" />
+          <img src="pics/linkedin.png" alt="linkedin" />
+        </div>
+        <div class="footer-text-container">
+          <p>© 2022</p>
+          <!-- <p>Text</p> -->
+          <!-- <p>Text</p> -->
+        </div>
+        <div>
+          <p class="footer-logo">LOGO</p>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
