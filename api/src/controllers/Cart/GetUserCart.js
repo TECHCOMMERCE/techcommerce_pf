@@ -17,7 +17,7 @@ const getUserCart = async (req,res,next)=>{
     })
     res.status(200).json({user, cart});
   }catch(err){
-    console.log("Get users/cart/:Userid", err);
+    console.log(err);
     next(err)
   }
 };
