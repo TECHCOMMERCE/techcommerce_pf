@@ -10,6 +10,7 @@ import {
 import React from "react";
 import styled from "styled-components";
 import mobile from "../../responsive";
+import {Link} from "react-router-dom";
 
 const Container = styled.div`
   display: flex;
@@ -113,7 +114,7 @@ const Footer = () => {
           <ListItem><a href="http://localhost:3000/products">Productos</a></ListItem>
           <ListItem><a href="http://localhost:3000/register">Register</a></ListItem>
           <ListItem><a href="http://localhost:3000/login">Login</a></ListItem>
-
+          <ListItem><Link to="/products/list">My Products</Link></ListItem>
         </List>
       </Center>
       <Right>

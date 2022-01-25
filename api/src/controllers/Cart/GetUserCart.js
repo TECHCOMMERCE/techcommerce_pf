@@ -1,25 +1,24 @@
 const { User} = require("../../db");
 
 
-const getUserCart = async (req,res,next)=>{
+const GetUserCart = async (req,res,next)=>{
   try{
-    const {UserId} = req.params;
+    const {userid} = req.params;
     //[Busco el usuario
-    let user = await User.findByPk(UserId);
+    let user = await User.findByPk(userid);
     //[Busco los productos del carrito del usuario
-    let cart = await user.getProducts({
-      attributes: ["idProduct","name", "price", "stock","image"]
-    });
+    let cart = await user.getProducts();
+    
     //[Ordeno los datos para presentarlos de la misma manera que en otras rutas donde uso el carrito
     cart = cart.map(el=>{
-      let {idProduct, name, price, stock,image, cart:{amount}}= el.toJSON();
-      return {idProduct, name, price, stock,image, amount};
+      let {productid, name, price, stock,image, cart}= el.toJSON();
+      return {productid, name, price, stock,image, quantity: cart.quantity};
     })
     res.status(200).json({user, cart});
   }catch(err){
-    console.log("Get users/cart/:Userid", err);
+    console.log(err);
     next(err)
   }
 };
 
-module.exports = {getUserCart};
+module.exports = {GetUserCart};

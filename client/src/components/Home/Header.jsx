@@ -56,7 +56,7 @@ const Logo = styled.img`
 const TechC = styled.img`
   display: flex;
   width: 21%;
-  margin-left: 150px;}
+  margin-left: 150px;
  
   
   text-align: center;
@@ -95,8 +95,6 @@ const Header = () => {
         <Right>
           {/* <MenuItem>REGISTER</MenuItem>
           <MenuItem>LOGIN</MenuItem> */}
-          <Link to="/product/create">PRODUCT</Link>
-
           <Link to="/register"><MenuItem>REGISTER</MenuItem></Link>
           <Link to="/login"><MenuItem>LOGIN</MenuItem></Link>
           <MenuItem>
