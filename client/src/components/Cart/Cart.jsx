@@ -37,7 +37,7 @@ const handleDeleteItem = (idproduct) => {
     })
 }
 
-const handlerChangeAmount = (product,idUser,e) => {
+const handlerChangeQty = (product,idUser,e) => {
   e.preventDefault()
   const { value } = e.target;
   if (value <= product.stock && value >= 1) {
@@ -61,7 +61,6 @@ function gettotal (array) {
   } )
   console.log(totalprice)
   setTotal(totalprice)
-  //return totalprice
 }
 
   return(
@@ -74,7 +73,7 @@ function gettotal (array) {
           data.length ? 
           data.map((x) => {
             return(
-              <Card key={x.productid} productid={x.productid} name={x.name} image={x.image} price={x.price} qty={x.quantity} row={x} idUser={idUser} handlerChangeAmount={handlerChangeAmount} handleDeleteItem={handleDeleteItem}/>
+              <Card key={x.productid} productid={x.productid} name={x.name} image={x.image} price={x.price} qty={x.quantity} row={x} idUser={idUser} handlerChangeQty={handlerChangeQty} handleDeleteItem={handleDeleteItem}/>
             )
           }) : <p>Tu carrito está vacio!</p>
         }
