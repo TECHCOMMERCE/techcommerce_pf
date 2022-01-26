@@ -1,7 +1,7 @@
 import { Badge } from "@material-ui/core";
 import { Search, ShoppingCartOutlined } from "@material-ui/icons";
 import React, { useState, useEffect } from 'react';
-import {useDispatch, useSelector} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux';
 import styled from "styled-components";
 import mobile from "../responsive";
 import Tooltip from '@mui/material/Tooltip';
@@ -12,16 +12,19 @@ import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
-import {Link} from 'react-router-dom'
-import {useNavigate} from 'react-router-dom'
-import {getuser} from '../Store/actions/users.js'
+import {Link} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
+import {getuser} from '../Store/actions/users.js';
+
+import s from "../assets/styles/NavBar.module.css";
+import { getProductsFront } from "../Store/actions/products";
+import axios from "axios";
 
 const Container = styled.div`
   height: 60px;
   ${mobile({ height: "50px" })}
   border-bottom:solid 1px grey;
 `;
-
 
 const Wrapper = styled.div`
   padding: 10px 20px;
@@ -81,14 +84,37 @@ const NavBar = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const [userData, setUserData] = useState(null);
+  
+  const [name, setName] = useState("");
+
+  const [names, setNames] = useState({
+    code: null,
+    results: []
+  });
+  const [visibility, setVisibility] = useState(s.hidden);
+
   useEffect(() => {
     dispatch(getuser())
-  },[dispatch])
-
+  },[dispatch]);
 
   useEffect(() => {
     setUserData(user.user)
-  },[user])
+  },[user]);
+
+  useEffect(async() => {
+    (async() => {
+      if(name){  
+        const res = await axios.get("http://localhost:3001/products/names?name=" + name);
+      
+        setNames(res.data);
+      }else{
+        setNames({
+          code: null,
+          results: []
+        })
+      }
+    })()
+  }, [name]);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -102,17 +128,57 @@ const NavBar = () => {
     <Container>
       <Wrapper>
         <Left>
-         
           <SearchContainer>
-            <Input placeholder="Search"></Input>
+            <form onSubmit={e => {
+              e.preventDefault();
+
+              dispatch(getProductsFront({
+                category: '',
+                brand: '',
+                sort:''
+              }, 0, name));
+            }}>
+              <Input 
+                className={s.searchBar} 
+                value={name}
+                placeholder="Search"
+                onChange={e =>{
+                  setName(e.target.value);
+                }}
+                onFocus={() => setVisibility(s.visible)}
+                // onBlur={() => setVisibility(s.hidden)}
+              />
+            </form>
             <Search style={{ color: "gray", fontSize: 16 }}></Search>
           </SearchContainer>
+
+          <div className={`${s.dataResult} ${visibility}`}>
+            {names.code === null ? null : 
+            names.code === 1 ? "No tenemos ese producto" : 
+            names.names.map(name => 
+              <div 
+                key={name.id} 
+                className={s.option}
+                onClick={() => {
+                  setName(name.name);
+
+                  dispatch(getProductsFront({
+                    category: '',
+                    brand: '',
+                    sort:''
+                  }, 0, name.name));
+
+                  setVisibility(s.hidden);
+                }}
+              >{name.name}</div>
+            )}
+          </div>
         </Left>
         <Center>
          <Link to='/products' style={{textDecoration: 'none', color: '#000000'}}><Logo>Tech-C</Logo></Link> 
         </Center>
         <Right>
-          {user.token&&user.user?<Tooltip title="Account settings">
+          {user.token && user.user ? <Tooltip title="Account settings">
             <IconButton onClick={handleClick} size="small" sx={{ ml: 2 }}>
               <Avatar src={userData?.photo?userData.photo:null} sx={{ width: 32, height: 32 }}>{userData?.photo?null:userData?.name?.charAt(0)}</Avatar>
             </IconButton>
