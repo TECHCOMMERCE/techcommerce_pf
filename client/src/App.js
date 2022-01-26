@@ -11,6 +11,7 @@ import CreateProduct from "./components/CreateProduct/CreateProduct";
 import EditProduct from "./components/EditProduct/EditProduct";
 import Users from "./components/admin/Users";
 import Cart from "./components/Cart/Cart";
+import Profile from "./components/Profile";
 
 function App() {
   // Estado que determina si la cuenta logueada (o el invitado) es admin o no. Por defecto es false y cuando se logue, comprobará en un useEffect si es admin
@@ -21,6 +22,7 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<Home />} />
+        <Route path='/profile' element={<Profile/>} />
         {/*   <Route path="/Login" element={<Login />} /> */}
         <Route path="/Details/:id" element={<Product />} />
         <Route path="/products" element={<Cards />} />
