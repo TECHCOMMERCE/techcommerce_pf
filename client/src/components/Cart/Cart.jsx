@@ -2,7 +2,6 @@ import React, {  useEffect, useState } from 'react'
 import style from '../../styles/Cart/Cart.module.css';
 import Card from './Card';
 import { Button } from '@mui/material';
-import Navbar from '../NavBar';
 import Footer from '../Home/Footer';
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate} from 'react-router-dom';
@@ -64,7 +63,6 @@ function gettotal (array) {
 
   return(
     <>
-    <Navbar/>
     <div className={style.container}>
       <h2 style={{marginBottom: '5%', fontFamily: 'Poppins'}}>CARRITO ({data.length}) </h2>
       <div className={style.cards}>
