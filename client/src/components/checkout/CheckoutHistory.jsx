@@ -1,8 +1,6 @@
 import React from 'react'
 
-import s from "../../assets/styles/Checkout.module.css";
-
-const CheckoutSuccess = () => {
+const CheckoutHistory = () => {
     return (
         <div>
             <h1>Esto debería ser un historial de compras</h1>
@@ -11,4 +9,4 @@ const CheckoutSuccess = () => {
     )
 }
 
-export default CheckoutSuccess
+export default CheckoutHistory
