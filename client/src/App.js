@@ -11,7 +11,10 @@ import CreateProduct from "./components/CreateProduct/CreateProduct";
 import EditProduct from "./components/EditProduct/EditProduct";
 import Users from "./components/admin/Users";
 import Cart from "./components/Cart/Cart";
-import Header from "./components/Header";
+import CheckoutData from "./components/checkout/CheckoutData";
+import CheckoutHistory from "./components/checkout/CheckoutHistory";
+import CheckoutError from "./components/checkout/CheckoutError";
+
 
 function App() {
   // Estado que determina si la cuenta logueada (o el invitado) es admin o no. Por defecto es false y cuando se logue, comprobará en un useEffect si es admin
@@ -21,24 +24,22 @@ function App() {
     <div className="App">
      <Header/>
       <Routes>
-        <Route path="/login" element={<Login />} />
         <Route path="/" element={<Home />} />
-        {/*   <Route path="/Login" element={<Login />} /> */}
-        <Route path="/Details/:id" element={<Product />} />
         <Route path="/products" element={<Cards />} />
-        <Route exact path="/products/list" element={<ListProducts />} />
-        <Route exact path="/product/create" element={<CreateProduct />} />
-        <Route
-          exact
-          path="/product/edit/:productid"
-          element={<EditProduct />}
-        />
-        <Route
-          path="/users"
-          element={isAdmin ? <Users /> : <h1>No tenes acceso a esta página</h1>}
-        />
+        <Route path="/Details/:id" element={<Product />} />
+
         <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        
         <Route path="/cart" element={<Cart />} />
+        <Route path="/checkout" element={<CheckoutData/>}/>
+        <Route path="/checkoutHistory" element={<CheckoutHistory/>}/>
+        <Route path="/checkoutError" element={<CheckoutError/>}/>
+
+        <Route exact path="/products/list" element={isAdmin ? <ListProducts /> : <h1>No tenes acceso a esta página</h1>} />
+        <Route exact path="/product/create" element={isAdmin ? <CreateProduct /> : <h1>No tenes acceso a esta página</h1>} />
+        <Route exact path="/product/edit/:productid" element={isAdmin ? <EditProduct /> : <h1>No tenes acceso a esta página</h1>}/>
+        <Route path="/users" element={isAdmin ? <Users /> : <h1>No tenes acceso a esta página</h1>}/>
       </Routes>
     </div>
   );
