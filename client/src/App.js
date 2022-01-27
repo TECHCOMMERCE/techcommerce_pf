@@ -12,7 +12,8 @@ import EditProduct from "./components/EditProduct/EditProduct";
 import Users from "./components/admin/Users";
 import Cart from "./components/Cart/Cart";
 import CheckoutData from "./components/checkout/CheckoutData";
-import ChecckoutSuccess from "./components/checkout/ChecckoutSuccess";
+import CheckoutHistory from "./components/checkout/CheckoutHistory";
+import CheckoutError from "./components/checkout/CheckoutError";
 
 function App() {
   // Estado que determina si la cuenta logueada (o el invitado) es admin o no. Por defecto es false y cuando se logue, comprobará en un useEffect si es admin
@@ -30,7 +31,8 @@ function App() {
         
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<CheckoutData/>}/>
-        <Route path="/checkoutSuccess" element={<ChecckoutSuccess/>}/>
+        <Route path="/checkoutHistory" element={<CheckoutHistory/>}/>
+        <Route path="/checkoutError" element={<CheckoutError/>}/>
 
         <Route exact path="/products/list" element={isAdmin ? <ListProducts /> : <h1>No tenes acceso a esta página</h1>} />
         <Route exact path="/product/create" element={isAdmin ? <CreateProduct /> : <h1>No tenes acceso a esta página</h1>} />

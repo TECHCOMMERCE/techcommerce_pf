@@ -1,10 +1,20 @@
 import React, { useState } from 'react'
+import {useNavigate} from "react-router-dom";
+
+import Swal from "sweetalert2";
 
 import s from "../../assets/styles/Checkout.module.css"
 
 const CheckoutData = () => {
+    const navigate = useNavigate();
+
     const [data, setData] = useState({
-        name: ""
+        name: "",
+        lastName: "",
+        numCard: "",
+        expDate: "",
+        cod: "",
+        dni: ""
     })
 
     const products = [
@@ -51,7 +61,7 @@ const CheckoutData = () => {
             cant: 1
         },
         {
-            id: 6,
+            id: 7,
             photo: "https://http2.mlstatic.com/D_NQ_NP_2X_911551-MLA46389323606_062021-F.webp",
             name: "Razer Viper ultimate",
             price: 17499,
@@ -61,25 +71,151 @@ const CheckoutData = () => {
 
     return (
         <div className={s.container}>
-            <form className={s.form}>
-                <input 
-                    className={s.input}
-                    value={data.name}
-                    placeholder="nombre"
-                    onChange={e => {
-                        setData(prev => {
-                            return {
-                                ...prev,
-                                name: e.target.value
-                            }
-                        })
-                    }}
-                />
+            <form className={s.form} onSubmit={async(e) => {
+                e.preventDefault();
+
+                try{
+                    let res = await Swal.fire({
+                        title: 'Realizar compra',
+                        text: 'Al presionar comprar, se hará la compra',
+                        icon: 'info',
+                        confirmButtonText: "Comprar",
+                        showDenyButton: true
+                    });
+    
+                    console.log(res);
+
+                    if(res.isConfirmed){
+                        if(true){
+                            res = await Swal.fire({
+                                title: 'Compra realizada con éxito',
+                                text: 'Se le redirigirá al historial de compras para que pueda ver su compra. También Se le ha enviado un mail con el detalle de la compra',
+                                icon: 'success',
+                                confirmButtonText: "Ok",
+                            });
+    
+                            navigate("/checkoutHistory");
+                        }else{
+                            navigate("/checkoutError");
+                        }
+                    }else if(res.isDenied){
+                        await Swal.fire({
+                            title: 'Compra cancelada',
+                            text: 'Se le redirigirá al carrito',
+                            icon: 'info',
+                            confirmButtonText: "Ok",
+                        });
+
+                        navigate("/cart");
+                    }
+                    
+                }catch(e){
+                    console.log(e)
+                }
+                
+            }}>
+                <div className={s.inputs}>
+                    <div className={s.inputContainer}>
+                        <input 
+                            className={`${s.input}`}
+                            id="name"
+                            value={data.name}
+                            placeholder="nombre"
+                            onChange={e => {
+                                setData(prev => {
+                                    return {
+                                        ...prev,
+                                        [e.target.id]: e.target.value
+                                    }
+                                })
+                            }}
+                        />
+
+                        <input 
+                            className={`${s.input}`}
+                            id="lastName"
+                            value={data.lastName}
+                            placeholder="apellido"
+                            onChange={e => {
+                                setData(prev => {
+                                    return {
+                                        ...prev,
+                                        [e.target.id]: e.target.value
+                                    }
+                                })
+                            }}
+                        />
+                    </div>
+
+                    <input 
+                        className={`${s.input} ${s.inputLong}`}
+                        id="numCard"
+                        value={data.numCard}
+                        placeholder="Tarjeta"
+                        onChange={e => {
+                            setData(prev => {
+                                return {
+                                    ...prev,
+                                    [e.target.id]: e.target.value
+                                }
+                            })
+                        }}
+                    />
+
+                    <div className={s.inputContainer}>
+                        <input 
+                            className={`${s.input}`}
+                            id="expDate"
+                            value={data.expDate}
+                            placeholder="expiración"
+                            onChange={e => {
+                                setData(prev => {
+                                    return {
+                                        ...prev,
+                                        [e.target.id]: e.target.value
+                                    }
+                                })
+                            }}
+                        />
+
+                        <input 
+                            className={`${s.input}`}
+                            id="cod"
+                            value={data.cod}
+                            placeholder="código de seguridad"
+                            onChange={e => {
+                                setData(prev => {
+                                    return {
+                                        ...prev,
+                                        [e.target.id]: e.target.value
+                                    }
+                                })
+                            }}
+                        />
+                    </div>
+
+                    <input 
+                        className={`${s.input} ${s.inputLong}`}
+                        id="dni"
+                        value={data.dni}
+                        placeholder="dni"
+                        onChange={e => {
+                            setData(prev => {
+                                return {
+                                    ...prev,
+                                    [e.target.id]: e.target.value
+                                }
+                            })
+                        }}
+                    />
+
+                    <input className={s.button} type="submit" value="continuar"/>
+                </div>
             </form>
 
             <div className={s.cart}>
                 <div className={s.products}>
-                    {products.map(product => (<>
+                    {products.map(product => (
                         <div key={product.id} className={s.product}>
                             <div className={s.left}>
                                 <span className={s.cant}>x{product.cant}</span>
@@ -91,7 +227,7 @@ const CheckoutData = () => {
 
                             <span className={s.price}>$ {product.price}</span>
                         </div>
-                    </>))}
+                    ))}
                 </div>
 
                 <div className={s.totalPrice}>

@@ -1,11 +1,69 @@
 .container{
     display: flex;
     height: 100vh;
+    background-color: rgb(217, 227, 235);
 }
 
 .form{
     width: 60%;
-    background-color: aqua;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inputs{
+    width: 75%;
+    height: 350px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.inputContainer{
+    display: flex;
+    justify-content: space-between;
+}
+
+.input{
+    padding-left: 15px;
+    width: 300px;
+    height: 40px;
+
+    font-size: 25px;
+
+    border: 0px solid black;
+    border-radius: 10px;
+    box-shadow: 0px 3px 8px .2px rgb(50, 50, 50);
+    box-sizing: border-box;
+}
+
+.inputLong{
+    width: 100%;
+}
+
+.button{
+    margin-left: auto;
+    margin-right: auto;
+    
+    width: 100px;
+    height: 30px;
+    
+    padding: 0;
+
+    background-color: white;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0px 3px 8px .2px rgb(50, 50, 50);
+    
+    font-size: 16px;
+    
+    transition: background-color .2s;
+}
+
+.button:hover{
+    cursor: pointer;
+    background-color: rgb(232, 232, 232);
 }
 
 .cart{
@@ -24,8 +82,6 @@
     padding-top: 10px;
 
     overflow-y: auto;
-
-    /* background-color: green; */
 }
 
 .product{
@@ -36,6 +92,7 @@
     margin-right: auto;
     margin-bottom: 15px;
 
+    background-color: white;
     border: .2px solid lightgray;
     border-radius: 10px;
     box-shadow: 0px 3px 8px .2px rgb(50, 50, 50);
@@ -56,13 +113,6 @@
     margin-right: 20px;
 }
 
-/* .imgContainer{
-    background-color: aqua;
-    width: 70px;
-    height: 50px;
-    display: block;
-} */
-
 .img{
     width: 70px;
     margin-right: 20px;
@@ -71,12 +121,6 @@
 .totalPrice{
     width: 98%;
     height: 180px;
-
-    /* display: flex;
-    justify-content: space-between;
-    align-items: flex-end; */
-
-    /* background-color: gold; */
 }
 
 .totalThings{
@@ -86,7 +130,6 @@
 .totalText{
     font-size: 60px;
     font-weight: bold;
-    /* background-color: aqua; */
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
