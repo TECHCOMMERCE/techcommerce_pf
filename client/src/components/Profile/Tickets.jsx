@@ -1,17 +1,12 @@
 import React from 'react';
 import style from '../../styles/Profile/tickets.module.css';
+import {Link} from 'react-router-dom';
 
  const Tickets = () => {
 
   let tickets=[{
     orderid: '112222333',
     order: [{
-      productid: "06cb97f1-7b24-4fe9-bc0f-7008a6507852",
-      name: "Xiaomi Mi 11 Lite 5g Ne Dual Sim 128 Gb Negro Trufa 8 Gb Ram",
-      price: 85469,
-      image: "http://http2.mlstatic.com/D_768134-MLA48496137270_122021-I.jpg",
-      qty: 1
-    },{
     productid: "70b3eddd-61e0-42ab-91cf-95481cf30383",
     name: "Moto E6i 32 Gb Gris Metálico 2 Gb Ram",
     price: 19999,
@@ -59,7 +54,7 @@ import style from '../../styles/Profile/tickets.module.css';
                          <th>DIRECCIÓN </th>
                          <th>ESTADO</th>
                          <th>TOTAL</th>
-                         <th>FECHA DE ENTREGA</th>
+                         <th>ENTREGA</th>
 											</tr>
 										</thead>
 									 	<tbody >
@@ -70,12 +65,12 @@ import style from '../../styles/Profile/tickets.module.css';
                               <td>{x.orderid}</td>
                               <td className={style.names}>{x.order.map(z=>{
                                 return(
-                                <p className={style.pname}>-{z.name}  <b>x </b>  {z.qty }</p>
+                               <a href={`/Details/${z.productid}`}> <p className={style.pname}>-{z.name}  <b>x </b>  {z.qty }</p> </a>
                                 )
                               })}</td>
                               <td>{x.address}</td>
                               <td>{x.status}</td>
-                              <td>{x.totalPrice}</td>
+                              <td>$ {x.totalPrice}</td>
                               <td>{x.confirmationDate}</td>
 
                             </tr>
