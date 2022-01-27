@@ -11,6 +11,7 @@ import CreateProduct from "./components/CreateProduct/CreateProduct";
 import EditProduct from "./components/EditProduct/EditProduct";
 import Users from "./components/admin/Users";
 import Cart from "./components/Cart/Cart";
+import Checkout from "./components/Checkout.jsx"
 
 function App() {
   // Estado que determina si la cuenta logueada (o el invitado) es admin o no. Por defecto es false y cuando se logue, comprobará en un useEffect si es admin
@@ -37,6 +38,7 @@ function App() {
         />
         <Route path="/register" element={<Register />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/payment" element={<Checkout/>}/>
       </Routes>
     </div>
   );

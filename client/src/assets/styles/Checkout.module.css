@@ -1,0 +1,16 @@
+.card{
+  width: 700px;
+  background-color: darkgrey;
+  border: solid 1px #eee;
+  display: grid;
+  padding: auto 0;
+  grid-template-columns: repeat(7,1fr);
+}
+
+.card img{
+  grid-column: 1fr repeat(6,1fr);
+}
+
+.card .name{
+  grid-column: 2/5;
+}

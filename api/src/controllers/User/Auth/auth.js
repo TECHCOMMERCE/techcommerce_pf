@@ -12,7 +12,7 @@ async function auth(req, res, next) {
         password: password
       },
       attributes: {
-        exclude: ["password","changepassword","phone","address","country","city","postalcode","email"]
+        exclude: ["password","changepassword","phone","address","country","city","postalcode"]
       },
     })
 
@@ -23,7 +23,7 @@ async function auth(req, res, next) {
           userid: uid
         },
         attributes: {
-          exclude: ["password","changepassword","phone","address","country","city","postalcode","email"]
+          exclude: ["password","changepassword","phone","address","country","city","postalcode"]
         },
       })
       if(!search){
@@ -42,7 +42,8 @@ async function auth(req, res, next) {
           name:search.name,
           lastname: search.lastname,
           photo: search.photo,
-          force: search.force
+          force: search.force,
+          email: search.email
         }
       }
     }

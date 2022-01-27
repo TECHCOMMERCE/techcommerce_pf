@@ -3,10 +3,12 @@ import {
   GET_PRODUCTS_CART,
   CLEAR_CART
 } from '../constanst/actionsTypes'
-const SERVER = 'http://localhost:3001';
 
+const SERVER = 'http://localhost:3001';
+let prueba = process.env.REACT_APP_SERVER
 export function getProductsCartUser(userId){
   return async function (dispatch){
+    console.log('prueba', prueba);
     try{
       if(!userId){
         const itemsCart = JSON.parse(localStorage.getItem("cart")) || [];

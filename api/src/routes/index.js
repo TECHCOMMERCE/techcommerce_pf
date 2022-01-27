@@ -8,6 +8,7 @@ const brand = require('./helpers/brand')
 const brands = require('./helpers/brands')
 const review = require('./helpers/review')
 const user = require("./user");
+const checkout = require("./checkout");
 
 //const user = require("../controllers/User/user");
 
@@ -29,6 +30,7 @@ router.use('/categories', category)
 
 router.use('/brand', brand)
 router.use('/cart', cart)
+router.use('/checkout', checkout)
 //router.use('/user', user)
 
 // router.use('/review', review)
