@@ -1,0 +1,45 @@
+.container{
+  display: flex;
+  flex-direction: column;
+  padding-left: 1rem;
+}
+
+.title{
+  /* background: black; */
+  padding-bottom: 2.5em;
+  padding-top: 1em;
+  padding-left: 1rem;
+  /* border: 1px solid black; */
+
+}
+
+.btns{
+  /* display: flex; */
+  /* justify-content: space-between; */
+  /* border: 1px solid black; */
+  margin: auto;
+}
+
+.card{
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  border-radius: 10px;
+  background: rgba(243, 243, 243, 0.596);
+  transition: background 0.8s;
+  overflow: hidden;
+  box-shadow: 0 70px 63px -60px #000000;
+}
+
+.cardB{
+  /* border: 1px solid black; */
+  margin-left: 5rem;
+  margin-right: 5rem;
+  justify-items: center;
+}
+
+.titleCard{
+  padding-left: 10rem;
+}
+.cardB p{
+  padding-left: 3rem;
+}
