@@ -14,3 +14,5 @@ export const SET_USER_DATA = 'SET_USER_DATA';
 export const SET_USER_ERROR = 'SET_USER_ERROR';
 export const GET_PRODUCTS_CART = 'GET_PRODUCTS_CART';
 export const CLEAR_CART = 'CLEAR_CART';
+export const EDIT_USER_FRONT = 'EDIT_USER_FRONT';
+export const GET_ONE_USER='GET_ONE_USER';
