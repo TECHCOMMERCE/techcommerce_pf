@@ -21,6 +21,9 @@ import {Link} from 'react-router-dom'
 import {useNavigate} from 'react-router-dom'
 import {getuser} from '../Store/actions/users.js'
 
+import s from "../assets/styles/NavBar.module.css";
+import { getProductsFront } from "../Store/actions/products";
+import axios from "axios";
 
 
 const Container = styled.div`
@@ -116,14 +119,37 @@ const Header = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const [userData, setUserData] = useState(null);
+  
+  const [name, setName] = useState("");
+
+  const [names, setNames] = useState({
+    code: null,
+    results: []
+  });
+  const [visibility, setVisibility] = useState(s.hidden);
+
   useEffect(() => {
     dispatch(getuser())
-  },[dispatch])
-
+  },[dispatch]);
 
   useEffect(() => {
     setUserData(user.user)
-  },[user])
+  },[user]);
+
+  useEffect(async() => {
+    (async() => {
+      if(name){  
+        const res = await axios.get("http://localhost:3001/products/names?name=" + name);
+      
+        setNames(res.data);
+      }else{
+        setNames({
+          code: null,
+          results: []
+        })
+      }
+    })()
+  }, [name]);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -131,8 +157,6 @@ const Header = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
-  
   
   return (
     <Container>
@@ -144,9 +168,50 @@ const Header = () => {
         <Center>
          <TechC src={Tech}/>
          <SearchContainer>
-            <Input placeholder="Search"></Input>
-            <Search style={{ color: "gray", fontSize: 25}}></Search>
+            <form onSubmit={e => {
+              e.preventDefault();
+
+              dispatch(getProductsFront({
+                category: '',
+                brand: '',
+                sort:''
+              }, 0, name));
+            }}>
+              <Input 
+                className={s.searchBar} 
+                value={name}
+                placeholder="Search"
+                onChange={e =>{
+                  setName(e.target.value);
+                }}
+                onFocus={() => setVisibility(s.visible)}
+                // onBlur={() => setVisibility(s.hidden)}
+              />
+            </form>
+           <Search style={{ color: "gray", fontSize: 25}}></Search>
           </SearchContainer>
+
+          <div className={`${s.dataResult} ${visibility}`}>
+            {names.code === null ? null : 
+            names.code === 1 ? "No tenemos ese producto" : 
+            names.names.map(name => 
+              <div 
+                key={name.id} 
+                className={s.option}
+                onClick={() => {
+                  setName(name.name);
+
+                  dispatch(getProductsFront({
+                    category: '',
+                    brand: '',
+                    sort:''
+                  }, 0, name.name));
+
+                  setVisibility(s.hidden);
+                }}
+              >{name.name}</div>
+            )}
+          </div>
         </Center>
         <Right>
           <Link to="/register"><MenuItem>REGISTER</MenuItem></Link>
