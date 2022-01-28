@@ -6,6 +6,7 @@ import {brandsReducer} from "./reducer/brands";
 import {categoriesReducer} from "./reducer/categories";
 import {usersReducer} from "./reducer/users";
 import {cartsReducer} from './reducer/carts'
+import reviewReducer from './reducer/reviews'
 
 import thunk from "redux-thunk";
 
@@ -15,6 +16,7 @@ const store = createStore(
     brandsReducer,
     categoriesReducer,
     productReducer,
+    reviewReducer,
     users: usersReducer,
 		cart: cartsReducer,
   }),
