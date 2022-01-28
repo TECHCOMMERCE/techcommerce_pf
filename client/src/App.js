@@ -14,7 +14,7 @@ import Cart from "./components/Cart/Cart";
 import CheckoutData from "./components/checkout/CheckoutData";
 import CheckoutHistory from "./components/checkout/CheckoutHistory";
 import CheckoutError from "./components/checkout/CheckoutError";
-
+import Header from "./components/Header";
 
 function App() {
   // Estado que determina si la cuenta logueada (o el invitado) es admin o no. Por defecto es false y cuando se logue, comprobará en un useEffect si es admin
