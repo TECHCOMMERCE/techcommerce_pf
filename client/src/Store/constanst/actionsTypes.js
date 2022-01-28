@@ -14,3 +14,7 @@ export const SET_USER_DATA = 'SET_USER_DATA';
 export const SET_USER_ERROR = 'SET_USER_ERROR';
 export const GET_PRODUCTS_CART = 'GET_PRODUCTS_CART';
 export const CLEAR_CART = 'CLEAR_CART';
+export const GET_REVIEWS = 'GET_REVIEWS';
+export const POST_REVIEWS = 'POST_REVIEWS';
+export const PUT_REVIEWS = 'PUT_REVIEWS';
+export const DELETE_REVIEW = 'DELETE_REVIEW';
