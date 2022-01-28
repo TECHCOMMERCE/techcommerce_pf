@@ -1,7 +1,7 @@
 const router = require("express").Router();
-const {GetOrdenIdML} = require('../controllers/Checkout/GetOrderIdML')
+const {PostCheckout} = require('../controllers/Checkout/PostCheckout')
 
-router.post("/orderidML", GetOrdenIdML)
+router.post("/order", PostCheckout)
 
 
 module.exports = router;

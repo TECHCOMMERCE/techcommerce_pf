@@ -21,10 +21,10 @@ module.exports = (sequelize) => {
             type: DataTypes.ENUM("Created","Processing","cancelled","Completed","Send"),
             allowNull: false
         },
-        confirmationDate:{
+        /* confirmationDate:{
             type: DataTypes.DATE,
             allowNull: false
-        }
+        } */
     },{
         timestamps:true
     })

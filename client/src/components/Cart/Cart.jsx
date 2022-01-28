@@ -2,7 +2,6 @@ import React, {  useEffect, useState } from 'react'
 import style from '../../styles/Cart/Cart.module.css';
 import Card from './Card';
 import { Button } from '@mui/material';
-import Navbar from '../NavBar';
 import Footer from '../Home/Footer';
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate} from 'react-router-dom';
@@ -64,7 +63,6 @@ function gettotal (array) {
 
   return(
     <>
-    <Navbar/>
     <div className={style.container}>
       <h2 style={{marginBottom: '5%', fontFamily: 'Poppins'}}>CARRITO ({data.length}) </h2>
       <div className={style.cards}>
@@ -83,10 +81,7 @@ function gettotal (array) {
       <div className={style.buttonContainer}>
       <Button variant='contained' style={{backgroundColor: '#2EB8B0'}} className={style.button} 
       onClick={()=>{
-        Swal.fire({
-          icon: "info",
-          text: 'Por el momento, esta función aun no esta activa',
-        })
+        navigate('/checkout')
       }}> Pagar </Button>
       </div>
       <div className={style.buttonContainer}>

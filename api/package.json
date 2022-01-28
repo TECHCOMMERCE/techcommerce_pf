@@ -15,12 +15,15 @@
     "cors": "^2.8.5",
     "dotenv": "^12.0.3",
     "express": "^4.17.2",
+    "install": "^0.13.0",
     "jsonwebtoken": "^8.5.1",
     "mercadopago": "^1.5.11",
     "morgan": "^1.10.0",
+    "npm": "^8.4.0",
     "pg": "^8.7.1",
     "pg-hstore": "^2.3.4",
-    "sequelize": "^6.13.0"
+    "sequelize": "^6.13.0",
+    "stripe": "^8.200.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"

@@ -14,19 +14,9 @@ function Checkout() {
   const SERVER = process.env.REACT_APP_SERVER || "http://localhost:3001/"
   useEffect(() => {
     dispatch(getProductsCartUser(idUser)); 
-    axios.post(`${SERVER}checkout/orderidML`,{productsInfo: data})
   }, []); 
   useEffect(() => {
-    //dispatch(getProductsCartUser(idUser)); 
-    axios.post(`${SERVER}checkout/orderidML`,{
-      productsInfo: data,
-      payer: {
-        name: user.name,
-        email: user.email
-      }
-    }).then(resp=>{
-      console.log(resp)
-    })
+    
   }, [data]); 
 
   const handleDeleteItem = (idproduct) => {

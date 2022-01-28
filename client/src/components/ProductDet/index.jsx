@@ -61,7 +61,6 @@ const Product = () => {
 
 	return (
 		<div>
-				<NavBar/>
 		   	<Container className={s.container}>
 				
 				<div className={s.cont_prin}>
