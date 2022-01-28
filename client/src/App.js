@@ -11,7 +11,7 @@ import CreateProduct from "./components/CreateProduct/CreateProduct";
 import EditProduct from "./components/EditProduct/EditProduct";
 import Users from "./components/admin/Users";
 import Cart from "./components/Cart/Cart";
-import Profile from "./components/Profile";
+import Profile from "./components/Profile/index";
 import CheckoutData from "./components/checkout/CheckoutData";
 import CheckoutHistory from "./components/checkout/CheckoutHistory";
 import CheckoutError from "./components/checkout/CheckoutError";
