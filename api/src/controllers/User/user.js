@@ -62,11 +62,12 @@ router.post("/", async(req, res) => {
 
 router.put("/", async(req, res) => {
   try{
+   console.log('entro aca', req.body)
     const user = await User.findOne({where: {
       userid: req.body.userid
-    }});
-
-    user.update({...req.body})
+    }}); 
+    console.log('user', user)
+    await user.update({...req.body, password: user.dataValues.password})
 
 
     return res.status(200).send({code: 0, message: "Usuario creado Con éxito"});
@@ -75,11 +76,15 @@ router.put("/", async(req, res) => {
   }
 });
 
+
+
 router.put("/:userid", async(req, res) => {
+  console.log('entro aca 2', req.body)
   try{
     const user = await User.findOne({where: {
       userid: req.params.userid
     }});
+    console.log('params', user)
 
     user.update({...req.body})
 
@@ -126,6 +131,26 @@ router.delete("/:userid", async(req, res) => {
     return res.status(200).send({code: 1, message: "Hay error", error: e});
   }
 });
+
+
+router.get('/:userid', async(req, res) => {
+  try {
+    const user = await User.findOne({
+      where: {
+      userid: req.params.userid
+    },
+    attributes: {
+      exclude: ["password","changepassword"]
+    }
+  });
+
+    res.json(user)
+  } catch (error) {
+    
+  }
+})
+
+
 
 // opción de cambiarle el status
 // router.delete("/:userid", async(req, res) => {
