@@ -81,10 +81,7 @@ function gettotal (array) {
       <div className={style.buttonContainer}>
       <Button variant='contained' style={{backgroundColor: '#2EB8B0'}} className={style.button} 
       onClick={()=>{
-        Swal.fire({
-          icon: "info",
-          text: 'Por el momento, esta función aun no esta activa',
-        })
+        navigate('/checkout')
       }}> Pagar </Button>
       </div>
       <div className={style.buttonContainer}>

@@ -1,241 +1,212 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {useNavigate} from "react-router-dom";
-
 import Swal from "sweetalert2";
-
 import s from "../../assets/styles/Checkout.module.css"
-
-const CheckoutData = () => {
-    const navigate = useNavigate();
-
-    const [data, setData] = useState({
-        name: "",
-        lastName: "",
-        numCard: "",
-        expDate: "",
-        cod: "",
-        dni: ""
-    })
-
-    const products = [
-        {
-            id: 1,
-            photo: "https://http2.mlstatic.com/D_NQ_NP_2X_964280-MLA46869170141_072021-F.webp",
-            name: "Sony PlayStation 4",
-            price: 89999,
-            cant: 1
-        },
-        {
-            id: 2,
-            photo: "https://http2.mlstatic.com/D_NQ_NP_2X_791396-MLA47058527002_082021-F.webp",
-            name: "Sony PlayStation 5",
-            price: 206000,
-            cant: 3
-        },
-        {
-            id: 3,
-            photo: "https://http2.mlstatic.com/D_NQ_NP_2X_889525-MLA42779898439_072020-F.webp",
-            name: "GTX 1660 super",
-            price: 144544,
-            cant: 2
-        },
-        {
-            id: 4,
-            photo: "https://http2.mlstatic.com/D_NQ_NP_2X_717692-MLA40182401049_122019-F.webp",
-            name: "Ryzen 5 3600",
-            price: 35899,
-            cant: 1
-        },
-        {
-            id: 5,
-            photo: "https://http2.mlstatic.com/D_NQ_NP_2X_950495-MLA48475499057_122021-F.webp",
-            name: "Qiyi Sail W",
-            price: 1000,
-            cant: 5
-        },
-        {
-            id: 6,
-            photo: "https://http2.mlstatic.com/D_NQ_NP_2X_811262-MLA48679794835_122021-F.webp",
-            name: "Behringer umc22",
-            price: 17753,
-            cant: 1
-        },
-        {
-            id: 7,
-            photo: "https://http2.mlstatic.com/D_NQ_NP_2X_911551-MLA46389323606_062021-F.webp",
-            name: "Razer Viper ultimate",
-            price: 17499,
-            cant: 7
-        },
-    ]
-
+import axios from 'axios'
+import { useDispatch, useSelector } from "react-redux";
+import {getProductsCartUser} from '../../Store/actions/carts.js'
+import {Elements, CardElement,  useStripe, useElements} from '@stripe/react-stripe-js';
+import {loadStripe} from '@stripe/stripe-js';
+const stripePromise = loadStripe("pk_test_51KMeHhKJR7bBy8jQbUstrWjq99YaMAygvAchq1sPfEMY75UNyPgORttzzD0SknDrteh0W1vnrlxpP8bLr80SHyRV00tHQOXnqI")
+const CheckoutData = () => {  
     return (
-        <div className={s.container}>
-            <form className={s.form} onSubmit={async(e) => {
-                e.preventDefault();
-
-                try{
-                    let res = await Swal.fire({
-                        title: 'Realizar compra',
-                        text: 'Al presionar comprar, se hará la compra',
-                        icon: 'info',
-                        confirmButtonText: "Comprar",
-                        showDenyButton: true
-                    });
-    
-                    console.log(res);
-
-                    if(res.isConfirmed){
-                        if(true){
-                            res = await Swal.fire({
-                                title: 'Compra realizada con éxito',
-                                text: 'Se le redirigirá al historial de compras para que pueda ver su compra. También Se le ha enviado un mail con el detalle de la compra',
-                                icon: 'success',
-                                confirmButtonText: "Ok",
-                            });
-    
-                            navigate("/checkoutHistory");
-                        }else{
-                            navigate("/checkoutError");
-                        }
-                    }else if(res.isDenied){
-                        await Swal.fire({
-                            title: 'Compra cancelada',
-                            text: 'Se le redirigirá al carrito',
-                            icon: 'info',
-                            confirmButtonText: "Ok",
-                        });
-
-                        navigate("/cart");
-                    }
-                    
-                }catch(e){
-                    console.log(e)
-                }
-                
-            }}>
-                <div className={s.inputs}>
-                    <div className={s.inputContainer}>
-                        <input 
-                            className={`${s.input}`}
-                            id="name"
-                            value={data.name}
-                            placeholder="nombre"
-                            onChange={e => {
-                                setData(prev => {
-                                    return {
-                                        ...prev,
-                                        [e.target.id]: e.target.value
-                                    }
-                                })
-                            }}
-                        />
-
-                        <input 
-                            className={`${s.input}`}
-                            id="lastName"
-                            value={data.lastName}
-                            placeholder="apellido"
-                            onChange={e => {
-                                setData(prev => {
-                                    return {
-                                        ...prev,
-                                        [e.target.id]: e.target.value
-                                    }
-                                })
-                            }}
-                        />
-                    </div>
-
-                    <input 
-                        className={`${s.input} ${s.inputLong}`}
-                        id="numCard"
-                        value={data.numCard}
-                        placeholder="Tarjeta"
-                        onChange={e => {
-                            setData(prev => {
-                                return {
-                                    ...prev,
-                                    [e.target.id]: e.target.value
-                                }
-                            })
-                        }}
-                    />
-
-                    <div className={s.inputContainer}>
-                        <input 
-                            className={`${s.input}`}
-                            id="expDate"
-                            value={data.expDate}
-                            placeholder="expiración"
-                            onChange={e => {
-                                setData(prev => {
-                                    return {
-                                        ...prev,
-                                        [e.target.id]: e.target.value
-                                    }
-                                })
-                            }}
-                        />
-
-                        <input 
-                            className={`${s.input}`}
-                            id="cod"
-                            value={data.cod}
-                            placeholder="código de seguridad"
-                            onChange={e => {
-                                setData(prev => {
-                                    return {
-                                        ...prev,
-                                        [e.target.id]: e.target.value
-                                    }
-                                })
-                            }}
-                        />
-                    </div>
-
-                    <input 
-                        className={`${s.input} ${s.inputLong}`}
-                        id="dni"
-                        value={data.dni}
-                        placeholder="dni"
-                        onChange={e => {
-                            setData(prev => {
-                                return {
-                                    ...prev,
-                                    [e.target.id]: e.target.value
-                                }
-                            })
-                        }}
-                    />
-
-                    <input className={s.button} type="submit" value="continuar"/>
-                </div>
-            </form>
-
-            <div className={s.cart}>
-                <div className={s.products}>
-                    {products.map(product => (
-                        <div key={product.id} className={s.product}>
-                            <div className={s.left}>
-                                <span className={s.cant}>x{product.cant}</span>
-                                <div className={s.imgContainer}>
-                                    <img className={s.img} src={product.photo} alt=""/>
-                                </div>
-                                <span className={s.name}>{product.name}</span>
-                            </div>
-
-                            <span className={s.price}>$ {product.price}</span>
-                        </div>
-                    ))}
-                </div>
-
-                <div className={s.totalPrice}>
-                    <span className={s.totalText}>Total <span className={s.totalNumber}>$ {products.map(p => p.price * p.cant).reduce((a,b) => a+b)}</span></span>
-                </div>
-            </div>
-        </div>
+        <Elements stripe={stripePromise}>
+             <CheckoutForm />
+        </Elements>
     )
 }
 
 export default CheckoutData
+
+const CheckoutForm = () => {
+    const stripe = useStripe();
+    const elements = useElements();
+    const [loading, setLoading] = useState(false);
+    const dispatch = useDispatch();
+    const navigate = useNavigate()
+    const products = useSelector(state => state.cart.productscart) || [];
+    const [total,setTotal] = useState(0)
+    const user = JSON.parse(localStorage.getItem("user"));
+    const idUser = !user?null:user.user.userid;
+    const [dataCheck, setData] = useState({
+        name: "",//user.user.name,
+        lastName: "",//user.user.lastname,
+        email: "",//user.user.email,
+        street: "",
+        city: "",
+        postalCode: "",
+    })
+  
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try{
+            let res = await Swal.fire({
+                title: 'Realizar compra',
+                text: 'Al presionar comprar, se hará la compra',
+                icon: 'info',
+                confirmButtonText: "Comprar",
+                showDenyButton: true
+            });
+
+            if(res.isConfirmed){
+                
+                const { error, paymentMethod } = await stripe.createPaymentMethod({
+                    type: "card",
+                    card: elements.getElement(CardElement),
+                });
+                setLoading(true);
+
+                // console.log(paymentMethod)
+                const { id } = paymentMethod;
+        
+                const { data } = await axios.post(
+                    "http://localhost:3001/checkout/order",
+                    {
+                        id,
+                        amount: total,
+                        productsInfo: products,
+                        datapaymant: {...dataCheck},
+                        user
+                    }
+                );/**/
+                console.log(data);
+                elements.getElement(CardElement).clear();
+                
+            }
+        } catch (error) {
+          console.log(error);
+        }
+        setLoading(false);
+       
+    };
+
+    function gettotal (array) {
+        let totalprice=0;
+        array.map(x => {
+          totalprice= totalprice + (x.price*x.quantity)
+        } )
+        setTotal(totalprice)
+    }
+
+    let handlerChange = e => {
+        setData(prev => {
+            return {
+                ...prev,
+                [e.target.id]: e.target.value
+            }
+        })
+    }
+
+
+    useEffect(() => {
+        dispatch(getProductsCartUser(idUser)); 
+    }, []); 
+    
+    
+    useEffect(() => {
+        gettotal(products)
+       /*  if(!products.length){
+            navigate("/products")
+        } */
+    }, [products]); 
+  
+
+    return (
+    <div className={s.container}>
+        <form className={s.form} onSubmit={handleSubmit}>
+            <div className={s.inputs}>
+                <div className={s.inputContainer}>
+                    <h2>Datos de envio</h2>
+                    <label htmlFor='name'>Nombre</label>
+                    <input 
+                        className={`${s.input}`}
+                        id="name"
+                        value={dataCheck.name}
+                        placeholder="Nombre"
+                        onChange={handlerChange}
+                    />
+                    <label htmlFor='lastName'>Apellidos</label>
+                    <input 
+                        className={`${s.input}`}
+                        id="lastName"
+                        value={dataCheck.lastName}
+                        placeholder="Apellidos"
+                        onChange={handlerChange}
+                    />
+
+                    <label htmlFor='email'>Email</label>
+                    <input 
+                        className={`${s.input}`}
+                        id="email"
+                        value={dataCheck.email}
+                        placeholder="Email"
+                        onChange={handlerChange}
+                    />
+                    {/* <h3>Datos de envio</h3> */}
+                    <label htmlFor='street'>Calle</label>
+                    <input 
+                        className={`${s.input}`}
+                        id="street"
+                        value={dataCheck.street}
+                        placeholder="Calle"
+                        onChange={handlerChange}
+                    />
+                    <label htmlFor='city'>Ciudad</label>
+                    <input 
+                        className={`${s.input}`}
+                        id="city"
+                        value={dataCheck.city}
+                        placeholder="Ciudad"
+                        onChange={handlerChange}
+                    />  
+                    <label htmlFor='postalcode'>Código Postal</label>
+                    <input 
+                        className={`${s.input}`}
+                        id="postalCode"
+                        value={dataCheck.postalCode}
+                        placeholder="Código postal"
+                        onChange={handlerChange}
+                    />  
+                </div>
+            </div>
+            {/* User Card Input */}
+            <div className={s.pay}>
+            <CardElement/>
+            </div>
+            <div className={s.inputContainer}>
+                <button type="submit" disabled={!stripe} className={s.button}>
+                {loading ? (
+                    <div className="spinner-border text-light" role="status">
+                    <span className="sr-only">Cargando...</span>
+                    </div>
+                ) : (
+                    "Comprar ahora"
+                )}
+                </button>
+            </div>
+        </form>
+        <div className={s.cart}>
+            <div className={s.products}>
+                {products?.map(product => (
+                    <div key={product.productid} className={s.product}>
+                        <div className={s.left}>
+                            <div className={s.imgContainer}>
+                                <img className={s.img} src={product.image} alt=""/>
+                            </div>
+                            <span className={s.name}>{product.name}</span>
+                            <span className={s.cant}>...x {product.quantity}</span>
+                        </div>
+
+                        <span className={s.price}>$ {product.price}</span>
+                    </div>
+                ))}
+            </div>
+
+            <div className={s.totalPrice}>
+                <span className={s.totalText}>Total <span className={s.totalNumber}>$ {total}</span></span>
+            </div>
+        </div>
+
+    </div>
+    );
+  };
