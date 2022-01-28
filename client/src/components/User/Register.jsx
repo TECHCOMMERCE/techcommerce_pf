@@ -174,7 +174,7 @@ const Register = () => {
                         <form className={s.form} onSubmit={async(e) => {
                             e.preventDefault();
 
-                            const res = await axios.put("http://localhost:3001/user", {...aditionalData, userid: formStatus.userid});
+                            const res = await axios.put("http://localhost:3001/user/" + formStatus.userid, {...aditionalData, userid: formStatus.userid});
 
                             setFormStatus(res.data);
                         }}>
