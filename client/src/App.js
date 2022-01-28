@@ -11,6 +11,7 @@ import CreateProduct from "./components/CreateProduct/CreateProduct";
 import EditProduct from "./components/EditProduct/EditProduct";
 import Users from "./components/admin/Users";
 import Cart from "./components/Cart/Cart";
+import Profile from "./components/Profile";
 import CheckoutData from "./components/checkout/CheckoutData";
 import CheckoutHistory from "./components/checkout/CheckoutHistory";
 import CheckoutError from "./components/checkout/CheckoutError";
@@ -26,6 +27,11 @@ function App() {
      <Header/>
       <Routes>
         <Route path="/" element={<Home />} />
+
+        <Route path='/profile' element={<Profile/>} />
+        {/*   <Route path="/Login" element={<Login />} /> */}
+     
+
         <Route path="/products" element={<Cards />} />
         <Route path="/Details/:id" element={<Product />} />
 

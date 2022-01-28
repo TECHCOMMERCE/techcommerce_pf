@@ -48,6 +48,7 @@ async function auth(req, res, next) {
       }
     }
     if(search){
+      console.log('entro aca')
       jwt.sign({user: search},SECRET_KEY, (error,token)=>{
         return res.json({token, user: search}).status(200)
       })
