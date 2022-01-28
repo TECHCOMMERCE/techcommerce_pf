@@ -21,6 +21,7 @@ import { addToCart } from '../../Store/actions/carts';
 import {getProductsCartUser} from '../../Store/actions/carts.js'
 import NavBar from '../NavBar';
 import Swal from 'sweetalert2';
+import Reviews from './Reviews';
 
 
 // const url = 'localhost:3001';
@@ -150,7 +151,7 @@ const Product = () => {
 				{/*------------------- reviews -------------------------- */}
 				{/* <AddReview />
 				<AvisoLoggin  /> */}
-				{/* <Reviews /> */}
+				<Reviews productId={id} />
 				{/*------------------- reviews -------------------------- */}
 			  </Container>
 			<Footer />   
