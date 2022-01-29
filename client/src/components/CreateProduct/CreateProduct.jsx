@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-// import { postProduct } from "../../Store/actions/product";
 import { getCategories } from "../../Store/actions/categories";
 import { getBrands } from "../../Store/actions/brands";
 import { postCloudinaryImage } from "../../Store/actions/images";
@@ -106,7 +105,6 @@ const CreateProduct = () => {
               input,
               setInput,
               dispatch
-              // postProduct,
             )
           }
         >
@@ -194,7 +192,6 @@ const CreateProduct = () => {
                 name="condition"
                 id="condition"
                 value={input.condition}
-                // defaultValue={input.condition}
                 onChange={(e) => handleInputs(e, input, setInput)}
               >
                 <MenuItem sx={{ display: "none" }}></MenuItem>
@@ -265,7 +262,7 @@ const CreateProduct = () => {
               sx={{ width: "46%", minHeight: "fit-content", height: "500px" }}
             >
               {/* contiene la imagen y el botón para cargar una imagen */}
-              <FormLabel htmlFor="image">Image</FormLabel>
+              <FormLabel htmlFor="image">Image *</FormLabel>
               <Box
                 sx={{
                   display: "flex",

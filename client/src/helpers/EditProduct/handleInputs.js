@@ -10,5 +10,4 @@ export const handleInputs = (e, input, setInput) => {
           : [...input.categories]
         : e.target.value,
   });
-  console.log(input);
 };

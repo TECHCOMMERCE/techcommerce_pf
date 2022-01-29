@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { postProduct } from "../../Store/actions/product";
 import { getCategories } from "../../Store/actions/categories";
 import { getBrands } from "../../Store/actions/brands";
 import { postCloudinaryImage } from "../../Store/actions/images";
-import { handleInputs } from "../../helpers/CreateProduct/handleInputs";
-import { handleCategories } from "../../helpers/CreateProduct/handleCategories";
-import { uploadImage } from "../../helpers/CreateProduct/uploadImage";
-// import Attributes from "./Attributes";
-import { handleSubmit } from "../../helpers/CreateProduct/handleSubmit";
+import { handleInputs } from "../../helpers/EditProduct/handleInputs";
+import { handleCategories } from "../../helpers/EditProduct/handleCategories";
+import Attributes from "./Attributes";
+import { handleImage } from "../../helpers/EditProduct/handleImage";
+import { handleSubmit } from "../../helpers/EditProduct/handleSubmit";
 import { useParams } from "react-router-dom";
 import {
   getProductById,
-  putProduct,
   resetProductDetail,
 } from "../../Store/actions/product";
 import {
@@ -38,6 +36,7 @@ const EditProduct = () => {
   const dispatch = useDispatch();
   const brands = useSelector((state) => state.brandsReducer);
   const categories = useSelector((state) => state.categoriesReducer);
+  const cloudinaryUrl = useSelector((state) => state.productReducer.url);
   const productDetail = useSelector(
     (state) => state.productReducer.productDetail
   );
@@ -56,17 +55,26 @@ const EditProduct = () => {
   });
 
   useEffect(() => {
+    setInput({ ...input, image: cloudinaryUrl });
+  }, [cloudinaryUrl]);
+
+  useEffect(() => {
     setInput({
-      name: "",
-      price: "",
-      stock: "",
-      sold_quantity: "",
-      condition: productDetail.condition ? productDetail.condition : "",
-      image: "",
-      attributes: [],
-      brand: "",
-      categories: [],
-      status: true,
+      productid: productDetail?.productid && productDetail.productid,
+      name: productDetail?.name ? productDetail.name : "",
+      price: productDetail?.price ? productDetail.price : "",
+      stock: productDetail?.stock ? productDetail.stock : "",
+      sold_quantity: productDetail?.sold_quantity
+        ? productDetail.sold_quantity
+        : "",
+      condition: productDetail?.condition ? productDetail.condition : "",
+      image: productDetail?.image ? productDetail.image : "",
+      attributes: productDetail?.attributes ? productDetail.attributes : [],
+      brand: productDetail?.brand ? productDetail.brand.brandid : "",
+      categories: productDetail?.categories
+        ? productDetail.categories.map((c) => c.name)
+        : [],
+      status: productDetail?.status ? productDetail.status : "",
     });
   }, [productDetail]);
 
@@ -124,17 +132,7 @@ const EditProduct = () => {
             backgroundColor: "ghostwhite",
             borderRadius: "5px",
           }}
-          onSubmit={(e) =>
-            handleSubmit(
-              e,
-              input,
-              setInput,
-              dispatch,
-              postProduct,
-              uploadImage,
-              postCloudinaryImage
-            )
-          }
+          onSubmit={(e) => handleSubmit(e, input, setInput, dispatch)}
         >
           {/* Contiene todo el form */}
           <Box
@@ -187,6 +185,7 @@ const EditProduct = () => {
                 helperText=""
                 defaultValue={productDetail.price && productDetail.price}
                 onChange={(e) => handleInputs(e, input, setInput)}
+                sx={{ textAlign: "right" }}
                 min="0"
                 max="1000000"
                 required
@@ -252,11 +251,8 @@ const EditProduct = () => {
                 label="Brand"
                 variant="filled"
                 name="brand"
-                value={
-                  input.brand ||
-                  (productDetail.brand && productDetail.brand.name)
-                }
-                defaultValue={productDetail.brand && productDetail.brand}
+                value={input.brand}
+                // defaultValue={productDetail.brand && productDetail.brand}
                 id="brand"
                 onChange={(e) => handleInputs(e, input, setInput)}
               >
@@ -297,7 +293,7 @@ const EditProduct = () => {
                   <ListItem
                     sx={{ fontSize: ".8rem" }}
                     key={i}
-                    name={c}
+                    name={c.name}
                     secondaryAction={
                       <IconButton
                         name={c}
@@ -348,11 +344,15 @@ const EditProduct = () => {
                     id="image"
                     name="image"
                     accept=".jpg, .jpeg, .png"
-                    onChange={(e) => {
-                      setInput({ ...input, file: e.target.files[0] });
-                      const img = document.querySelector("#image-selected");
-                      img.src = URL.createObjectURL(e.target.files[0]);
-                    }}
+                    onChange={(e) =>
+                      handleImage(
+                        e,
+                        dispatch,
+                        postCloudinaryImage,
+                        input,
+                        setInput
+                      )
+                    }
                     hidden
                   />
                   Load an Image
@@ -361,17 +361,16 @@ const EditProduct = () => {
 
               {/* Carga la Imagen */}
               <Box>
-                {input.file?.size && (
+                {input?.size && (
                   <Typography
-                    sx={{ fontSize: ".8rem", my: 10 }}
-                  >{`Picture size: ${(input.file.size / 1000000)
-                    .toString()
-                    .slice(0, 4)} MB`}</Typography>
+                    color={input?.size >= 1 ? "crimson" : "success"}
+                    sx={{ fontSize: ".8rem", mb: 10 }}
+                  >{`Picture size: ${input.size} MB`}</Typography>
                 )}
               </Box>
 
               {/* Componente de Atributos */}
-              {/* <Attributes input={input} setInput={setInput} /> */}
+              <Attributes input={input} setInput={setInput} />
             </Box>
           </Box>
           {/* Contiene todo el formulario */}
@@ -388,6 +387,7 @@ const EditProduct = () => {
             <Button
               variant="contained"
               size="medium"
+              id="submit"
               type="submit"
               endIcon={<MdSave />}
               sx={{ mr: 40 }}
