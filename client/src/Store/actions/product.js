@@ -1,17 +1,20 @@
+import axios from "axios";
 import {
   GET_PRODUCT_BY_ID,
   POST_PRODUCT,
   PUT_PRODUCT,
   RESET_PRODUCT_DETAIL,
 } from "../constanst/actionsTypes";
-import axios from "axios";
+
+const SERVER = process.env.REACT_APP_SERVER;
 
 export const postProduct = (product) => {
+  console.log(product);
   try {
     return async (dispatch) => {
       await axios
         .post(
-          `${process.env.REACT_APP_SERVER}/product`,
+          `${SERVER}/product`,
           product
         )
         .then((response) => {
@@ -31,7 +34,7 @@ export const putProduct = (product) => {
     return async (dispatch) => {
       await axios
         .put(
-          `${process.env.REACT_APP_SERVER}/product`,
+          `${SERVER}/product`,
           product
         )
         .then((response) => {
@@ -51,7 +54,7 @@ export const getProductById = (id) => {
     return async (dispatch) => {
       await axios
         .get(
-          `${process.env.REACT_APP_SERVER}/product/${id}`
+          `${SERVER}/product/${id}`
         )
         .then((response) => {
           return dispatch({

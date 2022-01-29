@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { postProduct } from "../../Store/actions/product";
+// import { postProduct } from "../../Store/actions/product";
 import { getCategories } from "../../Store/actions/categories";
 import { getBrands } from "../../Store/actions/brands";
 import { postCloudinaryImage } from "../../Store/actions/images";
 import { handleInputs } from "../../helpers/CreateProduct/handleInputs";
 import { handleCategories } from "../../helpers/CreateProduct/handleCategories";
-import { uploadImage } from "../../helpers/CreateProduct/uploadImage";
+import { handleImage } from "../../helpers/CreateProduct/handleImage";
 import Attributes from "./Attributes";
 import { handleSubmit } from "../../helpers/CreateProduct/handleSubmit";
 import {
@@ -32,18 +32,23 @@ const CreateProduct = () => {
   const dispatch = useDispatch();
   const brands = useSelector((state) => state.brandsReducer);
   const categories = useSelector((state) => state.categoriesReducer);
+  const cloudinaryUrl = useSelector((state) => state.productReducer.url);
   const [input, setInput] = useState({
     name: "",
-    image: "",
+    image: cloudinaryUrl.length ? cloudinaryUrl : "",
     price: "",
     stock: "",
     sold_quantity: "",
-    condition: "new",
+    condition: "",
     attributes: [],
     brand: "",
     categories: [],
     status: true,
   });
+
+  useEffect(() => {
+    cloudinaryUrl.length && setInput({ ...input, image: cloudinaryUrl });
+  }, [cloudinaryUrl]);
 
   useEffect(() => {
     dispatch(getBrands());
@@ -95,15 +100,13 @@ const CreateProduct = () => {
             backgroundColor: "ghostwhite",
             borderRadius: "5px",
           }}
-          onSubmit={async (e) => 
+          onSubmit={async (e) =>
             await handleSubmit(
               e,
               input,
               setInput,
-              dispatch,
-              postProduct,
-              uploadImage,
-              postCloudinaryImage,
+              dispatch
+              // postProduct,
             )
           }
         >
@@ -190,6 +193,7 @@ const CreateProduct = () => {
                 required
                 name="condition"
                 id="condition"
+                value={input.condition}
                 // defaultValue={input.condition}
                 onChange={(e) => handleInputs(e, input, setInput)}
               >
@@ -284,18 +288,22 @@ const CreateProduct = () => {
                   variant="contained"
                   component="label"
                   color="success"
-                  sx={{ my: 10 }}
+                  sx={{ mt: 10 }}
                 >
                   <input
                     type="file"
                     id="image"
                     name="image"
                     accept=".jpg, .jpeg, .png"
-                    onChange={(e) => {
-                      setInput({ ...input, file: e.target.files[0] });
-                      const img = document.querySelector("#image-selected");
-                      img.src = URL.createObjectURL(e.target.files[0]);
-                    }}
+                    onChange={(e) =>
+                      handleImage(
+                        e,
+                        dispatch,
+                        postCloudinaryImage,
+                        input,
+                        setInput
+                      )
+                    }
                     hidden
                   />
                   Load an Image
@@ -304,12 +312,11 @@ const CreateProduct = () => {
 
               {/* Carga la Imagen */}
               <Box>
-                {input.file?.size && (
+                {input?.size && (
                   <Typography
+                    color={input?.size >= 1 ? "crimson" : "success"}
                     sx={{ fontSize: ".8rem", my: 10 }}
-                  >{`Picture size: ${(input.file.size / 1000000)
-                    .toString()
-                    .slice(0, 4)} MB`}</Typography>
+                  >{`Picture size: ${input.size} MB`}</Typography>
                 )}
               </Box>
 
@@ -330,6 +337,7 @@ const CreateProduct = () => {
           >
             <Button
               variant="contained"
+              id="submit"
               size="medium"
               type="submit"
               endIcon={<MdSave />}

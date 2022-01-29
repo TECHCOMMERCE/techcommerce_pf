@@ -18,7 +18,7 @@ const Attributes = ({ input, setInput }) => {
   const [attributes, setAttributes] = useState({});
 
   return (
-    <Box>
+    <Box sx={{mt: 10,}}>
       <FormLabel>Product's Attributes</FormLabel>
       <Box sx={{ display: "flex" }}>
         <Box
