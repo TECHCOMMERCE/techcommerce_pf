@@ -38,7 +38,7 @@ const PostCheckout = async (req,res,next)=>{
         
       }
      }else{
-      redirect="cancelled"
+      redirect="Cancelled"
     } 
     //console.log('user', user);
     let orderuser = await Order.create({
@@ -65,7 +65,8 @@ const PostCheckout = async (req,res,next)=>{
     return res.status(200).json({payment, redirect});
   }catch(err){
     console.log("Get users/checkout/:id", err);
-    next(err)
+    return res.status(200).json({redirect: "Cancelled"});
+    //next(err)
   }
 };
 

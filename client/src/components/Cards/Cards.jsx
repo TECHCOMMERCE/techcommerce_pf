@@ -7,7 +7,7 @@ import { Button } from '@mui/material';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Footer from '../../components/Home/Footer';
-import NavBar from '../../components/NavBar';
+/* import NavBar from '../../components/NavBar'; */
 import { useParams, useLocation } from 'react-router-dom';
 
 
@@ -97,7 +97,7 @@ const Cards = () => {
 }, [page, obj, dispatch]); 
 
   return (<>
-    <NavBar/>
+    {/* <NavBar/> */}
       
     <Main>
       <Filters>

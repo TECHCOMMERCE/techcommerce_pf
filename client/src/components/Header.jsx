@@ -20,20 +20,22 @@ import Menu from '@mui/material/Menu';
 import {Link} from 'react-router-dom'
 import {useNavigate} from 'react-router-dom'
 import {getuser} from '../Store/actions/users.js'
+import { useLocation } from 'react-router-dom'
 
 
 
 const Container = styled.div`
  background-color: #fcf5f5;
+ position: fixed;
  height: 60px;
+ width: 100%;
+ z-index:100;
  margin-bottom: 20px;
- padding-bottom: 100px;
  ${mobile({ height: "50px" })}
 
 `;
 
 const Wrapper = styled.div`
-  padding: 10px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -70,7 +72,7 @@ const Logo = styled.img`
 const TechC = styled.img`
   display: flex;
   width: 30%;
-  margin-left: 150px;
+  margin-left: 20%;
   text-align: center;
   ${mobile({ fontSize: "24px" })}
 `;
@@ -116,6 +118,8 @@ const Header = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const [userData, setUserData] = useState(null);
+  const currentLocation = useLocation();
+  const [location,setLocation] = useState(currentLocation);
   useEffect(() => {
     dispatch(getuser())
   },[dispatch])
@@ -124,6 +128,11 @@ const Header = () => {
   useEffect(() => {
     setUserData(user.user)
   },[user])
+
+  useEffect(() => {
+    console.log('currentLocation', currentLocation);
+    setLocation(currentLocation)
+  },[currentLocation])
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -138,15 +147,16 @@ const Header = () => {
     <Container>
       <Wrapper>
         <Left> 
-          <Logo src={Logoo} />
+         {/*  <Logo src={Logoo} /> */}
+         <TechC src={Tech}/>
           <Link to="/products">Productos</Link>
         </Left>
         <Center>
-         <TechC src={Tech}/>
-         <SearchContainer>
+         {/* <TechC src={Tech}/> */}
+         {location.pathname=="/products"?<><SearchContainer>
             <Input placeholder="Search"></Input>
             <Search style={{ color: "gray", fontSize: 25}}></Search>
-          </SearchContainer>
+          </SearchContainer></>:null}
         </Center>
         <Right>
           <Link to="/register"><MenuItem>REGISTER</MenuItem></Link>
