@@ -13,7 +13,6 @@ import Users from "./components/admin/Users";
 import Cart from "./components/Cart/Cart";
 import Profile from "./components/Profile/index";
 import CheckoutData from "./components/checkout/CheckoutData";
-import CheckoutHistory from "./components/checkout/CheckoutHistory";
 import CheckoutError from "./components/checkout/CheckoutError";
 import Header from "./components/Header";
 
@@ -27,7 +26,7 @@ function App() {
      <Header/>
       <Routes>
         <Route path="/" element={<Home />} />
-
+        <Route path='/profile/:getDisplay' element={<Profile/>} />
         <Route path='/profile' element={<Profile/>} />
         {/*   <Route path="/Login" element={<Login />} /> */}
      
@@ -40,7 +39,6 @@ function App() {
         
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<CheckoutData/>}/>
-        <Route path="/checkoutHistory" element={<CheckoutHistory/>}/>
         <Route path="/checkoutError" element={<CheckoutError/>}/>
 
         <Route exact path="/products/list" element={isAdmin ? <ListProducts /> : <h1>No tenes acceso a esta página</h1>} />

@@ -19,6 +19,7 @@ const CheckoutData = () => {
 export default CheckoutData
 
 const CheckoutForm = () => {
+    const SERVER = process.env.REACT_APP_SERVER || "http://localhost:3001/"
     const stripe = useStripe();
     const elements = useElements();
     const [loading, setLoading] = useState(false);
@@ -57,19 +58,31 @@ const CheckoutForm = () => {
                 setLoading(true);
 
                 // console.log(paymentMethod)
+                console.log('error', error);
                 const { id } = paymentMethod;
-        
-                const { data } = await axios.post(
-                    "http://localhost:3001/checkout/order",
-                    {
-                        id,
-                        amount: total,
-                        productsInfo: products,
-                        datapaymant: {...dataCheck},
-                        user
+                console.log('id', id);
+                if(id){
+                    const { data } = await axios.post(
+                        `${SERVER}checkout/order`,
+                        {
+                            id,
+                            amount: total,
+                            productsInfo: products,
+                            datapaymant: {...dataCheck},
+                            user
+                        }
+                    );/**/
+                    if(data.redirect==='Completed'){
+                        dispatch(getProductsCartUser(idUser))
+                        Swal.fire({title: 'Compra realizada', text: 'Felicidades, su compra ha sido confirmada',icon:'success'})
+                        navigate('/profile/ShopHistory')
+                    }else{
+                        navigate('/checkoutError')
                     }
-                );/**/
-                console.log(data);
+                }else{
+                    Swal.fire({title: 'Error',text: 'Tarjeta declinada, intentelo nuevamente',icon: 'error'})
+                }
+                //onsole.log(data);
                 elements.getElement(CardElement).clear();
                 
             }

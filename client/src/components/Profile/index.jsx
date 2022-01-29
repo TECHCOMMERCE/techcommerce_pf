@@ -3,13 +3,15 @@ import style from '../../styles/Profile/Index.module.css';
 import Img from '../../assets/Imgs/user.png';
 import Tickets from './Tickets';
 import Info from './Info';
+import { useParams } from 'react-router-dom';
 
 
 
 
 const Profile = () => {
-
-const [display, setDisplay] =useState('Perfil');
+const {getDisplay =null}= useParams();
+//console.log('getDisplay', getDisplay);
+const [display, setDisplay] =useState(getDisplay==='ShopHistory'?'Compras':'Perfil');
 const user= JSON.parse(localStorage.getItem('user'))
 console.log(display)
 

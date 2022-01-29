@@ -20,6 +20,8 @@ import Menu from '@mui/material/Menu';
 import {Link} from 'react-router-dom'
 import {useNavigate} from 'react-router-dom'
 import {getuser} from '../Store/actions/users.js'
+import {getProductsCartUser} from '../Store/actions/carts.js'
+import { useLocation } from 'react-router-dom'
 
 import s from "../assets/styles/NavBar.module.css";
 import { getProductsFront } from "../Store/actions/products";
@@ -28,19 +30,23 @@ import axios from "axios";
 
 const Container = styled.div`
  background-color: #fcf5f5;
+ position: fixed;
+ top:0;
+ left:0;
  height: 60px;
+ width: 100%;
+ z-index:100;
  margin-bottom: 20px;
- padding-bottom: 100px;
  ${mobile({ height: "50px" })}
 
 `;
 
 const Wrapper = styled.div`
-  padding: 10px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  ${mobile({ padding: "10px 0px" })}
+  padding: 0 20px;
+  ${mobile({ padding: "5px 0px" })}
   background-color: #fcf5f5;
 `;
 const Left = styled.div`
@@ -73,7 +79,7 @@ const Logo = styled.img`
 const TechC = styled.img`
   display: flex;
   width: 30%;
-  margin-left: 150px;
+  margin-left: 20%;
   text-align: center;
   ${mobile({ fontSize: "24px" })}
 `;
@@ -96,7 +102,7 @@ const SearchContainer = styled.div`
   border: 0.5px solid lightgray;
   display: flex;
   align-items: center;
-  margin-left: 25px;
+  width: 90%;
   padding: 5px;
 
   ${mobile({ marginLeft: "10px" })}
@@ -119,6 +125,8 @@ const Header = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const [userData, setUserData] = useState(null);
+  const currentLocation = useLocation();
+  const [location,setLocation] = useState(currentLocation);
   
   const [name, setName] = useState("");
 
@@ -130,10 +138,11 @@ const Header = () => {
 
   useEffect(() => {
     dispatch(getuser())
-  },[dispatch]);
+  },[]);
 
   useEffect(() => {
     setUserData(user.user)
+    dispatch(getProductsCartUser(user?.user?.userid)); 
   },[user]);
 
   useEffect(async() => {
@@ -151,6 +160,11 @@ const Header = () => {
     })()
   }, [name]);
 
+  useEffect(() => {
+    setLocation(currentLocation)
+    dispatch(getProductsCartUser(user?.user?.userid)); 
+  },[currentLocation])
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -162,12 +176,13 @@ const Header = () => {
     <Container>
       <Wrapper>
         <Left> 
-          <Logo src={Logoo} />
+         {/*  <Logo src={Logoo} /> */}
+         <TechC src={Tech} onClick={()=>navigate("/")} style={{ cursor: "pointer" }}/>
           <Link to="/products">Productos</Link>
         </Left>
         <Center>
-         <TechC src={Tech}/>
-         <SearchContainer>
+         {/* <TechC src={Tech}/> */}
+         {location.pathname=="/products"?<><SearchContainer>
             <form onSubmit={e => {
               e.preventDefault();
 
@@ -176,7 +191,7 @@ const Header = () => {
                 brand: '',
                 sort:''
               }, 0, name));
-            }}>
+            }} className={s.form}>
               <Input 
                 className={s.searchBar} 
                 value={name}
@@ -184,14 +199,16 @@ const Header = () => {
                 onChange={e =>{
                   setName(e.target.value);
                 }}
-                onFocus={() => setVisibility(s.visible)}
+                list="searchdata"
+                /* onFocus={() => setVisibility(s.visible)} */
                 // onBlur={() => setVisibility(s.hidden)}
               />
+              <Search style={{ color: "gray", fontSize: 25}} type="submit"></Search>
             </form>
-           <Search style={{ color: "gray", fontSize: 25}}></Search>
-          </SearchContainer>
+           {/* <Search style={{ color: "gray", fontSize: 25}}></Search> */}
+          </SearchContainer></>:null}
 
-          <div className={`${s.dataResult} ${visibility}`}>
+          {/* <div className={`${s.dataResult} ${visibility}`}>
             {names.code === null ? null : 
             names.code === 1 ? "No tenemos ese producto" : 
             names.names.map(name => 
@@ -211,11 +228,36 @@ const Header = () => {
                 }}
               >{name.name}</div>
             )}
-          </div>
+          </div> */}
+          <datalist id="searchdata">
+          {names.code === null ? null : 
+            names.code === 1 ? "No tenemos ese producto" : 
+            names.names.map(name => 
+              <option 
+                key={name.id} 
+                /* className={s.option} */
+                value={name.name}
+                onClick={() => {
+                  setName(name.name);
+
+                  dispatch(getProductsFront({
+                    category: '',
+                    brand: '',
+                    sort:''
+                  }, 0, name.name));
+
+                  setVisibility(s.hidden);
+                }}
+              >{name.name}</option>
+            )}
+            </datalist>
         </Center>
         <Right>
-          <Link to="/register"><MenuItem>REGISTER</MenuItem></Link>
-          <Link to="/login"><MenuItem>LOGIN</MenuItem></Link>
+          {!user.token?<><Link to="/register"><MenuItem>REGISTER</MenuItem></Link>
+          <Link to="/login"><MenuItem>LOGIN</MenuItem></Link></>:<>
+          <Link to="/"><MenuItem>HOME</MenuItem></Link></>}    
+          {user?.user?.type=="admin"?<Link to="/dashboard"><MenuItem>DASHBOARD</MenuItem></Link>:null}
+          
          
           {user.token&&user.user?<Tooltip title="Account settings">
             <IconButton onClick={handleClick} size="small" sx={{ ml: 2 }}>
@@ -257,12 +299,12 @@ const Header = () => {
             anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
           >
             <MenuItem>
-              <Avatar /> {userData?.name}
+              {/* <Avatar /> */} {`${userData?.name.toUpperCase()} ${userData?.lastname.toUpperCase()}`}
             </MenuItem>
             <MenuItem onClick={()=>navigate("/wishList")} >
               <ShoppingBagIcon /> My Favorites
             </MenuItem>
-            <MenuItem onClick={()=>navigate("/buyHistory")}>
+            <MenuItem onClick={()=>navigate("/profile/ShopHistory")}>
               <ShoppingBagIcon /> My Shops
             </MenuItem>
             <MenuItem onClick={()=>navigate('/profile')}>
