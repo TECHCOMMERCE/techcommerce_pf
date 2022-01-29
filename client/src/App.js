@@ -6,11 +6,16 @@ import Login from "./components/Login";
 import Register from "./components/User/Register";
 import Product from "./components/ProductDet/index";
 import Cards from "./components/Cards/Cards";
-import ListProducts from "./components/ListProducts/ListProducts"
+import ListProducts from "./components/ListProducts/ListProducts";
 import CreateProduct from "./components/CreateProduct/CreateProduct";
 import EditProduct from "./components/EditProduct/EditProduct";
 import Users from "./components/admin/Users";
 import Cart from "./components/Cart/Cart";
+import Header from "./components/Home/Header";
+import Footer from "./components/Home/Footer";
+import AdminPanel from "./components/AdminPanel/AdminPanel";
+// import ListCategories from "./components/ListCategories/ListCategories";
+import ListBrands from "./components/ListBrands/ListBrands";
 
 function App() {
   // Estado que determina si la cuenta logueada (o el invitado) es admin o no. Por defecto es false y cuando se logue, comprobará en un useEffect si es admin
@@ -24,13 +29,64 @@ function App() {
         {/*   <Route path="/Login" element={<Login />} /> */}
         <Route path="/Details/:id" element={<Product />} />
         <Route path="/products" element={<Cards />} />
-        <Route exact path="/products/list" element={<ListProducts />} />
-        <Route exact path="/product/create" element={<CreateProduct />} />
+        <Route path="/adminpanel" element={<AdminPanel />} />
+        <Route
+          path="/adminpanel/brands"
+          element={
+            <>
+              <Header />
+              <ListBrands />
+              <Footer />
+            </>
+          }
+        />
+
+        <Route
+          path="/adminpanel/categories"
+          element={
+            <>
+              <Header />
+              {/* <ListCategories /> */}
+              <Footer />
+            </>
+          }
+        />
+
+        <Route
+          path="/adminpanel/products"
+          element={
+            <>
+              <Header />
+              <ListProducts />
+              <Footer />
+            </>
+          }
+        />
+
         <Route
           exact
-          path="/product/edit/:productid"
-          element={<EditProduct />}
+          path="/adminpanel/products/create"
+          element={
+            <>
+              <Header />
+              <CreateProduct />
+              <Footer />
+            </>
+          }
         />
+
+        <Route
+          exact
+          path="/adminpanel/products/edit/:productid"
+          element={
+            <>
+              <Header />
+              <EditProduct />
+              <Footer />
+            </>
+          }
+        />
+        
         <Route
           path="/users"
           element={isAdmin ? <Users /> : <h1>No tenes acceso a esta página</h1>}

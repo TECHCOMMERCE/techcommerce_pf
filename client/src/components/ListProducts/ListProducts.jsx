@@ -3,8 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { putProduct } from "../../Store/actions/product";
 import { getProducts } from "../../Store/actions/products";
 import ListedProduct from "./ListedProduct";
-import { MdAddCircle } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { MdAddCircle, MdArrowBack } from "react-icons/md";
+import { Container, Box, IconButton } from "@mui/material";
+import ProductsSearhchBar from "./ProductsSearchBar";
+import ProductsSearchBar from "./ProductsSearchBar";
 
 const ListProducts = () => {
   const products = useSelector((state) => state.products.products);
@@ -35,33 +37,75 @@ const ListProducts = () => {
   }, [dispatch]);
 
   return (
-    <div>
-      <div>
-        {products?.length &&
-          products?.map((p) => (
-            <ListedProduct
-              key={p.productid}
-              product={p}
-              deleteFn={handleDelete}
-            />
-          ))}
-      </div>
-      <Link to="/product/create">
-        <div
+    <Container sx={{ m: 0, px: 20, my: 100, minWidth: "100vw" }}>
+      <Box
+        sx={{
+          m: 20,
+          p: 40,
+          pt: 20,
+        }}
+      >
+        <ProductsSearchBar />
+
+        <Box>
+          {products?.length &&
+            products?.map((p) => (
+              <ListedProduct
+                key={p.productid}
+                product={p}
+                deleteFn={handleDelete}
+              />
+            ))}
+        </Box>
+
+        <Box
           style={{
             position: "fixed",
             bottom: 20,
             right: 20,
-            background: "azure",
+            background: "ghostwhite",
             borderRadius: "50%",
             display: "flex",
-            border: "2px solid green",
           }}
         >
-          <MdAddCircle size="90" color="green" />
-        </div>
-      </Link>
-    </div>
+          <IconButton
+            color="success"
+            onClick={() =>
+              (window.location.href = "/adminpanel/products/create")
+            }
+          >
+            <MdAddCircle
+              size="90"
+              color="success"
+              // sx={{ backgroundColor: "ghostwhite" }}
+            />
+          </IconButton>
+        </Box>
+
+        <Box
+          style={{
+            position: "fixed",
+            bottom: 20,
+            left: 20,
+            background: "ghostwhite",
+            borderRadius: "50%",
+            display: "flex",
+          }}
+        >
+          <IconButton
+            color="success"
+            onClick={() =>
+              (window.location.href = "/adminpanel")
+            }
+          >
+            <MdArrowBack
+              size="90"
+              color="crimson"
+            />
+          </IconButton>
+        </Box>
+      </Box>
+    </Container>
   );
 };
 

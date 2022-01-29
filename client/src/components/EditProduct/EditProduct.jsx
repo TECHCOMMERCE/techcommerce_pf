@@ -1,272 +1,412 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { postProduct } from "../../Store/actions/product";
+import { getCategories } from "../../Store/actions/categories";
+import { getBrands } from "../../Store/actions/brands";
+import { postCloudinaryImage } from "../../Store/actions/images";
+import { handleInputs } from "../../helpers/CreateProduct/handleInputs";
+import { handleCategories } from "../../helpers/CreateProduct/handleCategories";
+import { uploadImage } from "../../helpers/CreateProduct/uploadImage";
+// import Attributes from "./Attributes";
+import { handleSubmit } from "../../helpers/CreateProduct/handleSubmit";
 import { useParams } from "react-router-dom";
 import {
   getProductById,
   putProduct,
   resetProductDetail,
 } from "../../Store/actions/product";
-import { getBrands } from "../../Store/actions/brands";
-import { getCategories } from "../../Store/actions/categories";
-import { RadioGroup, FormControlLabel, Radio, FormLabel } from "@mui/material";
+import {
+  Container,
+  Typography,
+  Box,
+  Button,
+  FormLabel,
+  TextField,
+  MenuItem,
+  List,
+  ListItem,
+  IconButton,
+} from "@mui/material";
+import {
+  MdSave,
+  MdArrowBack,
+  MdOutlineRemoveCircle,
+  MdAddCircle,
+} from "react-icons/md";
 
 const EditProduct = () => {
+  const dispatch = useDispatch();
+  const brands = useSelector((state) => state.brandsReducer);
+  const categories = useSelector((state) => state.categoriesReducer);
   const productDetail = useSelector(
     (state) => state.productReducer.productDetail
   );
-  const brands = useSelector((state) => state.brandsReducer);
-  const categories = useSelector((state) => state.categoriesReducer);
-  const dispatch = useDispatch();
   const params = useParams();
-  const [inputs, setInputs] = useState({
+  const [input, setInput] = useState({
     name: "",
     price: "",
     stock: "",
     sold_quantity: "",
     condition: "",
+    image: "",
     attributes: [],
     brand: "",
     categories: [],
-    image: "",
-    status: "",
+    status: true,
   });
 
-  const handleInputs = (e) => {
-    e.preventDefault();
-    setInputs({
-      ...inputs,
-      [e.target.name]:
-        e.target.value === "Select here..."
-          ? [...inputs]
-          : e.target.name === "categories"
-          ? !inputs.categories.includes(e.target.value)
-            ? [...inputs.categories, e.target.value]
-            : [...inputs.categories]
-          : e.target.value,
+  useEffect(() => {
+    setInput({
+      name: "",
+      price: "",
+      stock: "",
+      sold_quantity: "",
+      condition: productDetail.condition ? productDetail.condition : "",
+      image: "",
+      attributes: [],
+      brand: "",
+      categories: [],
+      status: true,
     });
-  };
-
-  const handleTags = (e) => {
-    setInputs({
-      ...inputs,
-      categories: inputs.categories.filter((c) => c !== e.target.name),
-    });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setInputs({
-      productid: productDetail.productid,
-      name: document.querySelector("#name").value,
-      price: document.querySelector("#price").value,
-      stock: document.querySelector("#stock").value,
-      sold_quantity: document.querySelector("#sold").value,
-      condition:
-        document.querySelector("#condition").value || productDetail.condition,
-      attributes: productDetail.attributes,
-      brand:
-        document.querySelector("#brand").value === "Select here..."
-          ? productDetail.brand.brandid
-          : brands.find((b) => {
-              return (
-                b.name === document.querySelector("#brand").value && b.brandid
-              );
-            }),
-      categories: document.querySelector("#image").value
-        ? document.querySelector("#image").value
-        : productDetail?.categories &&
-          productDetail?.categories?.map((c) => c.name),
-      image: document.querySelector("#image").value,
-      status: productDetail.status,
-    });
-    console.log(document.querySelector("#condition"));
-    console.log(inputs);
-    await dispatch(putProduct(inputs));
-    alert("Product edited succesfully");
-  };
+  }, [productDetail]);
 
   useEffect(() => {
-    setInputs({
-      productid: productDetail.productid,
-      name: document.querySelector("#name").value,
-      price: document.querySelector("#price").value,
-      stock: document.querySelector("#stock").value,
-      sold_quantity: document.querySelector("#sold").value,
-      condition:
-        document.querySelector("#condition").value || productDetail.condition,
-      attributes: productDetail.attributes,
-      brand:
-        document.querySelector("#brand").value === "Select here..."
-          ? productDetail.brand?.brandid
-          : brands.find((b) => {
-              return (
-                b.name === document.querySelector("#brand").value && b.brandid
-              );
-            }),
-      categories: productDetail.categories?.map((c) => c.name),
-      image: document.querySelector("#image").value,
-      status: productDetail?.status,
-    });
-  }, [brands, productDetail.attributes, productDetail.brand?.brandid, productDetail.categories, productDetail.condition, productDetail.productid, productDetail.status]);
-
-  useEffect(() => {
-    dispatch(getBrands());
-    dispatch(getCategories());
     dispatch(getProductById(params.productid));
+    dispatch(getCategories());
+    dispatch(getBrands());
     return () => {
       dispatch(resetProductDetail());
     };
   }, [dispatch, params.productid]);
 
   return (
-    <div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "100vh",
+    <Container
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        m: 0,
+        px: 20,
+        my: 100,
+        minWidth: "100vw",
+      }}
+    >
+      {/* Contiene todo el form y el título */}
+      <Box
+        sx={{
+          m: 20,
+          p: 40,
+          pt: 20,
+          width: "80%",
+          backgroundColor: "dodgerblue",
+          borderRadius: "5px",
+          height: "fit-content",
         }}
       >
+        <Typography
+          sx={{ fontSize: "1.5rem", mb: 20 }}
+          color="secondary"
+          align="left"
+        >
+          Edit a Product
+        </Typography>
+
+        {/* formulario */}
         <form
           id="form"
           style={{
             display: "flex",
             flexDirection: "column",
-            justifyContent: "space-evenly",
-            alignItems: "flex-start",
-            height: 500,
+            justifyContent: "center",
+            alignItems: "center",
+            height: "fit-content",
+            backgroundColor: "ghostwhite",
+            borderRadius: "5px",
           }}
-          onSubmit={handleSubmit}
+          onSubmit={(e) =>
+            handleSubmit(
+              e,
+              input,
+              setInput,
+              dispatch,
+              postProduct,
+              uploadImage,
+              postCloudinaryImage
+            )
+          }
         >
-          <label htmlFor="name">Name</label>
-          <input
-            name="name"
-            id="name"
-            type="text"
-            // value={inputs?.name}
-            onChange={handleInputs}
-            required
-            maxLength="255"
-            defaultValue={productDetail.name}
-            autoFocus
-          />
+          {/* Contiene todo el form */}
+          <Box
+            sx={{
+              p: 40,
+              mb: 20,
+              display: "flex",
+              justifyContent: "space-between",
+              flexWrap: "wrap",
+              width: "100%",
+            }}
+          >
+            {/* Todos los inputs del lado izquierdo*/}
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                width: "50%",
+                minHeight: "fit-content",
+                height: "500px",
+              }}
+            >
+              <TextField
+                label="Name"
+                variant="filled"
+                name="name"
+                placeholder="Motorola G200"
+                id="name"
+                type="text"
+                value={input.name || (productDetail.name && productDetail.name)}
+                defaultValue={productDetail.name && productDetail.name}
+                onChange={(e) => handleInputs(e, input, setInput)}
+                required
+                autoFocus
+                maxLength="255"
+                helperText=""
+              />
 
-          <label htmlFor="price">Price</label>
-          <input
-            name="price"
-            id="price"
-            type="number"
-            // value={inputs?.price}
-            defaultValue={productDetail.price}
-            onChange={handleInputs}
-            required
-            min="0"
-            max="1000000"
-          />
+              <TextField
+                label="Price"
+                variant="filled"
+                name="price"
+                id="price"
+                type="number"
+                placeholder="200"
+                value={
+                  input.price || (productDetail.price && productDetail.price)
+                }
+                helperText=""
+                defaultValue={productDetail.price && productDetail.price}
+                onChange={(e) => handleInputs(e, input, setInput)}
+                min="0"
+                max="1000000"
+                required
+              />
 
-          <label htmlFor="stock">Stock</label>
-          <input
-            name="stock"
-            id="stock"
-            type="number"
-            // value={ inputs.stock || productDetail.stock}
-            defaultValue={productDetail.stock}
-            onChange={handleInputs}
-            required
-            min="0"
-            max="1000000"
-          />
+              <TextField
+                label="Stock"
+                variant="filled"
+                name="stock"
+                id="stock"
+                placeholder="150"
+                type="number"
+                value={
+                  input.stock || (productDetail.stock && productDetail.stock)
+                }
+                helperText=""
+                defaultValue={productDetail.stock && productDetail.stock}
+                onChange={(e) => handleInputs(e, input, setInput)}
+                required
+                min="0"
+              />
 
-          <label htmlFor="sold">Sold Quantity</label>
-          <input
-            name="sold_quantity"
-            id="sold"
-            type="number"
-            // value={productDetail.sold_quantity}
-            defaultValue={productDetail.sold_quantity}
-            onChange={handleInputs}
-            required
-            min="0"
-            max="1000000"
-          />
+              <TextField
+                label="Sold Quantity"
+                variant="filled"
+                name="sold_quantity"
+                id="sold"
+                placeholder="15"
+                type="number"
+                value={
+                  input.sold_quantity ||
+                  (productDetail.sold_quantity && productDetail.sold_quantity)
+                }
+                defaultValue={
+                  productDetail.sold_quantity && productDetail.sold_quantity
+                }
+                onChange={(e) => handleInputs(e, input, setInput)}
+                required
+                min="0"
+              />
 
-          <label htmlFor="condition">Condition</label>
-          <select name="condition" id="condition" defaultValue={productDetail.condition} onChange={handleInputs}>
-            <option value="new">New</option>
-            <option value="used">Used</option>
-          </select>
-          <h6 style={{fontWeight: "bold", color: "cadetblue"}}>{`Current condition: ${productDetail.condition}`}</h6>
+              <TextField
+                label="Condition"
+                variant="filled"
+                select
+                required
+                name="condition"
+                id="condition"
+                value={input.condition}
+                // defaultValue={
+                //   productDetail.condition && productDetail.condition
+                // }
+                onChange={(e) => handleInputs(e, input, setInput)}
+              >
+                <MenuItem sx={{ display: "none" }}></MenuItem>
+                <MenuItem value="new">New</MenuItem>
+                <MenuItem value="used">Used</MenuItem>
+              </TextField>
 
-          <label htmlFor="image">Image</label>
-          <input
-            name="image"
-            id="image"
-            type="text"
-            // value={productDetail.image}
-            defaultValue={productDetail.image}
-            onChange={handleInputs}
-            required
-            maxLength="255"
-          />
+              <TextField
+                select
+                required
+                label="Brand"
+                variant="filled"
+                name="brand"
+                value={
+                  input.brand ||
+                  (productDetail.brand && productDetail.brand.name)
+                }
+                defaultValue={productDetail.brand && productDetail.brand}
+                id="brand"
+                onChange={(e) => handleInputs(e, input, setInput)}
+              >
+                <MenuItem sx={{ display: "none" }}></MenuItem>
+                {brands?.length &&
+                  brands?.map((b) => (
+                    <MenuItem key={b.brandid} value={b.brandid}>
+                      {b.name}
+                    </MenuItem>
+                  ))}
+              </TextField>
 
-          <label htmlFor="brand">Brand</label>
-          <select name="brand" id="brand" label="Brand" onChange={handleInputs}>
-            <option>Select here...</option>
-            {brands?.length &&
-              brands?.map((b, i) => (
-                <option key={i} value={b.brandid}>
-                  {b.name}
-                </option>
-              ))}
-          </select>
-          {productDetail.hasOwnProperty("brand") && (
-            <h6 style={{fontWeight: "bold", color: "cadetblue"}}>{`Current Brand: ${productDetail.brand?.name}`}</h6>
-          )}
+              <TextField
+                label="Categories"
+                variant="filled"
+                select
+                required
+                name="categories"
+                value={input.categories}
+                defaultValue={
+                  productDetail.categories && productDetail.categories
+                }
+                id="categories"
+                onChange={(e) => handleInputs(e, input, setInput)}
+                sx={{ width: "100%" }}
+              >
+                <MenuItem sx={{ display: "none" }}></MenuItem>
+                {categories?.length &&
+                  categories?.map((c) => (
+                    <MenuItem key={c.categoryid} value={c.name}>
+                      {c.name}
+                    </MenuItem>
+                  ))}
+              </TextField>
 
-          <label id="categories">Categories</label>
-          <select name="categories" id="categories" onChange={handleInputs}>
-            <option>Select here...</option>
-            {categories?.length &&
-              categories?.map((c, i) => (
-                <option key={i} value={c.name}>
-                  {c.name}
-                </option>
-              ))}
-          </select>
-
-          <h6 style={{fontWeight: "bold", color: "cadetblue"}}>Current Categories:</h6>
-          <ul style={{ fontSize: 11, listStyle: "none" }}>
-            {inputs.categories?.length
-              ? inputs.categories?.map((c, i) => <li style={{fontWeight: "bold", color: "cadetblue"}} key={i} onClick={handleTags}>{c.name }</li>)
-              : productDetail.categories?.length &&
-                productDetail.categories?.map((c, i) => (
-                  <li style={{fontWeight: "bold", color: "cadetblue"}} key={i} onClick={handleTags}>
-                    {c.name}
-                  </li>
+              <List>
+                {input.categories?.map((c, i) => (
+                  <ListItem
+                    sx={{ fontSize: ".8rem" }}
+                    key={i}
+                    name={c}
+                    secondaryAction={
+                      <IconButton
+                        name={c}
+                        onClick={(e) => handleCategories(e, input, setInput)}
+                      >
+                        <MdOutlineRemoveCircle style={{ color: "crimson" }} />
+                      </IconButton>
+                    }
+                  >
+                    {c}
+                  </ListItem>
                 ))}
-          </ul>
+              </List>
+            </Box>
 
-          <div>
-            <input value="EDIT" type="submit" />
-            <input
-              style={{ marginLeft: 20 }}
-              value="CANCEL"
-              type="button"
-              onClick={() => (window.location.href = "/products/list")}
-            />
-          </div>
+            {/* Contiene la imagen, carga de imagen y atributos */}
+            <Box
+              sx={{ width: "46%", minHeight: "fit-content", height: "500px" }}
+            >
+              {/* contiene la imagen y el botón para cargar una imagen */}
+              <FormLabel htmlFor="image">Image</FormLabel>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "flex-start",
+                }}
+              >
+                <img
+                  style={{ borderRadius: "5px" }}
+                  id="image-selected"
+                  src={
+                    input.image ||
+                    "https://www.appclonescript.com/wp-content/uploads/2020/08/gadget.jpg"
+                  }
+                  alt="image-product"
+                  height="115"
+                />
+                <Button
+                  endIcon={<MdAddCircle />}
+                  variant="contained"
+                  component="label"
+                  color="success"
+                  sx={{ my: 10 }}
+                >
+                  <input
+                    type="file"
+                    id="image"
+                    name="image"
+                    accept=".jpg, .jpeg, .png"
+                    onChange={(e) => {
+                      setInput({ ...input, file: e.target.files[0] });
+                      const img = document.querySelector("#image-selected");
+                      img.src = URL.createObjectURL(e.target.files[0]);
+                    }}
+                    hidden
+                  />
+                  Load an Image
+                </Button>
+              </Box>
+
+              {/* Carga la Imagen */}
+              <Box>
+                {input.file?.size && (
+                  <Typography
+                    sx={{ fontSize: ".8rem", my: 10 }}
+                  >{`Picture size: ${(input.file.size / 1000000)
+                    .toString()
+                    .slice(0, 4)} MB`}</Typography>
+                )}
+              </Box>
+
+              {/* Componente de Atributos */}
+              {/* <Attributes input={input} setInput={setInput} /> */}
+            </Box>
+          </Box>
+          {/* Contiene todo el formulario */}
+          {/* Botones */}
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "flex-start",
+              mb: 40,
+              px: 40,
+              width: "100%",
+            }}
+          >
+            <Button
+              variant="contained"
+              size="medium"
+              type="submit"
+              endIcon={<MdSave />}
+              sx={{ mr: 40 }}
+            >
+              SAVE
+            </Button>
+            <Button
+              variant="contained"
+              size="medium"
+              color="error"
+              endIcon={<MdArrowBack />}
+              onClick={() => (window.location.href = "/adminpanel/products/")}
+            >
+              BACK
+            </Button>
+          </Box>
         </form>
-        <div style={{ marginLeft: 40 }}>
-          {/* <img src={productDetail.image} alt="image-product" height="500" /> */}
-          <img
-            src={inputs.image || productDetail.image}
-            alt="product"
-            height="500"
-          />
-        </div>
-      </div>
-    </div>
+      </Box>
+    </Container>
   );
 };
 

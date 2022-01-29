@@ -3,7 +3,7 @@ import { MdDelete, MdModeEdit } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { Box } from "@mui/material";
 
-const ListedProduct = ({ product, deleteFn }) => {
+const ListedCategory = ({ category, deleteFn }) => {
   return (
     <Box>
       <Box
@@ -18,15 +18,15 @@ const ListedProduct = ({ product, deleteFn }) => {
         }}
       >
         <Box sx={{ display: "flex", alignItems: "center", height: 60 }}>
-          <Box style={{ width: "fit-content", }}>
+          {/* <Box style={{ width: "fit-content", }}>
             <Link to={`/adminpanel/products/edit/${product.productid}`}>
               <img style={{borderRadius: "5px"}} src={product.image} height="60" alt={product.name} />
             </Link>
-          </Box>
+          </Box> */}
 
           <Box sx={{ mx: 20 }}>
             <Link to={`/adminpanel/products/edit/${product.productid}`} style={{color: "ghostwhite"}}>
-              <h3>{product.name}</h3>
+              <h3>{category.name}</h3>
             </Link>
           </Box>
         </Box>
@@ -48,7 +48,7 @@ const ListedProduct = ({ product, deleteFn }) => {
               }}
             >
               <MdDelete
-                name={product.name}
+                name={category.name}
                 color="crimson"
                 size="40"
                 onClick={() => deleteFn(product)}
@@ -61,4 +61,4 @@ const ListedProduct = ({ product, deleteFn }) => {
   );
 };
 
-export default ListedProduct;
+export default ListedCategory;
