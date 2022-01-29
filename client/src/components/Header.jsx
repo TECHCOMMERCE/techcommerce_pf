@@ -20,13 +20,19 @@ import Menu from '@mui/material/Menu';
 import {Link} from 'react-router-dom'
 import {useNavigate} from 'react-router-dom'
 import {getuser} from '../Store/actions/users.js'
+import {getProductsCartUser} from '../Store/actions/carts.js'
 import { useLocation } from 'react-router-dom'
 
+import s from "../assets/styles/NavBar.module.css";
+import { getProductsFront } from "../Store/actions/products";
+import axios from "axios";
 
 
 const Container = styled.div`
  background-color: #fcf5f5;
  position: fixed;
+ top:0;
+ left:0;
  height: 60px;
  width: 100%;
  z-index:100;
@@ -39,7 +45,8 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  ${mobile({ padding: "10px 0px" })}
+  padding: 0 20px;
+  ${mobile({ padding: "5px 0px" })}
   background-color: #fcf5f5;
 `;
 const Left = styled.div`
@@ -95,7 +102,7 @@ const SearchContainer = styled.div`
   border: 0.5px solid lightgray;
   display: flex;
   align-items: center;
-  margin-left: 25px;
+  width: 90%;
   padding: 5px;
 
   ${mobile({ marginLeft: "10px" })}
@@ -120,18 +127,42 @@ const Header = () => {
   const [userData, setUserData] = useState(null);
   const currentLocation = useLocation();
   const [location,setLocation] = useState(currentLocation);
+  
+  const [name, setName] = useState("");
+
+  const [names, setNames] = useState({
+    code: null,
+    results: []
+  });
+  const [visibility, setVisibility] = useState(s.hidden);
+
   useEffect(() => {
     dispatch(getuser())
-  },[dispatch])
-
+  },[]);
 
   useEffect(() => {
     setUserData(user.user)
-  },[user])
+    dispatch(getProductsCartUser(user?.user?.userid)); 
+  },[user]);
+
+  useEffect(async() => {
+    (async() => {
+      if(name){  
+        const res = await axios.get("http://localhost:3001/products/names?name=" + name);
+      
+        setNames(res.data);
+      }else{
+        setNames({
+          code: null,
+          results: []
+        })
+      }
+    })()
+  }, [name]);
 
   useEffect(() => {
-    console.log('currentLocation', currentLocation);
     setLocation(currentLocation)
+    dispatch(getProductsCartUser(user?.user?.userid)); 
   },[currentLocation])
 
   const handleClick = (event) => {
@@ -140,27 +171,93 @@ const Header = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
-  
   
   return (
     <Container>
       <Wrapper>
         <Left> 
          {/*  <Logo src={Logoo} /> */}
-         <TechC src={Tech}/>
+         <TechC src={Tech} onClick={()=>navigate("/")} style={{ cursor: "pointer" }}/>
           <Link to="/products">Productos</Link>
         </Left>
         <Center>
          {/* <TechC src={Tech}/> */}
          {location.pathname=="/products"?<><SearchContainer>
-            <Input placeholder="Search"></Input>
-            <Search style={{ color: "gray", fontSize: 25}}></Search>
+            <form onSubmit={e => {
+              e.preventDefault();
+
+              dispatch(getProductsFront({
+                category: '',
+                brand: '',
+                sort:''
+              }, 0, name));
+            }} className={s.form}>
+              <Input 
+                className={s.searchBar} 
+                value={name}
+                placeholder="Search"
+                onChange={e =>{
+                  setName(e.target.value);
+                }}
+                list="searchdata"
+                /* onFocus={() => setVisibility(s.visible)} */
+                // onBlur={() => setVisibility(s.hidden)}
+              />
+              <Search style={{ color: "gray", fontSize: 25}} type="submit"></Search>
+            </form>
+           {/* <Search style={{ color: "gray", fontSize: 25}}></Search> */}
           </SearchContainer></>:null}
+
+          {/* <div className={`${s.dataResult} ${visibility}`}>
+            {names.code === null ? null : 
+            names.code === 1 ? "No tenemos ese producto" : 
+            names.names.map(name => 
+              <div 
+                key={name.id} 
+                className={s.option}
+                onClick={() => {
+                  setName(name.name);
+
+                  dispatch(getProductsFront({
+                    category: '',
+                    brand: '',
+                    sort:''
+                  }, 0, name.name));
+
+                  setVisibility(s.hidden);
+                }}
+              >{name.name}</div>
+            )}
+          </div> */}
+          <datalist id="searchdata">
+          {names.code === null ? null : 
+            names.code === 1 ? "No tenemos ese producto" : 
+            names.names.map(name => 
+              <option 
+                key={name.id} 
+                /* className={s.option} */
+                value={name.name}
+                onClick={() => {
+                  setName(name.name);
+
+                  dispatch(getProductsFront({
+                    category: '',
+                    brand: '',
+                    sort:''
+                  }, 0, name.name));
+
+                  setVisibility(s.hidden);
+                }}
+              >{name.name}</option>
+            )}
+            </datalist>
         </Center>
         <Right>
-          <Link to="/register"><MenuItem>REGISTER</MenuItem></Link>
-          <Link to="/login"><MenuItem>LOGIN</MenuItem></Link>
+          {!user.token?<><Link to="/register"><MenuItem>REGISTER</MenuItem></Link>
+          <Link to="/login"><MenuItem>LOGIN</MenuItem></Link></>:<>
+          <Link to="/"><MenuItem>HOME</MenuItem></Link></>}    
+          {user?.user?.type=="admin"?<Link to="/dashboard"><MenuItem>DASHBOARD</MenuItem></Link>:null}
+          
          
           {user.token&&user.user?<Tooltip title="Account settings">
             <IconButton onClick={handleClick} size="small" sx={{ ml: 2 }}>
@@ -202,12 +299,12 @@ const Header = () => {
             anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
           >
             <MenuItem>
-              <Avatar /> {userData?.name}
+              {/* <Avatar /> */} {`${userData?.name.toUpperCase()} ${userData?.lastname.toUpperCase()}`}
             </MenuItem>
             <MenuItem onClick={()=>navigate("/wishList")} >
               <ShoppingBagIcon /> My Favorites
             </MenuItem>
-            <MenuItem onClick={()=>navigate("/buyHistory")}>
+            <MenuItem onClick={()=>navigate("/profile/ShopHistory")}>
               <ShoppingBagIcon /> My Shops
             </MenuItem>
             <MenuItem onClick={()=>navigate('/profile')}>

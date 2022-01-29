@@ -4,6 +4,8 @@ const {Product, Order, Detail, Cart} = require("../../db")
 require('dotenv').config();
 const {STRIPE_CONN} = process.env;
 const stripe = new Stripe(STRIPE_CONN);
+const {mailOrder} = require('../SendMails/mailOrder')
+const {SendEmails} = require('../SendMails/main')
 const PostCheckout = async (req,res,next)=>{
   try{
     //console.log('req.body', req.body);
@@ -61,6 +63,8 @@ const PostCheckout = async (req,res,next)=>{
         }}
       )
     }
+    let html = mailOrder(productsInfo,orderuser.orderid,amount)
+    SendEmails(datapaymant.email, 'Confirmación de compra', html)
     
     return res.status(200).json({payment, redirect});
   }catch(err){

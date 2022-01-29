@@ -81,8 +81,9 @@ function gettotal (array) {
       <div className={style.buttonContainer}>
       <Button variant='contained' style={{backgroundColor: '#2EB8B0'}} className={style.button} 
       onClick={()=>{
-        navigate('/checkout')
-      }}> Pagar </Button>
+        if(idUser)navigate('/checkout')
+      }} disabled={!idUser?true:false}> Pagar </Button>
+      {!idUser?<span style={{color: '#EB2020', display: 'block',textAlign: 'center'}}>Debe inicia Sesión</span>:null}
       </div>
       <div className={style.buttonContainer}>
       <Button variant='contained' style={{backgroundColor: '#EB2020'}} className={style.button} 

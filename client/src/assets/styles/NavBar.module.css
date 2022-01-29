@@ -1,3 +1,10 @@
+.form{
+    width: 90%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .searchBar:focus{
     outline: none;
 }
