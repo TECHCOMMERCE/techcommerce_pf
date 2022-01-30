@@ -8,6 +8,7 @@ import { categoryReducer } from "./reducer/category";
 import { usersReducer } from "./reducer/users";
 import { cartsReducer } from "./reducer/carts";
 import {brandReducer} from "./reducer/brand";
+import { TicketReducer} from './reducer/tickets';
 
 import thunk from "redux-thunk";
 
@@ -21,6 +22,7 @@ const store = createStore(
     productReducer,
     users: usersReducer,
     cart: cartsReducer,
+    tickets: TicketReducer,
   }),
   composeWithDevTools(applyMiddleware(thunk))
 );

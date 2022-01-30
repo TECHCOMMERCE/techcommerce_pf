@@ -10,6 +10,7 @@ const cart = require("./cart");
 const user = require("./user");
 const checkout = require("./checkout");
 
+
 //const user = require("../controllers/User/user");
 
 //importing the routes
@@ -30,6 +31,7 @@ router.use("/user", user);
 //router.use('/', productPostingRoute)
 router.use('/cart', cart)
 router.use('/checkout', checkout)
+
 
 //router.use('/user', user)
 

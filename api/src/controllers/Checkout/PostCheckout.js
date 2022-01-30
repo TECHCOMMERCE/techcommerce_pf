@@ -1,6 +1,6 @@
 
 const Stripe = require("stripe");
-const {Product, Order, Detail, Cart} = require("../../db")
+const {Product, Order, Detail, Cart, User} = require("../../db")
 require('dotenv').config();
 const {STRIPE_CONN} = process.env;
 const stripe = new Stripe(STRIPE_CONN);
@@ -74,4 +74,61 @@ const PostCheckout = async (req,res,next)=>{
   }
 };
 
-module.exports = {PostCheckout};
+
+const getUserTickets = async(req, res, next) =>{
+  const {userid} = req.params;
+  const {status} = req.query
+  console.log('status', status  )
+  try {
+    if(status !== '') {
+    let tickets = await Order.findAll({
+      where :  {status: status},
+      include : [
+        {model : Product},
+        {model: User,
+        where: {userid : userid}
+        }
+      ]
+    });
+    console.log('see', tickets)
+    return res.json(tickets)
+  }else {
+    let tickets = await Order.findAll({
+      include : [
+        {model : Product},
+        {model: User,
+        where: {userid : userid}
+        }
+      ]
+    });
+    console.log('see', tickets)
+    return res.json(tickets)
+  }
+
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+
+const getOneTicket =async(req,res,next) => {
+  const {ticketid} =req.query;
+  try {
+    let ticket = await Order.findOne({
+      where : { orderid: ticketid },
+      include: [
+        {
+          model: Product
+        }
+      ]
+    })
+    res.json(ticket)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+
+
+
+module.exports = {PostCheckout, getUserTickets, getOneTicket};

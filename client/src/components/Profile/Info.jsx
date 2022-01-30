@@ -6,16 +6,17 @@ import Modal from 'react-bootstrap/Modal';
 import { Button } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import { editUserFront } from "../../Store/actions/users.js";
+import axios from 'axios';
 
 
  const Info = () => {
+
   const [display, setDisplay] = useState('data')
   const local= JSON.parse(localStorage.getItem('user'))
   const dispatch= useDispatch();
   const [error, setError] = useState('')
   const {user} = useSelector(state => state.users);
-  const [data, setData] =useState({
-  })
+  const [data, setData] =useState({})
   console.log(data)
 
   function validateString(e) {
@@ -76,6 +77,20 @@ function validateNumber(e) {
    await dispatch(editUserFront(data));
    //window.location.href = '/login';
    dispatch(getOneUser(local.user.userid))
+  }
+
+  function uploadImage(files) {
+    
+    const formData = new FormData();
+    formData.append('file', files);
+    formData.append('upload_preset','xpk5dhcq')
+    axios.post('https://api.cloudinary.com/v1_1/dntpjirzj/image/upload', formData)
+    .then(response => {
+      setData({
+        ...data,
+        photo: response.data.url
+      })
+    })
   }
   
 useEffect(async() => {
@@ -162,6 +177,11 @@ useEffect(async() => {
       <label>Codigo Postal</label>
       <input className={style.input} name='postalcode' type='text' onChange={validateNumber} defaultValue={user.postalcode? user.postalcode : ''}/>
       {error==='postalcode' ? <span style={{color: 'red'}}>Escriba un dato válido</span> : null}
+      </div>
+      <div className={style.inputContainer}>
+      <label style={{marginBottom: '20px'}}>Foto de perfil</label>
+      <input className={style.inputPhoto} type='file'  onChange={(event)=>uploadImage(event.target.files[0])}/>
+      
       </div>
       <div style={{width: '400px', marginLeft: '20%'}}>
       <Button variant='contained' onClick={onSubmit}  style={{backgroundColor: '#2EB8B0', marginRight: '10%'}} type='submit' disabled={error.length > 0}>Actualizar</Button>

@@ -1,60 +1,76 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import style from '../../styles/Profile/tickets.module.css';
 import {Link} from 'react-router-dom';
+import TicketDetail from './TicketDetail';
+import { getUserTickets } from '../../Store/actions/tickets';
+import { Button } from '@mui/material';
 
  const Tickets = () => {
+  const dispatch= useDispatch();
+  const [status, setStatus] = useState('')
+  console.log('status', status)
+  const [display, setDisplay] = useState({
+    name: '',
+    ticketid: ''
+  })
+  const {tickets} = useSelector(state => state.tickets);
+  const user = JSON.parse(localStorage.getItem('user'))
+  
+function onClick(id){
+  setDisplay({
+    name: 'detail',
+    ticketid: id
+  })
+}
 
-  let tickets=[{
-    orderid: '112222333',
-    order: [{
-    productid: "70b3eddd-61e0-42ab-91cf-95481cf30383",
-    name: "Moto E6i 32 Gb Gris Metálico 2 Gb Ram",
-    price: 19999,
-    image: "http://http2.mlstatic.com/D_618420-MLA45656016205_042021-I.jpg",
-    qty: 2
-    }, {
-    productid: "154a2cda-7a52-4e28-8896-306fb6117f57",
-    name: "LG K62 128 Gb Sky Blue 4 Gb Ram",
-    price: 35999,
-    image: "http://http2.mlstatic.com/D_973809-MLA48041270287_102021-I.jpg",
-    qty: 1
-    }],
-    address:'sadi carnot 180',
-    totalPrice: 161466,
-    status: 'Processing',
-    confirmationDate: '18/02/2022'
+function onSelect(e){
+    setStatus(e.target.value)
+    dispatch(getUserTickets( user.user.userid, status))
+}
 
-  }, 
-  {
-    orderid: '4444444',
-    order: [{
-    productid: "154a2cda-7a52-4e28-8896-306fb6117f57",
-    name: "LG K62 128 Gb Sky Blue 4 Gb Ram",
-    price: 35999,
-    image: "http://http2.mlstatic.com/D_973809-MLA48041270287_102021-I.jpg",
-    qty: 1
-    }],
-    address:'sadi carnot 180',
-    totalPrice: 35999,
-    status: 'Processing',
-    confirmationDate: '18/02/2022'
-
-  }    
-]
+useEffect(async() => {
+  //setStatus('')
+ await  dispatch(getUserTickets( user.user.userid, status))
+ setDisplay({
+  name: '',
+  ticketid: ''
+ })
+}, [status]);
 
 
   return (
+    <>
+    {
+
+    display['name'] === 'detail' ?
+      <TicketDetail id={display['ticketid']} />
+      :
+      <>
+      
     <div className={style.container}>
+      
       <h1 style={{color: '#2EB8B0', borderBottom: '2px solid #2EB8B0', paddingBottom: '2%', width: '50%', textAlign: 'center'}}>Mis Compras</h1>
+      <select className={style.select} onChange={onSelect} >
+              <option value='' >Todos</option>
+              <option value='Created' >Created</option>
+              <option value='Processing' >Processing</option>
+              <option value='cancelled' >cancelled</option>
+              <option value='Completed' >Completed</option>
+              <option value='Send' >Send</option>
+              
+             
+            </select>
     	<table className={style.table}>
 										<thead>
 											<tr >
-												 <th>ID</th>
-												 <th>PRODUCTOS</th>
+												 
+												 
                          <th>DIRECCIÓN </th>
                          <th>ESTADO</th>
                          <th>TOTAL</th>
                          <th>ENTREGA</th>
+                         <th>DETALLES</th>
 											</tr>
 										</thead>
 									 	<tbody >
@@ -62,16 +78,13 @@ import {Link} from 'react-router-dom';
                         tickets.map( x => {
                           return(
                             <tr>
-                              <td>{x.orderid}</td>
-                              <td className={style.names}>{x.order.map(z=>{
-                                return(
-                               <a href={`/Details/${z.productid}`}> <p className={style.pname}>-{z.name}  <b>x </b>  {z.qty }</p> </a>
-                                )
-                              })}</td>
+                              
+                             
                               <td>{x.address}</td>
                               <td>{x.status}</td>
                               <td>$ {x.totalPrice}</td>
-                              <td>{x.confirmationDate}</td>
+                              <td>{x.createdAt}</td>
+                              <td><Button variant='contained' onClick={()=>onClick(x.orderid)} >Detalles</Button></td>
 
                             </tr>
                           )
@@ -80,6 +93,9 @@ import {Link} from 'react-router-dom';
 											</tbody> 
 										</table>
       </div>
+      </>
+      }
+      </>
       );
 };
 
