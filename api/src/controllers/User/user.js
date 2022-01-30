@@ -60,36 +60,42 @@ router.post("/", async(req, res) => {
   }
 });
 
+// PUT del perfil
 router.put("/", async(req, res) => {
   try{
-   console.log('entro aca', req.body)
+    const {userid, password, userData} = req.body;
+    
     const user = await User.findOne({where: {
-      userid: req.body.userid
+      userid,
+      password
     }}); 
-    console.log('user', user)
-    await user.update({...req.body, password: user.dataValues.password})
+    
 
+    const data = {
+      ...userData
+    };
 
-    return res.status(200).send({code: 0, message: "Usuario creado Con éxito"});
+    data["password"] = userData.password || user.password;
+
+    await user.update(data);
+
+    return res.status(200).send({code: 0, message: "Usuario actualizado Con éxito"});
   }catch(e){
     return res.status(200).send({code: 1, message: "Revise los campos"});
   }
 });
 
-
-
+// PUT para que el admin edite y para el registro
 router.put("/:userid", async(req, res) => {
-  console.log('entro aca 2', req.body)
+  console.log("body del segundo put: ", req.body);
   try{
     const user = await User.findOne({where: {
-      userid: req.params.userid
+      userid: req.params.userid,
     }});
-    console.log('params', user)
 
     user.update({...req.body})
 
-
-    return res.status(200).send({code: 0, message: "Usuario creado Con éxito"});
+    return res.status(200).send({code: 0, message: "Usuario actualizado Con éxito"});
   }catch(e){
     return res.status(200).send({code: 1, message: "Revise los campos"});
   }

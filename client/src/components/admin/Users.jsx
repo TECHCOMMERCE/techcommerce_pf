@@ -43,7 +43,7 @@ const Users = () => {
                         await axios.post("http://localhost:3001/user", data);
                     }else{
                         console.log("voy a editar")
-                        await axios.put("http://localhost:3001/user", data);
+                        await axios.put("http://localhost:3001/user/" + data.userid, data);
                         
                         setMode("add")
                     }
@@ -265,7 +265,6 @@ const Users = () => {
 
                                     <tbody>
                                         {users.map((user, i) => {
-
                                             return(<tr key={user.userid} className={`${s.row} ${i%2 != 0 ? s.row1 : null}`}>
                                                 <td className={s.col}>{user.type}</td>
                                                 <td>{user.name}</td>

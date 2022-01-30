@@ -15,9 +15,10 @@ import axios from 'axios';
   const local= JSON.parse(localStorage.getItem('user'))
   const dispatch= useDispatch();
   const [error, setError] = useState('')
-  const {user} = useSelector(state => state.users);
+  const {user} = useSelector(state => state.users);r
   const [data, setData] =useState({})
   console.log(data)
+
 
   function validateString(e) {
     if(/^[a-z\s]{0,255}$/i.test(e.target.value)){
@@ -60,7 +61,9 @@ function validateNumber(e) {
     photo: user.photo? user.photo : '',
     country: user.country? user.country : '',
     city: user.city? user.city : '' ,
-    postalcode: user.postalcode? user.postalcode : ''
+    postalcode: user.postalcode? user.postalcode : '',
+    oldPassword: "",
+    password: ""
     })
     setDisplay('data');
   }
@@ -73,8 +76,17 @@ function validateNumber(e) {
     })
   }
   
+  useEffect(() => {
+    console.log(user)
+  }, [user])
+
   async function onSubmit(e) {
-   await dispatch(editUserFront(data));
+   await dispatch(editUserFront({
+     userid: user.userid,
+     password: data.oldPassword,
+
+     userData: data
+   }));
    //window.location.href = '/login';
    dispatch(getOneUser(local.user.userid))
   }
@@ -95,7 +107,7 @@ function validateNumber(e) {
   
 useEffect(async() => {
   dispatch(getOneUser(local.user.userid)).then(res => {
-    console.log(res)
+    // console.log(res)
    return setData({
       name: res.payload.name,
       lastname: res.payload.lastname,
@@ -108,7 +120,9 @@ useEffect(async() => {
       photo: res.payload.photo? res.payload.photo : '',
       country: res.payload.country? res.payload.country : '',
       city: res.payload.city? res.payload.city : '' ,
-      postalcode: res.payload.postalcode? res.payload.postalcode : ''
+      postalcode: res.payload.postalcode? res.payload.postalcode : '',
+      oldPassword: "",
+      password: ""
     })
   })
   
@@ -144,48 +158,76 @@ useEffect(async() => {
     <div className={style.formContainer}>
     <form className={style.form} onSubmit={onSubmit}>
       <div className={style.inputContainer}>
-      <label>Name</label>
-      <input className={style.input} name='name' type='text' required onChange={validateString} defaultValue={user.name ? user.name : ''} />
-      {error==='name' ? <span style={{color: 'red'}}>Escriba un dato válido</span> : null}
+        <label>Name</label>
+        <input className={style.input} name='name' type='text' required onChange={validateString} defaultValue={user.name ? user.name : ''} />
+        {error==='name' ? <span style={{color: 'red'}}>Escriba un dato válido</span> : null}
       </div>
       <div className={style.inputContainer}>
-      <label>Apellido</label>
-      <input className={style.input} name='lastname' type='text' required onChange={validateString} defaultValue={user.lastname? user.lastname: ''} />
-      {error==='lastname' ? <span style={{color: 'red'}}>Escriba un dato válido</span> : null}
+        <label>Apellido</label>
+        <input className={style.input} name='lastname' type='text' required onChange={validateString} defaultValue={user.lastname? user.lastname: ''} />
+        {error==='lastname' ? <span style={{color: 'red'}}>Escriba un dato válido</span> : null}
       </div>
       <div className={style.inputContainer}>
-      <label>Dirección</label>
-      <input className={style.input} name='address' type='text' required onChange={validateString} defaultValue={user.address? user.address: ''} />
-      {error==='address' ? <span style={{color: 'red'}}>Escriba un dato válido</span> : null}
+        <label>Dirección</label>
+        <input className={style.input} name='address' type='text' required onChange={validateString} defaultValue={user.address? user.address: ''} />
+        {error==='address' ? <span style={{color: 'red'}}>Escriba un dato válido</span> : null}
       </div>
       <div className={style.inputContainer}>
-      <label>Telefono</label>
-      <input className={style.input} name='phone' type='text' onChange={validateNumber} defaultValue={user.phone? user.phone: ''} />
-      {error==='phone' ? <span style={{color: 'red'}}>Escriba un dato válido</span> : null}
+        <label>Telefono</label>
+        <input className={style.input} name='phone' type='text' onChange={validateNumber} defaultValue={user.phone? user.phone: ''} />
+        {error==='phone' ? <span style={{color: 'red'}}>Escriba un dato válido</span> : null}
       </div>
       <div className={style.inputContainer}>
-      <label>Pais</label>
-      <input className={style.input} name='country' type='text' onChange={validateString} defaultValue={user.country? user.country : ''} />
-      {error==='country' ? <span style={{color: 'red'}}>Escriba un dato válido</span> : null}
+        <label>Pais</label>
+        <input className={style.input} name='country' type='text' onChange={validateString} defaultValue={user.country? user.country : ''} />
+        {error==='country' ? <span style={{color: 'red'}}>Escriba un dato válido</span> : null}
       </div>
       <div className={style.inputContainer}>
-      <label>Ciudad</label>
-      <input className={style.input} name='city' type='text' onChange={validateString} defaultValue={user.city? user.city : ''}/>
-      {error==='city' ? <span style={{color: 'red'}}>Escriba un dato válido</span> : null}
-     </div>
-      <div className={style.inputContainer}>
-      <label>Codigo Postal</label>
-      <input className={style.input} name='postalcode' type='text' onChange={validateNumber} defaultValue={user.postalcode? user.postalcode : ''}/>
-      {error==='postalcode' ? <span style={{color: 'red'}}>Escriba un dato válido</span> : null}
+        <label>Ciudad</label>
+        <input className={style.input} name='city' type='text' onChange={validateString} defaultValue={user.city? user.city : ''}/>
+        {error==='city' ? <span style={{color: 'red'}}>Escriba un dato válido</span> : null}
       </div>
+      <div className={style.inputContainer}>
+        <label>Codigo Postal</label>
+        <input className={style.input} name='postalcode' type='text' onChange={validateNumber} defaultValue={user.postalcode? user.postalcode : ''}/>
+        {error==='postalcode' ? <span style={{color: 'red'}}>Escriba un dato válido</span> : null}
+      </div>
+
+      <div className={style.inputContainer}>
+        <label>Contraseña anterior</label>
+        <input className={style.input} name='postalcode' type='text' defaultValue={data.oldPassword} onChange={e => {
+          setData(prev => {
+            return {
+              ...prev,
+              oldPassword: e.target.value
+            }
+          })
+        }}/>
+        {error==='postalcode' ? <span style={{color: 'red'}}>Escriba un dato válido</span> : null}
+      </div>
+
+      <div className={style.inputContainer}>
+        <label>nueva contraseña</label>
+        <input className={style.input} name='postalcode' type='text' defaultValue={data.password} onChange={e => {
+          setData(prev => {
+            return {
+              ...prev,
+              password: e.target.value
+            }
+          })
+        }}/>
+        {error==='postalcode' ? <span style={{color: 'red'}}>Escriba un dato válido</span> : null}
+      </div>
+
       <div className={style.inputContainer}>
       <label style={{marginBottom: '20px'}}>Foto de perfil</label>
       <input className={style.inputPhoto} type='file'  onChange={(event)=>uploadImage(event.target.files[0])}/>
       
       </div>
+
       <div style={{width: '400px', marginLeft: '20%'}}>
-      <Button variant='contained' onClick={onSubmit}  style={{backgroundColor: '#2EB8B0', marginRight: '10%'}} type='submit' disabled={error.length > 0}>Actualizar</Button>
-      <Button variant='contained'  style={{backgroundColor: 'red'}} onClick={cancel}>cancelar</Button>
+        <Button variant='contained' onClick={onSubmit}  style={{backgroundColor: '#2EB8B0', marginRight: '10%'}} type='submit' disabled={error.length > 0}>Actualizar</Button>
+        <Button variant='contained'  style={{backgroundColor: 'red'}} onClick={cancel}>cancelar</Button>
       </div>
     </form>
     <div className={style.formButtons}>

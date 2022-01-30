@@ -24,6 +24,8 @@ import Profile from "./components/Profile/index";
 import CheckoutData from "./components/checkout/CheckoutData";
 import CheckoutError from "./components/checkout/CheckoutError";
 import Header from "./components/Header";
+import Orders from "./components/admin/Orders";
+import OrderDetail from "./components/admin/OrderDetail";
 
 function App() {
   // Estado que determina si la cuenta logueada (o el invitado) es admin o no. Por defecto es false y cuando se logue, comprobará en un useEffect si es admin
@@ -31,7 +33,7 @@ function App() {
 
   return (
     <div className="App">
-     <Header/>
+     {/* <Header/> */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path='/profile/:getDisplay' element={<Profile/>} />
@@ -161,7 +163,9 @@ function App() {
         <Route exact path="/products/list" element={isAdmin ? <ListProducts /> : <h1>No tenes acceso a esta página</h1>} />
         <Route exact path="/product/create" element={isAdmin ? <CreateProduct /> : <h1>No tenes acceso a esta página</h1>} />
         <Route exact path="/product/edit/:productid" element={isAdmin ? <EditProduct /> : <h1>No tenes acceso a esta página</h1>}/>
-        <Route path="/users" element={isAdmin ? <Users /> : <h1>No tenes acceso a esta página</h1>}/>
+        <Route path="dashboard/users" element={isAdmin ? <Users /> : <h1>No tenes acceso a esta página</h1>}/>
+        <Route path="dashboard/orders" element={isAdmin ? <Orders/> : <h1>No tenes acceso a esta página</h1>}/>
+        <Route path="dashboard/orders/:orderid" element={isAdmin ? <OrderDetail/> : <h1>No tenes acceso a esta página</h1>}/>
 
       </Routes>
     </div>
