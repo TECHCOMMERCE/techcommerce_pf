@@ -27,7 +27,7 @@ const Reviews = ({productid}) => {
   const dispatch = useDispatch();
   const allComments = useSelector((state) => state.review.review);
   // const review = true;
-  console.log(allComments, "buenas soy ccoments");
+  // console.log(allComments, "buenas soy ccoments");
 
   useEffect(() => {
     dispatch(getReviewsByProduct(productid));

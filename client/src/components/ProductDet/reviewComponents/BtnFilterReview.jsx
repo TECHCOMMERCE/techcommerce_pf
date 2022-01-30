@@ -1,5 +1,7 @@
 import React from "react";
 import { Fragment } from "react";
+//redux
+import { useSelector, useDispatch } from 'react-redux'
 
 import Box from "@mui/material/Box";
 import BottomNavigation from "@mui/material/BottomNavigation";
@@ -10,12 +12,16 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 // import LocationOnIcon from "@mui/icons-material/LocationOn";
 import AllInclusiveIcon from "@mui/icons-material/AllInclusive";
 import ThumbDownOffAltIcon from "@mui/icons-material/ThumbDownOffAlt";
-
-
+//redux action/reducers
+import { filterReviewByStatus } from '../../../Store/actions/reviews'
 
 const BtnFilterReview = () => {
 
+  const dispatch = useDispatch()
+  
   const [value, setValue] = React.useState(0);
+
+
 
   return (<Fragment>
     <Box sx={{ width: 500 }}>
@@ -26,9 +32,18 @@ const BtnFilterReview = () => {
           setValue(newValue);
         }}
       >
-        <BottomNavigationAction label="ALL" icon={<AllInclusiveIcon />} />
-        <BottomNavigationAction label="POSITIVES" icon={<FavoriteIcon />} />
+        <BottomNavigationAction 
+          value="All"
+         label="ALL" 
+         icon={<AllInclusiveIcon />} 
+         />
+        <BottomNavigationAction 
+          value="Good" 
+          label="POSITIVES" 
+          icon={<FavoriteIcon />}
+        />
         <BottomNavigationAction
+          value="Bad"
           label="NEGATIVES"
           icon={<ThumbDownOffAltIcon />}
         />

@@ -3,7 +3,10 @@ import {
         POST_REVIEWS,
         PUT_REVIEWS,
         DELETE_REVIEW,
-        ERROR_MESSAGE
+        ERROR_MESSAGE,
+        // FILTER_BY_GOOD,
+        // FILTER_BY_BAD,
+        FILTER_BY_STATUS
         } from '../constanst/actionsTypes';
 
 import axios from 'axios';
@@ -50,6 +53,13 @@ export const getReviewsByProduct = (productid) => {
 //   }
 //   return posted
 // }
+
+export const filterReviewByStatus = (payload) =>{
+  return{
+    type: FILTER_BY_STATUS,
+    payload 
+  }
+}
 
 export const putReview = (review) =>{
   return async (dispatch) =>{
@@ -99,4 +109,8 @@ ort const postReview = (review,productid) => {
 			});
 	};
 }
+
+
+// export const FILTER_BY_GOOD = 'FILTER_BY_GOOD';
+// export const FILTER_BY_BAD = 'FILTER_BY_BAD';
 */

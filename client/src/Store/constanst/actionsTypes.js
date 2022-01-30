@@ -18,3 +18,4 @@ export const GET_REVIEWS = 'GET_REVIEWS';
 export const POST_REVIEWS = 'POST_REVIEWS';
 export const PUT_REVIEWS = 'PUT_REVIEWS';
 export const DELETE_REVIEW = 'DELETE_REVIEW';
+export const FILTER_BY_STATUS = 'FILTER_BY_STATUS';
