@@ -1,0 +1,35 @@
+.container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+
+.table{
+  width: 98%;
+  margin-top: 10%;
+  text-align: center;
+  overflow-x: scroll;
+}
+
+.name{
+  width: 300px;
+}
+
+
+.pname{
+  width: 300px;
+  margin-top: 14%;
+}
+
+.select{
+  width: 150px;
+  margin-top: 5%;
+  height: 25px;
+  font-family: 'Poppins';
+  border: 1px solid black;
+  border-radius: 9%;
+}

@@ -1,0 +1,166 @@
+.container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.titleContainer{
+  margin-bottom: 10%;
+  border-bottom: 2px solid #2EB8B0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+.openbtn{
+  background-color: transparent;
+  border: none;
+  color: #2EB8B0;
+  cursor: pointer;
+  margin-left: -10%;
+  margin-bottom: 2%;
+}
+
+.title{
+  color: #2EB8B0;
+  width: 300px;
+  text-align: center;
+  padding-bottom: 5%;
+}
+
+
+.data{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 60%;
+  margin-left: 10%;
+}
+.data1{
+  width: 50%;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.data2{
+  width: 50%;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+
+.p{
+  font-size: large;
+  font-family: 'Poppins';
+  margin: 5%;
+}
+
+
+
+
+
+
+.modal{
+  background-color: #2EB8B0;
+  width: 500px;
+  height: 490px;
+  position: absolute;
+  top: 20%;
+  margin-bottom: 10%;
+  margin-left: 45%;
+  box-shadow: 0 1rem 2rem hsl(0 0% 0% / 20%); 
+  border-radius: 5%;
+  
+}
+
+
+.modalForm{
+  display: flex;
+  justify-content: space-around;
+  align-items: space-between;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 350px;
+  background-color: #2EB8B0;
+  
+}
+
+.input1{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 15%;
+}
+
+
+.input1 input{
+  width: 200px;
+  height: 35px;
+  margin: 10px;
+  border: none;
+  border-radius: 5%;
+  margin-bottom: 30px;
+}
+
+.modalClose{
+  margin-left: 90%;
+  margin-top: 2%;
+  border: none;
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border-radius: 5%;
+  cursor: pointer;
+}
+
+
+.formContainer{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+  width: 80%;
+  height: 650px;
+  margin-left: 10% ;
+
+}
+
+.form{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 80%;
+  height: 600px;
+}
+
+.inputContainer{
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.input{
+  background: #F2F2F2;
+  border: 1px solid #E5E5E5;
+  box-sizing: border-box;
+  border-radius: 6px;
+  width: 250px;
+  height: 48px;
+}
+
+.formButtons{
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+}

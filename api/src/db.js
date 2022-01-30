@@ -6,7 +6,7 @@ const {
   DB_USER, DB_PASSWORD, DB_HOST, DB_NAME
 } = process.env;
 const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`, {
-  //logging: false,  //set to console.log to see the raw SQL queries
+  logging: false,  //set to console.log to see the raw SQL queries
   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
 });
 sequelize.authenticate().then(()=>console.log('conexion success')).catch(e=>console.log('conexion fail',e))
@@ -45,13 +45,13 @@ const {
   Product,
   Review,
   User,
-  WishList,
+  // Post,
 } = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product <---> User (Para Cart) N:N
-User.belongsToMany(Product, {through: Cart, foreignKey: 'productid'})
-Product.belongsToMany(User, {through: Cart, foreignKey: 'userid'})
+User.belongsToMany(Product, {through: Cart/* , foreignKey: 'productid'*/} )
+Product.belongsToMany(User, {through: Cart/* , foreignKey: 'userid'*/} )
 
 // Product <---> User (Para las Reviews) N:N
 Product.belongsToMany(User, {through: Review, foreignKey: 'productid'});
@@ -62,12 +62,12 @@ Product.belongsToMany(Order, {through: Detail, foreignKey: 'productid'});
 Order.belongsToMany(Product, {through: Detail, foreignKey: 'orderid'});
 
 // Product <---> Category N:N
-Product.belongsToMany(Category, {through: "products_category", foreignKey: 'productid'});
-Category.belongsToMany(Product, {through: "products_category", foreignKey: 'categoryid'});
+Product.belongsToMany(Category, {through: "products_category", timestamps: false/* , foreignKey: 'productid'*/} );
+Category.belongsToMany(Product, {through: "products_category", timestamps: false/* , foreignKey: 'categoryid'*/} );
 
 // Product <--- Brand N:1
-Brand.hasMany(Product, {foreignKey: "brandid"});
-Product.belongsTo(Brand, {foreignKey: "brandid"});
+Brand.hasMany(Product);
+Product.belongsTo(Brand);
 
 // User ---> Order 1:N
 User.hasMany(Order);

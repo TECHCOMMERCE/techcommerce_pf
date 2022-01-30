@@ -6,14 +6,19 @@ module.exports = (sequelize) => {
     "brand",
     {
       brandid: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         primaryKey: true,
-        autoIncrement: true,
+        defaultValue: DataTypes.UUIDV4,
       },
       name: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
         unique: true,
+      },
+      status: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: true,
       },
     },
     { timestamps: false }

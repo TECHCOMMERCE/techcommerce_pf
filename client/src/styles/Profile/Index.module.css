@@ -1,0 +1,58 @@
+.container{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  margin-top: 10%;
+}
+
+
+.menu{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  
+  width: 30%;
+}
+
+.Links{
+  display: flex;
+  justify-content: space-between;
+  align-items: space-between;
+  flex-direction: column;
+}
+
+.buttons{
+  margin: 10%;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.buttonP{
+  text-align: center;
+  font-size: large;
+  font-family: 'Poppins';
+}
+
+.buttonS{
+  text-align: center;
+  font-size: large;
+  font-family: 'Poppins';
+  color: #2EB8B0;
+  border-bottom: 2px solid #2EB8B0 ;
+}
+
+.img{
+  border-radius: 50%;
+  width: 70%;
+  height: 70%;
+  margin-bottom: 10%;
+}
+
+.component{
+  width: 70%;
+}
