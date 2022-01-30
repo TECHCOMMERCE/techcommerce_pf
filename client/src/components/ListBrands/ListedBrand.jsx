@@ -26,7 +26,7 @@ const ListedBrand = ({ brand, handleToggle }) => {
         </Box>
 
         <Box sx={{ display: "flex" }}>
-          <Link to={`/dashboard/categories/edit/${brand.brandid}`} style={{color: "#77817c",}}>
+          <Link to={`/dashboard/brands/edit/${brand.brandid}`} style={{color: "#77817c",}}>
             <Box style={{ background: "ghostwhite", borderRadius: "5px", padding: 5 }}>
               <MdModeEdit color="success" size="40" />
             </Box>

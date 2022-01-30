@@ -1,28 +1,49 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Box, Typography, TextField, Button } from "@mui/material";
 import { MdSave, MdArrowBack } from "react-icons/md";
-import { useDispatch } from "react-redux";
-import { postCategory } from "../../Store/actions/category";
+import { useDispatch, useSelector } from "react-redux";
+import { getCategoryById, putCategory, resetCategoryDetail } from "../../Store/actions/category";
+import {useParams} from "react-router-dom";
 
-const editCategory = () => {
+const EditCategory = () => {
+  const categoryDetail = useSelector(state => state.categoryReducer.categoryDetail);
   const dispatch = useDispatch();
+  const params = useParams();
   const [input, setInput] = useState({
+    categoryid: "",
     name: "",
-    status: true,
+    status: "",
   });
-
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     if (document.getElementById("name").value) {
-      dispatch(postCategory(input));
-      alert("Category created");
-      window.location.href = "/dashboard/categories/create";
+      dispatch(putCategory(input));
+      alert("Category edited succesfully");
+      window.location.href = `/dashboard/categories/edit/${params.categoryid}`;
     }
   };
-
+  
   const handleInput = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
+  
+  useEffect(() => {
+    setInput({
+      ...input,
+      categoryid: params?.categoryid ? categoryDetail.categoryid : "",
+      name: categoryDetail?.name ? categoryDetail.name : "",
+      status: categoryDetail?.status,
+    })
+  }, [categoryDetail]);
+
+  useEffect(() => {
+    dispatch(getCategoryById(params.categoryid));
+    return () => {
+      dispatch(resetCategoryDetail());
+    }
+  }, [dispatch, params.categoryid]);
+  
 
   return (
     <Container
@@ -51,7 +72,7 @@ const editCategory = () => {
           color="secondary"
           align="left"
         >
-          Create a Category
+          Edit a Category
         </Typography>
 
         {/* formulario */}
@@ -77,7 +98,7 @@ const editCategory = () => {
             name="name"
             variant="filled"
             color="primary"
-            value={input.name}
+            value={input.name || (categoryDetail?.name && categoryDetail.name)}
             onChange={handleInput}
             placeholder="Monitors"
             sx={{ width: "100%", mb: 30 }}
@@ -95,7 +116,7 @@ const editCategory = () => {
               endIcon={<MdSave />}
               size="medium"
             >
-              Create
+              Save
             </Button>
             <Button
               color="error"
@@ -113,4 +134,4 @@ const editCategory = () => {
   );
 };
 
-export default editCategory;
+export default EditCategory;

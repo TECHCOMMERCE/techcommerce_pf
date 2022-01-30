@@ -15,6 +15,8 @@ import Header from "./components/Home/Header";
 import Footer from "./components/Home/Footer";
 import Dashboard from "./components/Dashboard/Dashboard";
 import ListBrands from "./components/ListBrands/ListBrands";
+import CreateBrand from "./components/CreateBrand/CreateBrand";
+import EditBrand from "./components/EditBrand/EditBrand";
 import ListCategories from "./components/ListCategories/ListCategories";
 import CreateCategory from "./components/CreateCategory/CreateCategory";
 import EditCategory from "./components/EditCategory/EditCategory";
@@ -44,6 +46,28 @@ function App() {
         />
 
         <Route
+          path="/dashboard/brands/create"
+          element={
+            <>
+              <Header />
+              <CreateBrand />
+              <Footer />
+            </>
+          }
+        />
+
+        <Route
+          path="/dashboard/brands/edit/:brandid"
+          element={
+            <>
+              <Header />
+              <EditBrand />
+              <Footer />
+            </>
+          }
+        />
+
+        <Route
           path="/dashboard/categories"
           element={
             <>
@@ -66,7 +90,7 @@ function App() {
         />
 
         <Route
-          path="/dashboard/categories/edit"
+          path="/dashboard/categories/edit/:categoryid"
           element={
             <>
               <Header />
@@ -110,7 +134,7 @@ function App() {
             </>
           }
         />
-        
+
         <Route
           path="/users"
           element={isAdmin ? <Users /> : <h1>No tenes acceso a esta página</h1>}

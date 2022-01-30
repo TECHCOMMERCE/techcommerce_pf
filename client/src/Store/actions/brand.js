@@ -1,7 +1,27 @@
 import axios from "axios";
-import { POST_BRAND, PUT_BRAND } from "../constanst/actionsTypes";
+import {
+  POST_BRAND,
+  PUT_BRAND,
+  RESET_BRAND_DETAIL,
+  GET_BRAND_BY_ID,
+} from "../constanst/actionsTypes";
 
 const SERVER = process.env.REACT_APP_SERVER;
+
+export const getBrandById = (id) => {
+  try {
+    return async (dispatch) => {
+      await axios.get(`${SERVER}/brand/${id}`).then((response) => {
+        return dispatch({
+          type: GET_BRAND_BY_ID,
+          payload: response.data,
+        });
+      });
+    };
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export const putBrand = (brand) => {
   try {
@@ -27,4 +47,12 @@ export const postBrand = (brand) => {
       });
     };
   } catch (error) {}
+};
+
+export const resetBrandDetail = () => {
+  return (dispatch) => {
+    return dispatch({
+      type: RESET_BRAND_DETAIL,
+    });
+  };
 };

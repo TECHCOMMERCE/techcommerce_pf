@@ -74,7 +74,7 @@ const EditProduct = () => {
       categories: productDetail?.categories
         ? productDetail.categories.map((c) => c.name)
         : [],
-      status: productDetail?.status ? productDetail.status : "",
+      status: productDetail?.status,
     });
   }, [productDetail]);
 
