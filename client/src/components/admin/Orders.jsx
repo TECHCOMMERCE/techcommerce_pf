@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-
+import { useNavigate } from 'react-router-dom';
 
 import s from "../../assets/styles/admin/Orders.module.css";
-import { useNavigate } from 'react-router-dom';
 
 const Orders = () => {
     const [status, setStatus] = useState("todos");
