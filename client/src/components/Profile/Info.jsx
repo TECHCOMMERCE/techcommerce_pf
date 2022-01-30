@@ -6,17 +6,19 @@ import Modal from 'react-bootstrap/Modal';
 import { Button } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import { editUserFront } from "../../Store/actions/users.js";
+import axios from 'axios';
 
 
  const Info = () => {
+
   const [display, setDisplay] = useState('data')
   const local= JSON.parse(localStorage.getItem('user'))
   const dispatch= useDispatch();
   const [error, setError] = useState('')
-  const {user} = useSelector(state => state.users);
-  const [data, setData] =useState({
-  })
-  // console.log(data)
+  const {user} = useSelector(state => state.users);r
+  const [data, setData] =useState({})
+  console.log(data)
+
 
   function validateString(e) {
     if(/^[a-z\s]{0,255}$/i.test(e.target.value)){
@@ -87,6 +89,20 @@ function validateNumber(e) {
    }));
    //window.location.href = '/login';
    dispatch(getOneUser(local.user.userid))
+  }
+
+  function uploadImage(files) {
+    
+    const formData = new FormData();
+    formData.append('file', files);
+    formData.append('upload_preset','xpk5dhcq')
+    axios.post('https://api.cloudinary.com/v1_1/dntpjirzj/image/upload', formData)
+    .then(response => {
+      setData({
+        ...data,
+        photo: response.data.url
+      })
+    })
   }
   
 useEffect(async() => {
@@ -201,6 +217,12 @@ useEffect(async() => {
           })
         }}/>
         {error==='postalcode' ? <span style={{color: 'red'}}>Escriba un dato válido</span> : null}
+      </div>
+
+      <div className={style.inputContainer}>
+      <label style={{marginBottom: '20px'}}>Foto de perfil</label>
+      <input className={style.inputPhoto} type='file'  onChange={(event)=>uploadImage(event.target.files[0])}/>
+      
       </div>
 
       <div style={{width: '400px', marginLeft: '20%'}}>

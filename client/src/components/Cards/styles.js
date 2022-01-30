@@ -8,6 +8,7 @@ export const Main = styled.div `
   justify-content: flex-start;
   align-items: flex-start;
   flex-direction: row;
+  margin-top: 10%;
   
   
 `

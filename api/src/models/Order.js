@@ -20,11 +20,7 @@ module.exports = (sequelize) => {
             // EMUN for the state of the order 
             type: DataTypes.ENUM("Created","Processing","cancelled","Completed","Send"),
             allowNull: false
-        },
-        /* confirmationDate:{
-            type: DataTypes.DATE,
-            allowNull: false
-        } */
+        }
     },{
         timestamps:true
     })
