@@ -1,5 +1,4 @@
-import React, { useState } from 'react'
-import MaterialTable from "material-table";
+import React, { useState } from 'react';
 
 
 import s from "../../assets/styles/admin/Orders.module.css";
