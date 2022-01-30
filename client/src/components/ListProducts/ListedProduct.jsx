@@ -1,13 +1,15 @@
 import React from "react";
-import { MdDelete, MdModeEdit } from "react-icons/md";
+import { MdOutlineCheckBoxOutlineBlank, MdOutlineCheckBox, MdModeEdit } from "react-icons/md";
 import { Link } from "react-router-dom";
+import { Box } from "@mui/material";
 
-const ListedProduct = ({ product, deleteFn }) => {
+const ListedProduct = ({ product, handleToggle }) => {
   return (
-    <div>
-      <div
-        style={{
-          background: "dodgerBlue",
+    <Box>
+      <Box
+        sx={{
+          background: product.status ? "dodgerBlue" : "lightblue",
+          borderRadius: "5px",
           margin: 20,
           display: "flex",
           alignItems: "center",
@@ -15,47 +17,57 @@ const ListedProduct = ({ product, deleteFn }) => {
           padding: 20,
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", height: 60 }}>
-          <div style={{ width: "fit-content" }}>
-            <Link to={`/product/edit/${product.productid}`}>
-              <img src={product.image} height="60" alt={product.name} />
+        <Box sx={{ display: "flex", alignItems: "center", height: 60 }}>
+          <Box style={{ width: "fit-content", }}>
+            <Link to={`/dashboard/products/edit/${product.productid}`}>
+              <img style={{borderRadius: "5px"}} src={product.image} height="60" alt={product.name} />
             </Link>
-          </div>
+          </Box>
 
-          <div style={{ marginLeft: 20 }}>
-            <Link to={`/product/edit/${product.productid}`} style={{color: "azure"}}>
+          <Box sx={{ mx: 20 }}>
+            <Link to={`/dashboard/products/edit/${product.productid}`} style={{color: "ghostwhite"}}>
               <h3>{product.name}</h3>
             </Link>
-          </div>
-        </div>
+          </Box>
+        </Box>
 
-        <div style={{ display: "flex" }}>
-          <Link to={`/product/edit/${product.productid}`}>
-            <div style={{ background: "azure", borderRadius: 5, padding: 5 }}>
-              <MdModeEdit color="CadetBlue" size="40" />
-            </div>
+        <Box sx={{ display: "flex" }}>
+          <Link to={`/dashboard/products/edit/${product.productid}`} style={{color: "#77817c",}}>
+            <Box style={{ background: "ghostwhite", borderRadius: "5px", padding: 5 }}>
+              <MdModeEdit color="success" size="40" />
+            </Box>
           </Link>
 
           <Link to="#">
-            <div
-              style={{
-                background: "azure",
-                borderRadius: 5,
+            <Box
+              sx={{
+                background: "ghostwhite",
+                borderRadius: "5px",
                 padding: 5,
                 marginLeft: 20,
               }}
             >
-              <MdDelete
-                name={product.name}
-                color="crimson"
-                size="40"
-                onClick={() => deleteFn(product)}
-              />
-            </div>
+               {
+                product.status ?
+                <MdOutlineCheckBox
+                  name={product.name}
+                  color="#3CB371"
+                  size="40"
+                  onClick={() => handleToggle(product)}
+                />
+                :
+                <MdOutlineCheckBoxOutlineBlank
+                  name={product.name}
+                  color="crimson"
+                  size="40"
+                  onClick={() => handleToggle(product)}
+                />
+              }
+            </Box>
           </Link>
-        </div>
-      </div>
-    </div>
+        </Box>
+      </Box>
+    </Box>
   );
 };
 

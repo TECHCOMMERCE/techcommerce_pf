@@ -1,8 +1,7 @@
 import axios from 'axios';
 
 import { GET_PRODUCTS,GET_PRODUCTS_PAGINADO, ERROR_MESSAGE, GET_DETAILS , GET_BRANDS_PRODUCTS, GET_CATEGORIES_PRODUCTS } from '../constanst/actionsTypes';
-
-const url = 'localhost:3001';
+const SERVER = process.env.REACT_APP_SERVER || "http://localhost:3001/"
 
 
 
@@ -10,7 +9,7 @@ const url = 'localhost:3001';
 
 export const getCategories = () => async(dispatch) => {
 	console.log('entre aca categories')
-	const data= await axios.get(`http://${url}/categories`)
+	const data= await axios.get(`${SERVER}categories`)
 	return dispatch({
 		type: GET_CATEGORIES_PRODUCTS,
 		payload: data.data
@@ -20,9 +19,9 @@ export const getCategories = () => async(dispatch) => {
 
 
 export const getDetails = (id) => async(dispatch) => {
-	console.log('entre')
-	const data = await axios.get(`http://${url}/product/${id}`)
-	console.log('data',data.data)
+	/* console.log('entre') */
+	const data = await axios.get(`${SERVER}product/${id}`)
+	/* console.log('data',data.data) */
 	return dispatch({
 		type: GET_DETAILS,
 		payload: data.data
@@ -31,7 +30,7 @@ export const getDetails = (id) => async(dispatch) => {
 
 
 export const getBrand = () => async(dispatch) => {
-	const data = await axios.get(`http://${url}/brands`)
+	const data = await axios.get(`${SERVER}brands`)
 	console.log('entro aca',data)
 	return dispatch({
 		type: GET_BRANDS_PRODUCTS,
@@ -44,7 +43,7 @@ export function getProducts(page, name, category) {
 	console.log("hola");
 	return (dispatch) => {
 		// va armando la url donde hará la petición, agregando las query strings si es que existen
-		let finalUrl = `http://${url}/products${category || name ? '?' : ''}${category ? 'categories=' + category : ''}${category && name ? '&' : ''}${name ? 'name=' + name : ''}`;
+		let finalUrl = `${SERVER}products${category || name ? '?' : ''}${category ? 'categories=' + category : ''}${category && name ? '&' : ''}${name ? 'name=' + name : ''}`;
 
 		console.log(finalUrl);
 
@@ -89,7 +88,7 @@ export function getProductsFront(obj, page, name="") {
 	const {category, brand, sort} =obj;
 
 	// va armando la url donde hará la petición, agregando las query strings si es que existen
-	let finalUrl = `http://${url}/products/all?page=${page}&category=${obj.category}&brand=${obj.brand}&sort=${sort}&name=${name}`;
+	let finalUrl = `${SERVER}products/all?page=${page}&category=${obj.category}&brand=${obj.brand}&sort=${sort}&name=${name}`;
 
 	return (dispatch) => {
 		axios

@@ -91,8 +91,8 @@ const Cards = () => {
   useEffect(async() => {
     window.scroll({top: 0, left: 0, behavior: 'smooth' })
     await dispatch(getProductsFront(obj, page));
-    // await dispatch(getBrand())
-    // await dispatch(getCategories())
+    await dispatch(getBrand())
+   await dispatch(getCategories())
 }, [page, obj, dispatch]); 
 
   return (<>
