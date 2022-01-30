@@ -14,6 +14,7 @@ const Dashboard = () => {
         alignItems: "center",
         height: "100vh",
         backgroundColor: "secondary",
+        mt: 140,
       }}
     >
       <Box

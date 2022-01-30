@@ -94,9 +94,8 @@ const EditProduct = () => {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        m: 0,
         px: 20,
-        my: 100,
+        mt: 200,
         minWidth: "100vw",
       }}
     >
