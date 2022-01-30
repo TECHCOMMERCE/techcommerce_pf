@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import React from 'react';
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getOneTicket } from "../../Store/actions/tickets";
+import { getOneTicket } from "../../Store/actions/tickets.js";
 import style from '../../styles/Profile/Detail.module.css';
 import { usersReducer } from "../../Store/reducer/users";
 import Tickets from "./Tickets";

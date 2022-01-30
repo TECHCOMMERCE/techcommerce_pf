@@ -15,6 +15,7 @@ import { Button } from '@mui/material';
     ticketid: ''
   })
   const {tickets} = useSelector(state => state.tickets);
+  console.log('tickets', tickets)
   const user = JSON.parse(localStorage.getItem('user'))
   
 function onClick(id){
@@ -74,7 +75,7 @@ useEffect(async() => {
 											</tr>
 										</thead>
 									 	<tbody >
-											{ tickets.length ?
+											{ tickets?.length ?
                         tickets.map( x => {
                           return(
                             <tr>

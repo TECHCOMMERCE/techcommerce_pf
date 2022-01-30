@@ -10,7 +10,7 @@ const inicialState = {
 };
 
 
-export const TicketReducer = (state = inicialState, action) => {
+ const TicketReducer = (state = inicialState, action) => {
 	// console.log(action);
 	switch (action.type) {
 	case GET_USER_TICKETS :
@@ -28,5 +28,6 @@ export const TicketReducer = (state = inicialState, action) => {
   }
 }
 
+export default TicketReducer
 
 
