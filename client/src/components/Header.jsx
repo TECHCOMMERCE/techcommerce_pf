@@ -304,7 +304,7 @@ const Header = () => {
             <MenuItem>
               {/* <Avatar /> */} {`${userData?.name.toUpperCase()} ${userData?.lastname.toUpperCase()}`}
             </MenuItem>
-            <MenuItem onClick={()=>navigate("/wishList")} >
+            <MenuItem onClick={()=>navigate("/profile/WishList")} >
               <ShoppingBagIcon /> My Favorites
             </MenuItem>
             <MenuItem onClick={()=>navigate("/profile/ShopHistory")}>
