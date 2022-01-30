@@ -51,8 +51,20 @@
     border-radius: 8px;
 
     box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 0.2);
-
+    
     font-size: 30px;
+}
+
+.good{
+    box-shadow: 0px 0px 5px 5px rgba(0, 186, 25, 0.5);
+}
+
+.bad{
+    box-shadow: 0px 0px 5px 5px rgba(186, 0, 0, 0.5);
+}
+
+.input:focus{
+    outline: none;
 }
 
 .button{
