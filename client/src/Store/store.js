@@ -8,7 +8,7 @@ import { categoryReducer } from "./reducer/category";
 import { usersReducer } from "./reducer/users";
 import { cartsReducer } from "./reducer/carts";
 import {brandReducer} from "./reducer/brand";
-import { TicketReducer} from './reducer/tickets';
+import  TicketReducer from './reducer/tickets';
 
 import thunk from "redux-thunk";
 

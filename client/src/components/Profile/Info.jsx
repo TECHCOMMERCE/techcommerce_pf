@@ -15,7 +15,7 @@ import axios from 'axios';
   const local= JSON.parse(localStorage.getItem('user'))
   const dispatch= useDispatch();
   const [error, setError] = useState('')
-  const {user} = useSelector(state => state.users);r
+  const {user} = useSelector(state => state.users);
   const [data, setData] =useState({})
   console.log(data)
 
