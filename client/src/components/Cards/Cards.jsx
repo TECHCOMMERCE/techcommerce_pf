@@ -7,27 +7,23 @@ import { Button } from '@mui/material';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Footer from '../../components/Home/Footer';
-import NavBar from '../../components/NavBar';
 import { useParams, useLocation } from 'react-router-dom';
 
 
 const Cards = () => {
   const search = useLocation().search;
   const name = new URLSearchParams(search).get('categories');
-  console.log(name)
   const params= useParams();
-  console.log('params', params)
   const dispatch = useDispatch();
   const {products}  = useSelector(state => state.products);
   const {brands}  = useSelector(state => state.products);
   const {categories}  = useSelector(state => state.products);
   const [page, setPage]= useState(0);
-  const [obj, setObj] =useState({
+  const [obj, setObj] = useState({
     category: name ? name : '',
     brand: '',
     sort:''
   })
-   console.log('obj',products)
 
    const removeAccents = (str) => {
     return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
@@ -95,72 +91,70 @@ const Cards = () => {
   useEffect(async() => {
     window.scroll({top: 0, left: 0, behavior: 'smooth' })
     await dispatch(getProductsFront(obj, page));
-    await dispatch(getBrand())
-    await dispatch(getCategories())
+    // await dispatch(getBrand())
+    // await dispatch(getCategories())
 }, [page, obj, dispatch]); 
 
-  return (
-    <>
-    <NavBar/>
+  return (<>
+   
+      
     <Main>
-    <Filters>
-      <Select>
-      <div style={{marginBottom: '40%', display: 'block', textAlign: 'center'}}>
-    <label><b>Categoria : </b></label>
-    <Options onChange={onChange} >
-      <option value='' >Todos</option>
-      {categories?.map(x => {
-        return(
-        <option value={x.name} >{removeAccents(x.name)}</option>
-        )
-      })}
-    </Options>
-    </div>
-    <div style={{marginBottom: '40%', display: 'block', textAlign: 'center'}}>
-    <label><b>Marca : </b></label>
-    <Options onChange={onChange}>
-    <option value='-' >Todos</option>
-      {brands?.map(x => {
-        return(
-        <option value={x.name} >{x.name}</option>
-        )
-      })}
-    </Options>
-    </div>
-    <div style={{marginBottom: '40%', display: 'block', textAlign: 'center'}}>
-    <label ><b>Precio:</b> </label>
-    <Options onChange={onChange}>
-      <option value='/' >-</option>
-      <option value='asc' > Mas Bajo</option>
-      <option value='desc' > Mas Alto</option>
+      <Filters>
+        <Select>
+          <div style={{marginBottom: '40%', display: 'block', textAlign: 'center'}}>
+            <label><b>Categoria : </b></label>
+            
+            <Options onChange={onChange} >
+              <option value='' >Todos</option>
+              
+              {categories?.map(category => {
+                return(
+                  <option key={category.categoryid} value={category.name} >{removeAccents(category.name)}</option>
+                )
+              })}
+            </Options>
+          </div>
+  
+          <div style={{marginBottom: '40%', display: 'block', textAlign: 'center'}}>
+            <label><b>Marca : </b></label>
+              <Options onChange={onChange}>
+                <option value='-' >Todos</option>
+                
+                {brands?.map(brand => {
+                  return(<option key={brand.brandid} value={brand.name} >{brand.name}</option>)
+                })}
+              </Options>
+          </div>
+  
+          <div style={{marginBottom: '40%', display: 'block', textAlign: 'center'}}>
+            <label ><b>Precio:</b> </label>
+              <Options onChange={onChange}>
+                <option value='/' >-</option>
+                <option value='asc' > Mas Bajo</option>
+                <option value='desc' > Mas Alto</option>      
+              </Options>
+          </div>
+        </Select>
+      </Filters>
       
-    </Options>
-    </div>
-    </Select>
-    </Filters>
-    <Items>
-     
-      {products?.length? 
-      products.map( x => {
-        return <Card  key={x.productid} id={x.productid} name={x.name} image={x.image} price={x.price} stock={x.stock} />
-      }) 
-      : <Null>
-        <p>No existen elementos. Seleccione otro filtro</p>
-      </Null>
-    } 
-      
-    
-    </Items>
-    
+      <Items>
+        {products?.length ? 
+          products.map( product => {
+            return <Card  key={product.productid} id={product.productid} name={product.name} image={product.image} price={product.price} stock={product.stock} />
+          }) 
+          
+          : <Null><p>No existen elementos. Seleccione otro filtro</p></Null>
+        } 
+      </Items>
     </Main>
+    
     <Buttons>
       <Button onClick={back} disabled={page === 0} style={{ margin: '100px'}} variant="text"><ArrowBackIcon style={{color: '#000000'}}/></Button>
       <Button onClick={foward} disabled={products?.length <= 0 } style={{  margin: '100px'}} variant="text"><ArrowForwardIcon style={{color: '#000000'}}/></Button>
-      </Buttons>  
+    </Buttons>  
+      
     <Footer/>
-    </>
-
-  )
+  </>)
 }
 
 

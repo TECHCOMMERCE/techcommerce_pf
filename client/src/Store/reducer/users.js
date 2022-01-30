@@ -1,6 +1,8 @@
 import { 
   SET_USER_DATA,
-  SET_USER_ERROR
+  SET_USER_ERROR,
+  EDIT_USER_FRONT,
+  GET_ONE_USER
 } from "../constanst/actionsTypes";
 
 const initialState = {
@@ -24,6 +26,11 @@ export const usersReducer = (state = initialState, { type, payload }) => {
         error: payload
       };
 
+    case GET_ONE_USER: 
+    return{
+      ...state, 
+      user: payload
+    }
     default:
       return state;
   }

@@ -2,7 +2,6 @@ import React, {  useEffect, useState } from 'react'
 import style from '../../styles/Cart/Cart.module.css';
 import Card from './Card';
 import { Button } from '@mui/material';
-import Navbar from '../NavBar';
 import Footer from '../Home/Footer';
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate} from 'react-router-dom';
@@ -59,13 +58,11 @@ function gettotal (array) {
   array.map(x => {
     totalprice= totalprice + (x.price*x.quantity)
   } )
-  console.log(totalprice)
   setTotal(totalprice)
 }
 
   return(
     <>
-    <Navbar/>
     <div className={style.container}>
       <h2 style={{marginBottom: '5%', fontFamily: 'Poppins'}}>CARRITO ({data.length}) </h2>
       <div className={style.cards}>
@@ -84,15 +81,13 @@ function gettotal (array) {
       <div className={style.buttonContainer}>
       <Button variant='contained' style={{backgroundColor: '#2EB8B0'}} className={style.button} 
       onClick={()=>{
-        Swal.fire({
-          icon: "info",
-          text: 'Por el momento, esta función aun no esta activa',
-        })
-      }}> Pagar </Button>
+        if(idUser)navigate('/checkout')
+      }} disabled={!idUser?true:false}> Pagar </Button>
+      {!idUser?<span style={{color: '#EB2020', display: 'block',textAlign: 'center'}}>Debe inicia Sesión</span>:null}
       </div>
       <div className={style.buttonContainer}>
       <Button variant='contained' style={{backgroundColor: '#EB2020'}} className={style.button} 
-      onClick={()=>{dispatch(clearCart())}}> Vaciar Carrito </Button>
+      onClick={()=>{dispatch(clearCart(idUser))}}> Vaciar Carrito </Button>
       </div>
     </div>
     <Footer/>

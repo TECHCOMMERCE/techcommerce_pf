@@ -19,7 +19,7 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import { addToCart } from '../../Store/actions/carts';
 import {getProductsCartUser} from '../../Store/actions/carts.js'
-import NavBar from '../NavBar';
+
 import Swal from 'sweetalert2';
 
 
@@ -61,7 +61,6 @@ const Product = () => {
 
 	return (
 		<div>
-				<NavBar/>
 		   	<Container className={s.container}>
 				
 				<div className={s.cont_prin}>

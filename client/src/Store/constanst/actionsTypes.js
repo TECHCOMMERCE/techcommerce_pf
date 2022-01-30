@@ -28,3 +28,7 @@ export const GET_PRODUCTS_CART = 'GET_PRODUCTS_CART';
 export const CLEAR_CART = 'CLEAR_CART';
 
 export const POST_CLOUDINARY_IMAGE = "POST_CLOUDINARY_IMAGE";
+
+export const EDIT_USER_FRONT = 'EDIT_USER_FRONT';
+export const GET_ONE_USER='GET_ONE_USER';
+
