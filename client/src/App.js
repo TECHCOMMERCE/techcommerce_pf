@@ -16,6 +16,7 @@ import CheckoutData from "./components/checkout/CheckoutData";
 import CheckoutHistory from "./components/checkout/CheckoutHistory";
 import CheckoutError from "./components/checkout/CheckoutError";
 import Header from "./components/Header";
+import Orders from "./components/admin/Orders";
 
 
 function App() {
@@ -24,7 +25,7 @@ function App() {
 
   return (
     <div className="App">
-     <Header/>
+     {/* <Header/> */}
       <Routes>
         <Route path="/" element={<Home />} />
 
@@ -46,7 +47,8 @@ function App() {
         <Route exact path="/products/list" element={isAdmin ? <ListProducts /> : <h1>No tenes acceso a esta página</h1>} />
         <Route exact path="/product/create" element={isAdmin ? <CreateProduct /> : <h1>No tenes acceso a esta página</h1>} />
         <Route exact path="/product/edit/:productid" element={isAdmin ? <EditProduct /> : <h1>No tenes acceso a esta página</h1>}/>
-        <Route path="/users" element={isAdmin ? <Users /> : <h1>No tenes acceso a esta página</h1>}/>
+        <Route path="dashboard/users" element={isAdmin ? <Users /> : <h1>No tenes acceso a esta página</h1>}/>
+        <Route path="dashboard/orders" element={isAdmin ? <Orders/> : <h1>No tenes acceso a esta página</h1>}/>
 
       </Routes>
     </div>
