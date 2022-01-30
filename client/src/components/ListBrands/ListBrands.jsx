@@ -1,38 +1,30 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { putProduct } from "../../Store/actions/product";
-import { getProducts } from "../../Store/actions/products";
-import ListedProduct from "./ListedProduct";
+import {putBrand} from "../../Store/actions/brand";
+import {getBrands} from "../../Store/actions/brands";
+import ListedBrand from "./ListedBrand";
 import { MdAddCircle, MdArrowBack } from "react-icons/md";
 import { Container, Box, IconButton } from "@mui/material";
-import ProductsSearchBar from "./ProductsSearchBar";
+import BrandsSearchBar from "./BrandsSearchBar";
 
-const ListProducts = () => {
-  const products = useSelector((state) => state.products.products);
+const ListBrands = () => {
+  const brands = useSelector((state) => state.brandsReducer);
   const dispatch = useDispatch();
 
-  const handleToggle = (product) => {
+  const handleToggle = (brand) => {
     const obj = {
-      productid: product.productid,
-      name: product.name,
-      price: product.price,
-      stock: product.stock,
-      sold_quantity: product.sold_quantity,
-      condition: product.condition,
-      image: product.image,
-      attributes: product.attributes,
-      brandid: product.brand.brandid,
-      categories: product.categories.map((c) => c.name),
-      status: !product.status,
+      brandid: brand.brandid,
+      name: brand.name,
+      status: !brand.status,
     };
 
-    dispatch(putProduct(obj));
-    product.status ? alert(`Product ${product.name} enabled`) : alert(`Category ${product.name} disabled`);
-    dispatch(getProducts());
+    dispatch(putBrand(obj));
+    brand.status ? alert(`Brand ${brand.name} enabled`) : alert(`Category ${brand.name} disabled`);
+    dispatch(getBrands());
   };
 
   useEffect(() => {
-    dispatch(getProducts());
+    dispatch(getBrands());
   }, [dispatch]);
 
   return (
@@ -44,14 +36,14 @@ const ListProducts = () => {
           pt: 20,
         }}
       >
-        <ProductsSearchBar />
+        <BrandsSearchBar />
 
         <Box>
-          {products?.length &&
-            products?.map((p) => (
-              <ListedProduct
-                key={p.productid}
-                product={p}
+          {brands?.length &&
+            brands?.map((b) => (
+              <ListedBrand
+                key={b.brandid}
+                brand={b}
                 handleToggle={handleToggle}
               />
             ))}
@@ -71,7 +63,7 @@ const ListProducts = () => {
           <IconButton
             color="success"
             onClick={() =>
-              (window.location.href = "/dashboard/products/create")
+              (window.location.href = "/dashboard/brands/create")
             }
           >
             <MdAddCircle
@@ -109,4 +101,5 @@ const ListProducts = () => {
   );
 };
 
-export default ListProducts;
+export default ListBrands;
+
