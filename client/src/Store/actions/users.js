@@ -50,7 +50,6 @@ export function getuser(){
 export const editUserFront = (data) => async(dispatch) =>{
     try {
         let response = await axios.put(`${SERVER}/user/` , data)
-        
     } catch (error) {
         console.log(error)
     }

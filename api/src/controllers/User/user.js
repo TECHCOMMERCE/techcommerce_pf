@@ -43,7 +43,7 @@ router.post("/", async(req, res) => {
 
   try{
     const [user, created] = await User.findOrCreate({
-      where: { email, password, status: "true" },
+      where: { email },
       defaults: {
         ...data
       }
@@ -69,7 +69,6 @@ router.put("/", async(req, res) => {
       userid,
       password
     }}); 
-    
 
     const data = {
       ...userData
@@ -77,26 +76,31 @@ router.put("/", async(req, res) => {
 
     data["password"] = userData.password || user.password;
 
-    await user.update(data);
+    const res = await user.update(data);
 
     return res.status(200).send({code: 0, message: "Usuario actualizado Con éxito"});
   }catch(e){
+    console.log(e);
     return res.status(200).send({code: 1, message: "Revise los campos"});
   }
 });
 
 // PUT para que el admin edite y para el registro
 router.put("/:userid", async(req, res) => {
-  console.log("body del segundo put: ", req.body);
+  // console.log("body del segundo put: ", req.body);
   try{
     const user = await User.findOne({where: {
       userid: req.params.userid,
     }});
 
-    user.update({...req.body})
+    
+    user.update({...req.body});
+
+    console.log("user: ", user);
 
     return res.status(200).send({code: 0, message: "Usuario actualizado Con éxito"});
   }catch(e){
+    
     return res.status(200).send({code: 1, message: "Revise los campos"});
   }
 });

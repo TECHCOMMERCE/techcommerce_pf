@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getOneUser } from '../../Store/actions/users';
+import { getOneUser, loginAccount } from '../../Store/actions/users';
 import style from '../../styles/Profile/info.module.css';
 import Modal from 'react-bootstrap/Modal';
 import { Button } from '@mui/material';
@@ -42,7 +42,7 @@ function validateNumber(e) {
   }
   setData({ 
       ...data,
-      [e.target.name]: e.target.value
+      [e.target.name]: parseInt(e.target.value)
   }) 
 }
 
@@ -61,7 +61,7 @@ function validateNumber(e) {
     photo: user.photo? user.photo : '',
     country: user.country? user.country : '',
     city: user.city? user.city : '' ,
-    postalcode: user.postalcode? user.postalcode : '',
+    postalcode: user.postalcode? user.postalcode : 0,
     oldPassword: "",
     password: ""
     })
@@ -81,6 +81,8 @@ function validateNumber(e) {
   }, [user])
 
   async function onSubmit(e) {
+    e.preventDefault();
+
    await dispatch(editUserFront({
      userid: user.userid,
      password: data.oldPassword,
@@ -89,6 +91,10 @@ function validateNumber(e) {
    }));
    //window.location.href = '/login';
    dispatch(getOneUser(local.user.userid))
+   setDisplay('data');
+
+  //  Vuelvo a loguearme
+    dispatch(loginAccount({email: user.email, password: data.password, type:'normal'}))
   }
 
   function uploadImage(files) {
@@ -120,7 +126,7 @@ useEffect(async() => {
       photo: res.payload.photo? res.payload.photo : '',
       country: res.payload.country? res.payload.country : '',
       city: res.payload.city? res.payload.city : '' ,
-      postalcode: res.payload.postalcode? res.payload.postalcode : '',
+      postalcode: res.payload.postalcode? res.payload.postalcode : 0,
       oldPassword: "",
       password: ""
     })
