@@ -150,7 +150,7 @@ const Header = () => {
   useEffect(async() => {
     (async() => {
       if(name){  
-        const res = await axios.post(`${SERVER}products/names?name=${name}`)
+        const res = await axios.get(`${SERVER}products/names?name=${name}`)
         // const res = await axios.get("http://localhost:3001/products/names?name=" + name);
       
         setNames(res.data);
