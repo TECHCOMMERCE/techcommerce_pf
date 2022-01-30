@@ -53,6 +53,10 @@ const {
 User.belongsToMany(Product, {through: Cart/* , foreignKey: 'productid'*/} )
 Product.belongsToMany(User, {through: Cart/* , foreignKey: 'userid'*/} )
 
+// Product <---> User (Para WishList) N:N
+User.belongsToMany(Product, {through: 'WishList',as:"favourites", foreignKey: 'productid'} )
+Product.belongsToMany(User, {through: 'WishList',as:"favourites", foreignKey: 'userid'} )
+
 // Product <---> User (Para las Reviews) N:N
 Product.belongsToMany(User, {through: Review, foreignKey: 'productid'});
 User.belongsToMany(Product, {through: Review, foreignKey: 'userid'});
