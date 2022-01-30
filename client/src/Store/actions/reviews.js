@@ -7,42 +7,30 @@ import {
         } from '../constanst/actionsTypes';
 
 import axios from 'axios';
-const url = 'http://localhost:3001';
+// const url = 'http://localhost:3001';
+const SERVER = process.env.REACT_APP_SERVER || 'http://localhost:3001/'
 
 export const postReview = (review,productid) => {
-	return async (dispatch) => {
-		await axios
-			.post(`${url}/review/${productid}/review`, review)
-			.then((res) => {
-				if (res.status === 200) {
-					return dispatch({
-						type: GET_REVIEWS,
-						products: res.data.data,
-					});
-				} else {
-					return dispatch({
-						type: ERROR_MESSAGE,
-						message: 'error al agregar review',
-					});
-				}
-			})
-			.catch((err) => {
-				console.log(err);
-			});
-	};
+  return async() =>{
+    const res= await axios.post(`${SERVER}review/${productid}/review`, review)
+    return res
+  }
 }
 
 export const getReviewsByProduct = (productid) => {
   return async(dispatch) =>{
-    
     // let json = await axios.get(`http://localhost:3001/product/${productId}/review`)
-
-    let json = await axios.get(`${url}/review/${productid}/review`)
-
-    return dispatch({
-      type: GET_REVIEWS,
-      payload: json.data
-    })
+   axios.get(`${SERVER}review/${productid}/review`)
+    .then((res) => {
+      dispatch({
+          type: GET_REVIEWS,
+          payload: res.data.data
+      })
+      // console.log(res.data,'holi');
+  })
+  .catch((error) => {
+      console.log(error);
+  })
   }
 }
 
@@ -65,7 +53,7 @@ export const getReviewsByProduct = (productid) => {
 
 export const putReview = (review) =>{
   return async (dispatch) =>{
-    let json = await axios.put(`${url}/review/:productId/review/:id
+    let json = await axios.put(`${SERVER}review/:productId/review/:id
     `, review)
 
     return dispatch({
@@ -77,7 +65,7 @@ export const putReview = (review) =>{
 
 export const deleteReview = (review) =>{
   return async (dispatch) =>{
-    let json = await axios.delete(`${url}/product/:productId/review/`)
+    let json = await axios.delete(`${SERVER}product/:productId/review/`)
   
   return dispatch({
     type: DELETE_REVIEW,
@@ -87,3 +75,28 @@ export const deleteReview = (review) =>{
 }
 
 // get: http://localhost:3001/product/productid/review
+
+/*
+ort const postReview = (review,productid) => {
+	return async () => {
+		await axios
+			.post(`${url}/review/${productid}/review`, review)
+			.then((res) => {
+				if (res.status === 200) {
+					return dispatch({
+						type: GET_REVIEWS,
+						products: res.data.data,
+					});
+				} else {
+					return dispatch({
+						type: ERROR_MESSAGE,
+						message: 'error al agregar review',
+					});
+				}
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	};
+}
+*/

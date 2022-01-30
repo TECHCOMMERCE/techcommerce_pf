@@ -9,31 +9,30 @@ const initialState = {
   review: []
 }
 
-const reviewReducer = (state = initialState, action) =>{
+export const reviewReducer = (state = initialState, action) =>{
   
   switch(action.type){
     case GET_REVIEWS:
+      // console.log('aqui estoy');
       return{
         ...state,
-        review: action.paydload
+        review: action.payload
       }
     case POST_REVIEWS:
       return{
         ...state,
-        status: action.paydload
+        status: action.payload
       }
-    case PUT_REVIEWS:
-      return{
+    // case PUT_REVIEWS:
+    //   return{
 
-    }
-    case DELETE_REVIEW:
-      return{
+    // }
+    // case DELETE_REVIEW:
+    //   return{
 
-      }
+    //   }
     default:
       return state
   }
 
 }
-
-export default reviewReducer;

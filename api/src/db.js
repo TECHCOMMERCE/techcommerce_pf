@@ -70,7 +70,7 @@ Brand.hasMany(Product);
 Product.belongsTo(Brand);
 
 
-Product.hasMany(Review/*, {foreignKey: 'productid'}*/);
+Product.hasMany(Review, {foreignKey: 'productid'});
 Review.belongsTo(Product);
 
 // User ---> Order 1:N

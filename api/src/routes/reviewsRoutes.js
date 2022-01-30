@@ -56,8 +56,6 @@ server.put('/:productId/review/:id', (req, res) => {
 		});
 });
 
-
-
 server.delete('/:productId/review/:id', (req, res) => {
 	const { productId, id } = req.params;
 
@@ -80,40 +78,47 @@ server.delete('/:productId/review/:id', (req, res) => {
 		});
 });
 
-server.post('/:productId/review', (req, res) => {
+server.post('/:productid/review', async(req, res) => {
 	const { productid } = req.params;
 	const { title, description, stars, userid } = req.body;
 	// console.log(req.body)
-	let productReveiw = Product.findByPk(productid)
-	let reviewPost = Review.create({ productProductid: productReveiw.productid, title, description, stars, userid })
-	// reviewPost.addProduct(productReveiw)
-		// .then(() => {
-		// 	return Product.findAll({
-		// 		include: [ Review ],
-		// 	}).then((products) => {
-		// 		return res.status(OK).json({
-		// 			message: 'Review creada exitosamente!',
-		// 			data: products,
-		// 		});
-		// 	});
-		// })
-		.catch((err) => {
-			console.log(err);
-			return res.status(ERROR).json({
-				message: 'Error al crear review',
-				data: err,
-			});
-		});
+
+	const productProductid = productid;
+	
+	try {
+		const review = await Review.create({
+			stars,
+			description,
+			productProductid
+		})	
+		// console.log(productProductid);
+		const data = await Product.findByPk(productProductid, {
+			include:[Review]
+		})
+		// console.log(data);
+		
+		data.update({
+      starsProm: data.reviews
+      .map(item => item.stars)
+      .reduce((a, b) => a + b, 0) / data.reviews.length
+    })
+    res.status(200).json(data);
+
+	} catch (error) {
+		console.log(error);
+	}
+
+	
 });
 
 
 server.get('/:productId/review', (req, res) => {
 	const { productid } = req.params;
 	// console.log('yah');
-
+	const productProductid = productid;
 	try {
 		return Review.findAll({
-		where: productid ,
+		where: productProductid ,
 		include: Product,
 	})
 		.then((reviews) => {
@@ -136,3 +141,58 @@ server.get('/:productId/review', (req, res) => {
 });
 
 module.exports = server;
+
+
+/*	
+
+try {
+		const review = await Review.create({
+			stars,
+			description,
+			productid
+		})	
+		console.log(productid);
+		const data = await Product.findByPk(productid, {
+			include:[Review]
+		})
+		console.log(data);
+		
+		data.update({
+      starsProm: data.reviews
+      .map(item => item.stars)
+      .reduce((a, b) => a + b, 0) / data.reviews.length
+    })
+    res.status(200).json(data);
+
+	} catch (error) {
+		console.log(error);
+	}
+
+----------------------------------------------------------------
+let productReview = Product.findByPk(productid)
+	let reviewPost = Review.create(
+		{ productProductid: productReview.productid,
+			 title, 
+			 description, 
+			 stars, 
+			 userid 
+		})
+	reviewPost.addProduct(productReveiw)
+		.then(() => {
+			return Product.findAll({
+				include: [ Review ],
+			}).then((products) => {
+				return res.status(OK).json({
+					message: 'Review creada exitosamente!',
+					data: products,
+				});
+			});
+		})
+		.catch((err) => {
+		console.log(err);
+		return res.status(ERROR).json({
+			message: 'Error al crear review',
+			data: err,
+		});
+	})
+	*/

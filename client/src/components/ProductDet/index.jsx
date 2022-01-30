@@ -43,8 +43,8 @@ const Product = () => {
 	const cart = useSelector(state => state.cart.productscart);
 	const user = JSON.parse(localStorage.getItem("user"));
   const idUser = !user?null:user.user.userid;
-	console.log('productdetail', product);
-	console.log('id', id)
+	// console.log('productdetail', product);
+	// console.log('id', id)
 
 	
 	useEffect(() => {
@@ -68,7 +68,7 @@ const Product = () => {
 					<Row>
 						<Col xs={12} md={12} lg={8} className={s.cont_img}>
 
-							<img src={product.image} style={{height: '40%', width: '15%'}}></img>
+							<img src={product.image} alt="product" style={{height: '40%', width: '15%'}}></img>
 						</Col>
 						<Col xs={12} md={12} lg={4} className={s.cont_info}>
 							<div className={s.infog}>

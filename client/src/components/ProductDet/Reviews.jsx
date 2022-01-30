@@ -23,10 +23,12 @@ import { getReviewsByProduct } from "../../Store/actions/reviews";
 import SubmitReveiw from "./reviewComponents/SubmitReveiw";
 
 const Reviews = ({productid}) => {
+
   const dispatch = useDispatch();
-  const allComments = useSelector((state) => state.review);
+  const allComments = useSelector((state) => state.review.review);
   // const review = true;
-  // console.log(productId);
+  console.log(allComments, "buenas soy ccoments");
+
   useEffect(() => {
     dispatch(getReviewsByProduct(productid));
   }, [dispatch]);
@@ -49,8 +51,8 @@ const Reviews = ({productid}) => {
       </div>
       <div className={st.card}>
         {allComments ? (
-          allComments?.map((e) => {
-            return <ReviewsCard description={e.description} stars={e.stars} />;
+          allComments.map((e,i) => {
+            return <ReviewsCard key={i} description={e.description} stars={e.stars} id={e.id}/>;
           })
         ) : (
           <div className={st.cardB}>
