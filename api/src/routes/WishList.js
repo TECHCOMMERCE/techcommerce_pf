@@ -5,6 +5,7 @@ const { Router } = require("express");
 const router = Router();
 
 router.get("/:userid/:productid",GetWishList);
+router.get("/:userid",GetWishList);
 router.put("/:userid/:productid",PutWishList)
 //router.delete("/:userid",DeleteUserCart)
 

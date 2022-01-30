@@ -1,31 +1,15 @@
 
-const {WishList,User,Product} = require('../../db.js')
+const {User,Product} = require('../../db.js')
 const { Op } = require("sequelize");
 async function GetWishList(req, res, next) {
   try{
     const {userid,productid=null} = req.params
-    let wish=null;
+    let user = await User.findByPk(userid)
+    let products=await user.getFavourites()
     if(productid){
-      wish = await WishList.findAll({
-        where:{
-          [Op.and]:[
-            {
-              productProductid: productid
-            },
-            {
-              userUseid: userid
-            }
-          ]
-        }
-      })
-      
-    }else{
-      wish = await WishList.findAll({
-        where:{
-          userUseid: userid
-        }
-      })
+      products = products.filter(p=>p.productid===productid)
     }
+    res.status(200).json(products)
     
   }catch (error) {
     console.log(error)
