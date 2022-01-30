@@ -78,7 +78,7 @@ useEffect(async() => {
 											{ tickets?.length ?
                         tickets.map( x => {
                           return(
-                            <tr>
+                            <tr key={x.orderid}>
                               
                              
                               <td>{x.address}</td>

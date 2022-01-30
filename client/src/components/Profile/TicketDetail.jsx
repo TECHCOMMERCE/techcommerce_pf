@@ -32,7 +32,7 @@ useEffect(() => {
       {ticket.products?
         ticket.products.map(x => {
           return(
-            <div className={style.card}>
+            <div className={style.card} key={x.productid}>
               <img src={x.image} />
               <Link to={`/Details/${x.productid}`}><p style={{width: '200px'}}>{x.name}</p></Link>
               <p>${x.price}</p>
