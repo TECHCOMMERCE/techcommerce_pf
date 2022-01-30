@@ -9,6 +9,7 @@ const review = require("./helpers/review");
 const cart = require("./cart");
 const user = require("./user");
 const checkout = require("./checkout");
+const wishlist = require("./WishList");
 const orderRouter = require('./ordersRoutes');
 
 //const user = require("../controllers/User/user");
@@ -37,5 +38,6 @@ router.use('/checkout', checkout)
 //router.use('/user', user)
 
 // router.use('/review', review)
+router.use('/wishlist',wishlist)
 
 module.exports = router;
