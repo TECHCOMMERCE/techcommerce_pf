@@ -22,13 +22,13 @@ import BtnFilterReview from "./reviewComponents/BtnFilterReview";
 import { getReviewsByProduct } from "../../Store/actions/reviews";
 import SubmitReveiw from "./reviewComponents/SubmitReveiw";
 
-const Reviews = ({productId}) => {
+const Reviews = ({productid}) => {
   const dispatch = useDispatch();
   const allComments = useSelector((state) => state.review);
   // const review = true;
   // console.log(productId);
   useEffect(() => {
-    dispatch(getReviewsByProduct());
+    dispatch(getReviewsByProduct(productid));
   }, [dispatch]);
 
   let theme = createTheme();
@@ -72,7 +72,7 @@ const Reviews = ({productId}) => {
       </div>
       <div className={st.submitReview}>
         
-        <SubmitReveiw productId={productId} />
+        <SubmitReveiw productid={productid} />
       </div>
     </div>
   );

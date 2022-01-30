@@ -11,7 +11,8 @@ module.exports = (sequelize) => {
         autoIncrement: true,
       },
       stars: {
-        type: DataTypes.ENUM("1", "2", "3", "4", "5"),
+        // type: DataTypes.ENUM("1", "2", "3", "4", "5"),
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
       description: {

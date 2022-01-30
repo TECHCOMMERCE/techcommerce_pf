@@ -22,7 +22,7 @@ import Rating from "@mui/material/Rating";
 import { useState } from "react";
 
 
-const SubmitReveiw = ({productId}) => {
+const SubmitReveiw = ({productid}) => {
   const dispatch = useDispatch();
   const [loading, setLoading] = React.useState(false);
   // acordion --
@@ -57,12 +57,12 @@ const SubmitReveiw = ({productId}) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(postReview(productId
-      // {
-        // description: valueRef.current.value,
-        // stars: value
-      // }
-      ) )
+    dispatch(postReview(
+      {
+        description: valueRef.current.value,
+        stars: value
+      }
+      , productid))
     // setInput({
       // description:""
     // })

@@ -6,9 +6,7 @@ const reviewGetByAllorById = async(name) =>{
     if(name){
       //we are using sequelized methods here .findAll and then we are calling some params
       review = Review.findAll({
-        include:{
-          model: Product
-        },
+        include:[{ model: Category }, { model: Product }],
         where:{
           name:{
             [Op.iLike]:"%" + name + "%" 

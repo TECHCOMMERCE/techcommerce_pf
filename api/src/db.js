@@ -54,8 +54,8 @@ User.belongsToMany(Product, {through: Cart/* , foreignKey: 'productid'*/} )
 Product.belongsToMany(User, {through: Cart/* , foreignKey: 'userid'*/} )
 
 // Product <---> User (Para las Reviews) N:N
-Product.belongsToMany(User, {through: Review, foreignKey: 'productid'});
-User.belongsToMany(Product, {through: Review, foreignKey: 'userid'});
+// Product.belongsToMany(User, {through: Review/*, foreignKey: 'productid'*/});
+// User.belongsToMany(Product, {through: Review/* , foreignKey: 'userid'*/});
 
 // Product <---> Order N:N
 Product.belongsToMany(Order, {through: Detail, foreignKey: 'productid'});
@@ -68,6 +68,10 @@ Category.belongsToMany(Product, {through: "products_category", timestamps: false
 // Product <--- Brand N:1
 Brand.hasMany(Product);
 Product.belongsTo(Brand);
+
+
+Product.hasMany(Review/*, {foreignKey: 'productid'}*/);
+Review.belongsTo(Product);
 
 // User ---> Order 1:N
 User.hasMany(Order);

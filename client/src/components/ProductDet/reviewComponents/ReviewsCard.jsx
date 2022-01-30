@@ -1,3 +1,4 @@
+import { Rating } from "@mui/material";
 import React from "react";
 
 import styles from "../../../styles/reviews/CardReview.module.css";
@@ -9,7 +10,8 @@ const ReviewsCard = ({ stars, description }) => {
         {/* <p>
           {typeof stars === "object" ? stars.map((e) => e.stars).join(" ") : stars}
         </p> */}
-        <img src={stars} alt="stars" />
+        {/* <img src={stars} alt="stars" /> */}
+        <Rating name="read-only" value={stars} readOnly />
         <p>{description} buenas</p>
       </div>
     </div>

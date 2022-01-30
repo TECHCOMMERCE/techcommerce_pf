@@ -8,7 +8,7 @@ const brand = require('./helpers/brand')
 const brands = require('./helpers/brands')
 const review = require('./helpers/review')
 const user = require("./user");
-
+const reviewsRoutes = require('./reviewsRoutes')
 //const user = require("../controllers/User/user");
 
 //importing the routes
@@ -22,6 +22,7 @@ router.use("/categories", categories);
 router.use("/brands", brands);
 router.use("/product", product);
 router.use("/products", products);
+router.use("/review", reviewsRoutes );
 // router.use(posts);
 router.use("/user", user);
 //router.use('/', productPostingRoute)

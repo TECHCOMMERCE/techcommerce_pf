@@ -151,7 +151,7 @@ const Product = () => {
 				{/*------------------- reviews -------------------------- */}
 				{/* <AddReview />
 				<AvisoLoggin  /> */}
-				<Reviews productId={id} />
+				<Reviews productid={id} />
 				{/*------------------- reviews -------------------------- */}
 			  </Container>
 			<Footer />   
