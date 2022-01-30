@@ -347,7 +347,7 @@ const CreateProduct = () => {
               size="medium"
               color="error"
               endIcon={<MdArrowBack />}
-              onClick={() => (window.location.href = "/adminpanel/products/")}
+              onClick={() => (window.location.href = "/dashboard/products/")}
             >
               BACK
             </Button>

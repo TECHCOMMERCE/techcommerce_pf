@@ -235,9 +235,6 @@ const EditProduct = () => {
                 name="condition"
                 id="condition"
                 value={input.condition}
-                // defaultValue={
-                //   productDetail.condition && productDetail.condition
-                // }
                 onChange={(e) => handleInputs(e, input, setInput)}
               >
                 <MenuItem sx={{ display: "none" }}></MenuItem>
@@ -252,7 +249,6 @@ const EditProduct = () => {
                 variant="filled"
                 name="brand"
                 value={input.brand}
-                // defaultValue={productDetail.brand && productDetail.brand}
                 id="brand"
                 onChange={(e) => handleInputs(e, input, setInput)}
               >
@@ -399,7 +395,7 @@ const EditProduct = () => {
               size="medium"
               color="error"
               endIcon={<MdArrowBack />}
-              onClick={() => (window.location.href = "/adminpanel/products/")}
+              onClick={() => (window.location.href = "/dashboard/products/")}
             >
               BACK
             </Button>

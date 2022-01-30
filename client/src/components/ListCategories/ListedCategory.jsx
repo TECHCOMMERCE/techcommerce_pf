@@ -1,14 +1,14 @@
 import React from "react";
-import { MdDelete, MdModeEdit } from "react-icons/md";
+import { MdOutlineCheckBoxOutlineBlank, MdOutlineCheckBox, MdModeEdit, } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { Box } from "@mui/material";
 
-const ListedCategory = ({ category, deleteFn }) => {
+const ListedCategory = ({ category, handleToggle }) => {
   return (
     <Box>
       <Box
         sx={{
-          background: "dodgerBlue",
+          background: category.status ? "dodgerBlue" : "lightblue",
           borderRadius: "5px",
           margin: 20,
           display: "flex",
@@ -18,21 +18,15 @@ const ListedCategory = ({ category, deleteFn }) => {
         }}
       >
         <Box sx={{ display: "flex", alignItems: "center", height: 60 }}>
-          {/* <Box style={{ width: "fit-content", }}>
-            <Link to={`/adminpanel/products/edit/${product.productid}`}>
-              <img style={{borderRadius: "5px"}} src={product.image} height="60" alt={product.name} />
-            </Link>
-          </Box> */}
-
           <Box sx={{ mx: 20 }}>
-            <Link to={`/adminpanel/products/edit/${product.productid}`} style={{color: "ghostwhite"}}>
+            <Link to={`/dashboard/categories/edit/${category.categoryid}`} style={{color: "ghostwhite"}}>
               <h3>{category.name}</h3>
             </Link>
           </Box>
         </Box>
 
         <Box sx={{ display: "flex" }}>
-          <Link to={`/adminpanel/products/edit/${product.productid}`} style={{color: "#77817c",}}>
+          <Link to={`/dashboard/categories/edit/${category.categoryid}`} style={{color: "#77817c",}}>
             <Box style={{ background: "ghostwhite", borderRadius: "5px", padding: 5 }}>
               <MdModeEdit color="success" size="40" />
             </Box>
@@ -47,12 +41,22 @@ const ListedCategory = ({ category, deleteFn }) => {
                 marginLeft: 20,
               }}
             >
-              <MdDelete
-                name={category.name}
-                color="crimson"
-                size="40"
-                onClick={() => deleteFn(product)}
-              />
+              {
+                category.status ?
+                <MdOutlineCheckBox
+                  name={category.name}
+                  color="#3CB371"
+                  size="40"
+                  onClick={() => handleToggle(category)}
+                />
+                :
+                <MdOutlineCheckBoxOutlineBlank
+                  name={category.name}
+                  color="crimson"
+                  size="40"
+                  onClick={() => handleToggle(category)}
+                />
+              }
             </Box>
           </Link>
         </Box>

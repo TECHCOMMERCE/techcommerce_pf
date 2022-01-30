@@ -5,14 +5,13 @@ import { getProducts } from "../../Store/actions/products";
 import ListedProduct from "./ListedProduct";
 import { MdAddCircle, MdArrowBack } from "react-icons/md";
 import { Container, Box, IconButton } from "@mui/material";
-import ProductsSearhchBar from "./ProductsSearchBar";
 import ProductsSearchBar from "./ProductsSearchBar";
 
 const ListProducts = () => {
   const products = useSelector((state) => state.products.products);
   const dispatch = useDispatch();
 
-  const handleDelete = (product) => {
+  const handleToggle = (product) => {
     const obj = {
       productid: product.productid,
       name: product.name,
@@ -24,11 +23,11 @@ const ListProducts = () => {
       attributes: product.attributes,
       brandid: product.brand.brandid,
       categories: product.categories.map((c) => c.name),
-      status: false,
+      status: !product.status,
     };
 
     dispatch(putProduct(obj));
-    alert(`Product ${product.name} deleted`);
+    product.status ? alert(`Product ${product.name} enabled`) : alert(`Category ${product.name} disabled`);
     dispatch(getProducts());
   };
 
@@ -53,7 +52,7 @@ const ListProducts = () => {
               <ListedProduct
                 key={p.productid}
                 product={p}
-                deleteFn={handleDelete}
+                handleToggle={handleToggle}
               />
             ))}
         </Box>
@@ -66,18 +65,18 @@ const ListProducts = () => {
             background: "ghostwhite",
             borderRadius: "50%",
             display: "flex",
+            border: "4px solid #3CB371",
           }}
         >
           <IconButton
             color="success"
             onClick={() =>
-              (window.location.href = "/adminpanel/products/create")
+              (window.location.href = "/dashboard/products/create")
             }
           >
             <MdAddCircle
-              size="90"
+              size="45"
               color="success"
-              // sx={{ backgroundColor: "ghostwhite" }}
             />
           </IconButton>
         </Box>
@@ -90,16 +89,17 @@ const ListProducts = () => {
             background: "ghostwhite",
             borderRadius: "50%",
             display: "flex",
+            border: "4px solid crimson",
           }}
         >
           <IconButton
             color="success"
             onClick={() =>
-              (window.location.href = "/adminpanel")
+              (window.location.href = "/dashboard")
             }
           >
             <MdArrowBack
-              size="90"
+              size="45"
               color="crimson"
             />
           </IconButton>

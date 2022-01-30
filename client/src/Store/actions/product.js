@@ -9,7 +9,6 @@ import {
 const SERVER = process.env.REACT_APP_SERVER;
 
 export const postProduct = (product) => {
-  console.log(product);
   try {
     return async (dispatch) => {
       await axios

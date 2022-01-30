@@ -5,7 +5,7 @@ export const handleSubmit = async (e, input, dispatch) => {
   if (input.brand.length && input.categories.length && !!input.image) {
     dispatch(postProduct(input));
     alert("Product created succesfully");
-    window.location.href = "/adminpanel/products/create";
+    window.location.href = "/dashboard/products/create";
   } else {
     alert("Please complete all the required fields");
   }

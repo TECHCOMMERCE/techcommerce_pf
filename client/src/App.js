@@ -13,9 +13,11 @@ import Users from "./components/admin/Users";
 import Cart from "./components/Cart/Cart";
 import Header from "./components/Home/Header";
 import Footer from "./components/Home/Footer";
-import AdminPanel from "./components/AdminPanel/AdminPanel";
-// import ListCategories from "./components/ListCategories/ListCategories";
+import Dashboard from "./components/Dashboard/Dashboard";
 import ListBrands from "./components/ListBrands/ListBrands";
+import ListCategories from "./components/ListCategories/ListCategories";
+import CreateCategory from "./components/CreateCategory/CreateCategory";
+import EditCategory from "./components/EditCategory/EditCategory";
 
 function App() {
   // Estado que determina si la cuenta logueada (o el invitado) es admin o no. Por defecto es false y cuando se logue, comprobará en un useEffect si es admin
@@ -29,9 +31,9 @@ function App() {
         {/*   <Route path="/Login" element={<Login />} /> */}
         <Route path="/Details/:id" element={<Product />} />
         <Route path="/products" element={<Cards />} />
-        <Route path="/adminpanel" element={<AdminPanel />} />
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route
-          path="/adminpanel/brands"
+          path="/dashboard/brands"
           element={
             <>
               <Header />
@@ -42,18 +44,40 @@ function App() {
         />
 
         <Route
-          path="/adminpanel/categories"
+          path="/dashboard/categories"
           element={
             <>
               <Header />
-              {/* <ListCategories /> */}
+              <ListCategories />
               <Footer />
             </>
           }
         />
 
         <Route
-          path="/adminpanel/products"
+          path="/dashboard/categories/create"
+          element={
+            <>
+              <Header />
+              <CreateCategory />
+              <Footer />
+            </>
+          }
+        />
+
+        <Route
+          path="/dashboard/categories/edit"
+          element={
+            <>
+              <Header />
+              <EditCategory />
+              <Footer />
+            </>
+          }
+        />
+
+        <Route
+          path="/dashboard/products"
           element={
             <>
               <Header />
@@ -65,7 +89,7 @@ function App() {
 
         <Route
           exact
-          path="/adminpanel/products/create"
+          path="/dashboard/products/create"
           element={
             <>
               <Header />
@@ -77,7 +101,7 @@ function App() {
 
         <Route
           exact
-          path="/adminpanel/products/edit/:productid"
+          path="/dashboard/products/edit/:productid"
           element={
             <>
               <Header />

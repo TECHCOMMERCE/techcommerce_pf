@@ -2,7 +2,7 @@ import { Box, IconButton, TextField, Typography } from "@mui/material";
 import { MdOutlineSearch } from "react-icons/md";
 import React from "react";
 
-const ProductsSearchBar = () => {
+const BrandsSearchBar = () => {
   return (
     <Box
       sx={{
@@ -14,7 +14,7 @@ const ProductsSearchBar = () => {
       }}
     >
       <Typography sx={{ fontSize: "1.5rem", fontWeight: "bold" }}>
-        Products
+        Brands
       </Typography>
       <form style={{ display: "flex", alignItems: "center" }}>
         <TextField
@@ -34,4 +34,4 @@ const ProductsSearchBar = () => {
   );
 };
 
-export default ProductsSearchBar;
+export default BrandsSearchBar;
