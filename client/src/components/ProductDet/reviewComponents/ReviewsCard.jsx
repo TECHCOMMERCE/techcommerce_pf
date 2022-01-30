@@ -12,7 +12,7 @@ const ReviewsCard = ({ stars, description, id }) => {
         </p> */}
         {/* <img src={stars} alt="stars" /> */}
         <Rating name="read-only" value={stars} readOnly />
-        <p>{description} buenas</p>
+        <p>{description}</p>
       </div>
     </div>
   );
