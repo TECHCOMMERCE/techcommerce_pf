@@ -1,15 +1,24 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { putProduct } from "../../Store/actions/product";
-import { getProducts } from "../../Store/actions/products";
+import { getProducts, getProductsForAdmin } from "../../Store/actions/products";
 import ListedProduct from "./ListedProduct";
-import { MdAddCircle, MdArrowBack } from "react-icons/md";
-import { Container, Box, IconButton } from "@mui/material";
+import {
+  MdAddCircle,
+  MdArrowBack,
+  MdKeyboardArrowRight,
+  MdKeyboardArrowLeft,
+  MdOutlineFirstPage,
+  MdOutlineLastPage,
+} from "react-icons/md";
+import { Container, Box, IconButton, FormLabel } from "@mui/material";
 import ProductsSearchBar from "./ProductsSearchBar";
 
 const ListProducts = () => {
-  const products = useSelector((state) => state.products.products);
+  const products = useSelector((state) => state.products.productsAdmin);
+  const productsCount = useSelector((state) => state.products.products);
   const dispatch = useDispatch();
+  const [currentPage, setCurrentPage] = useState(1);
 
   const handleToggle = (product) => {
     const obj = {
@@ -27,16 +36,23 @@ const ListProducts = () => {
     };
 
     dispatch(putProduct(obj));
-    product.status ? alert(`Product ${product.name} enabled`) : alert(`Category ${product.name} disabled`);
+    product.status
+      ? alert(`Product ${product.name} disabled`)
+      : alert(`Product ${product.name} enabled`);
     dispatch(getProducts());
+    dispatch(getProductsForAdmin(currentPage));
   };
+
+  useEffect(() => {
+    dispatch(getProductsForAdmin(currentPage));
+  }, [productsCount]);
 
   useEffect(() => {
     dispatch(getProducts());
   }, [dispatch]);
 
   return (
-    <Container sx={{ m: 0, px: 20, my: 100, minWidth: "100vw" }}>
+    <Container sx={{ px: 20, mt: 200, minWidth: "100vw" }}>
       <Box
         sx={{
           m: 20,
@@ -74,10 +90,91 @@ const ListProducts = () => {
               (window.location.href = "/dashboard/products/create")
             }
           >
-            <MdAddCircle
-              size="45"
-              color="success"
-            />
+            <MdAddCircle size="45" color="success" />
+          </IconButton>
+        </Box>
+
+        {/* Paginación */}
+        <Box
+          style={{
+            position: "fixed",
+            bottom: 20,
+            left: "50%",
+            transform: "translateX(-50%)",
+            background: "ghostwhite",
+            borderRadius: "5px",
+            display: "flex",
+            alignItems: "center",
+            border: "4px solid dodgerblue",
+          }}
+        >
+          <IconButton
+            name="first-page"
+            color="success"
+            onClick={() => {
+              dispatch(getProductsForAdmin(1));
+              setCurrentPage(1);
+            }}
+          >
+            <MdOutlineFirstPage size="45" color="dodgerblue" />
+          </IconButton>
+
+          <IconButton
+            name="previous"
+            color="success"
+            onClick={() => {
+              dispatch(
+                getProductsForAdmin(currentPage > 1 ? currentPage - 1 : 1)
+              );
+              setCurrentPage(currentPage > 1 ? currentPage - 1 : 1);
+            }}
+          >
+            <MdKeyboardArrowLeft size="45" color="dodgerblue" />
+          </IconButton>
+          <FormLabel
+            sx={{
+              color: "ghostwhite",
+              fontSize: "1.5rem",
+              px: 10,
+              borderRadius: "5px",
+              fontWeight: "bold",
+              backgroundColor: "dodgerblue",
+            }}
+          >
+            {currentPage}
+          </FormLabel>
+          <IconButton
+            name="next"
+            color="success"
+            onClick={() => {
+              dispatch(
+                getProductsForAdmin(
+                  currentPage < Math.floor(productsCount.length / 10)
+                    ? currentPage + 1
+                    : currentPage
+                )
+              );
+              setCurrentPage(
+                currentPage < Math.floor(productsCount.length / 10)
+                  ? currentPage + 1
+                  : currentPage
+              );
+            }}
+          >
+            <MdKeyboardArrowRight size="45" color="dodgerblue" />
+          </IconButton>
+
+          <IconButton
+            name="last-page"
+            color="success"
+            onClick={() => {
+              dispatch(
+                getProductsForAdmin(Math.floor(productsCount.length / 10))
+              );
+              setCurrentPage(Math.floor(productsCount.length / 10));
+            }}
+          >
+            <MdOutlineLastPage size="45" color="dodgerblue" />
           </IconButton>
         </Box>
 
@@ -94,14 +191,9 @@ const ListProducts = () => {
         >
           <IconButton
             color="success"
-            onClick={() =>
-              (window.location.href = "/dashboard")
-            }
+            onClick={() => (window.location.href = "/dashboard")}
           >
-            <MdArrowBack
-              size="45"
-              color="crimson"
-            />
+            <MdArrowBack size="45" color="crimson" />
           </IconButton>
         </Box>
       </Box>

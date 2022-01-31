@@ -19,7 +19,7 @@ const ListCategories = () => {
     };
 
     dispatch(putCategory(obj));
-    category.status ? alert(`Category ${category.name} enabled`) : alert(`Category ${category.name} disabled`);
+    category.status ? alert(`Category ${category.name} disabled`) : alert(`Category ${category.name} enabled`);
     dispatch(getCategories());
   };
 
@@ -28,7 +28,7 @@ const ListCategories = () => {
   }, [dispatch]);
 
   return (
-    <Container sx={{ m: 0, px: 20, my: 100, minWidth: "100vw" }}>
+    <Container sx={{ px: 20, mt: 200, minWidth: "100vw" }}>
       <Box
         sx={{
           m: 20,

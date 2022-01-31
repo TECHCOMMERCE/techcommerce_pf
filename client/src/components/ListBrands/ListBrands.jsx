@@ -19,7 +19,7 @@ const ListBrands = () => {
     };
 
     dispatch(putBrand(obj));
-    brand.status ? alert(`Brand ${brand.name} enabled`) : alert(`Category ${brand.name} disabled`);
+    brand.status ? alert(`Brand ${brand.name} disabled`) : alert(`Category ${brand.name} enabled`);
     dispatch(getBrands());
   };
 
@@ -28,7 +28,7 @@ const ListBrands = () => {
   }, [dispatch]);
 
   return (
-    <Container sx={{ m: 0, px: 20, my: 100, minWidth: "100vw" }}>
+    <Container sx={{ px: 20, mt: 200, minWidth: "100vw" }}>
       <Box
         sx={{
           m: 20,

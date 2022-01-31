@@ -5,8 +5,27 @@ const getProductsByQuery = async (query) => {
   try {
     // recibe un string desde el searchbar
 
-    if (query.name)
+    if (query.admin && query.admin > 0) {
+      const count = await Product.count();
+      let limiter = Math.floor(count / 10);
+      return await Product.findAll({
+        include: [
+          {
+            model: Category,
+            through: {
+              attributes: [],
+            },
+          },
+          {
+            model: Brand,
+          },
+        ],
+        limit: 10,
+        offset: (query.admin <= limiter && query.admin) * 10,
+      });
+    }
 
+    if (query.name)
       return await Product.findAll({
         where: {
           name: {
@@ -27,7 +46,6 @@ const getProductsByQuery = async (query) => {
             model: Brand,
           },
         ],
-
       });
 
     // debe recibir un array de strings con los ids de las categorías

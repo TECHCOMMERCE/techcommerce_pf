@@ -6,6 +6,8 @@ import s from "../../assets/styles/Register.module.css";
 import Swal from "sweetalert2";
 
 const Register = () => {
+    const SERVER = process.env.REACT_APP_SERVER ||'http://localhost:3001/';
+
     const [step, setStep] = useState(1);
 
     const [data, setData] = useState({
@@ -64,7 +66,7 @@ const Register = () => {
                             const {name, lastname, email, password, confirmPassword} = data;
 
                             if(name && lastname && email && password && (password === confirmPassword)){
-                                const res = await axios.post("http://localhost:3001/user", data);
+                                const res = await axios.post(`${SERVER}user`, data);
     
                                 setFormStatus(res.data);
                             }else{
@@ -174,7 +176,7 @@ const Register = () => {
                         <form className={s.form} onSubmit={async(e) => {
                             e.preventDefault();
 
-                            const res = await axios.put("http://localhost:3001/user/" + formStatus.userid, {...aditionalData, userid: formStatus.userid});
+                            const res = await axios.put(`${SERVER}user/` + formStatus.userid, {...aditionalData, userid: formStatus.userid});
 
                             setFormStatus(res.data);
                         }}>

@@ -21,8 +21,10 @@ const Users = () => {
 
     const [mode, setMode] = useState("add");
 
+    const SERVER = process.env.REACT_APP_SERVER || "http://localhost:3001/";
+
     async function actualizarTabla(){
-        const res = await axios.get("http://localhost:3001/user");
+        const res = await axios.get(`${SERVER}user`);
         setUsers(res.data);
     }
 
@@ -40,10 +42,10 @@ const Users = () => {
 
                     if(mode === "add"){
                         console.log("voy a agregar");
-                        await axios.post("http://localhost:3001/user", data);
+                        await axios.post(`${SERVER}user`, data);
                     }else{
                         console.log("voy a editar")
-                        await axios.put("http://localhost:3001/user/" + data.userid, data);
+                        await axios.put(`${SERVER}user/` + data.userid, data);
                         
                         setMode("add")
                     }
@@ -279,7 +281,7 @@ const Users = () => {
                                                 <td>
                                                     <button
                                                         onClick={async() => {
-                                                            await axios.put("http://localhost:3001/user/" + user.userid, {force: true});
+                                                            await axios.put(`${SERVER}user/` + user.userid, {force: true});
 
                                                             actualizarTabla();
                                                         }}
@@ -305,7 +307,7 @@ const Users = () => {
                                                     }>Editar</button>
                                                     <button
                                                         onClick={async() => {
-                                                            await axios.delete("http://localhost:3001/user/" + user.userid);
+                                                            await axios.delete(`${SERVER}user/` + user.userid);
                                                             
                                                             actualizarTabla();
                                                         }

@@ -8,17 +8,24 @@
   flex-direction: column;
   box-shadow: 0 1rem 2rem hsl(0 0% 0% / 20%);
   padding: 5%;
-  
+  margin-bottom: 10%;
 
 }
 
+.link{
+  text-decoration: none;
+  color: black;
+}
+
+.link:hover{
+  color: rgb(117, 116, 116);
+}
 
 .card{
   display: flex;
   justify-content: space-around;
   align-items: center;
   flex-direction: row;
-  box-shadow: 0 1rem 2rem hsl(0 0% 0% / 10%);
   margin: 3%;
   width: 100%;
 }

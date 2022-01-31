@@ -1,41 +1,99 @@
 const server = require('express').Router(); //Import router from express module.
-const { Order, Product, User } = require('../db.js'); // Import Categories model.
+const { Order, Product, User, Cart } = require('../db.js'); // Import Categories model.
 const { OK, ERROR, ERROR_SERVER } = require('../constants/index'); // Import Status constants.
 
 
 // Start Routes
 //// 'Get Orders' route in '/'
-server.get('/order/:id', function (req, res) {
-	Order.findAll({ include: [{ model: User }, { model: Product }] })
-		.then((orders) => {
-			return res.json({
-				message: 'Sucess',
-				data: orders,
-			});
-		})
-		.catch((err) => {
-			console.log(err);
+server.get('/:id', function (req, res) {
+	Order.findOne({ where: {orderid: req.params.id}, include: [{ model: User }, { model: Product }] })
+	.then((order_data) => {
+		const order = {
+			orderid: order_data.dataValues.orderid,
+			status: order_data.dataValues.status,
+			user: order_data.dataValues.user.name + " " + order_data.dataValues.user.lastname,
+			price: order_data.dataValues.totalPrice,
+			address: order_data.dataValues.address,
+			date: order_data.dataValues.createdAt,
+			products: order_data.dataValues.products.map(product => {
+				return{
+					productid: product.dataValues.productid,
+					photo: product.dataValues.image,
+					name: product.dataValues.name,
+					price: product.dataValues.price,
+					cant: product.dataValues.detail.quantity
+				}
+			})
+		}
+
+		return res.json({
+			message: 'Sucess',
+			order,
 		});
+	})
+	.catch((err) => {
+		console.log(err);
+	});
 });
 
-server.get('/filter', function (req, res) {
-	const { status } = req.query;
-	let queryParameters;
-	// console.log('EL ESTADO DE LA ORDEN ES ', status);
+server.put("/:id", async(req, res) => {
+	const order = await Order.findOne({
+		where: {
+			orderid: req.params.id
+		}
+	})
 
-	if (status === 'all') queryParameters = { include: [{ model: User }, { model: Product }] };
-	else queryParameters = { where: { status }, include: [{ model: User }, { model: Product }] };
+	console.log(req.body.status);
+
+	await order.update({
+		status: req.body.status
+	})
+
+	return res.json({
+		message: 'Sucess',
+		order,
+	});
+});
+
+server.get('/', function (req, res) {
+	const { status } = req.query;
+	let queryParameters = null;
+
+	if(status){
+		//filtrado
+		queryParameters = { where: { status }, include: [{ model: User }, { model: Product }] };
+	}else{
+		queryParameters = { include: [{ model: User }, { model: Product }] };
+	}
 
 	Order.findAll(queryParameters)
-		.then((orders) => {
-			return res.json({
-				message: 'Sucess',
-				data: orders,
-			});
-		})
-		.catch((err) => {
-			console.log(err);
+	.then((orders_res) => {
+		const orders = orders_res.map(order => {
+			console.log("order", order.dataValues.createdAt);
+			return{
+				orderid: order.dataValues.orderid,
+				status: order.dataValues.status,
+				user: order.dataValues.user.name + " " + order.dataValues.user.lastname,
+				price: order.dataValues.totalPrice,
+				address: order.dataValues.address,
+				date: order.dataValues.createdAt
+			}
 		});
+
+		return res.json({
+			message: 'Sucess',
+			orders,
+		});
+	})
+	.catch((err) => {
+		console.log(err);
+		return res.json({
+			message: 'error',
+			err
+		});
+	});
+	
+
 });
 
 server.post('/shopping/:userId', function (req, res) {

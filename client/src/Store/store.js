@@ -14,6 +14,7 @@ import {reviewReducer} from './reducer/reviews';
 
 import thunk from "redux-thunk";
 
+
 const store = createStore(
   combineReducers({
     products: productsReducer,
