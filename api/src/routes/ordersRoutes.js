@@ -36,8 +36,23 @@ server.get('/:id', function (req, res) {
 	});
 });
 
-server.put("/:id", (req, res) => {
+server.put("/:id", async(req, res) => {
+	const order = await Order.findOne({
+		where: {
+			orderid: req.params.id
+		}
+	})
 
+	console.log(req.body.status);
+
+	await order.update({
+		status: req.body.status
+	})
+
+	return res.json({
+		message: 'Sucess',
+		order,
+	});
 });
 
 server.get('/', function (req, res) {
