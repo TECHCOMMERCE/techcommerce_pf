@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Fragment } from "react";
 //redux
 import { useSelector, useDispatch } from 'react-redux'
@@ -18,9 +18,12 @@ import { filterReviewByStatus } from '../../../Store/actions/reviews'
 const BtnFilterReview = () => {
 
   const dispatch = useDispatch()
-  
+
   const [value, setValue] = React.useState(0);
 
+  useEffect( () => {
+    dispatch()
+  })
 
 
   return (<Fragment>

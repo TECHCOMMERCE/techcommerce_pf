@@ -1,5 +1,6 @@
 import {
   GET_PRODUCT_BY_ID,
+  POST_CLOUDINARY_IMAGE,
   POST_PRODUCT,
   PUT_PRODUCT,
   RESET_PRODUCT_DETAIL,
@@ -8,6 +9,7 @@ import {
 const initialState = {
   status: "",
   productDetail: [],
+  url: "",
 };
 
 export const productReducer = (state = initialState, { type, payload }) => {
@@ -23,6 +25,9 @@ export const productReducer = (state = initialState, { type, payload }) => {
 
     case RESET_PRODUCT_DETAIL:
       return { ...state, productDetail: [] };
+
+    case POST_CLOUDINARY_IMAGE:
+      return { ...state, url: payload };
 
     default:
       return state;

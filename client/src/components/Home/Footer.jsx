@@ -114,7 +114,7 @@ const Footer = () => {
           <ListItem><a href="http://localhost:3000/products">Productos</a></ListItem>
           <ListItem><a href="http://localhost:3000/register">Register</a></ListItem>
           <ListItem><a href="http://localhost:3000/login">Login</a></ListItem>
-          <ListItem><Link to="/products/list">My Products</Link></ListItem>
+          <ListItem><Link to="/dashboard">Dashboard</Link></ListItem>
         </List>
       </Center>
       <Right>

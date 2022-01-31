@@ -1,11 +1,13 @@
 import {
     SET_USER_DATA,
-    SET_USER_ERROR
+    SET_USER_ERROR,
+    EDIT_USER_FRONT,   
+    GET_ONE_USER 
 } from '../constanst/actionsTypes.js'
 import axios from 'axios'
 //const {SERVER}= process.env
-const SERVER = 'http://localhost:3001'
-
+let SERVER = process.env.REACT_APP_SERVER ||'http://localhost:3001/';
+SERVER = SERVER.substring(0,SERVER.length-1)
 export function loginAccount(payload){
   return async function(dispatch){
     try{
@@ -43,4 +45,24 @@ export function getuser(){
         console.log(e)
     }
   }
+}
+
+export const editUserFront = (data) => async(dispatch) =>{
+    try {
+        let response = await axios.put(`${SERVER}/user/` , data)
+    } catch (error) {
+        console.log(error)
+    }
+} 
+
+export const getOneUser = (userid) => async(dispatch)=> {
+    try {
+        let response = await axios.get(`${SERVER}/user/${userid}`)
+        return dispatch({
+            type: GET_ONE_USER,
+            payload: response.data
+        })
+    } catch (error) {
+        console.log(error)
+    }
 }

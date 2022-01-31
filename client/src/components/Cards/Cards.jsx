@@ -7,7 +7,6 @@ import { Button } from '@mui/material';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Footer from '../../components/Home/Footer';
-import NavBar from '../../components/NavBar';
 import { useParams, useLocation } from 'react-router-dom';
 
 
@@ -92,12 +91,12 @@ const Cards = () => {
   useEffect(async() => {
     window.scroll({top: 0, left: 0, behavior: 'smooth' })
     await dispatch(getProductsFront(obj, page));
-    // await dispatch(getBrand())
-    // await dispatch(getCategories())
+    await dispatch(getBrand())
+   await dispatch(getCategories())
 }, [page, obj, dispatch]); 
 
   return (<>
-    <NavBar/>
+   
       
     <Main>
       <Filters>

@@ -43,7 +43,7 @@ router.post("/", async(req, res) => {
 
   try{
     const [user, created] = await User.findOrCreate({
-      where: { email, password, status: "true" },
+      where: { email },
       defaults: {
         ...data
       }
@@ -60,32 +60,47 @@ router.post("/", async(req, res) => {
   }
 });
 
+// PUT del perfil
 router.put("/", async(req, res) => {
   try{
+    const {userid, password, userData} = req.body;
+    
     const user = await User.findOne({where: {
-      userid: req.body.userid
-    }});
+      userid,
+      password
+    }}); 
 
-    user.update({...req.body})
+    const data = {
+      ...userData
+    };
 
+    data["password"] = userData.password || user.password;
 
-    return res.status(200).send({code: 0, message: "Usuario creado Con éxito"});
+    const res = await user.update(data);
+
+    return res.status(200).send({code: 0, message: "Usuario actualizado Con éxito"});
   }catch(e){
+    console.log(e);
     return res.status(200).send({code: 1, message: "Revise los campos"});
   }
 });
 
+// PUT para que el admin edite y para el registro
 router.put("/:userid", async(req, res) => {
+  // console.log("body del segundo put: ", req.body);
   try{
     const user = await User.findOne({where: {
-      userid: req.params.userid
+      userid: req.params.userid,
     }});
 
-    user.update({...req.body})
+    
+    user.update({...req.body});
 
+    console.log("user: ", user);
 
-    return res.status(200).send({code: 0, message: "Usuario creado Con éxito"});
+    return res.status(200).send({code: 0, message: "Usuario actualizado Con éxito"});
   }catch(e){
+    
     return res.status(200).send({code: 1, message: "Revise los campos"});
   }
 });
@@ -126,6 +141,26 @@ router.delete("/:userid", async(req, res) => {
     return res.status(200).send({code: 1, message: "Hay error", error: e});
   }
 });
+
+
+router.get('/:userid', async(req, res) => {
+  try {
+    const user = await User.findOne({
+      where: {
+      userid: req.params.userid
+    },
+    attributes: {
+      exclude: ["password","changepassword"]
+    }
+  });
+
+    res.json(user)
+  } catch (error) {
+    
+  }
+})
+
+
 
 // opción de cambiarle el status
 // router.delete("/:userid", async(req, res) => {

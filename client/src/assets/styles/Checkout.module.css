@@ -1,0 +1,154 @@
+.container *{
+    box-sizing: border-box; 
+    /* margin-top: 10%; */
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    height: auto;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(234, 236, 238);
+    padding-bottom: 50px;
+}
+
+.form{
+    width: 60%;
+    display: block;
+    justify-content: center;
+    align-items: center;/*  */
+    background-color: rgb(248, 246, 246);
+    padding: 50px 50px;
+}
+
+.inputs{
+    width: 100%;
+    height: 350px;
+    display: flex;
+    justify-content: center;
+}
+
+.inputContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.input{
+    padding-left: 15px;
+    width: 300px;
+    height: 50px;
+
+    font-size: 18px;
+
+    border: 0px solid black;
+    /* border-radius: 10px; */
+    box-shadow: 0px 3px 8px .2px rgb(50, 50, 50);
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+
+.inputLong{
+    width: 100%;
+}
+
+.button{
+    margin-left: auto;
+    margin-right: auto;  
+    width: 200px;
+    height: 50px;
+    padding: 0;
+    background-color: white;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0px 3px 8px .2px rgb(50, 50, 50); 
+    font-size: 16px;  
+    transition: background-color .2s;
+    /* margin-bottom: 50px; */
+}
+
+.button:hover{
+    cursor: pointer;
+    background-color: rgb(232, 232, 232);
+}
+
+.cart{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.products{
+    width: 98%;
+    height: 450px;
+    padding-top: 10px;
+    overflow-y: auto;
+}
+
+.product{
+    width: 800px;
+    height: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 15px;
+
+    background-color: white;
+    border: .2px solid lightgray;
+    border-radius: 10px;
+    box-shadow: 0px 3px 8px .2px rgb(50, 50, 50);
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.left{
+    width: 70%px;
+    display: flex;
+    align-items: center;
+    overflow-x: hidden;
+}
+
+.cant{
+    margin-right: 20px;
+}
+
+.img{
+    width: 70px;
+    margin-right: 20px;
+}
+
+.totalPrice{
+    width: 98%;
+    height: 180px;
+}
+
+.totalThings{
+    background-color: aqua;
+}
+
+.totalText{
+    font-size: 60px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-end;
+}
+
+.totalNumber{
+    font-size: 40px;
+    font-weight: normal;
+}
+
+.pay{
+    width: 500px;
+    display: block;
+    margin: 30px auto;
+}
+.pay > input{
+    background-color: white;
+}

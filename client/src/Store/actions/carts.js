@@ -3,8 +3,8 @@ import {
   GET_PRODUCTS_CART,
   CLEAR_CART
 } from '../constanst/actionsTypes'
-const SERVER = 'http://localhost:3001';
 
+const SERVER = process.env.REACT_APP_SERVER ||'http://localhost:3001/';
 export function getProductsCartUser(userId){
   return async function (dispatch){
     try{
@@ -16,10 +16,10 @@ export function getProductsCartUser(userId){
         })
           
       }else{
-        const {data}= await axios.get(`${SERVER}/cart/${userId}`)
+        const {data}= await axios.get(`${SERVER}cart/${userId}`)
         const localCart = JSON.parse(localStorage.getItem("cart")) || [] //orderId es el estado para la orden de ese usuario
         localStorage.removeItem("cart")
-        const res= await axios.put(`${SERVER}/cart/${userId}`,{productsInfo: [...data.cart,...localCart]})
+        const res= await axios.put(`${SERVER}cart/${userId}`,{productsInfo: [...data.cart,...localCart]})
         return dispatch ({
             type: GET_PRODUCTS_CART,
             payload: res.data.cart
@@ -73,7 +73,7 @@ if (userId) {
     const body = {productsInfo: aux,user: user}
     console.log("body",body)
     return axios
-      .put(`${SERVER}/cart/${userId}`, body)
+      .put(`${SERVER}cart/${userId}`, body)
       .then((response) => {
         dispatch({ 
           type: GET_PRODUCTS_CART,
@@ -97,7 +97,7 @@ export function deleteItemFromCart(idProduct, userId){
         })
       }
       else{
-        const {data} = await axios.delete(`${SERVER}/cart/${userId}?productid=${idProduct}`)
+        const {data} = await axios.delete(`${SERVER}cart/${userId}?productid=${idProduct}`)
         return dispatch ({
             type: GET_PRODUCTS_CART,
             payload: data.cart
@@ -114,7 +114,7 @@ export function changeAmount(products, userId){
   try{
     return async (dispatch) => {
       if(userId){
-        const qtyProduct = await axios.put(`${SERVER}/cart/${userId}`,{productsInfo: products})
+        const qtyProduct = await axios.put(`${SERVER}cart/${userId}`,{productsInfo: products})
         return dispatch({
             type: GET_PRODUCTS_CART,
             payload: qtyProduct.data.cart
@@ -135,7 +135,7 @@ export function changeAmount(products, userId){
 export function clearCart(idUser){
   return async function(dispatch){
     if(idUser)
-      await axios.delete(`${SERVER}/cart/${idUser}`);
+      await axios.delete(`${SERVER}cart/${idUser}`);
     localStorage.removeItem("cart")
     return dispatch({
       type: CLEAR_CART,
