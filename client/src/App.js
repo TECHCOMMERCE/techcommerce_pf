@@ -33,6 +33,10 @@ function App() {
 
   const user = useSelector(state => state.users.user);
 
+  useEffect(() => {
+    //console.log(user);
+  }, [user]);
+
   return (
     <div className="App">
       {user && user.force ? null : <Header/>}

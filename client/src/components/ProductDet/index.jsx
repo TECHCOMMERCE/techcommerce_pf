@@ -22,6 +22,7 @@ import {getProductsCartUser} from '../../Store/actions/carts.js'
 import {getWishList} from '../../Store/actions/wishlist'
 
 import Swal from 'sweetalert2';
+import Reviews from './Reviews';
 import axios from 'axios'
 
 
@@ -45,8 +46,8 @@ const Product = () => {
 	const fav = useSelector(state => state.wishlist.wishList);
 	const user = JSON.parse(localStorage.getItem("user"));
   const idUser = !user?null:user.user.userid;
-	console.log('productdetail', product);
-	console.log('id', id)
+	// console.log('productdetail', product);
+	// console.log('id', id)
 	const SERVER = process.env.REACT_APP_SERVER ||'http://localhost:3001/';
 	
 	useEffect(() => {
@@ -76,7 +77,7 @@ const Product = () => {
 					<Row>
 						<Col xs={12} md={12} lg={8} className={s.cont_img}>
 
-							<img src={product.image} style={{height: '40%', width: '15%'}}></img>
+							<img src={product.image} alt="product" style={{height: '40%', width: '15%'}}></img>
 						</Col>
 						<Col xs={12} md={12} lg={4} className={s.cont_info}>
 							<div className={s.infog}>
@@ -100,12 +101,10 @@ const Product = () => {
 										
 										<Button variant='contained' style={{ backgroundColor: '#2EB8B0'}} onClick={()=>addCart(product)}>Añadir al carrito</Button>
 										<Button variant='contained' style={{marginTop: '15px', backgroundColor: '#FF'}} onClick={()=>addFavorites(product)}>{fav.length===0?'Añadir a favoritos':'Añadido a Favoritos'}</Button>
-										
-
 									</div>
 									
 								)}
-								<div className={s.contReviw}>
+								{/* <div className={s.contReviw}>
 									<div className={s.icon}>
 										<div className={s.emptyStarsCont}>
 											<div className={s.emptyStars}>
@@ -127,10 +126,10 @@ const Product = () => {
 										</div>
 									</div>
 									
-									<div className={s.addReview}>
+									{/* <div className={s.addReview}>
 										<p style={{color: '#2EB8B0'}} >Escribir comentario</p>
-									</div>
-								</div>
+									</div> }
+								</div> */}
 
 								<div className={s.attributesContainer} >
 
@@ -162,7 +161,7 @@ const Product = () => {
 				{/*------------------- reviews -------------------------- */}
 				{/* <AddReview />
 				<AvisoLoggin  /> */}
-				{/* <Reviews /> */}
+				<Reviews productid={id} />
 				{/*------------------- reviews -------------------------- */}
 			  </Container>
 			<Footer />   
@@ -170,16 +169,4 @@ const Product = () => {
 	);
 };
 
-/* function mapStateToProps(state) {
-	return {
-		productsP: state.products,
-	};
-}
-function mapDispatchToProps(dispatch) {
-	return {
-		getProductP: () => dispatch(getProducts()),
-	};
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Product); */
 export default Product;
