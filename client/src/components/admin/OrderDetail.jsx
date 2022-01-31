@@ -5,6 +5,7 @@ import {FaEdit, FaCheckCircle} from "react-icons/fa";
 import {MdCancel, MdCheckCircle} from "react-icons/md";
 
 import s from "../../assets/styles/admin/OrderDetail.module.css";
+import axios from 'axios';
 
 const OrderDetail = () => {
     // Lo usaré para hacer la petición
@@ -16,30 +17,14 @@ const OrderDetail = () => {
 
     const [newStatus, setNewStatus] = useState();
     
-    useEffect(() => {
-        setOrder({
-            orderid: "23-g61-g90su4-1g",
-            date: "12/02/2022",
-            status: "procesando",
-            user: "Lucas Alvarez",
-            price: 324.12,
-            products: [
-                {
-                    productid: "12-gt2-1sy5-23",
-                    photo: "./assets/img/playstation5.png",
-                    name: "PlayStation 5",
-                    price: 100000,
-                    cant: 1,
-                },
-                {
-                    productid: "a7-g82j-f2-g91k",
-                    photo: "./assets/img/nintendoSwitch.png",
-                    name: "Nintendo switch",
-                    price: 80000,
-                    cant: 1,
-                }
-            ]
-        });
+    const SERVER = process.env.REACT_APP_SERVER || "http://localhost:3001/";
+    
+    useEffect(async() => {
+        const {orderid} = params;
+
+        const res = await axios.get(`${SERVER}orders/${orderid}`);
+        
+        setOrder(res.data.order)
     }, []);
 
     useEffect(() => {
@@ -78,15 +63,24 @@ const OrderDetail = () => {
                                     value={newStatus}
                                     onChange={e => setNewStatus(e.target.value)}
                                 >
-                                    <option value="completa">completa</option>
-                                    <option value="cancelada">cancelada</option>
-                                    <option value="procesando">procesando</option>
-                                    <option value="creada">creada</option>
+                                    <option value="Completeda">completa</option>
+                                    <option value="cancelled">cancelada</option>
+                                    <option value="Processing">procesando</option>
+                                    <option value="Created">creada</option>
                                 </select>
 
-                                <MdCheckCircle className={`${s.icon} ${s.confirm}`} onClick={() => {
-                                    console.log("hago petición");
+                                <MdCheckCircle className={`${s.icon} ${s.confirm}`} onClick={async() => {
+                                    console.log(`${SERVER}orders/${order.orderid}`);
+
+                                    await axios.put(`${SERVER}orders/${order.orderid}`, {status: newStatus});
+
                                     setMode("view")
+
+                                    const {orderid} = params;
+
+                                    const res = await axios.get(`${SERVER}orders/${orderid}`);
+                                    
+                                    setOrder(res.data.order)
                                 }}/>
                                 <MdCancel className={`${s.icon} ${s.cancel}`} onClick={() => setMode("view")}/>
                             </div>
@@ -100,7 +94,7 @@ const OrderDetail = () => {
                             <div key={product.productid} className={s.product}>
                                 <div className={s.left}>
                                     <div className={s.imgContainer}>
-                                        <img className={s.img} src={product.image} alt=""/>
+                                        <img className={s.img} src={product.photo} alt=""/>
                                     </div>
                                     <span className={s.name}>{product.name}</span>
                                     <span className={s.cant}>...x {product.quantity}</span>
