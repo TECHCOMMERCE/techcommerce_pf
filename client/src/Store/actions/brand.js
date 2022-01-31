@@ -6,12 +6,12 @@ import {
   GET_BRAND_BY_ID,
 } from "../constanst/actionsTypes";
 
-const SERVER = process.env.REACT_APP_SERVER;
+const SERVER = process.env.REACT_APP_SERVER || "http://localhost:3001/";
 
 export const getBrandById = (id) => {
   try {
     return async (dispatch) => {
-      await axios.get(`${SERVER}/brand/${id}`).then((response) => {
+      await axios.get(`${SERVER}brand/${id}`).then((response) => {
         return dispatch({
           type: GET_BRAND_BY_ID,
           payload: response.data,
@@ -26,7 +26,7 @@ export const getBrandById = (id) => {
 export const putBrand = (brand) => {
   try {
     return async (dispatch) => {
-      await axios.put(`${SERVER}/brand`, brand).then(() => {
+      await axios.put(`${SERVER}brand`, brand).then(() => {
         return dispatch({
           type: PUT_BRAND,
         });
@@ -40,7 +40,7 @@ export const putBrand = (brand) => {
 export const postBrand = (brand) => {
   try {
     return async (dispatch) => {
-      await axios.post(`${SERVER}/brand`, brand).then(() => {
+      await axios.post(`${SERVER}brand`, brand).then(() => {
         return dispatch({
           type: POST_BRAND,
         });

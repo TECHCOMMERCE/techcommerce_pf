@@ -30,7 +30,7 @@ const CreateCategory = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        my: 100,
+        mt: 200,
         width: "100%",
       }}
     >

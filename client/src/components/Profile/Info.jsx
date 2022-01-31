@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getOneUser } from '../../Store/actions/users';
+import { getOneUser, loginAccount } from '../../Store/actions/users';
 import style from '../../styles/Profile/info.module.css';
 import Modal from 'react-bootstrap/Modal';
 import { Button } from '@mui/material';
@@ -14,7 +14,8 @@ import axios from 'axios';
   const [display, setDisplay] = useState('data')
   const local= JSON.parse(localStorage.getItem('user'))
   const dispatch= useDispatch();
-  const [error, setError] = useState('')
+  const [error, setError] = useState('');
+  const [newPass, setNewPass] = useState('');
   const {user} = useSelector(state => state.users);
   const [data, setData] =useState({})
   console.log(data)
@@ -42,8 +43,19 @@ function validateNumber(e) {
   }
   setData({ 
       ...data,
-      [e.target.name]: e.target.value
+      [e.target.name]: parseInt(e.target.value)
   }) 
+}
+
+function validatePass(e) {
+  if(e.target.value.length <= 0) setError('password')
+  else{
+    setData({
+      ...data, 
+      password: e.target.value
+    })
+    setError('')
+  }
 }
 
 
@@ -61,11 +73,13 @@ function validateNumber(e) {
     photo: user.photo? user.photo : '',
     country: user.country? user.country : '',
     city: user.city? user.city : '' ,
-    postalcode: user.postalcode? user.postalcode : '',
+    postalcode: user.postalcode? user.postalcode : 0,
     oldPassword: "",
-    password: ""
+    password: "",
+    newPassword: ''
     })
     setDisplay('data');
+    setNewPass('')
   }
 
   function onChange(e) {
@@ -81,14 +95,33 @@ function validateNumber(e) {
   }, [user])
 
   async function onSubmit(e) {
+    e.preventDefault();
+
    await dispatch(editUserFront({
      userid: user.userid,
-     password: data.oldPassword,
+     password: data.password,
 
      userData: data
    }));
    //window.location.href = '/login';
    dispatch(getOneUser(local.user.userid))
+   setDisplay('data');
+
+  //  Vuelvo a loguearme
+    dispatch(loginAccount({email: user.email, password: data.password, type:'normal'}))
+  }
+
+  function newpassword(e) {
+    e.preventDefault();
+    if(newPass===''){
+      setNewPass('active');
+    }else {
+      setNewPass('');
+      setData({
+        ...data,
+        newPassword:  ''
+      })
+    }
   }
 
   function uploadImage(files) {
@@ -120,8 +153,8 @@ useEffect(async() => {
       photo: res.payload.photo? res.payload.photo : '',
       country: res.payload.country? res.payload.country : '',
       city: res.payload.city? res.payload.city : '' ,
-      postalcode: res.payload.postalcode? res.payload.postalcode : '',
-      oldPassword: "",
+      postalcode: res.payload.postalcode? res.payload.postalcode : 0,
+      
       password: ""
     })
   })
@@ -192,40 +225,41 @@ useEffect(async() => {
         <input className={style.input} name='postalcode' type='text' onChange={validateNumber} defaultValue={user.postalcode? user.postalcode : ''}/>
         {error==='postalcode' ? <span style={{color: 'red'}}>Escriba un dato válido</span> : null}
       </div>
-
-      <div className={style.inputContainer}>
-        <label>Contraseña anterior</label>
-        <input className={style.input} name='postalcode' type='text' defaultValue={data.oldPassword} onChange={e => {
-          setData(prev => {
-            return {
-              ...prev,
-              oldPassword: e.target.value
-            }
-          })
-        }}/>
-        {error==='postalcode' ? <span style={{color: 'red'}}>Escriba un dato válido</span> : null}
-      </div>
-
-      <div className={style.inputContainer}>
-        <label>nueva contraseña</label>
-        <input className={style.input} name='postalcode' type='text' defaultValue={data.password} onChange={e => {
-          setData(prev => {
-            return {
-              ...prev,
-              password: e.target.value
-            }
-          })
-        }}/>
-        {error==='postalcode' ? <span style={{color: 'red'}}>Escriba un dato válido</span> : null}
-      </div>
-
       <div className={style.inputContainer}>
       <label style={{marginBottom: '20px'}}>Foto de perfil</label>
       <input className={style.inputPhoto} type='file'  onChange={(event)=>uploadImage(event.target.files[0])}/>
       
       </div>
+      <div className={style.inputContainer}>
+        <label>Contraseña</label>
+        <input className={style.input} required name='password' type='password' defaultValue={data.password} onChange={(e)=>validatePass(e)}/>
+        {error==='password' ? <span style={{color: 'red'}}>Escriba su contraseña</span> : null}
+      </div>
+     
+      
+      
+      
 
-      <div style={{width: '400px', marginLeft: '20%'}}>
+      
+      <div style={{marginRight: '8%',marginTop: '5%', paddingLeft: '10px', display : 'block'}} className={style.inputContainer} >
+        <Button variant='outlined' color='error' onClick={(e)=>newpassword(e)} >{newPass === '' ? 'Cambiar contraseña' : 'Cancelar cambio'}</Button>
+      </div>
+      {newPass === 'active' ?
+        <div  style={{display: 'flex', alignItems: 'center', flexDirection: 'column'}}>
+        <label>nueva contraseña</label>
+        <input className={style.input} name='newpassword' type='password'  onChange={e => {
+          setData(prev => {
+            return {
+              ...prev,
+              newPassword: e.target.value
+            }
+          })
+        }}/>
+        {error==='postalcode' ? <span style={{color: 'red'}}>Escriba un dato válido</span> : null}
+      </div> : null
+      }
+
+      <div style={{width: '400px', marginLeft: '20%', marginTop: '5%'}}>
         <Button variant='contained' onClick={onSubmit}  style={{backgroundColor: '#2EB8B0', marginRight: '10%'}} type='submit' disabled={error.length > 0}>Actualizar</Button>
         <Button variant='contained'  style={{backgroundColor: 'red'}} onClick={cancel}>cancelar</Button>
       </div>

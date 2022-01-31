@@ -84,9 +84,12 @@
 	align-items: center;
 	justify-content: center;
 	flex-direction: row;
+	margin-left: 10%;
 }
 .cont_cant2{
 	width: 400px;
+	display: flex;
+	justify-content: center;
 }
 .cont_cant .select {
 	width: 40px;
@@ -108,9 +111,11 @@
 }
 .cont_button {
 	display: flex;
-	justify-content: space-evenly;
+	flex-direction: column;
+	align-items: center;
 	margin-top: 30px;
 	margin-bottom: 15px;
+	margin-right: 20px;
 }
 .buttonCar {
 	color: #ef9635 !important;

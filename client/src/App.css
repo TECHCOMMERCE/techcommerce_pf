@@ -1,0 +1,9 @@
+#root{
+  padding-top: 60px;
+}
+
+@media (min-width:738px) {
+  #root{
+    padding-top: 10%;
+  }
+}
