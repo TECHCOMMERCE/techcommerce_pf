@@ -6,9 +6,9 @@ module.exports = (sequelize) => {
     "review",
     {
       reviewid: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         primaryKey: true,
-        autoIncrement: true,
+        defaultValue: DataTypes.UUIDV4
       },
       stars: {
         // type: DataTypes.ENUM("1", "2", "3", "4", "5"),

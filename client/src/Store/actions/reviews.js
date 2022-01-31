@@ -14,8 +14,10 @@ import axios from 'axios';
 const SERVER = process.env.REACT_APP_SERVER || 'http://localhost:3001/'
 
 export const postReview = (review,productid) => {
+  const user = JSON.parse(localStorage.getItem("user"));
+  const idUser = !user?null:user.user.userid;
   return async() =>{
-    const res= await axios.post(`${SERVER}review/${productid}/review`, review)
+    const res= await axios.put(`${SERVER}review/${productid}/user/${idUser}`, review)
     return res
   }
 }
@@ -45,7 +47,7 @@ export const getReviewsByProduct = (productid) => {
   }
 } */
 
-export const putReview = (review) =>{
+/* export const putReview = (review) =>{
   return async (dispatch) =>{
     let json = await axios.put(`${SERVER}review/:productId/review/:id
     `, review)
@@ -55,7 +57,7 @@ export const putReview = (review) =>{
       payload: json.data
     })
   }
-}
+} */
 
 /* export const deleteReview = (review) =>{
   return async (dispatch) =>{

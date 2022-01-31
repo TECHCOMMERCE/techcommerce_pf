@@ -20,9 +20,9 @@ import TextField from "@mui/material/TextField";
 // start rate --
 import Rating from "@mui/material/Rating";
 import { useState } from "react";
+import Swal from 'sweetalert2';
 
-
-const SubmitReveiw = ({productid}) => {
+const SubmitReveiw = ({productid, getReviewsByProduct}) => {
   const dispatch = useDispatch();
   const [loading, setLoading] = React.useState(false);
   // acordion --
@@ -63,9 +63,14 @@ const SubmitReveiw = ({productid}) => {
         stars: value
       }
       , productid))
-    // setInput({
-      // description:""
-    // })
+      Swal.fire({
+        icon: 'success',
+        text: 'Tu comentario ha sido publicado correctamente!',
+        title: 'Publicación exitosa'
+      })
+
+      dispatch(getReviewsByProduct(productid))
+
   }
 
   const Accordion = styled((props) => (
