@@ -16,6 +16,7 @@ const initialState = {
 };
 
 export function productsReducer(state = initialState, action) {
+
   switch (action.type) {
     case GET_PRODUCTS_FOR_ADMIN:
       return { ...state, productsAdmin: action.payload };
@@ -53,4 +54,5 @@ export function productsReducer(state = initialState, action) {
     default:
       return state;
   }
+
 }

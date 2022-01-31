@@ -13,7 +13,7 @@ export function getWishList(userid, productid=null){
         let qproduct=''
         if(productid) qproduct=`${productid}`
         const {data}= await axios.get(`${SERVER}wishlist/${userid}/${qproduct}`)
-        console.log('datawish', data);
+        //console.log('datawish', data);
         return dispatch ({
             type: GET_WISHLIST,
             payload: data
