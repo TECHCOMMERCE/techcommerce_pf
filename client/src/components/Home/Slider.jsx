@@ -88,12 +88,8 @@ const Desc = styled.p`
   ${mobile({ margin: "20px 0", letterSpacing: 0, fontSize: "16px" })}
 `;
 
-const Button = styled.button`
-  padding: 10px;
-  font-size: 20px;
-  background-color: transparent;
-  cursor: pointer;
-`;
+
+
 //------ Styled-Icons ----------------
 const ArrowBackOutlineIcon = styled(ArrowIosBackOutline)`
 

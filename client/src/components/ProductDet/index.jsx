@@ -45,15 +45,13 @@ const Product = () => {
 	const fav = useSelector(state => state.wishlist.wishList);
 	const user = JSON.parse(localStorage.getItem("user"));
   const idUser = !user?null:user.user.userid;
-	console.log('productdetail', product);
-	console.log('id', id)
 	const SERVER = process.env.REACT_APP_SERVER ||'http://localhost:3001/';
 	
 	useEffect(() => {
 		dispatch(getDetails(id))
 		dispatch(getProductsCartUser(idUser)); 
 		dispatch(getWishList(idUser,id))
-	}, [dispatch, id]);
+	}, [dispatch, id,idUser]);
 
 	const addCart = (product) => {
 		dispatch(addToCart({...product,quantity: qty},idUser,cart))
@@ -76,7 +74,7 @@ const Product = () => {
 					<Row>
 						<Col xs={12} md={12} lg={8} className={s.cont_img}>
 
-							<img src={product.image} style={{height: '40%', width: '15%'}}></img>
+							<img src={product.image} style={{height: '40%', width: '15%'}} alt ="foto "></img>
 						</Col>
 						<Col xs={12} md={12} lg={4} className={s.cont_info}>
 							<div className={s.infog}>
@@ -126,12 +124,7 @@ const Product = () => {
 											</div>
 										</div>
 									</div>
-									
-									<div className={s.addReview}>
-										<p style={{color: '#2EB8B0'}} >Escribir comentario</p>
-									</div>
 								</div>
-
 								<div className={s.attributesContainer} >
 
 									<table>
@@ -159,27 +152,11 @@ const Product = () => {
 						</Col>
 					</Row>
 				</div>  
-				{/*------------------- reviews -------------------------- */}
-				{/* <AddReview />
-				<AvisoLoggin  /> */}
-				{/* <Reviews /> */}
-				{/*------------------- reviews -------------------------- */}
 			  </Container>
 			<Footer />   
 		</div>
 	);
 };
 
-/* function mapStateToProps(state) {
-	return {
-		productsP: state.products,
-	};
-}
-function mapDispatchToProps(dispatch) {
-	return {
-		getProductP: () => dispatch(getProducts()),
-	};
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(Product); */
 export default Product;

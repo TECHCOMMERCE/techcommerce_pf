@@ -35,7 +35,7 @@ function App() {
   const user = useSelector(state => state.users.user);
 
   useEffect(() => {
-    console.log(user);
+   /*  console.log(user); */
   }, [user]);
 
   return (

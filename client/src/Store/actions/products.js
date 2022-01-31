@@ -31,7 +31,7 @@ export const getDetails = (id) => async(dispatch) => {
 
 export const getBrand = () => async(dispatch) => {
 	const data = await axios.get(`${SERVER}brands`)
-	console.log('entro aca',data)
+	
 	return dispatch({
 		type: GET_BRANDS_PRODUCTS,
 		payload: data.data
@@ -40,7 +40,7 @@ export const getBrand = () => async(dispatch) => {
 
 
 export function getProducts(page, name, category) {
-	console.log("hola");
+	
 	return (dispatch) => {
 		// va armando la url donde hará la petición, agregando las query strings si es que existen
 		let finalUrl = `${SERVER}products${category || name ? '?' : ''}${category ? 'categories=' + category : ''}${category && name ? '&' : ''}${name ? 'name=' + name : ''}`;
@@ -85,7 +85,7 @@ export function getProducts(page, name, category) {
 
 
 export function getProductsFront(obj, page, name="") {
-	const {category, brand, sort} =obj;
+	const {sort} =obj;
 
 	// va armando la url donde hará la petición, agregando las query strings si es que existen
 	let finalUrl = `${SERVER}products/all?page=${page}&category=${obj.category}&brand=${obj.brand}&sort=${sort}&name=${name}`;
