@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Home from "./components/Home/Home";
@@ -23,144 +23,142 @@ import Profile from "./components/Profile/index";
 import CheckoutData from "./components/checkout/CheckoutData";
 import CheckoutError from "./components/checkout/CheckoutError";
 import Header from "./components/Header";
+import Orders from "./components/admin/Orders";
+import OrderDetail from "./components/admin/OrderDetail";
+import { useSelector } from "react-redux";
 
 function App() {
   // Estado que determina si la cuenta logueada (o el invitado) es admin o no. Por defecto es false y cuando se logue, comprobará en un useEffect si es admin
   const [isAdmin, setIsAdmin] = useState(true);
 
+  const user = useSelector(state => state.users.user);
+
   return (
     <div className="App">
-     <Header/>
+      {user && user.force ? null : <Header/>}
+     
       <Routes>
-        <Route path="/" element={<Home />} />
+        {user && user.force ? null : <Route path="/" element={<Home />} />}
+        
         <Route path='/profile/:getDisplay' element={<Profile/>} />
         <Route path='/profile' element={<Profile/>} />
-        {/*   <Route path="/Login" element={<Login />} /> */}
-     
-
-        <Route path="/products" element={<Cards />} />
-
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route
-          path="/dashboard/brands"
-          element={
-            <>
-              <Header />
-              <ListBrands />
-              <Footer />
-            </>
-          }
-        />
-
-        <Route
-          path="/dashboard/brands/create"
-          element={
-            <>
-              <Header />
-              <CreateBrand />
-              <Footer />
-            </>
-          }
-        />
-
-        <Route
-          path="/dashboard/brands/edit/:brandid"
-          element={
-            <>
-              <Header />
-              <EditBrand />
-              <Footer />
-            </>
-          }
-        />
-
-        <Route
-          path="/dashboard/categories"
-          element={
-            <>
-              <Header />
-              <ListCategories />
-              <Footer />
-            </>
-          }
-        />
-
-        <Route
-          path="/dashboard/categories/create"
-          element={
-            <>
-              <Header />
-              <CreateCategory />
-              <Footer />
-            </>
-          }
-        />
-
-        <Route
-          path="/dashboard/categories/edit/:categoryid"
-          element={
-            <>
-              <Header />
-              <EditCategory />
-              <Footer />
-            </>
-          }
-        />
-
-        <Route
-          path="/dashboard/products"
-          element={
-            <>
-              <Header />
-              <ListProducts />
-              <Footer />
-            </>
-          }
-        />
-
-        <Route
-          exact
-          path="/dashboard/products/create"
-          element={
-            <>
-              <Header />
-              <CreateProduct />
-              <Footer />
-            </>
-          }
-        />
-
-        <Route
-          exact
-          path="/dashboard/products/edit/:productid"
-          element={
-            <>
-              <Header />
-              <EditProduct />
-              <Footer />
-            </>
-          }
-        />
-
-        <Route
-          path="/users"
-          element={isAdmin ? <Users /> : <h1>No tenes acceso a esta página</h1>}
-        />
-
-        <Route path="/Details/:id" element={<Product />} />
-
-
+        
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-        
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/checkout" element={<CheckoutData/>}/>
-        <Route path="/checkoutError" element={<CheckoutError/>}/>
 
-        <Route exact path="/products/list" element={isAdmin ? <ListProducts /> : <h1>No tenes acceso a esta página</h1>} />
-        <Route exact path="/product/create" element={isAdmin ? <CreateProduct /> : <h1>No tenes acceso a esta página</h1>} />
-        <Route exact path="/product/edit/:productid" element={isAdmin ? <EditProduct /> : <h1>No tenes acceso a esta página</h1>}/>
-        <Route path="/users" element={isAdmin ? <Users /> : <h1>No tenes acceso a esta página</h1>}/>
+        {user && user.force ? null : <>
+          <Route path="/products" element={<Cards />} />
+          <Route path="/Details/:id" element={<Product />} />
+
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout" element={<CheckoutData/>}/>
+          <Route path="/checkoutError" element={<CheckoutError/>}/>
+          
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route
+            path="/dashboard/brands"
+            element={
+              <>
+                <Header />
+                <ListBrands />
+                <Footer />
+              </>
+            }
+          />
+
+          <Route
+            path="/dashboard/brands/create"
+            element={
+              <>
+                <Header />
+                <CreateBrand />
+                <Footer />
+              </>
+            }
+          />
+
+          <Route
+            path="/dashboard/brands/edit/:brandid"
+            element={
+              <>
+                <Header />
+                <EditBrand />
+                <Footer />
+              </>
+            }
+          />
+
+          <Route
+            path="/dashboard/categories"
+            element={
+              <>
+                <Header />
+                <ListCategories />
+                <Footer />
+              </>
+            }
+          />
+
+          <Route
+            path="/dashboard/categories/create"
+            element={
+              <>
+                <Header />
+                <CreateCategory />
+                <Footer />
+              </>
+            }
+          />
+
+          <Route
+            path="/dashboard/categories/edit/:categoryid"
+            element={
+              <>
+                <Header />
+                <EditCategory />
+                <Footer />
+              </>
+            }
+          />
+
+          <Route
+            path="/dashboard/products"
+            element={
+              <>
+                <Header />
+                <ListProducts />
+                <Footer />
+              </>
+            }
+          />
+
+          <Route
+            path="/dashboard/products/create"
+            element={
+              <>
+                <Header />
+                <CreateProduct />
+                <Footer />
+              </>
+            }
+          />
+
+          <Route
+            path="/dashboard/products/edit/:productid"
+            element={
+              <>
+                <Header />
+                <EditProduct />
+                <Footer />
+              </>
+            }
+          />
+          
+          <Route path="dashboard/users" element={isAdmin ? <Users /> : <h1>No tenes acceso a esta página</h1>}/>
+          <Route path="dashboard/orders" element={isAdmin ? <Orders/> : <h1>No tenes acceso a esta página</h1>}/>
+          <Route path="dashboard/orders/:orderid" element={isAdmin ? <OrderDetail/> : <h1>No tenes acceso a esta página</h1>}/>
+        </>}
+
 
       </Routes>
     </div>
