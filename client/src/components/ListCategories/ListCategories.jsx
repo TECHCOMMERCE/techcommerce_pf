@@ -19,7 +19,7 @@ const ListCategories = () => {
     };
 
     dispatch(putCategory(obj));
-    category.status ? alert(`Category ${category.name} enabled`) : alert(`Category ${category.name} disabled`);
+    category.status ? alert(`Category ${category.name} disabled`) : alert(`Category ${category.name} enabled`);
     dispatch(getCategories());
   };
 

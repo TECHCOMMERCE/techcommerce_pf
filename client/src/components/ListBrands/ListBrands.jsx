@@ -19,7 +19,7 @@ const ListBrands = () => {
     };
 
     dispatch(putBrand(obj));
-    brand.status ? alert(`Brand ${brand.name} enabled`) : alert(`Category ${brand.name} disabled`);
+    brand.status ? alert(`Brand ${brand.name} disabled`) : alert(`Category ${brand.name} enabled`);
     dispatch(getBrands());
   };
 

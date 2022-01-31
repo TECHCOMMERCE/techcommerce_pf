@@ -11,13 +11,13 @@ import {
 } from "../constanst/actionsTypes";
 
 const url = "localhost:3001";
-const SERVER = process.env.REACT_APP_SERVER || "http://localhost:3001";
+const SERVER = process.env.REACT_APP_SERVER || "http://localhost:3001/";
 
 export const getProductsForAdmin = (page) => {
   try {
     // page debe ser mayor que 0 y menor que la cuenta de productos/ 10
     return async (dispatch) => {
-      await axios.get(`${SERVER}/products?admin=${page}`).then((response) => {
+      await axios.get(`${SERVER}products?admin=${page}`).then((response) => {
         return dispatch({
           type: GET_PRODUCTS_FOR_ADMIN,
           payload: response.data,
