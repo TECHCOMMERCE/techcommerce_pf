@@ -23,6 +23,7 @@
     "dotenv": "^14.3.2",
     "firebase": "^9.6.3",
     "install": "^0.13.0",
+    "material-table": "^1.69.3",
     "npm": "^8.4.0",
     "react": "^17.0.2",
     "react-bootstrap": "^2.1.1",

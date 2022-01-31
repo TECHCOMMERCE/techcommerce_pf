@@ -19,8 +19,10 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import { addToCart } from '../../Store/actions/carts';
 import {getProductsCartUser} from '../../Store/actions/carts.js'
+import {getWishList} from '../../Store/actions/wishlist'
 
 import Swal from 'sweetalert2';
+import axios from 'axios'
 
 
 // const url = 'localhost:3001';
@@ -40,15 +42,17 @@ const Product = () => {
 	const dispatch= useDispatch();
 	const {product} = useSelector(state => state.products)
 	const cart = useSelector(state => state.cart.productscart);
+	const fav = useSelector(state => state.wishlist.wishList);
 	const user = JSON.parse(localStorage.getItem("user"));
   const idUser = !user?null:user.user.userid;
 	console.log('productdetail', product);
 	console.log('id', id)
-
+	const SERVER = process.env.REACT_APP_SERVER ||'http://localhost:3001/';
 	
 	useEffect(() => {
 		dispatch(getDetails(id))
 		dispatch(getProductsCartUser(idUser)); 
+		dispatch(getWishList(idUser,id))
 	}, [dispatch, id]);
 
 	const addCart = (product) => {
@@ -57,6 +61,11 @@ const Product = () => {
       icon: 'success',
       text: 'Producto agregado correctamente!',
     })
+	}
+
+	const addFavorites = async (product) => {
+		let data = await axios.put(`${SERVER}wishlist/${idUser}/${product.productid}`)
+		dispatch(getWishList(idUser,id))
 	}
 
 	return (
@@ -89,9 +98,12 @@ const Product = () => {
 								{product.stock > 0 && (
 									<div className={s.cont_button}>
 										
-										<Button variant='contained' style={{marginRight: '15%', backgroundColor: '#2EB8B0'}} onClick={()=>addCart(product)}>Añadir al carrito</Button>
+										<Button variant='contained' style={{ backgroundColor: '#2EB8B0'}} onClick={()=>addCart(product)}>Añadir al carrito</Button>
+										<Button variant='contained' style={{marginTop: '15px', backgroundColor: '#FF'}} onClick={()=>addFavorites(product)}>{fav.length===0?'Añadir a favoritos':'Añadido a Favoritos'}</Button>
+										
 
 									</div>
+									
 								)}
 								<div className={s.contReviw}>
 									<div className={s.icon}>

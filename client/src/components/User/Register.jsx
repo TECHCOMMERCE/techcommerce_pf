@@ -6,14 +6,19 @@ import s from "../../assets/styles/Register.module.css";
 import Swal from "sweetalert2";
 
 const Register = () => {
+    const SERVER = process.env.REACT_APP_SERVER ||'http://localhost:3001/';
+
     const [step, setStep] = useState(1);
 
     const [data, setData] = useState({
         name: "",
         lastname: "",
         email: "",
-        password: ""
+        password: "",
+        confirmPassword: ""
     });
+
+    const [type, setType] = useState("password");
 
     const [aditionalData, setAditionalData] = useState({
         phone: "",
@@ -26,7 +31,6 @@ const Register = () => {
     const [formStatus, setFormStatus] = useState(null);
 
     useEffect(async() => {
-        console.log(formStatus)
         if(formStatus && formStatus.code === 0){
             setStep(prev => prev+1);
         }else if(formStatus && formStatus.code === 1){
@@ -58,10 +62,21 @@ const Register = () => {
 
                         <form className={s.form} onSubmit={async(e) => {
                             e.preventDefault();
+                            
+                            const {name, lastname, email, password, confirmPassword} = data;
 
-                            const res = await axios.post("http://localhost:3001/user", data);
-
-                            setFormStatus(res.data);
+                            if(name && lastname && email && password && (password === confirmPassword)){
+                                const res = await axios.post(`${SERVER}user`, data);
+    
+                                setFormStatus(res.data);
+                            }else{
+                                Swal.fire({
+                                    icon: "warning",
+                                    title: "Revise bien los campos",
+                                    text: "Es posible que haya algun campo incorrecto"
+                                })
+                            }
+                            
                         }}>
                             
                             <input 
@@ -70,7 +85,6 @@ const Register = () => {
                                 placeholder="name"
                                 className={s.input}
                                 onChange={e => {
-                                    console.log("aaa")
                                     setData(prev => {
                                         return {
                                             ...prev,
@@ -111,7 +125,7 @@ const Register = () => {
                             />
                                 
                             <input 
-                                type="password" 
+                                type={type}
                                 value={data.password} 
                                 placeholder="password"
                                 className={s.input}
@@ -120,6 +134,28 @@ const Register = () => {
                                         return {
                                             ...prev,
                                             password: e.target.value
+                                        }
+                                    })
+                                }}
+                            />
+
+                            <div>
+                                <input name="type" type="checkbox" onChange={e => {
+                                    setType(e.target.checked ? "text" : "password");
+                                }}/>
+                                <label htmlFor="type">mostrar contraseña</label>
+                            </div>
+
+                            <input
+                                type={type} 
+                                value={data.confirmPassword} 
+                                placeholder="confirmar password"
+                                className={`${s.input}`}
+                                onChange={e => {
+                                    setData(prev => {
+                                        return {
+                                            ...prev,
+                                            confirmPassword: e.target.value
                                         }
                                     })
                                 }}
@@ -140,7 +176,7 @@ const Register = () => {
                         <form className={s.form} onSubmit={async(e) => {
                             e.preventDefault();
 
-                            const res = await axios.put("http://localhost:3001/user", {...aditionalData, userid: formStatus.userid});
+                            const res = await axios.put(`${SERVER}user/` + formStatus.userid, {...aditionalData, userid: formStatus.userid});
 
                             setFormStatus(res.data);
                         }}>

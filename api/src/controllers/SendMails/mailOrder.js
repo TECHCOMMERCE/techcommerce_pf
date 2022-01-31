@@ -319,7 +319,7 @@ function mailOrder(productsInfo,orderid, totalPrice ){
             <h2>${totalPrice}</h2>
             </div>
           </div>
-          <a class="btn__" href="${SERVER}/orders/${orderid}" target="_blank">ir orden</a>
+          <a class="btn__" href="${SERVER}orders/${orderid}" target="_blank">ir orden</a>
         </div>
         <hr />
         <div class="footer">

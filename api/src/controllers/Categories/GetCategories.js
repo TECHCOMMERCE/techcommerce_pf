@@ -1,16 +1,22 @@
-const { Router } = require('express')
-const {Category} = require('../../db');
-const axios = require('axios')
+const { Category } = require("../../db");
 
-const router = Router();
-
-const getCategories = async(req, res, next) =>{
+const getCategories = async (name) => {
   try {
-    const categories = await Category.findAll({order:[['name','ASC']]})
-    res.send(categories)
+    if (name) {
+      return await Category.findAll({
+        where: {
+          name: name,
+        },
+        order: [["name", "ASC"]],
+      });
+    }
+    
+    return await Category.findAll({
+      order: [["name", "ASC"]],
+    });
   } catch (error) {
     console.log(error);
   }
-}
+};
 
 module.exports = getCategories;

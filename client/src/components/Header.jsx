@@ -145,10 +145,13 @@ const Header = () => {
     dispatch(getProductsCartUser(user?.user?.userid)); 
   },[user]);
 
+  const SERVER = process.env.REACT_APP_SERVER || "http://localhost:3001/"
+
   useEffect(async() => {
     (async() => {
       if(name){  
-        const res = await axios.get("http://localhost:3001/products/names?name=" + name);
+        const res = await axios.get(`${SERVER}products/names?name=${name}`)
+        // const res = await axios.get("http://localhost:3001/products/names?name=" + name);
       
         setNames(res.data);
       }else{
@@ -301,7 +304,7 @@ const Header = () => {
             <MenuItem>
               {/* <Avatar /> */} {`${userData?.name.toUpperCase()} ${userData?.lastname.toUpperCase()}`}
             </MenuItem>
-            <MenuItem onClick={()=>navigate("/wishList")} >
+            <MenuItem onClick={()=>navigate("/profile/WishList")} >
               <ShoppingBagIcon /> My Favorites
             </MenuItem>
             <MenuItem onClick={()=>navigate("/profile/ShopHistory")}>
