@@ -13,6 +13,7 @@ import  TicketReducer from './reducer/tickets';
 
 import thunk from "redux-thunk";
 
+
 const store = createStore(
   combineReducers({
     products: productsReducer,

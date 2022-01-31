@@ -17,6 +17,9 @@ const theme = createTheme({
     error: {
       main: "#dc143c", // crimson
     },
+    info: {
+      main: "#4B0082", // indigo
+    }
   },
   typography: {
     primary: {
