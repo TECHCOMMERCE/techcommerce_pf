@@ -3,11 +3,14 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
+
+    box-sizing: border-box;
 }
 
 .info{
     width: 100%;
     height: 600px;
+    padding-left: 200px;
 
     display: flex;
     flex-direction: column;
@@ -18,7 +21,7 @@
 
 .row{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 .tag{
@@ -27,7 +30,7 @@
 }
 
 .value{
-    font-size: 30px;
+    font-size: 20px;
 }
 
 .editButton:hover{
@@ -72,13 +75,13 @@
 
 .products{
     width: 98%;
-    height: 450px;
+    height: 300px;
     padding-top: 10px;
     overflow-y: auto;
 }
 
 .product{
-    width: 500px;
+    width: 350px;
     height: 60px;
     margin-left: auto;
     margin-right: auto;
@@ -99,7 +102,7 @@
 }
 
 .img{
-    width: 70px;
+    width: 45px;
     margin-right: 20px;
 }
 

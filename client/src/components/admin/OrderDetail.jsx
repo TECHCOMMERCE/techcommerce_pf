@@ -5,6 +5,7 @@ import {FaEdit, FaCheckCircle} from "react-icons/fa";
 import {MdCancel, MdCheckCircle} from "react-icons/md";
 
 import s from "../../assets/styles/admin/OrderDetail.module.css";
+import axios from 'axios';
 
 const OrderDetail = () => {
     // Lo usaré para hacer la petición
@@ -16,31 +17,42 @@ const OrderDetail = () => {
 
     const [newStatus, setNewStatus] = useState();
     
-    useEffect(() => {
-        setOrder({
-            orderid: "23-g61-g90su4-1g",
-            date: "12/02/2022",
-            status: "procesando",
-            user: "Lucas Alvarez",
-            price: 324.12,
-            products: [
-                {
-                    productid: "12-gt2-1sy5-23",
-                    photo: "./assets/img/playstation5.png",
-                    name: "PlayStation 5",
-                    price: 100000,
-                    cant: 1,
-                },
-                {
-                    productid: "a7-g82j-f2-g91k",
-                    photo: "./assets/img/nintendoSwitch.png",
-                    name: "Nintendo switch",
-                    price: 80000,
-                    cant: 1,
-                }
-            ]
-        });
-    }, []);
+    const SERVER = process.env.REACT_APP_SERVER || "http://localhost:3001/";
+    useEffect(async() => {
+        // setOrder({
+        //     orderid: "23-g61-g90su4-1g",
+        //     date: "12/02/2022",
+        //     status: "procesando",
+        //     user: "Lucas Alvarez",
+        //     price: 324.12,
+        //     products: [
+        //         {
+        //             productid: "12-gt2-1sy5-23",
+        //             photo: "./assets/img/playstation5.png",
+        //             name: "PlayStation 5",
+        //             price: 100000,
+        //             cant: 1,
+        //         },
+        //         {
+        //             productid: "a7-g82j-f2-g91k",
+        //             photo: "./assets/img/nintendoSwitch.png",
+        //             name: "Nintendo switch",
+        //             price: 80000,
+        //             cant: 1,
+        //         }
+        //     ]
+        // });
+
+        const {orderid} = params;
+
+        console.log("hola voy a hacer petición a " + `${SERVER}orders/${orderid}`)
+
+        const res = await axios.get(`${SERVER}orders/${orderid}`);
+
+        console.log(res.data.order);
+        
+        setOrder(res.data.order)
+    }, [newStatus]);
 
     useEffect(() => {
         if(order){
@@ -100,7 +112,7 @@ const OrderDetail = () => {
                             <div key={product.productid} className={s.product}>
                                 <div className={s.left}>
                                     <div className={s.imgContainer}>
-                                        <img className={s.img} src={product.image} alt=""/>
+                                        <img className={s.img} src={product.photo} alt=""/>
                                     </div>
                                     <span className={s.name}>{product.name}</span>
                                     <span className={s.cant}>...x {product.quantity}</span>
