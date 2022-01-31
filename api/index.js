@@ -5,7 +5,7 @@ const {GetProductsAPI} = require("./src/controllers/Products/GetProductsAPI");
 const {User} = require("./src/db");
 
 server.listen(process.env.PORT||3001/* 5000 */,  () => {
-  conn.sync({ force: false }).then( async() => {
+  conn.sync({ force: true }).then( async() => {
     
     // para crear un usuario admin automáticamente
     const [user, created] = await User.findOrCreate({

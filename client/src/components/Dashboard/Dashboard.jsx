@@ -19,7 +19,6 @@ const Dashboard = () => {
         justifyContent: "center",
         alignItems: "center",
         height: "100vh",
-        backgroundColor: "secondary",
         mt: 140,
       }}
     >

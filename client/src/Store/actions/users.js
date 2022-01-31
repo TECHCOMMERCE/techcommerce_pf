@@ -5,7 +5,7 @@ import {
     GET_ONE_USER 
 } from '../constanst/actionsTypes.js'
 import axios from 'axios'
-//const {SERVER}= process.env
+
 let SERVER = process.env.REACT_APP_SERVER ||'http://localhost:3001/';
 SERVER = SERVER.substring(0,SERVER.length-1)
 export function loginAccount(payload){
