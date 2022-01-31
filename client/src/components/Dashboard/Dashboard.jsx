@@ -8,6 +8,7 @@ import {
   MdLoyalty,
   MdCategory,
   MdPeople,
+  MdAssignment,
 } from "react-icons/md";
 
 const Dashboard = () => {
@@ -85,7 +86,7 @@ const Dashboard = () => {
                 height: "30vh",
                 fontSize: "1.5rem",
               }}
-              startIcon={<MdCategory />}
+              startIcon={<MdAssignment />}
               onClick={() => (window.location.href = "/dashboard/orders")}
             >
               Orders
