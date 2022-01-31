@@ -6,12 +6,12 @@ import {
   RESET_CATEGORY_DETAIL,
 } from "../constanst/actionsTypes";
 
-const SERVER = process.env.REACT_APP_SERVER;
+const SERVER = process.env.REACT_APP_SERVER || "http://localhost:3001/";
 
 export const getCategoryById = (id) => {
   try {
     return async (dispatch) => {
-      await axios.get(`${SERVER}/category/${id}`).then((response) => {
+      await axios.get(`${SERVER}category/${id}`).then((response) => {
         return dispatch({
           type: GET_CATEGORY_BY_ID,
           payload: response.data,
@@ -26,7 +26,7 @@ export const getCategoryById = (id) => {
 export const putCategory = (category) => {
   try {
     return async (dispatch) => {
-      await axios.put(`${SERVER}/category`, category).then(() => {
+      await axios.put(`${SERVER}category`, category).then(() => {
         return dispatch({
           type: PUT_CATEGORY,
         });
@@ -40,7 +40,7 @@ export const putCategory = (category) => {
 export const postCategory = (category) => {
   try {
     return async (dispatch) => {
-      await axios.post(`${SERVER}/category`, category).then(() => {
+      await axios.post(`${SERVER}category`, category).then(() => {
         return dispatch({
           type: POST_CATEGORY,
         });

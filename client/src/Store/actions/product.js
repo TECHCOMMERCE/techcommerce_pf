@@ -6,14 +6,14 @@ import {
   RESET_PRODUCT_DETAIL,
 } from "../constanst/actionsTypes";
 
-const SERVER = process.env.REACT_APP_SERVER;
+const SERVER = process.env.REACT_APP_SERVER || "http://localhost:3001/";
 
 export const postProduct = (product) => {
   try {
     return async (dispatch) => {
       await axios
         .post(
-          `${SERVER}/product`,
+          `${SERVER}product`,
           product
         )
         .then((response) => {
@@ -33,7 +33,7 @@ export const putProduct = (product) => {
     return async (dispatch) => {
       await axios
         .put(
-          `${SERVER}/product`,
+          `${SERVER}product`,
           product
         )
         .then((response) => {
@@ -53,7 +53,7 @@ export const getProductById = (id) => {
     return async (dispatch) => {
       await axios
         .get(
-          `${SERVER}/product/${id}`
+          `${SERVER}product/${id}`
         )
         .then((response) => {
           return dispatch({
