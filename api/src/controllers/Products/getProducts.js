@@ -64,6 +64,7 @@ const getProductsFiltered = async (body, page) => {
     }
   }
   if (body.category && !body.brand?.length) {
+    if(!body.sort) {
     // console.log("entro aca 2");
     let products = await Product.findAll({
       where: condition,
@@ -77,18 +78,31 @@ const getProductsFiltered = async (body, page) => {
       limit: 9,
       offset: page * 9,
     });
+    return products
+    }else {
+      let products = await Product.findAll({
+        where: condition,
+        order: [[["price", body.sort.toUpperCase()]]],
+        include: [
+          {
+            model: Category,
+            where: { name: body["category"] },
+          },
+          { model: Brand },
+        ],
+        limit: 9,
+        offset: page * 9,
+      });
+      return products
+    }
 
-    if (!body.sort) return products;
-    else if (body.sort === "asc")
-      return products.sort((a, b) => b.price - a.price);
-    else if (body.sort === "dsc")
-      return products.sort((a, b) => a.price - b.price);
+    
   }
   if (body.brand?.length && !body.category?.length) {
     // console.log("entro aca 3");
 
-    let index;
-
+    
+    if(!body.sort) {
     let products = await Product.findAll({
       where: condition,
       include: [
@@ -103,13 +117,32 @@ const getProductsFiltered = async (body, page) => {
       limit: 9,
       offset: page * 9,
     });
+    return products
+    }else {
+      let products = await Product.findAll({
+        where: condition,
+        order: [[["price", body.sort.toUpperCase()]]],
+        include: [
+          {
+            model: Brand,
+            where: { name: body["brand"] },
+          },
+          {
+            model: Category,
+          },
+        ],
+        limit: 9,
+        offset: page * 9,
+      });
+      return products
+    }
     // console.log(products.length);
-    if (!body.sort) return products;
-    else if (body.sort === "asc")
-      return products.sort((a, b) => b.price - a.price);
-    else if (body.sort === "dsc")
-      return products.sort((a, b) => a.price - b.price);
+    
   } else {
+    if(!body.sort) {
+
+    
+    console.log('enter here')
     let products = await Product.findAll({
       where: condition,
       include: [
@@ -121,11 +154,24 @@ const getProductsFiltered = async (body, page) => {
       limit: 9,
       offset: page * 9,
     });
-    if (!body.sort) return products;
-    else if (body.sort === "asc")
-      return products.sort((a, b) => b.price - a.price);
-    else if (body.sort === "dsc")
-      return products.sort((a, b) => a.price - b.price);
+    return products
+    }else{
+      let products = await Product.findAll({
+        where: condition,
+        order: [[["price", body.sort.toUpperCase()]]],
+        include: [
+          {
+            model: Category,
+          },
+          { model: Brand },
+        ],
+        limit: 9,
+        offset: page * 9,
+      });
+      return products
+    }
+
+   
   }
 };
 

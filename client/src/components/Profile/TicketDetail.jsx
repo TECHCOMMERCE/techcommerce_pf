@@ -34,7 +34,7 @@ useEffect(() => {
           return(
             <div className={style.card} key={x.productid}>
               <img src={x.image} />
-              <Link to={`/Details/${x.productid}`}><p style={{width: '200px'}}>{x.name}</p></Link>
+              <Link className={style.link} to={`/Details/${x.productid}`}><p style={{width: '200px'}}>{x.name}</p></Link>
               <p>${x.price}</p>
               <p>x{x.detail.quantity}</p>
             </div>
