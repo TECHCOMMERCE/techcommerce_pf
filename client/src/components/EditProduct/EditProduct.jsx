@@ -394,7 +394,7 @@ const EditProduct = () => {
               size="medium"
               color="error"
               endIcon={<MdArrowBack />}
-              onClick={() => (window.location.href = "/dashboard/products/")}
+              onClick={() => (window.location.href = "/dashboard/products?admin=1")}
             >
               BACK
             </Button>

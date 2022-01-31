@@ -11,6 +11,7 @@ import {brandReducer} from "./reducer/brand";
 
 import thunk from "redux-thunk";
 
+
 const store = createStore(
   combineReducers({
     products: productsReducer,
