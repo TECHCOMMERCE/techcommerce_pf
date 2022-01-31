@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import s from '../assets/styles/login.module.css'
 import iconGoogle from '../assets/Imgs/iconGoogle.png'
-import {Google} from '@styled-icons/boxicons-logos/Google'
 import {Link} from 'react-router-dom'
 import {useNavigate} from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -41,7 +40,7 @@ function Login() {
     if(user.token) navigate('/products')
     if(user.error) swal.fire({title:'Error', text:user.error, icon: 'error'})
     if(user.user?.force) swal.fire({title:'Informacion', text:'¡Advertencia! Se sugiere, realizar un cambio de contraseña', icon:"warning"}).then(res => navigate("/profile"))
-  },[user])
+  },[user,navigate])
 
   const handlerChange = (e) => {
     e.preventDefault();
@@ -65,7 +64,7 @@ function Login() {
   }
 
   const handlerSubmit = (e) => {
-    console.log("data",data)
+   
     e.preventDefault();
     if(!error.email && !error.password){
       dispatch(loginAccount({...data, type:'normal'}))
@@ -120,7 +119,7 @@ return (
         <div className={s.buttons}>
           <button type='submit' className={`${s.btn} ${s.btn_login}`}>Login</button>
           <button type='button' className={`${s.btn} ${s.btn_sign}`} onClick={()=>navigate('/register')}>Sign up</button>
-          <button type='button' className={`${s.btn} ${s.btn_google}`} onClick={extLogin}><img src={iconGoogle} width={50}/>Login with Google</button>
+          <button type='button' className={`${s.btn} ${s.btn_google}`} onClick={extLogin}><img src={iconGoogle} alt= "k" width={50}/>Login with Google</button>
           <Link to="/reset" className={s.btn}>Forgot your password?</Link>
         </div>
       </form>

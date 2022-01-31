@@ -8,7 +8,7 @@ const SERVER = process.env.REACT_APP_SERVER || "http://localhost:3001/"
 
 
 export const getCategories = () => async(dispatch) => {
-	console.log('entre aca categories')
+	
 	const data= await axios.get(`${SERVER}categories`)
 	return dispatch({
 		type: GET_CATEGORIES_PRODUCTS,
