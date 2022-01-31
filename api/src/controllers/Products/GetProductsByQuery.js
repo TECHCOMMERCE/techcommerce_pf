@@ -22,6 +22,7 @@ const getProductsByQuery = async (query) => {
         ],
         limit: 10,
         offset: (query.admin <= limiter && query.admin) * 10,
+        order: ["name"],
       });
     }
 
