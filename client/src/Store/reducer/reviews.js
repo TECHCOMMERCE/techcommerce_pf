@@ -10,6 +10,7 @@ import {
 
 const initialState = {
   review: [],
+  userreviews: null,
   AllReviewsCopy: [] 
 }
 
@@ -20,7 +21,7 @@ export const reviewReducer = (state = initialState, action) =>{
       // console.log('aqui estoy');
       return{
         ...state,
-        review: action.payload
+        ...action.payload
       }
     case POST_REVIEWS:
       return{

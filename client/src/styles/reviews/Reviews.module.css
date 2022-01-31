@@ -27,7 +27,7 @@
   background: rgba(243, 243, 243, 0.596);
   transition: background 0.8s;
   overflow: hidden;
-  box-shadow: 0 70px 63px -60px #000000;
+  /* box-shadow: 0 70px 63px -60px #000000; */
 }
 
 .cardB{

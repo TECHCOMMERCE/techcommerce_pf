@@ -22,12 +22,13 @@ export const postReview = (review,productid) => {
 
 export const getReviewsByProduct = (productid) => {
   return async(dispatch) =>{
-    // let json = await axios.get(`http://localhost:3001/product/${productId}/review`)
-   axios.get(`${SERVER}review/${productid}/review`)
+    const user = JSON.parse(localStorage.getItem("user"));
+    const idUser = !user?null:user.user.userid;
+   axios.get(`${SERVER}review/${productid}/user/${idUser}`)
     .then((res) => {
       dispatch({
           type: GET_REVIEWS,
-          payload: res.data.data
+          payload: res.data
       })
       // console.log(res.data,'holi');
   })
@@ -37,29 +38,12 @@ export const getReviewsByProduct = (productid) => {
   }
 }
 
-// export const postReview = ( payload, productId ) =>{
-//   // console.log(productId + ' holi id');
-  
-//   const posted = async() => {
-//     try {
-      
-//       const response = await axios.post(`http://localhost:3001/product/${productId}/review`, payload)
-
-//       return response
-
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   }
-//   return posted
-// }
-
-export const filterReviewByStatus = (payload) =>{
+/* export const filterReviewByStatus = (payload) =>{
   return{
     type: FILTER_BY_STATUS,
     payload 
   }
-}
+} */
 
 export const putReview = (review) =>{
   return async (dispatch) =>{
@@ -73,7 +57,7 @@ export const putReview = (review) =>{
   }
 }
 
-export const deleteReview = (review) =>{
+/* export const deleteReview = (review) =>{
   return async (dispatch) =>{
     let json = await axios.delete(`${SERVER}product/:productId/review/`)
   
@@ -82,35 +66,5 @@ export const deleteReview = (review) =>{
     payload: json.data
   })
 }
-}
+} */
 
-// get: http://localhost:3001/product/productid/review
-
-/*
-ort const postReview = (review,productid) => {
-	return async () => {
-		await axios
-			.post(`${url}/review/${productid}/review`, review)
-			.then((res) => {
-				if (res.status === 200) {
-					return dispatch({
-						type: GET_REVIEWS,
-						products: res.data.data,
-					});
-				} else {
-					return dispatch({
-						type: ERROR_MESSAGE,
-						message: 'error al agregar review',
-					});
-				}
-			})
-			.catch((err) => {
-				console.log(err);
-			});
-	};
-}
-
-
-// export const FILTER_BY_GOOD = 'FILTER_BY_GOOD';
-// export const FILTER_BY_BAD = 'FILTER_BY_BAD';
-*/

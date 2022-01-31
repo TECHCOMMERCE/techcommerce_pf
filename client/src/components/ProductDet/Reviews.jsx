@@ -13,10 +13,11 @@ import {
 import Typography from "@mui/material/Typography";
 //css module
 import st from "../../styles/reviews/Reviews.module.css";
+import { Rating } from "@mui/material";
 
 //conponent
-import ReviewsCard from "./reviewComponents/ReviewsCard";
-import BtnFilterReview from "./reviewComponents/BtnFilterReview";
+ import ReviewsCard from "./reviewComponents/ReviewsCard";
+/*import BtnFilterReview from "./reviewComponents/BtnFilterReview"; */
 
 //importing all actions redux
 import { getReviewsByProduct } from "../../Store/actions/reviews";
@@ -25,9 +26,8 @@ import SubmitReveiw from "./reviewComponents/SubmitReveiw";
 const Reviews = ({productid}) => {
 
   const dispatch = useDispatch();
-  const allComments = useSelector((state) => state.review.review);
-  // const review = true;
-  // console.log(allComments, "buenas soy ccoments");
+  const review = useSelector((state) => state.review);
+  const user = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
     dispatch(getReviewsByProduct(productid));
@@ -47,12 +47,13 @@ const Reviews = ({productid}) => {
         </ThemeProvider>
       </div>
       <div className={st.btns}>
-        <BtnFilterReview />
+        {/* <BtnFilterReview /> */}
       </div>
       <div className={st.card}>
-        {allComments ? (
-          allComments.map((e,i) => {
-            return <ReviewsCard key={i} description={e.description} stars={e.stars} id={e.id}/>;
+        {review.rating?<div style={{width: '100%', display: 'flex', flexDirection: 'column',alignItems: 'center'}}><h2>Calificación promedio</h2><Rating name="read-only" value={review.rating} readOnly size="large"/><h3>{review.rating} estrellas</h3><br></br></div>:null}
+        {review.userreviews? (
+          review?.userreviews.map((e,i) => {
+            return <ReviewsCard key={i} name={e.us.name} lastname={e.us.lastname} description={e.description} stars={e.stars} id={e.id}/>;
           })
         ) : (
           <div className={st.cardB}>
@@ -72,10 +73,10 @@ const Reviews = ({productid}) => {
           </div>
         )}
       </div>
-      <div className={st.submitReview}>
+      {user.token&&!review.review?<div className={st.submitReview}>
         
         <SubmitReveiw productid={productid} />
-      </div>
+      </div>:null}
     </div>
   );
 };

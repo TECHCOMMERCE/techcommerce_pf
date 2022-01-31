@@ -73,9 +73,9 @@ Category.belongsToMany(Product, {through: "products_category", timestamps: false
 Brand.hasMany(Product);
 Product.belongsTo(Brand);
 
-
-Product.hasMany(Review, {foreignKey: 'productid'});
-Review.belongsTo(Product);
+// USER REVIEW
+Product.belongsToMany(User, {through: Review, as: 'reviews', foreignKey: 'productid'});
+User.belongsToMany(Product,{through: Review, as: 'reviews', foreignKey: 'userid'});
 
 // User ---> Order 1:N
 User.hasMany(Order);
