@@ -29,6 +29,7 @@ const getReview = async( req, res, next ) => {
 		}
 		//console.log('Reviews', reviews);
 		let userreviews = await product.getReviews();
+		//console.log('userreviews', userreviews);
     userreviews =userreviews?userreviews.map(review=> review.review):[]
 		let rating = userreviews.map(review=>review.stars)
 		if(rating>0)rating=rating.reduce((previousValue, currentValue) => previousValue + currentValue)
