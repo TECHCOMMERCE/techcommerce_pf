@@ -11,7 +11,6 @@ import CreateProduct from "./components/CreateProduct/CreateProduct";
 import EditProduct from "./components/EditProduct/EditProduct";
 import Users from "./components/admin/Users";
 import Cart from "./components/Cart/Cart";
-//import Header from "./components/Home/Header";
 import Footer from "./components/Home/Footer";
 import Dashboard from "./components/Dashboard/Dashboard";
 import ListBrands from "./components/ListBrands/ListBrands";
@@ -33,10 +32,6 @@ function App() {
   const [isAdmin, setIsAdmin] = useState(true);
 
   const user = useSelector(state => state.users.user);
-
-  useEffect(() => {
-   /*  console.log(user); */
-  }, [user]);
 
   return (
     <div className="App">

@@ -39,11 +39,10 @@ useEffect(() => {
       <div className={style.menu}>
         <img className={style.img} src={user?.photo ? user?.photo : Img} />
         <div className={style.Links}>
-        <button className={style.buttons} onClick={()=>setDisplay('Perfil')}><p value='Perfil' className={display==='Perfil'? style.buttonS : style.buttonP}>Perfil</p></button>
-        <button className={style.buttons} onClick={()=>setDisplay('Compras')}><p value='Compras' className={display==='Compras'? style.buttonS : style.buttonP}>Mis Compras</p></button>
-        <button className={style.buttons} onClick={()=>setDisplay('Favoritos')}><p value='Favoritos' className={display==='Favoritos'? style.buttonS : style.buttonP}>Mis Favoritos</p></button>
-       
-      </div>
+          <button className={style.buttons} onClick={()=>setDisplay('Perfil')}><p value='Perfil' className={display==='Perfil'? style.buttonS : style.buttonP}>Perfil</p></button>
+          <button className={style.buttons} onClick={()=>setDisplay('Compras')}><p value='Compras' className={display==='Compras'? style.buttonS : style.buttonP}>Mis Compras</p></button>
+          <button className={style.buttons} onClick={()=>setDisplay('Favoritos')}><p value='Favoritos' className={display==='Favoritos'? style.buttonS : style.buttonP}>Mis Favoritos</p></button>
+        </div>
       </div>
       <div className={style.component}>
         {display==='Perfil'?

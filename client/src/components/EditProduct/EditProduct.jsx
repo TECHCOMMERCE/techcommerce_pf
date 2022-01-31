@@ -94,9 +94,8 @@ const EditProduct = () => {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        m: 0,
         px: 20,
-        my: 100,
+        mt: 200,
         minWidth: "100vw",
       }}
     >
@@ -395,7 +394,7 @@ const EditProduct = () => {
               size="medium"
               color="error"
               endIcon={<MdArrowBack />}
-              onClick={() => (window.location.href = "/dashboard/products/")}
+              onClick={() => (window.location.href = "/dashboard/products?admin=1")}
             >
               BACK
             </Button>
