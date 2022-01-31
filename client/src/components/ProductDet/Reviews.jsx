@@ -73,7 +73,7 @@ const Reviews = ({productid}) => {
           </div>
         )}
       </div>
-      {user.token&&review.orders&&!review.review?<div className={st.submitReview}>
+      {user?.token&&review.orders&&!review.review?<div className={st.submitReview}>
         
         <SubmitReveiw productid={productid} getReviewsByProduct={getReviewsByProduct} />
       </div>:null}
