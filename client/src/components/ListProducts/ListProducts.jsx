@@ -52,7 +52,7 @@ const ListProducts = () => {
   }, [dispatch]);
 
   return (
-    <Container sx={{ px: 20, mt: 200, minWidth: "100vw" }}>
+    <Container sx={{ px: 20, minWidth: "100vw" }}>
       <Box
         sx={{
           m: 20,
@@ -63,7 +63,7 @@ const ListProducts = () => {
         <ProductsSearchBar />
 
         <Box>
-          {products?.length &&
+          {products[0] &&
             products?.map((p) => (
               <ListedProduct
                 key={p.productid}

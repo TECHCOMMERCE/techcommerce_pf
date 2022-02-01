@@ -36,6 +36,7 @@ const Attributes = ({ input, setInput }) => {
             id="attribute-name"
             placeholder="Color"
             name="name"
+            inputProps={{ maxLength: 12}}
             onChange={(e) => handleAttributes(e, attributes, setAttributes)}
           />
         </Box>
@@ -48,6 +49,8 @@ const Attributes = ({ input, setInput }) => {
             placeholder="Blue"
             id="attribute-value"
             sx={{ width: "90%" }}
+            inputProps={{ maxLength: 30}}
+            helperText="Max 30 characters"
             name="value"
             onChange={(e) => handleAttributes(e, attributes, setAttributes)}
           />
@@ -71,10 +74,11 @@ const Attributes = ({ input, setInput }) => {
             fontSize: 11,
             listStyle: "none",
             maxHeight: "214px",
+            width: "395px",
             overflowY: "scroll",
-            mt: 20,
+            marginTop: "10px",
             backgroundColor: "#E2E2E8",
-            borderBottomLeftRadius: "5px",
+            borderTopLeftRadius: "5px",
           }}
         >
           {input.attributes?.map((a, i) => (

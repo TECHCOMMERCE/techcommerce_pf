@@ -3,8 +3,8 @@ const getCategories = require("../controllers/Categories/GetCategories");
 
 router.get("/", async(req, res) => {
   let categories;
-  if(req.query.name){
-    categories = await getCategories(req.query.name);
+  if(req.query){
+    categories = await getCategories(req.query);
 
     return categories ? res.send(categories) : res.send ([])
   }

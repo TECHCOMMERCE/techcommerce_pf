@@ -19,7 +19,6 @@ const Dashboard = () => {
         justifyContent: "center",
         alignItems: "center",
         height: "100vh",
-        mt: 140,
       }}
     >
       <Box
@@ -61,7 +60,7 @@ const Dashboard = () => {
               sx={{ width: "66%", height: "25vh", fontSize: "1.5rem" }}
               color="success"
               startIcon={<MdLoyalty />}
-              onClick={() => (window.location.href = "/dashboard/brands")}
+              onClick={() => (window.location.href = "/dashboard/brands?page=1")}
             >
               Brands
             </Button>
@@ -72,7 +71,7 @@ const Dashboard = () => {
               color="warning"
               sx={{ mt: 40, width: "30%", height: "30vh", fontSize: "1.5rem" }}
               startIcon={<MdCategory />}
-              onClick={() => (window.location.href = "/dashboard/categories")}
+              onClick={() => (window.location.href = "/dashboard/categories?page=1")}
             >
               Categories
             </Button>

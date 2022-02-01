@@ -1,11 +1,14 @@
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
 const {GetProductsAPI} = require("./src/controllers/Products/GetProductsAPI");
+const cors = require("cors");
 
 const {User} = require("./src/db");
 
+server.use(cors());
+
 server.listen(process.env.PORT||3001/* 5000 */,  () => {
-  conn.sync({ force: true }).then( async() => {
+  conn.sync({ force: false }).then( async() => {
     
     // para crear un usuario admin automáticamente
     const [user, created] = await User.findOrCreate({

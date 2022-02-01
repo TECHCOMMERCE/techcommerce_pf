@@ -1,15 +1,31 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {putCategory} from "../../Store/actions/category";
-import {getCategories} from "../../Store/actions/categories";
+import { putCategory } from "../../Store/actions/category";
+import {
+  getCategories,
+  getCategoriesForAdmin,
+} from "../../Store/actions/categories";
 import ListedCategory from "./ListedCategory";
-import { MdAddCircle, MdArrowBack } from "react-icons/md";
-import { Container, Box, IconButton } from "@mui/material";
+import {
+  MdAddCircle,
+  MdArrowBack,
+  MdOutlineLastPage,
+  MdOutlineFirstPage,
+  MdKeyboardArrowLeft,
+  MdKeyboardArrowRight,
+} from "react-icons/md";
+import { Container, Box, FormLabel, IconButton } from "@mui/material";
 import CategoriesSearchBar from "./CategoriesSearchBar";
 
 const ListCategories = () => {
-  const categories = useSelector((state) => state.categoriesReducer);
+  const categories = useSelector(
+    (state) => state.categoriesReducer.categoriesAdmin
+  );
+  const categoriesCount = useSelector(
+    (state) => state.categoriesReducer.categories
+  );
   const dispatch = useDispatch();
+  const [currentPage, setCurrentPage] = useState(1);
 
   const handleToggle = (category) => {
     const obj = {
@@ -19,16 +35,22 @@ const ListCategories = () => {
     };
 
     dispatch(putCategory(obj));
-    category.status ? alert(`Category ${category.name} disabled`) : alert(`Category ${category.name} enabled`);
+    category.status
+      ? alert(`Category ${category.name} disabled`)
+      : alert(`Category ${category.name} enabled`);
     dispatch(getCategories());
   };
+
+  useEffect(() => {
+    dispatch(getCategoriesForAdmin(currentPage));
+  }, [categoriesCount]);
 
   useEffect(() => {
     dispatch(getCategories());
   }, [dispatch]);
 
   return (
-    <Container sx={{ px: 20, mt: 200, minWidth: "100vw" }}>
+    <Container sx={{ px: 20, minWidth: "100vw" }}>
       <Box
         sx={{
           m: 20,
@@ -39,7 +61,7 @@ const ListCategories = () => {
         <CategoriesSearchBar />
 
         <Box>
-          {categories?.length &&
+          {categories[0] &&
             categories?.map((c) => (
               <ListedCategory
                 key={c.categoryid}
@@ -66,10 +88,89 @@ const ListCategories = () => {
               (window.location.href = "/dashboard/categories/create")
             }
           >
-            <MdAddCircle
-              size="45"
-              color="success"
-            />
+            <MdAddCircle size="45" color="success" />
+          </IconButton>
+        </Box>
+
+        {/* Paginación */}
+        <Box
+          style={{
+            position: "fixed",
+            bottom: 20,
+            left: "50%",
+            transform: "translateX(-50%)",
+            background: "ghostwhite",
+            borderRadius: "5px",
+            display: "flex",
+            alignItems: "center",
+            border: "4px solid dodgerblue",
+          }}
+        >
+          <IconButton
+            name="first-page"
+            color="success"
+            onClick={() => {
+              dispatch(getCategoriesForAdmin(1));
+              setCurrentPage(1);
+            }}
+          >
+            <MdOutlineFirstPage size="45" color="dodgerblue" />
+          </IconButton>
+
+          <IconButton
+            name="previous"
+            color="success"
+            onClick={() => {
+              dispatch(
+                getCategoriesForAdmin(currentPage > 1 ? currentPage - 1 : 1)
+              );
+              setCurrentPage(currentPage > 1 ? currentPage - 1 : 1);
+            }}
+          >
+            <MdKeyboardArrowLeft size="45" color="dodgerblue" />
+          </IconButton>
+          <FormLabel
+            sx={{
+              color: "ghostwhite",
+              fontSize: "1.5rem",
+              px: 10,
+              borderRadius: "5px",
+              fontWeight: "bold",
+              backgroundColor: "dodgerblue",
+            }}
+          >
+            {currentPage}
+          </FormLabel>
+          <IconButton
+            name="next"
+            color="success"
+            onClick={() => {
+              dispatch(
+                getCategoriesForAdmin(
+                  currentPage < Math.floor(categoriesCount.length / 10)
+                    ? currentPage + 1
+                    : currentPage
+                )
+              );
+              setCurrentPage(
+                currentPage < Math.floor(categoriesCount.length / 10)
+                  ? currentPage + 1
+                  : currentPage
+              );
+            }}
+          >
+            <MdKeyboardArrowRight size="45" color="dodgerblue" />
+          </IconButton>
+
+          <IconButton
+            name="last-page"
+            color="success"
+            onClick={() => {
+              dispatch(getCategoriesForAdmin(Math.floor(categoriesCount.length / 10)));
+              setCurrentPage(Math.floor(categoriesCount.length / 10));
+            }}
+          >
+            <MdOutlineLastPage size="45" color="dodgerblue" />
           </IconButton>
         </Box>
 
@@ -84,15 +185,8 @@ const ListCategories = () => {
             border: "4px solid crimson",
           }}
         >
-          <IconButton
-            onClick={() =>
-              (window.location.href = "/dashboard")
-            }
-          >
-            <MdArrowBack
-              size="45"
-              color="crimson"
-            />
+          <IconButton onClick={() => (window.location.href = "/dashboard")}>
+            <MdArrowBack size="45" color="crimson" />
           </IconButton>
         </Box>
       </Box>
@@ -101,4 +195,3 @@ const ListCategories = () => {
 };
 
 export default ListCategories;
-
