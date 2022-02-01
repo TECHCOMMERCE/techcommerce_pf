@@ -1,7 +1,22 @@
-import { GET_CATEGORIES, GET_CATEGORIES_FOR_ADMIN } from "../constanst/actionsTypes";
+import { GET_CATEGORIES, GET_CATEGORIES_BY_NAME, GET_CATEGORIES_FOR_ADMIN } from "../constanst/actionsTypes";
 import axios from "axios";
 
 const SERVER = process.env.REACT_APP_SERVER || "http://localhost:3001/";
+
+export const getCategoriesByName = (name, page) => {
+  try {
+    return async (dispatch) => {
+      await axios.get(`${SERVER}categories?name=${name}&admin=${page}`).then((response) => {
+        return dispatch({
+          type: GET_CATEGORIES_BY_NAME,
+          payload: response.data,
+        });
+      });
+    };
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export const getCategoriesForAdmin = (page) => {
   try {

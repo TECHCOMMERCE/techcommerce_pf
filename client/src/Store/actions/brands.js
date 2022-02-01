@@ -1,7 +1,26 @@
-import { GET_BRANDS, GET_BRANDS_FOR_ADMIN } from "../constanst/actionsTypes";
+import {
+  GET_BRANDS,
+  GET_BRANDS_FOR_ADMIN,
+  GET_BRANDS_BY_NAME,
+} from "../constanst/actionsTypes";
 import axios from "axios";
 
 const SERVER = process.env.REACT_APP_SERVER || "http://localhost:3001/";
+
+export const getBrandsByName = (name, page) => {
+  try {
+    return async (dispatch) => {
+      await axios.get(`${SERVER}brands?name=${name}&admin=${page}`).then((response) => {
+        return dispatch({
+          type: GET_BRANDS_BY_NAME,
+          payload: response.data,
+        });
+      });
+    };
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export const getBrandsForAdmin = (page) => {
   try {
@@ -22,16 +41,12 @@ export const getBrandsForAdmin = (page) => {
 export const getBrands = () => {
   try {
     return async (dispatch) => {
-      await axios
-        .get(
-          `${SERVER}brands`
-        )
-        .then((response) => {
-          return dispatch({
-            type: GET_BRANDS,
-            payload: response.data,
-          });
+      await axios.get(`${SERVER}brands`).then((response) => {
+        return dispatch({
+          type: GET_BRANDS,
+          payload: response.data,
         });
+      });
     };
   } catch (error) {
     console.log(error);

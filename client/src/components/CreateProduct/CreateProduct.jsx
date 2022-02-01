@@ -19,6 +19,7 @@ import {
   List,
   ListItem,
   IconButton,
+  Divider,
 } from "@mui/material";
 import {
   MdSave,
@@ -29,8 +30,8 @@ import {
 
 const CreateProduct = () => {
   const dispatch = useDispatch();
-  const brands = useSelector((state) => state.brandsReducer);
-  const categories = useSelector((state) => state.categoriesReducer);
+  const brands = useSelector((state) => state.brandsReducer.brands);
+  const categories = useSelector((state) => state.categoriesReducer.categories);
   const cloudinaryUrl = useSelector((state) => state.productReducer.url);
   const [input, setInput] = useState({
     name: "",
@@ -224,9 +225,9 @@ const CreateProduct = () => {
                 <MenuItem sx={{ display: "none" }}></MenuItem>
                 {categories?.length &&
                   categories?.map((c) => (
-                    <MenuItem key={c.categoryid} value={c.name}>
-                      {c.name}
-                    </MenuItem>
+                      <MenuItem key={c.categoryid} value={c.name}>
+                        {c.name}
+                      </MenuItem>
                   ))}
               </TextField>
 

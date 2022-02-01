@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { putBrand } from "../../Store/actions/brand";
-import { getBrands, getBrandsForAdmin } from "../../Store/actions/brands";
+import {
+  getBrands,
+  getBrandsByName,
+  getBrandsForAdmin,
+} from "../../Store/actions/brands";
 import ListedBrand from "./ListedBrand";
 import {
   MdAddCircle,
@@ -15,10 +19,13 @@ import { Container, FormLabel, Box, IconButton } from "@mui/material";
 import BrandsSearchBar from "./BrandsSearchBar";
 
 const ListBrands = () => {
-  const brands = useSelector((state) => state.brandsReducer.brandsAdmin)
+  const brands = useSelector((state) => state.brandsReducer.brandsAdmin);
   const brandsCount = useSelector((state) => state.brandsReducer.brands);
+
   const dispatch = useDispatch();
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [searching, setSearching] = useState(false);
+  const [input, setInput] = useState("");
 
   const handleToggle = (brand) => {
     const obj = {
@@ -32,6 +39,12 @@ const ListBrands = () => {
       ? alert(`Brand ${brand.name} disabled`)
       : alert(`Category ${brand.name} enabled`);
     dispatch(getBrands());
+  };
+
+  const handleSearch = (e, name) => {
+    e.preventDefault();
+    dispatch(getBrandsByName(name, currentPage));
+    setInput(name);
   };
 
   useEffect(() => {
@@ -51,18 +64,37 @@ const ListBrands = () => {
           pt: 20,
         }}
       >
-        <BrandsSearchBar />
+        <BrandsSearchBar
+          handleSearch={handleSearch}
+          dispatch={dispatch}
+          getBrandsForAdmin={getBrandsForAdmin}
+          setCurrentPage={setCurrentPage}
+          setSearching={setSearching}
+        />
 
-        <Box>
-          {brands[0] &&
-            brands?.map((b) => (
+        {brands?.rows && (
+          <Box>
+            {brands.rows?.map((b) => (
               <ListedBrand
                 key={b.brandid}
                 brand={b}
                 handleToggle={handleToggle}
               />
             ))}
-        </Box>
+          </Box>
+        )}
+
+        {brands[0] && (
+          <Box>
+            {brands?.map((b) => (
+              <ListedBrand
+                key={b.brandid}
+                brand={b}
+                handleToggle={handleToggle}
+              />
+            ))}
+          </Box>
+        )}
 
         <Box
           style={{
@@ -101,8 +133,12 @@ const ListBrands = () => {
             name="first-page"
             color="success"
             onClick={() => {
-              dispatch(getBrandsForAdmin(1));
-              setCurrentPage(1);
+              if (searching) {
+                dispatch(getBrandsByName(input, 0));
+              } else {
+                dispatch(getBrandsForAdmin(0));
+              }
+              setCurrentPage(0);
             }}
           >
             <MdOutlineFirstPage size="45" color="dodgerblue" />
@@ -112,10 +148,16 @@ const ListBrands = () => {
             name="previous"
             color="success"
             onClick={() => {
-              dispatch(
-                getBrandsForAdmin(currentPage > 1 ? currentPage - 1 : 1)
-              );
-              setCurrentPage(currentPage > 1 ? currentPage - 1 : 1);
+              if (searching) {
+                dispatch(
+                  getBrandsByName(input, currentPage > 0 ? currentPage - 1 : 0)
+                );
+              } else {
+                dispatch(
+                  getBrandsForAdmin(currentPage > 0 ? currentPage - 1 : 0)
+                );
+              }
+              setCurrentPage(currentPage > 0 ? currentPage - 1 : 0);
             }}
           >
             <MdKeyboardArrowLeft size="45" color="dodgerblue" />
@@ -130,24 +172,27 @@ const ListBrands = () => {
               backgroundColor: "dodgerblue",
             }}
           >
-            {currentPage}
+            {currentPage + 1}
           </FormLabel>
           <IconButton
             name="next"
             color="success"
             onClick={() => {
-              dispatch(
-                getBrandsForAdmin(
-                  currentPage < Math.floor(brandsCount.length / 10)
-                    ? currentPage + 1
-                    : currentPage
-                )
-              );
-              setCurrentPage(
-                currentPage < Math.floor(brandsCount.length / 10)
-                  ? currentPage + 1
-                  : currentPage
-              );
+              if (searching) {
+                if (currentPage < Math.floor(brands.count / 10)) {
+                  dispatch(getBrandsByName(input, currentPage + 1));
+                  return setCurrentPage(currentPage + 1);
+                } else {
+                  return dispatch(getBrandsByName(input, currentPage));
+                }
+              }
+
+              if(currentPage < Math.floor(brandsCount.length / 10)){
+                dispatch(getBrandsForAdmin(currentPage + 1));
+                setCurrentPage(currentPage + 1)
+              } else {
+                dispatch(getBrandsForAdmin(currentPage));
+              }
             }}
           >
             <MdKeyboardArrowRight size="45" color="dodgerblue" />
@@ -157,10 +202,13 @@ const ListBrands = () => {
             name="last-page"
             color="success"
             onClick={() => {
-              dispatch(
-                getBrandsForAdmin(Math.floor(brandsCount.length / 10))
-              );
-              setCurrentPage(Math.floor(brandsCount.length / 10));
+              if (searching) {
+                dispatch(getBrandsByName(input, Math.floor(brands.count / 10)));
+                setCurrentPage( Math.floor(brands.count / 10))
+              } else {
+                dispatch(getBrandsForAdmin(Math.floor(brandsCount.length / 10)));
+                setCurrentPage(Math.floor(brandsCount.length / 10));
+              }
             }}
           >
             <MdOutlineLastPage size="45" color="dodgerblue" />

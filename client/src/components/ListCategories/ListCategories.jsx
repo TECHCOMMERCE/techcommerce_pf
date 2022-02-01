@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { putCategory } from "../../Store/actions/category";
 import {
   getCategories,
+  getCategoriesByName,
   getCategoriesForAdmin,
 } from "../../Store/actions/categories";
 import ListedCategory from "./ListedCategory";
@@ -25,7 +26,9 @@ const ListCategories = () => {
     (state) => state.categoriesReducer.categories
   );
   const dispatch = useDispatch();
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [searching, setSearching] = useState(false);
+  const [input, setInput] = useState("");
 
   const handleToggle = (category) => {
     const obj = {
@@ -39,6 +42,12 @@ const ListCategories = () => {
       ? alert(`Category ${category.name} disabled`)
       : alert(`Category ${category.name} enabled`);
     dispatch(getCategories());
+  };
+
+  const handleSearch = (e, name) => {
+    e.preventDefault();
+    dispatch(getCategoriesByName(name, currentPage));
+    setInput(name);
   };
 
   useEffect(() => {
@@ -58,18 +67,37 @@ const ListCategories = () => {
           pt: 20,
         }}
       >
-        <CategoriesSearchBar />
+        <CategoriesSearchBar
+          handleSearch={handleSearch}
+          dispatch={dispatch}
+          getCategoriesForAdmin={getCategoriesForAdmin}
+          setCurrentPage={setCurrentPage}
+          setSearching={setSearching}
+        />
 
-        <Box>
-          {categories[0] &&
-            categories?.map((c) => (
+        {categories?.rows && (
+          <Box>
+            {categories.rows?.map((c) => (
               <ListedCategory
                 key={c.categoryid}
                 category={c}
                 handleToggle={handleToggle}
               />
             ))}
-        </Box>
+          </Box>
+        )}
+
+        {categories[0] && (
+          <Box>
+            {categories?.map((c) => (
+              <ListedCategory
+                key={c.categoryid}
+                category={c}
+                handleToggle={handleToggle}
+              />
+            ))}
+          </Box>
+        )}
 
         <Box
           style={{
@@ -110,8 +138,12 @@ const ListCategories = () => {
             name="first-page"
             color="success"
             onClick={() => {
-              dispatch(getCategoriesForAdmin(1));
-              setCurrentPage(1);
+              if (searching) {
+                dispatch(getCategoriesByName(input, 0));
+              } else {
+                dispatch(getCategoriesForAdmin(0));
+              }
+              setCurrentPage(0);
             }}
           >
             <MdOutlineFirstPage size="45" color="dodgerblue" />
@@ -121,10 +153,16 @@ const ListCategories = () => {
             name="previous"
             color="success"
             onClick={() => {
-              dispatch(
-                getCategoriesForAdmin(currentPage > 1 ? currentPage - 1 : 1)
-              );
-              setCurrentPage(currentPage > 1 ? currentPage - 1 : 1);
+              if (searching) {
+                dispatch(
+                  getCategoriesByName(input, currentPage > 0 ? currentPage - 1 : 0)
+                );
+              } else {
+                dispatch(
+                  getCategoriesForAdmin(currentPage > 0 ? currentPage - 1 : 0)
+                );
+              }
+              setCurrentPage(currentPage > 0 ? currentPage - 1 : 0);
             }}
           >
             <MdKeyboardArrowLeft size="45" color="dodgerblue" />
@@ -139,24 +177,27 @@ const ListCategories = () => {
               backgroundColor: "dodgerblue",
             }}
           >
-            {currentPage}
+            {currentPage + 1}
           </FormLabel>
           <IconButton
             name="next"
             color="success"
             onClick={() => {
-              dispatch(
-                getCategoriesForAdmin(
-                  currentPage < Math.floor(categoriesCount.length / 10)
-                    ? currentPage + 1
-                    : currentPage
-                )
-              );
-              setCurrentPage(
-                currentPage < Math.floor(categoriesCount.length / 10)
-                  ? currentPage + 1
-                  : currentPage
-              );
+              if (searching) {
+                if (currentPage < Math.floor(categories.count / 10)) {
+                  dispatch(getCategoriesByName(input, currentPage + 1));
+                  return setCurrentPage(currentPage + 1);
+                } else {
+                  return dispatch(getCategoriesByName(input, currentPage));
+                }
+              }
+
+              if(currentPage < Math.floor(categoriesCount.length / 10)){
+                dispatch(getCategoriesForAdmin(currentPage + 1));
+                setCurrentPage(currentPage + 1)
+              } else {
+                dispatch(getCategoriesForAdmin(currentPage));
+              }
             }}
           >
             <MdKeyboardArrowRight size="45" color="dodgerblue" />
@@ -166,8 +207,13 @@ const ListCategories = () => {
             name="last-page"
             color="success"
             onClick={() => {
-              dispatch(getCategoriesForAdmin(Math.floor(categoriesCount.length / 10)));
-              setCurrentPage(Math.floor(categoriesCount.length / 10));
+              if (searching) {
+                dispatch(getCategoriesByName(input, Math.floor(categories.count / 10)));
+                setCurrentPage( Math.floor(categories.count / 10))
+              } else {
+                dispatch(getCategoriesForAdmin(Math.floor(categoriesCount.length / 10)));
+                setCurrentPage(Math.floor(categoriesCount.length / 10));
+              }
             }}
           >
             <MdOutlineLastPage size="45" color="dodgerblue" />
