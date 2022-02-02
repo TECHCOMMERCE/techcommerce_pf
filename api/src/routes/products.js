@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const { Op } = require("sequelize");
-const {getProductsFiltered, getProducts} = require("../controllers/Products/GetProducts");
+const {getProductsFiltered, getProducts} = require("../controllers/Products/GetProducts.js");
 const getProductsByQuery = require("../controllers/Products/GetProductsByQuery");
 const { Product } = require("../db");
 const router = Router();
