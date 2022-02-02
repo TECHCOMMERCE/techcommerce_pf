@@ -4,8 +4,30 @@ const { Product, Category, Brand } = require("../../db");
 const getProductsByQuery = async (query) => {
   try {
     // recibe un string desde el searchbar
+    if (query.name && query.page) {
+      const count = await Product.count();
+      let limiter = Math.floor(count / 10);
+      // retorna un array, ya que enviar un objeto causa error en el back.
+      return [await Product.findAndCountAll({
+        where: { name: { [Op.iLike]: `%${query.name}%` } },
+        include: [
+          {
+            model: Category,
+            through: {
+              attributes: [],
+            },
+          },
+          {
+            model: Brand,
+          },
+        ],
+        limit: 10,
+        offset: (query.page <= limiter && query.page) * 10,
+        order: ["name"],
+      })];
+    }
 
-    if (query.admin && query.admin > 0) {
+    if (query.page) {
       const count = await Product.count();
       let limiter = Math.floor(count / 10);
       return await Product.findAll({
@@ -21,7 +43,7 @@ const getProductsByQuery = async (query) => {
           },
         ],
         limit: 10,
-        offset: (query.admin <= limiter && query.admin) * 10,
+        offset: (query.page <= limiter && query.page) * 10,
         order: ["name"],
       });
     }

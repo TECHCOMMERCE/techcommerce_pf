@@ -19,6 +19,7 @@ import {
   List,
   ListItem,
   IconButton,
+  Divider,
 } from "@mui/material";
 import {
   MdSave,
@@ -29,8 +30,8 @@ import {
 
 const CreateProduct = () => {
   const dispatch = useDispatch();
-  const brands = useSelector((state) => state.brandsReducer);
-  const categories = useSelector((state) => state.categoriesReducer);
+  const brands = useSelector((state) => state.brandsReducer.brands);
+  const categories = useSelector((state) => state.categoriesReducer.categories);
   const cloudinaryUrl = useSelector((state) => state.productReducer.url);
   const [input, setInput] = useState({
     name: "",
@@ -62,7 +63,6 @@ const CreateProduct = () => {
         justifyContent: "center",
         alignItems: "center",
         px: 20,
-        mt: 200,
         minWidth: "100vw",
       }}
     >
@@ -130,12 +130,13 @@ const CreateProduct = () => {
                 name="name"
                 placeholder="Motorola G200"
                 id="name"
+                multiline
                 type="text"
                 value={input.name}
                 onChange={(e) => handleInputs(e, input, setInput)}
                 required
                 autoFocus
-                maxLength="255"
+                inputProps={{maxLength: "100"}}
               />
 
               <TextField
@@ -147,8 +148,6 @@ const CreateProduct = () => {
                 placeholder="200"
                 value={input.price}
                 onChange={(e) => handleInputs(e, input, setInput)}
-                min="0"
-                max="1000000"
                 required
               />
 
@@ -224,9 +223,9 @@ const CreateProduct = () => {
                 <MenuItem sx={{ display: "none" }}></MenuItem>
                 {categories?.length &&
                   categories?.map((c) => (
-                    <MenuItem key={c.categoryid} value={c.name}>
-                      {c.name}
-                    </MenuItem>
+                      <MenuItem key={c.categoryid} value={c.name}>
+                        {c.name}
+                      </MenuItem>
                   ))}
               </TextField>
 
