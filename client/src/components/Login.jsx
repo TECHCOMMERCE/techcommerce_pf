@@ -105,8 +105,10 @@ return (
   <div className={s.container}>
     {!user.token?<div className={s.body}>
       <form autoComplete='off' className={s.form} onSubmit={handlerSubmit}>
-        <h2 className={s.title}>My Account</h2>
-        <FontAwesomeIcon className={s.iconUser} icon={faUser}/>
+        <div className={s.headerLoginContiner}>
+          <h2 className={s.title}> Account </h2>
+          <FontAwesomeIcon className={s.iconUser} icon={faUser}/>
+        </div>
         <div className={s.formGrup}>
           <span>Email</span>
           <input type="text" placeholder='Email' name="email" onChange={handlerChange}/>
@@ -120,7 +122,7 @@ return (
         <div className={s.buttons}>
           <button type='submit' className={`${s.btn} ${s.btn_login}`}>Login</button>
           <button type='button' className={`${s.btn} ${s.btn_sign}`} onClick={()=>navigate('/register')}>Sign up</button>
-          <button type='button' className={`${s.btn} ${s.btn_google}`} onClick={extLogin}><img src={iconGoogle} width={50}/>Login with Google</button>
+          <button type='button' className={`${s.btn} ${s.btn_google}`} onClick={extLogin}><img src={iconGoogle} alt='Google Icon' width={50}/>Login with Google</button>
           <Link to="/reset" className={s.btn}>Forgot your password?</Link>
         </div>
       </form>
