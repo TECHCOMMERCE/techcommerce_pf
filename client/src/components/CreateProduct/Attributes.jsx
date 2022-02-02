@@ -25,7 +25,7 @@ const Attributes = ({ input, setInput }) => {
           sx={{
             display: "flex",
             flexDirection: "column",
-            width: "20%",
+            width: "40%",
             mr: 10,
           }}
         >
@@ -62,7 +62,7 @@ const Attributes = ({ input, setInput }) => {
               document.querySelector("#attribute-name").focus();
             }}
           >
-            <MdAddCircle size="40px" color="green" />
+            <MdAddCircle size="40px" color="#3CB371" />
           </IconButton>
         </Box>
       </Box>
@@ -73,7 +73,7 @@ const Attributes = ({ input, setInput }) => {
             fontSize: 11,
             listStyle: "none",
             maxHeight: "215px",
-            width: "395px",
+            width: "94%",
             overflowY: "scroll",
             marginTop: "10px",
             backgroundColor: "#E2E2E8",
