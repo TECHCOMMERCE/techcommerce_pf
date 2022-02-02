@@ -18,7 +18,6 @@ server.listen(process.env.PORT||3001/* 5000 */,  () => {
     conn.models.Review.sync({force: false});
     conn.models.WishList.sync({force: false});
 
-
     // para crear un usuario admin automáticamente
     const [user, created] = await User.findOrCreate({
       where: { email:"admin@gmail.com", password:"admin123" },
