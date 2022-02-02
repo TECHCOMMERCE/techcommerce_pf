@@ -19,6 +19,7 @@ import {
   List,
   ListItem,
   IconButton,
+  Divider,
 } from "@mui/material";
 import {
   MdSave,
@@ -29,8 +30,8 @@ import {
 
 const CreateProduct = () => {
   const dispatch = useDispatch();
-  const brands = useSelector((state) => state.brandsReducer);
-  const categories = useSelector((state) => state.categoriesReducer);
+  const brands = useSelector((state) => state.brandsReducer.brands);
+  const categories = useSelector((state) => state.categoriesReducer.categories);
   const cloudinaryUrl = useSelector((state) => state.productReducer.url);
   const [input, setInput] = useState({
     name: "",
@@ -99,12 +100,7 @@ const CreateProduct = () => {
             borderRadius: "5px",
           }}
           onSubmit={async (e) =>
-            await handleSubmit(
-              e,
-              input,
-              setInput,
-              dispatch
-            )
+            await handleSubmit(e, input, setInput, dispatch)
           }
         >
           {/* Contiene todo el form */}
@@ -229,31 +225,40 @@ const CreateProduct = () => {
                 <MenuItem sx={{ display: "none" }}></MenuItem>
                 {categories?.length &&
                   categories?.map((c) => (
-                    <MenuItem key={c.categoryid} value={c.name}>
-                      {c.name}
-                    </MenuItem>
+                      <MenuItem key={c.categoryid} value={c.name}>
+                        {c.name}
+                      </MenuItem>
                   ))}
               </TextField>
 
-              <List>
-                {input.categories?.map((c, i) => (
-                  <ListItem
-                    sx={{ fontSize: ".8rem" }}
-                    key={i}
-                    name={c}
-                    secondaryAction={
-                      <IconButton
-                        name={c}
-                        onClick={(e) => handleCategories(e, input, setInput)}
-                      >
-                        <MdOutlineRemoveCircle style={{ color: "crimson" }} />
-                      </IconButton>
-                    }
-                  >
-                    {c}
-                  </ListItem>
-                ))}
-              </List>
+              {input.categories[0] && (
+                <List
+                  sx={{
+                    maxHeight: "80px",
+                    overflowY: "scroll",
+                    backgroundColor: "#E2E2E8",
+                    borderTopLeftRadius: "5px",
+                  }}
+                >
+                  {input.categories?.map((c, i) => (
+                    <ListItem
+                      sx={{ fontSize: ".8rem" }}
+                      key={i}
+                      name={c}
+                      secondaryAction={
+                        <IconButton
+                          name={c}
+                          onClick={(e) => handleCategories(e, input, setInput)}
+                        >
+                          <MdOutlineRemoveCircle style={{ color: "crimson" }} />
+                        </IconButton>
+                      }
+                    >
+                      {c}
+                    </ListItem>
+                  ))}
+                </List>
+              )}
             </Box>
 
             {/* Contiene la imagen, carga de imagen y atributos */}
@@ -346,7 +351,9 @@ const CreateProduct = () => {
               size="medium"
               color="error"
               endIcon={<MdArrowBack />}
-              onClick={() => (window.location.href = "/dashboard/products?admin=1")}
+              onClick={() =>
+                (window.location.href = "/dashboard/products?admin=1")
+              }
             >
               BACK
             </Button>

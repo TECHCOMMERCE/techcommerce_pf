@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/static/css/main.0ca61f68.css",
+    "main.js": "/static/js/main.be0f56db.js",
+    "static/media/iconGoogle.png": "/static/media/iconGoogle.0ff45cb66598335e2f43.png",
+    "static/media/computacion.jpg": "/static/media/computacion.9d04d3e6912149eac717.jpg",
+    "static/media/celulares.jpg": "/static/media/celulares.473ed53da013eaf792c1.jpg",
+    "static/media/consolas.jpg": "/static/media/consolas.98ea2c3ea09f2a9aade3.jpg",
+    "static/media/Logoo.png": "/static/media/Logoo.86a9a9f70a46bbd34009.png",
+    "static/media/Tech.png": "/static/media/Tech.85ceb596dd88f255d5ef.png",
+    "index.html": "/index.html",
+    "main.0ca61f68.css.map": "/static/css/main.0ca61f68.css.map",
+    "main.be0f56db.js.map": "/static/js/main.be0f56db.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0ca61f68.css",
+    "static/js/main.be0f56db.js"
+  ]
+}

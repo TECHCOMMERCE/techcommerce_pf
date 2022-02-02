@@ -283,25 +283,34 @@ const EditProduct = () => {
                   ))}
               </TextField>
 
-              <List>
-                {input.categories?.map((c, i) => (
-                  <ListItem
-                    sx={{ fontSize: ".8rem" }}
-                    key={i}
-                    name={c.name}
-                    secondaryAction={
-                      <IconButton
-                        name={c}
-                        onClick={(e) => handleCategories(e, input, setInput)}
-                      >
-                        <MdOutlineRemoveCircle style={{ color: "crimson" }} />
-                      </IconButton>
-                    }
-                  >
-                    {c}
-                  </ListItem>
-                ))}
-              </List>
+              {input.categories[0] && (
+                <List
+                  sx={{
+                    maxHeight: "80px",
+                    overflowY: "scroll",
+                    backgroundColor: "#E2E2E8",
+                    borderTopLeftRadius: "5px",
+                  }}
+                >
+                  {input.categories?.map((c, i) => (
+                    <ListItem
+                      sx={{ fontSize: ".8rem" }}
+                      key={i}
+                      name={c.name}
+                      secondaryAction={
+                        <IconButton
+                          name={c}
+                          onClick={(e) => handleCategories(e, input, setInput)}
+                        >
+                          <MdOutlineRemoveCircle style={{ color: "crimson" }} />
+                        </IconButton>
+                      }
+                    >
+                      {c}
+                    </ListItem>
+                  ))}
+                </List>
+              )}
             </Box>
 
             {/* Contiene la imagen, carga de imagen y atributos */}
@@ -394,7 +403,9 @@ const EditProduct = () => {
               size="medium"
               color="error"
               endIcon={<MdArrowBack />}
-              onClick={() => (window.location.href = "/dashboard/products?admin=1")}
+              onClick={() =>
+                (window.location.href = "/dashboard/products?admin=1")
+              }
             >
               BACK
             </Button>

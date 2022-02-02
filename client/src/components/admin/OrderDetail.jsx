@@ -63,7 +63,7 @@ const OrderDetail = () => {
                                     value={newStatus}
                                     onChange={e => setNewStatus(e.target.value)}
                                 >
-                                    <option value="Completeda">completa</option>
+                                    <option value="Completed">completa</option>
                                     <option value="cancelled">cancelada</option>
                                     <option value="Processing">procesando</option>
                                     <option value="Created">creada</option>
