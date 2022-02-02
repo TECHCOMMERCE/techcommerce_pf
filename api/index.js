@@ -4,9 +4,9 @@ const {GetProductsAPI} = require("./src/controllers/Products/GetProductsAPI");
 
 const {User} = require("./src/db");
 
-server.listen(process.env.PORT||3001/* 5000 */,   () => {
+server.listen(process.env.PORT||3001/* 5000 */,  () => {
   //SETEO GENERAL
-  conn.sync({ force: false }).then( async() => {
+  conn.sync({ force: true }).then( async() => {
     //SETEO DE TABLAS
     conn.models.Product.sync({force: false});
     conn.models.Brand.sync({force: false});
@@ -17,7 +17,6 @@ server.listen(process.env.PORT||3001/* 5000 */,   () => {
     conn.models.Detail.sync({force: false});
     conn.models.Review.sync({force: false});
     conn.models.WishList.sync({force: false});
-
 
     // para crear un usuario admin automáticamente
     const [user, created] = await User.findOrCreate({
