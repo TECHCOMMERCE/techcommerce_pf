@@ -10,7 +10,7 @@ const SERVER = process.env.REACT_APP_SERVER || "http://localhost:3001/";
 export const getBrandsByName = (name, page) => {
   try {
     return async (dispatch) => {
-      await axios.get(`${SERVER}brands?name=${name}&admin=${page}`).then((response) => {
+      await axios.get(`${SERVER}brands?name=${name}&page=${page}`).then((response) => {
         return dispatch({
           type: GET_BRANDS_BY_NAME,
           payload: response.data,
@@ -26,7 +26,7 @@ export const getBrandsForAdmin = (page) => {
   try {
     // page debe ser mayor que 0 y menor que la cuenta de productos/ 10
     return async (dispatch) => {
-      await axios.get(`${SERVER}brands?admin=${page}`).then((response) => {
+      await axios.get(`${SERVER}brands?page=${page}`).then((response) => {
         return dispatch({
           type: GET_BRANDS_FOR_ADMIN,
           payload: response.data,

@@ -50,7 +50,7 @@ const Dashboard = () => {
               color="error"
               startIcon={<MdOutlineQrCode />}
               onClick={() =>
-                (window.location.href = `/dashboard/products?admin=1`)
+                (window.location.href = `/dashboard/products/`)
               }
             >
               Products
@@ -60,7 +60,7 @@ const Dashboard = () => {
               sx={{ width: "66%", height: "25vh", fontSize: "1.5rem" }}
               color="success"
               startIcon={<MdLoyalty />}
-              onClick={() => (window.location.href = "/dashboard/brands?page=1")}
+              onClick={() => (window.location.href = "/dashboard/brands/")}
             >
               Brands
             </Button>
@@ -71,7 +71,7 @@ const Dashboard = () => {
               color="warning"
               sx={{ mt: 40, width: "30%", height: "30vh", fontSize: "1.5rem" }}
               startIcon={<MdCategory />}
-              onClick={() => (window.location.href = "/dashboard/categories?page=1")}
+              onClick={() => (window.location.href = "/dashboard/categories/")}
             >
               Categories
             </Button>

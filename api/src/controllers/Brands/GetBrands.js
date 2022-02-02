@@ -3,14 +3,14 @@ const { Brand } = require("../../db.js");
 
 const getBrands = async (query) => {
   try {
-    if (query.name && query.admin) {
+    if (query.name && query.page) {
       const count = await Brand.count();
       let limiter = Math.floor(count / 10);
       return await Brand.findAndCountAll({
         where: { name: { [Op.iLike]: `%${query.name}%` } },
         order: [["name", "ASC"]],
         limit: 10,
-        offset: (query.admin <= limiter && query.admin) * 10, // de cual fila comienza a traer datos
+        offset: (query.page <= limiter && query.page) * 10, // de cual fila comienza a traer datos
       });
     }
 

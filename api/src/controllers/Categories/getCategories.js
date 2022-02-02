@@ -3,14 +3,14 @@ const { Category } = require("../../db");
 
 const getCategories = async (query) => {
   try {
-    if (query.name && query.admin) {
+    if (query.name && query.page) {
       const count = await Category.count();
       let limiter = Math.floor(count / 10);
       return await Category.findAndCountAll({
         where: { name: { [Op.iLike]: `%${query.name}%` } },
         order: ["name"],
         limit: 10,
-        offset: (query.admin <= limiter && query.admin) * 10,
+        offset: (query.page <= limiter && query.page) * 10,
       });
     }
 

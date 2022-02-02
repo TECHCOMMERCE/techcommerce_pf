@@ -6,7 +6,7 @@ const SERVER = process.env.REACT_APP_SERVER || "http://localhost:3001/";
 export const getCategoriesByName = (name, page) => {
   try {
     return async (dispatch) => {
-      await axios.get(`${SERVER}categories?name=${name}&admin=${page}`).then((response) => {
+      await axios.get(`${SERVER}categories?name=${name}&page=${page}`).then((response) => {
         return dispatch({
           type: GET_CATEGORIES_BY_NAME,
           payload: response.data,
@@ -22,7 +22,7 @@ export const getCategoriesForAdmin = (page) => {
   try {
     // page debe ser mayor que 0 y menor que la cuenta de productos/ 10
     return async (dispatch) => {
-      await axios.get(`${SERVER}categories?admin=${page}`).then((response) => {
+      await axios.get(`${SERVER}categories?page=${page}`).then((response) => {
         return dispatch({
           type: GET_CATEGORIES_FOR_ADMIN,
           payload: response.data,

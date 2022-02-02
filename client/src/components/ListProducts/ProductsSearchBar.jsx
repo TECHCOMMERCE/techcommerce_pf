@@ -1,8 +1,20 @@
 import { Box, IconButton, TextField, Typography } from "@mui/material";
 import { MdOutlineSearch } from "react-icons/md";
-import React from "react";
+import React, { useState } from "react";
 
-const ProductsSearchBar = () => {
+const ProductsSearchBar = ({
+  handleSearch,
+  dispatch,
+  getProductsForAdmin,
+  setCurrentPage,
+  setSearching,
+}) => {
+  const [input, setInput] = useState("");
+
+  const handleInput = (e) => {
+    handleSearch(e, input);
+  };
+
   return (
     <Box
       sx={{
@@ -16,15 +28,28 @@ const ProductsSearchBar = () => {
       <Typography sx={{ fontSize: "1.5rem", fontWeight: "bold" }}>
         Products
       </Typography>
-      <form style={{ display: "flex", alignItems: "center" }}>
+      <form
+        style={{ display: "flex", alignItems: "center" }}
+        onSubmit={handleInput}
+      >
         <TextField
           sx={{ width: "400px" }}
           label="Search"
           variante="filled"
-          placeholder="Cellphones"
-          maxLength="255"
+          placeholder="Smartphone"
+          inputProps={{ maxLength: "255" }}
           autoFocus
           required
+          onChange={(e) => {
+            if (!e.target.value) {
+              setSearching(false);
+              setCurrentPage(0);
+              dispatch(getProductsForAdmin(0));
+            } else {
+              setSearching(true);
+              setInput(e.target.value);
+            }
+          }}
         ></TextField>
         <IconButton type="submit" sx={{ fontSize: "3rem", ml: 10 }}>
           <MdOutlineSearch />

@@ -8,15 +8,31 @@ import {
   GET_BRANDS_PRODUCTS,
   GET_CATEGORIES_PRODUCTS,
   GET_PRODUCTS_FOR_ADMIN,
+  GET_PRODUCTS_BY_NAME,
 } from "../constanst/actionsTypes";
 
 const SERVER = process.env.REACT_APP_SERVER || "http://localhost:3001";
+
+export const getProductsByName = (name, page) => {
+  try {
+    return async (dispatch) => {
+      await axios.get(`${SERVER}products?name=${name}&page=${page}`).then((response) => {
+        return dispatch({
+          type: GET_PRODUCTS_BY_NAME,
+          payload: response.data,
+        });
+      });
+    };
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export const getProductsForAdmin = (page) => {
   try {
     // page debe ser mayor que 0 y menor que la cuenta de productos/ 10
     return async (dispatch) => {
-      await axios.get(`${SERVER}products?admin=${page}`).then((response) => {
+      await axios.get(`${SERVER}products?page=${page}`).then((response) => {
         return dispatch({
           type: GET_PRODUCTS_FOR_ADMIN,
           payload: response.data,
