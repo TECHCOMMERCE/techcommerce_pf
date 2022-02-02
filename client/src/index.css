@@ -1,3 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
+/* Manrope */
+
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100;200;400&family=Noto+Sans:wght@400;700&family=Raleway:wght@300;400;700&display=swap');
+/* CSS rules to specify families
+font-family: 'Lexend Deca', sans-serif;
+font-family: 'Noto Sans', sans-serif;
+font-family: 'Raleway', sans-serif; */
+
+:root {
+  /* login component  ------ */
+  --font-family: 'Lexend Deca', sans-serif; 
+
+  /* celeste claro (esta en el login box) */
+  --color-login-celeste: rgba(2,174,239,255);
+  --color-strong-green: #127676;
+  --color-span-text: #1C6DD0;
+  /* end of login component  ------ */
+}
+
 body {
   margin: 0;
   padding: 0;
