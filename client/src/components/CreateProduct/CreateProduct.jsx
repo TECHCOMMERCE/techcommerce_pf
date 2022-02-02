@@ -221,7 +221,7 @@ const CreateProduct = () => {
                 sx={{ width: "100%" }}
               >
                 <MenuItem sx={{ display: "none" }}></MenuItem>
-                {categories?.length &&
+                {categories[0] &&
                   categories?.map((c) => (
                       <MenuItem key={c.categoryid} value={c.name}>
                         {c.name}
