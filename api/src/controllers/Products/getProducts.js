@@ -71,7 +71,7 @@ const getProductsFiltered = async (body, page) => {
       include: [
         {
           model: Category,
-          where: { name: body["category"] },
+          where: { name: body.category },
         },
         { model: Brand },
       ],
@@ -86,7 +86,7 @@ const getProductsFiltered = async (body, page) => {
         include: [
           {
             model: Category,
-            where: { name: body["category"] },
+            where: { name: body.category },
           },
           { model: Brand },
         ],
@@ -108,7 +108,7 @@ const getProductsFiltered = async (body, page) => {
       include: [
         {
           model: Brand,
-          where: { name: body["brand"] },
+          where: { name: body.brand },
         },
         {
           model: Category,
@@ -125,7 +125,7 @@ const getProductsFiltered = async (body, page) => {
         include: [
           {
             model: Brand,
-            where: { name: body["brand"] },
+            where: { name: body.brand },
           },
           {
             model: Category,
