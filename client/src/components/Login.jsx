@@ -110,13 +110,21 @@ return (
           <FontAwesomeIcon className={s.iconUser} icon={faUser}/>
         </div>
         <div className={s.formGrup}>
-          <span>Email</span>
-          <input type="text" placeholder='Email' name="email" onChange={handlerChange}/>
+          <label htmlFor="" className={s.omrs_input_underlined}>
+            {/* <span>Email</span> */}
+            <input type="text" name="email" onChange={handlerChange}/>
+            <span className={s.omrs_input_label}>Email</span>
+					  <span className={s.omrs_input_helper}>Email</span>
+          </label>
         </div>
         {error.email?<span className={s.error}>{error.email}</span>:null}
         <div className={s.formGrup}>
-          <span>Password</span>
-          <input type="password" placeholder='Password' name="password" onChange={(e)=>handlerChange(e)}/>
+          <label htmlFor="" className={s.omrs_input_underlined}>
+          {/* <span>Password</span> */}
+            <input type="password" name="password" onChange={(e)=>handlerChange(e)}/>
+            <span className={s.omrs_input_label}>Password</span>
+					  <span className={s.omrs_input_helper}>Password</span>
+          </label>
         </div>
         {error.password?<span className={s.error}>{error.password}</span>:null}
         <div className={s.buttons}>
