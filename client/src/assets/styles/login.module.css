@@ -174,15 +174,6 @@
   text-transform: uppercase;
   border-radius: 5px;
 }
-a.btn{
-  font-weight: lighter;
-  margin-top: 20px;
-  text-decoration: none;
-  color: var(--color-strong-green);
-}
-a.btn:hover{
-  color: var(--omrs-color-ink-medium-contrast);
-}
 
 .btn_login{
   cursor: pointer;
@@ -211,10 +202,33 @@ a.btn:hover{
   overflow: hidden;
 }
 
+a.btn{
+  font-weight: lighter;
+  margin-top: 20px;
+  text-decoration: none;
+  color: var(--color-strong-green);
+}
+
 .error{
   /* old red error color  */
   /* color: rgb(255, 6, 6); */
   color: var(--omrs-color-danger);
   margin-top: 5px;
   font-weight: 500;
+}
+
+/* hover styles ---------------------------------- */
+a.btn:hover{
+  color: var(--omrs-color-ink-medium-contrast);
+  /* background: var(--color-light-green); */ 
+}
+.btn_login:hover{
+  background: var(--color-light-green);
+}
+
+.btn_sign:hover{
+  background: #41dfff;
+}
+.btn_google:hover{
+  background: var(--omrs-color-ink-low-contrast);
 }
