@@ -40,9 +40,10 @@ export const putCategory = (category) => {
 export const postCategory = (category) => {
   try {
     return async (dispatch) => {
-      await axios.post(`${SERVER}category`, category).then(() => {
+      await axios.post(`${SERVER}category`, category).then((response) => {
         return dispatch({
           type: POST_CATEGORY,
+          payload: response.data,
         });
       });
     };
