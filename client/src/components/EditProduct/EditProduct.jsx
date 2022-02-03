@@ -95,7 +95,6 @@ const EditProduct = () => {
         justifyContent: "center",
         alignItems: "center",
         px: 20,
-        mt: 200,
         minWidth: "100vw",
       }}
     >
