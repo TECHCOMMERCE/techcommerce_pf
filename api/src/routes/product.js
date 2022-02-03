@@ -14,8 +14,8 @@ router.get("/:id", async(req, res) => {
 // Post de 1 producto
 router.post("/", async (req, res) => {
   const productCreated = await postProduct(req.body);
-
-  productCreated ? res.send("Producto creado") : res.send("Producto existente");
+  console.log(productCreated);
+  productCreated ? res.send("Product created") : res.send("This product already exist");
 });
 
 // Put de 1 producto (falta terminarlo)
