@@ -16,6 +16,11 @@ import { getAuth,
   browserSessionPersistence,
 } from 'firebase/auth';
 
+//styles
+//waves pic
+import buy_date_party_time from '../assets/Imgs/buy_date_party_time.svg'
+import friends_ from '../assets/Imgs/friends_.svg'
+
 function Login() {
   const dispatch=useDispatch();
   const navigate=useNavigate();
@@ -102,10 +107,14 @@ function Login() {
 }
 
 return (
-  <div className={s.container}>
+  <main className={s.login_design}>
+    <div className={s.waves}>
+      <img src={friends_} alt="fiends" />
+    </div>
+    <div className={s.container}>
     {!user.token?<div className={s.body}>
       <form autoComplete='off' className={s.form} onSubmit={handlerSubmit}>
-        <div className={s.headerLoginContiner}>
+      <div className={s.headerLoginContiner}>
           <h2 className={s.title}> Account </h2>
           <FontAwesomeIcon className={s.iconUser} icon={faUser}/>
         </div>
@@ -113,7 +122,7 @@ return (
           <label htmlFor="" className={s.omrs_input_underlined}>
             {/* <span>Email</span> */}
             <input type="text" name="email" onChange={handlerChange}/>
-            <span className={s.omrs_input_label}>Email</span>
+            {/* <span className={s.omrs_input_label}>Email</span> */}
 					  <span className={s.omrs_input_helper}>Email</span>
           </label>
         </div>
@@ -122,21 +131,25 @@ return (
           <label htmlFor="" className={s.omrs_input_underlined}>
           {/* <span>Password</span> */}
             <input type="password" name="password" onChange={(e)=>handlerChange(e)}/>
-            <span className={s.omrs_input_label}>Password</span>
+            {/* <span className={s.omrs_input_label}>Password</span> */}
 					  <span className={s.omrs_input_helper}>Password</span>
           </label>
         </div>
         {error.password?<span className={s.error}>{error.password}</span>:null}
         <div className={s.buttons}>
           <button type='submit' className={`${s.btn} ${s.btn_login}`}>Login</button>
+          <p>O</p>
+          <button type='button' className={`${s.btn} ${s.btn_google}`} onClick={extLogin}> 
+            <img src={iconGoogle} alt='Google Icon' width={35}/>
+             Continue with Google 
+          </button>
           <button type='button' className={`${s.btn} ${s.btn_sign}`} onClick={()=>navigate('/register')}>Sign up</button>
-          <button type='button' className={`${s.btn} ${s.btn_google}`} onClick={extLogin}><img src={iconGoogle} alt='Google Icon' width={50}/>Login with Google</button>
-          <Link to="/reset" className={s.btn}>Forgot your password?</Link>
+          <Link to="/reset" className={`${s.btn} ${s.btn_forgotpass}`}>Forgot your password?</Link>
         </div>
       </form>
     </div>:null}
-
   </div>
+  </main>
   );
 }
 
