@@ -1,24 +1,30 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Box, Typography, TextField, Button } from "@mui/material";
 import { MdSave, MdArrowBack } from "react-icons/md";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { postBrand } from "../../Store/actions/brand";
 
 const CreateBrand = () => {
+  const response = useSelector(state => state.brandReducer.brandResponse);
   const dispatch = useDispatch();
   const [input, setInput] = useState({
     name: "",
     status: true,
   });
-
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     if (document.getElementById("name").value) {
       dispatch(postBrand(input));
-      alert("Brand created");
-      window.location.href = "/dashboard/brands/create";
     }
   };
+  
+  useEffect(() => {
+    if (response) {
+      alert(response);
+      window.location.href = "/dashboard/brands/create";
+    }
+  }, [dispatch, response])
 
   const handleInput = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });

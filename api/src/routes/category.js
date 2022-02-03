@@ -10,12 +10,12 @@ router.get("/:categoryid", async (req, res) => {
 
 router.post("/", async(req, res) => {
   const category = await postCategory(req.body);
-  category ? res.send("Category created") : res.send("Error");
+  category ? res.send("Category created") : res.send("This category already exist");
 });
 
 router.put("/", async(req, res) => {
   const category = await putCategory(req.body);
-  category ? res.send("Category edited") : res.send("Error");
+  category ? res.send("Category edited") : res.send("Error editing category");
 })
 
 module.exports = router;

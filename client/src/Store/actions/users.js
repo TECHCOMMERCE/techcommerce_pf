@@ -7,7 +7,7 @@ import {
 import axios from 'axios'
 
 let SERVER = process.env.REACT_APP_SERVER ||'http://localhost:3001/';
-SERVER = SERVER.substring(0,SERVER.length-1)
+
 export function loginAccount(payload){
   return async function(dispatch){
     try{
