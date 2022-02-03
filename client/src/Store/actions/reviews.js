@@ -32,7 +32,6 @@ export const getReviewsByProduct = (productid) => {
           type: GET_REVIEWS,
           payload: res.data
       })
-      // console.log(res.data,'holi');
   })
   .catch((error) => {
       console.log(error);
