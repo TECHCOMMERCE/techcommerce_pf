@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -19,11 +19,11 @@
     "jsonwebtoken": "^8.5.1",
     "mercadopago": "^1.5.11",
     "morgan": "^1.10.0",
+    "nodemon": "^2.0.15",
     "npm": "^8.4.0",
     "pg": "^8.7.1",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.13.0",
-    "stripe": "^8.200.0",
-    "nodemon": "^2.0.15"
+    "stripe": "^8.200.0"
   }
 }

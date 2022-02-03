@@ -25,7 +25,7 @@ const Attributes = ({ input, setInput }) => {
           sx={{
             display: "flex",
             flexDirection: "column",
-            width: "20%",
+            width: "40%",
             mr: 10,
           }}
         >
@@ -36,6 +36,7 @@ const Attributes = ({ input, setInput }) => {
             id="attribute-name"
             placeholder="Color"
             name="name"
+            helperText=""
             inputProps={{ maxLength: 12}}
             onChange={(e) => handleAttributes(e, attributes, setAttributes)}
           />
@@ -50,7 +51,7 @@ const Attributes = ({ input, setInput }) => {
             id="attribute-value"
             sx={{ width: "90%" }}
             inputProps={{ maxLength: 30}}
-            helperText="Max 30 characters"
+            helperText=""
             name="value"
             onChange={(e) => handleAttributes(e, attributes, setAttributes)}
           />
@@ -63,7 +64,7 @@ const Attributes = ({ input, setInput }) => {
               document.querySelector("#attribute-name").focus();
             }}
           >
-            <MdAddCircle size="40px" color="green" />
+            <MdAddCircle size="40px" color="#3CB371" />
           </IconButton>
         </Box>
       </Box>
@@ -74,7 +75,7 @@ const Attributes = ({ input, setInput }) => {
             fontSize: 11,
             listStyle: "none",
             maxHeight: "214px",
-            width: "395px",
+            width: "94%",
             overflowY: "scroll",
             marginTop: "10px",
             backgroundColor: "#E2E2E8",
