@@ -14,6 +14,16 @@ const getCategories = async (query) => {
       });
     }
 
+    if (query.page) {
+      const count = await Category.count();
+      let limiter = Math.floor(count / 10);
+      return await Category.findAll({
+        order: ["name"],
+        limit: 10,
+        offset: (query.page <= limiter && query.page) * 10,
+      });
+    }
+
     if (query.name) {
       return await Category.findAll({
         where: {
