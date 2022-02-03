@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
+    "heroku-postbuild": "npm install && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -25,8 +26,5 @@
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.13.0",
     "stripe": "^8.200.0"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.15"
   }
 }

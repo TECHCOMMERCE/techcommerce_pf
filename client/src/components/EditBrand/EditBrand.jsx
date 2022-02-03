@@ -51,7 +51,6 @@ const EditBrand = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        mt: 200,
         width: "100%",
       }}
     >

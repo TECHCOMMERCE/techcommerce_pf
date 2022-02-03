@@ -7,11 +7,11 @@ import {
 import axios from 'axios'
 
 let SERVER = process.env.REACT_APP_SERVER ||'http://localhost:3001/';
-SERVER = SERVER.substring(0,SERVER.length-1)
+
 export function loginAccount(payload){
   return async function(dispatch){
     try{
-        const {data} = await axios.post(`${SERVER}/user/login`, payload);        
+        const {data} = await axios.post(`${SERVER}user/login`, payload);        
         if(typeof data === 'object'){
             return dispatch({
                 type: SET_USER_DATA,
@@ -49,7 +49,7 @@ export function getuser(){
 
 export const editUserFront = (data) => async(dispatch) =>{
     try {
-        let response = await axios.put(`${SERVER}/user/` , data)
+        let response = await axios.put(`${SERVER}user/` , data)
     } catch (error) {
         console.log(error)
     }
@@ -57,7 +57,7 @@ export const editUserFront = (data) => async(dispatch) =>{
 
 export const getOneUser = (userid) => async(dispatch)=> {
     try {
-        let response = await axios.get(`${SERVER}/user/${userid}`)
+        let response = await axios.get(`${SERVER}user/${userid}`)
         return dispatch({
             type: GET_ONE_USER,
             payload: response.data
