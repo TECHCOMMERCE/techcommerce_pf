@@ -1,4 +1,5 @@
 node_modules/
+client/build/
 */package-lock.json
 */.env
 api/.gitignore

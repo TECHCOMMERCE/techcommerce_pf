@@ -1,8 +1,8 @@
-const { Op } = require("sequelize");
 const { Category } = require("../../db");
 
-const getCategories = async (query) => {
+const getCategories = async (name) => {
   try {
+
     if (query.name && query.page) {
       const count = await Category.count();
       let limiter = Math.floor(count / 10);
@@ -27,12 +27,12 @@ const getCategories = async (query) => {
     if (query.name) {
       return await Category.findAll({
         where: {
-          name: { [Op.iLike]: `%${query.name}%` },
+          name: name,
         },
         order: [["name", "ASC"]],
       });
     }
-
+    
     return await Category.findAll({
       order: [["name", "ASC"]],
     });

@@ -110,6 +110,9 @@ Product.belongsTo(Brand);
 Product.belongsToMany(User, {through: Review, as: 'reviews', foreignKey: 'productid'});
 User.belongsToMany(Product,{through: Review, as: 'reviews', foreignKey: 'userid'});
 
+Product.belongsToMany(User, {through: 'product_suscription', as: 'suscriptions', foreignKey: 'productid'});
+User.belongsToMany(Product,{through: 'product_suscription', as: 'suscriptions', foreignKey: 'userid'});
+
 // User ---> Order 1:N
 User.hasMany(Order);
 Order.belongsTo(User);
