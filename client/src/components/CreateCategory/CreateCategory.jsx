@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Box, Typography, TextField, Button } from "@mui/material";
 import { MdSave, MdArrowBack } from "react-icons/md";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { postCategory } from "../../Store/actions/category";
 
 const CreateCategory = () => {
+  const response = useSelector(
+    (state) => state.categoryReducer.categoryResponse
+  );
   const dispatch = useDispatch();
   const [input, setInput] = useState({
     name: "",
@@ -15,10 +18,15 @@ const CreateCategory = () => {
     e.preventDefault();
     if (document.getElementById("name").value) {
       dispatch(postCategory(input));
-      alert("Category created");
-      window.location.href = "/dashboard/categories/create";
     }
   };
+
+  useEffect(() => {
+    if (response) {
+      alert(response);
+      window.location.href = "/dashboard/categories/create";
+    }
+  }, [response]);
 
   const handleInput = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
