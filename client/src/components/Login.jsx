@@ -137,13 +137,18 @@ return (
         </div>
         {error.password?<span className={s.error}>{error.password}</span>:null}
         <div className={s.buttons}>
-          <button type='submit' className={`${s.btn} ${s.btn_login}`}>Login</button>
+          <button type='submit' className={`${s.btn} ${s.btn_login}`}>
+            Login
+          </button>
           <p>O</p>
           <button type='button' className={`${s.btn} ${s.btn_google}`} onClick={extLogin}> 
             <img src={iconGoogle} alt='Google Icon' width={35}/>
              Continue with Google 
           </button>
-          <button type='button' className={`${s.btn} ${s.btn_sign}`} onClick={()=>navigate('/register')}>Sign up</button>
+          <button type='button' className={`${s.btn} ${s.btn_sign}`} onClick={()=>navigate('/register')}>
+            Sign up
+          </button>
+          <hr />
           <Link to="/reset" className={`${s.btn} ${s.btn_forgotpass}`}>Forgot your password?</Link>
         </div>
       </form>
