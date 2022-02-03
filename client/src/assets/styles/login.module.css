@@ -1,23 +1,44 @@
+.login_design{
+  display: grid;
+  grid-template-columns: repeat(2, 50%);
+  /* background-color: var(--color-piel-claro); */
+  background-image: var(--gradiant-login);
+}
+
+.waves{
+  /* background-color: aqua; */
+  display: flex;
+  justify-content: center;
+  align-items:center;
+}
+.waves img{
+  height: 30rem;
+}
+
 .container *{
   box-sizing: border-box;
 }
 .container{
   min-width: 100%;
   min-height: 100vh;
-  height: auto;
-  width: auto;
+  /* height: auto; */
+  /* width: auto; */
   display: flex;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
-  background-color: #fcf5f5;
+  /* background: var(--omrs-color-bg-high-contrast); */
 }
 .body{
-  height: 700px;
+  /* height: 700px; */
+  margin-left: 5em;
   width: 500px;
-  border: solid #5fbafa 1px;
-  background-color: rgb(46, 184, 176);
-  color: white;
-  box-shadow: 0px  0px 5px black;
+  /* border: solid #5fbafa 1px; */
+  /*color piel primario */
+  /* background-color: rgba(252,245,245,255); */
+  /* background-color: var(--color-login-celeste); */
+  /* color: white; */
+  box-shadow: 0px  0px 5px rgba(189, 183, 183, 0.904);
+  background: var(--omrs-color-bg-high-contrast);
 }
 
 .form{
@@ -29,43 +50,121 @@
   justify-content: center;
   align-items: center;
 }
+
+.headerLoginContiner{
+  /* flex-direction: row-reverse; */
+  display: flex;
+  /* color: #fcf5f5; */
+}
+
 .title{
   text-transform: uppercase;
-  font-size: 40px;
+  font-family: var(--font-family);
+  font-size: 45px;
+  font-weight: 200;
 }
 .iconUser{
-  font-size: 150px;
-  width: 200px;
-  border: 2px solid white;
+  font-size: 100px;
+  /* width: 200px; */
+  /* border: 2px solid white; */
   /* background-color: rgba(255,255,255,.1); */
-  padding: 10px 25px;
-  border-radius: 50%;
+  /* padding: 5px 25px; */
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-bottom: 40px;
+  /* margin-bottom: 15px; */
+  /* border-radius: 50%; */
 }
+
+.formGrup{
+  margin-bottom: 1.5rem;
+  position: relative;
+  width: 20.4375rem;
+}
+
+.omrs_input_underlined input{
+  border: none;
+	border-bottom: 0.125rem solid var(--omrs-color-ink-medium-contrast);
+	width: 100%;
+	height: 3rem;
+	font-size: 1.3rem;
+	padding-left: 0.9rem;
+	line-height: 147.6%;
+	padding-top: 1rem;
+	padding-bottom: 0.5rem;
+}
+
+.omrs_input_underlined > input:focus{
+  outline: none;
+}
+
+/* .omrs_input_underlined > .omrs_input_label {
+  position: absolute;
+	top: 0.9375rem;
+	left: 0.875rem;
+	line-height: 147.6%;
+  color: var(--color-lable-text);
+  transition: top .2s;
+} */
+
+.omrs_input_underlined > .omrs_input_helper{
+  font-size: 0.9375rem;
+	color: var(--omrs-color-ink-medium-contrast);
+	letter-spacing: 0.0275rem;
+	margin: 0.125rem 0.875rem;
+}
+
+.omrs_input_underlined > input:hover{
+  background: var(--omrs-color-interaction-minus-two);
+  border-color: var(--omrs-color-ink-high-contrast);
+}
+
+/* .omrs_input_underlined input:focus + .omrs_input_label,
+.omrs_input_underlined input:valid + .omrs_input_label{
+  top: 0;
+	font-size: 0.8rem;
+	margin-bottom: 32px;
+} */
+
+.omrs_input_underlined input:focus{
+  border-color: var(--omrs-color-interaction);
+}
+
+/*
 .formGrup{
   width: 100%;
   height: auto;
 }
+
 .formGrup span{
   position: relative;
   top: 25px;
   left: 25px;
-  color: #5364ff;
-  border: none;
+  color: var(--color-span-text);
+   border: none; 
   font-weight: 600;
 }
 .form input{
   width: 100%;
   height: 60px;
-  color: #7ac0f7;
+  /* color: #7ac0f7; 
   font-size: 18px;
   padding-top: 25px;
   padding-left: 25px;
-}
+  border-radius: .3em;
+}*/
 .buttons{
   display: flex;
   flex-direction: column;
   width: 100%;
+  justify-content: center;
+  align-items:center;
 }
+
+.buttons p{
+  padding: .5em;
+}
+
 .btn{
   width: 100%;
   height: 45px;
@@ -76,32 +175,46 @@
   border-radius: 5px;
 }
 a.btn{
-  margin-top: 30px;
-  color: white;
+  font-weight: lighter;
+  margin-top: 20px;
+  text-decoration: none;
+  color: var(--color-strong-green);
 }
+a.btn:hover{
+  color: var(--omrs-color-ink-medium-contrast);
+}
+
 .btn_login{
-  background-color: rgba(0, 0, 240, 1);;
-  border: 1px solid white;
-  color: white;
+  cursor: pointer;
+  background-color: var(--color-strong-green);
+  border: 1px solid var(--omrs-color-ink-medium-contrast);
+  color: var(--omrs-color-bg-low-contrast);
 }
 
 .btn_sign{
   background-color: transparent;
-  border: 1px solid white;
-  color: white;
+  border: 1px solid var(--color-login-celeste);
+  color: var(--color-span-text);
+  box-shadow: 0px  0px 5px var(--color-login-celeste);
+  cursor: pointer;
 }
 
 .btn_google{
   background-color: white;
-  border: 1px solid white;
-  color: black;
+  border: 1px solid var(--omrs-color-ink-medium-contrast);
+  box-shadow: 0px  0px 5px var(--omrs-color-ink-medium-contrast);
+  color: var(--omrs-color-ink-medium-contrast);
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
 }
+
 .error{
-  color: rgb(255, 6, 6);
+  /* old red error color  */
+  /* color: rgb(255, 6, 6); */
+  color: var(--omrs-color-danger);
   margin-top: 5px;
-  font-weight: 600;
+  font-weight: 500;
 }
