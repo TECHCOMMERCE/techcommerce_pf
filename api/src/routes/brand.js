@@ -10,7 +10,7 @@ router.get("/:brandid", async (req, res) => {
 
 router.post("/", async(req, res) => {
   let brandCreated = await postBrand(req.body);
-  brandCreated ? res.send("Brand created") : res.send("Error");
+  brandCreated ? res.send("Brand created") : res.send("This brand already exist");
 });
 
 router.put("/", async(req, res) => {
