@@ -1,6 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+
+// estilos css 
+import buy_date_party_ from '../../assets/Imgs/buy_date_party_time.svg'
 import s from "../../assets/styles/Register.module.css";
 
 import Swal from "sweetalert2";
@@ -54,12 +57,19 @@ const Register = () => {
                 if(step === 1){
                     return(<>
                         <div className={s.left}>
-                            <h1 className={s.step}>paso {step}</h1>
-                            <span className={s.description}>Primero ingresa los campos de registro de usuario</span>
+                            <img src={buy_date_party_} alt="buy_date_party_" />
+                            <div>
+                            <h1 className={s.step}> 
+                                step {step} 
+                            </h1>
+                            <span className={s.description}>
+                                Let's fill out your info!
+                            </span>
+                            </div>
                         </div>
 
-                        <div className={s.sep}></div>
-
+                        {/* <div className={s.sep}></div> */}
+                        <div className={s.body}>
                         <form className={s.form} onSubmit={async(e) => {
                             e.preventDefault();
                             
@@ -78,11 +88,12 @@ const Register = () => {
                             }
                             
                         }}>
-                            
+                          <div className={s.formGrup}>
+                           <label htmlFor="" className={s.omrs_input_underlined}> 
                             <input 
                                 type="text" 
                                 value={data.name} 
-                                placeholder="name"
+                                // placeholder="name"
                                 className={s.input}
                                 onChange={e => {
                                     setData(prev => {
@@ -93,11 +104,16 @@ const Register = () => {
                                     })
                                 }}
                             />
-                                
+                            <span className={s.omrs_input_helper}>Name</span>
+                          </label>
+                         </div>
+
+                         <div className={s.formGrup}>
+                           <label htmlFor="" className={s.omrs_input_underlined}> 
                             <input 
                                 type="text" 
                                 value={data.lastname}
-                                placeholder="lastname"
+                                // placeholder="lastname"
                                 className={s.input}
                                 onChange={e => {
                                     setData(prev => {
@@ -108,11 +124,16 @@ const Register = () => {
                                     })
                                 }}
                             />
-                                
+                            <span className={s.omrs_input_helper}>Last Name</span>
+                           </label>
+                         </div>
+
+                         <div className={s.formGrup}>
+                           <label htmlFor="" className={s.omrs_input_underlined}> 
                             <input 
                                 type="email" 
                                 value={data.email} 
-                                placeholder="email"
+                                // placeholder="email"
                                 className={s.input}
                                 onChange={e => {
                                     setData(prev => {
@@ -123,11 +144,16 @@ const Register = () => {
                                     })
                                 }}
                             />
-                                
+                            <span className={s.omrs_input_helper}>Email</span>
+                          </label>
+                         </div>
+
+                         <div className={s.formGrup}>
+                          <label htmlFor="" className={s.omrs_input_underlined}> 
                             <input 
                                 type={type}
                                 value={data.password} 
-                                placeholder="password"
+                                // placeholder="password"
                                 className={s.input}
                                 onChange={e => {
                                     setData(prev => {
@@ -138,18 +164,23 @@ const Register = () => {
                                     })
                                 }}
                             />
+                            <span className={s.omrs_input_helper}>Password</span>
+                           </label>
+                         </div>
 
                             <div>
                                 <input name="type" type="checkbox" onChange={e => {
                                     setType(e.target.checked ? "text" : "password");
                                 }}/>
-                                <label htmlFor="type">mostrar contraseña</label>
+                                <label htmlFor="type">Show Password</label>
                             </div>
-
+                         
+                         <div className={s.formGrup}>
+                           <label htmlFor="" className={s.omrs_input_underlined}> 
                             <input
                                 type={type} 
                                 value={data.confirmPassword} 
-                                placeholder="confirmar password"
+                                // placeholder="confirmar password"
                                 className={`${s.input}`}
                                 onChange={e => {
                                     setData(prev => {
@@ -160,9 +191,13 @@ const Register = () => {
                                     })
                                 }}
                             />
+                            <span className={s.omrs_input_helper}>Password</span>
+                           </label>
+                         </div>
 
                             <input type="submit" className={`${s.input} ${s.button}`} value="enviar"/>
                         </form>
+                        </div>
                     </>)
                 }else if(step === 2){
                     return(<>
@@ -171,7 +206,7 @@ const Register = () => {
                             <span className={s.description}>Ahora Ingrese los datos adicionales</span>
                         </div>
 
-                        <div className={s.sep}></div>
+                        {/* <div className={s.sep}></div> */}
 
                         <form className={s.form} onSubmit={async(e) => {
                             e.preventDefault();
@@ -265,7 +300,7 @@ const Register = () => {
                             <span className={s.description}>Listo, solo falta iniciar sesión con tu nueva cuenta</span>
                         </div>
 
-                        <div className={s.sep}></div>
+                        {/* <div className={s.sep}></div> */}
 
                         <div className={s.form}>
                             <span className={s.link}><Link to="/login">Ir al login</Link></span>

@@ -5,6 +5,7 @@
   .login_design {
     display: flex;
     flex-direction: column-reverse;
+    /* flex-direction: column; */
     background: var(--gradiant-login);
   }
   /* primer div ------------------------------------------------------------- */
@@ -16,7 +17,7 @@
   }
 
   .waves img {
-    height: 12rem;
+    height: 15rem;
   }
 
   /* inicio del segundo div ---------------------------------------------------- */
@@ -26,14 +27,16 @@
   }
   .container {
     min-height: 20rem;
+    margin-top: 1rem;
     display: flex;
     justify-content: center;
     align-items: center;
   }
   .body {
     width: 380px;
-    margin-top: 2.5rem;
+    /* margin-top: 1rem; */
     margin-bottom: 2.5rem;
+    border-radius: 5px;
     box-shadow: 0px 0px 5px rgba(189, 183, 183, 0.904);
     background: var(--omrs-color-bg-high-transparent);
   }
@@ -191,7 +194,7 @@
     /* background-color: var(--color-login-celeste); */
     /* color: white; */
     box-shadow: 0px 0px 5px rgba(189, 183, 183, 0.904);
-    background: var(--omrs-color-bg-high-contrast);
+    /* background: var(--omrs-color-bg-high-contrast); */
   }
   .form {
     width: 100%;
