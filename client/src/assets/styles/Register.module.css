@@ -96,12 +96,25 @@
     color: aliceblue;
   }
   .link {
-    font-size: 80px;
+    font-size: 38px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-family: var(--font-family);
+    font-weight: lighter;
+    text-transform: uppercase;
     border: 1px solid var(--color-login-celeste);
+    border-radius: 4px;
+    background-color:var(--color-login-celeste) ;
     /* box-shadow: 0px 0px 5px var(--color-login-celeste); */
-    color: var(--omrs-color-ink-medium-contrast);
+    /* text-decoration: none; */
+    /* font-size: large; */
+  }
+  .link a{
+    color: whitesmoke;
     text-decoration: none;
-    font-size: small;
+  }
+  .link:hover{
+    background-color:var(--color-span-text) ;
   }
 } 
 
@@ -169,7 +182,11 @@
     color: aliceblue;
     cursor: pointer;
   }
-
+  .link{
+    font-size: 30px;
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
   
 }
 
