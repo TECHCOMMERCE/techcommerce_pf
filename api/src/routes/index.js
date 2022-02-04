@@ -12,7 +12,8 @@ const user = require("./user");
 const checkout = require("./checkout");
 const wishlist = require("./WishList");
 const orderRouter = require('./ordersRoutes');
-
+const { putSuscription } = require("../controllers/PSuscription/PutSuscription");
+const psuscription = require('./product_suscription');
 //const user = require("../controllers/User/user");
 
 //importing the routes
@@ -37,10 +38,7 @@ router.use("/user", user);
 router.use('/cart', cart)
 router.use('/checkout', checkout)
 
-
-//router.use('/user', user)
-
-// router.use('/review', review)
 router.use('/wishlist',wishlist)
+router.use('/psuscription',pSuscription)
 
 module.exports = router;
