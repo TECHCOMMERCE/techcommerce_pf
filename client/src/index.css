@@ -32,8 +32,10 @@ font-family: 'Raleway', sans-serif; */
 	--omrs-color-bg-low-contrast: #eff1f2;
 	--omrs-color-ink-high-contrast: #121212;
 	--omrs-color-bg-high-contrast: #ffffffcc;
+	--omrs-color-bg-high-transparent: #ffffff70;
   
   /* end of login component  ------ */
+  /* --deskpot-width: (max-width: ); */
 }
 
 body {
