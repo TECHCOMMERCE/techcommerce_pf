@@ -7,7 +7,8 @@ import { handleInputs } from "../../helpers/CreateProduct/handleInputs";
 import { handleCategories } from "../../helpers/CreateProduct/handleCategories";
 import { handleImage } from "../../helpers/CreateProduct/handleImage";
 import Attributes from "./Attributes";
-import { handleSubmit } from "../../helpers/CreateProduct/handleSubmit";
+import {postProduct} from "../../Store/actions/product";
+// import { handleSubmit } from "../../helpers/CreateProduct/handleSubmit";
 import {
   Container,
   Typography,
@@ -19,7 +20,6 @@ import {
   List,
   ListItem,
   IconButton,
-  Divider,
 } from "@mui/material";
 import {
   MdSave,
@@ -32,6 +32,7 @@ const CreateProduct = () => {
   const dispatch = useDispatch();
   const brands = useSelector((state) => state.brandsReducer.brands);
   const categories = useSelector((state) => state.categoriesReducer.categories);
+  const response = useSelector((state) => state.productReducer.status);
   const cloudinaryUrl = useSelector((state) => state.productReducer.url);
   const [input, setInput] = useState({
     name: "",
@@ -45,6 +46,22 @@ const CreateProduct = () => {
     categories: [],
     status: true,
   });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (input.brand.length && input.categories.length && !!input.image) {
+      dispatch(postProduct(input));
+    } else {
+      alert("Please complete all the required fields");
+    }
+  };
+
+  useEffect(() => {
+    if (response) {
+      alert(response);
+      window.location.href = "/dashboard/products/create";
+    }
+  }, [dispatch, response]);
 
   useEffect(() => {
     cloudinaryUrl.length && setInput({ ...input, image: cloudinaryUrl });
@@ -63,7 +80,6 @@ const CreateProduct = () => {
         justifyContent: "center",
         alignItems: "center",
         px: 20,
-        mt: 200,
         minWidth: "100vw",
       }}
     >
@@ -100,7 +116,8 @@ const CreateProduct = () => {
             borderRadius: "5px",
           }}
           onSubmit={async (e) =>
-            await handleSubmit(e, input, setInput, dispatch)
+            await handleSubmit(e)
+            // await handleSubmit(e, input, setInput, dispatch)
           }
         >
           {/* Contiene todo el form */}
@@ -131,12 +148,13 @@ const CreateProduct = () => {
                 name="name"
                 placeholder="Motorola G200"
                 id="name"
+                multiline
                 type="text"
                 value={input.name}
                 onChange={(e) => handleInputs(e, input, setInput)}
                 required
                 autoFocus
-                maxLength="255"
+                inputProps={{ maxLength: "100" }}
               />
 
               <TextField
@@ -148,8 +166,6 @@ const CreateProduct = () => {
                 placeholder="200"
                 value={input.price}
                 onChange={(e) => handleInputs(e, input, setInput)}
-                min="0"
-                max="1000000"
                 required
               />
 
@@ -223,11 +239,11 @@ const CreateProduct = () => {
                 sx={{ width: "100%" }}
               >
                 <MenuItem sx={{ display: "none" }}></MenuItem>
-                {categories?.length &&
+                {categories[0] &&
                   categories?.map((c) => (
-                      <MenuItem key={c.categoryid} value={c.name}>
-                        {c.name}
-                      </MenuItem>
+                    <MenuItem key={c.categoryid} value={c.name}>
+                      {c.name}
+                    </MenuItem>
                   ))}
               </TextField>
 
