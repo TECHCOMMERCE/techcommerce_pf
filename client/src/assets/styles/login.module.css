@@ -37,7 +37,7 @@
 .body{
   /* height: 700px; */
 
-  margin-left: 5em;
+  /* margin-left: 5em; */
   width: 500px;
   /* border: solid #5fbafa 1px; */
   /*color piel primario */
@@ -222,7 +222,10 @@
   }
   .body {
     /* height: 700px; */
-    margin-left: 2em;
+    /* height: 700px; */
+    
+    margin-left: 5em;
+    /* margin-left: 2em; */
     width: 500px;
     /* border: solid #5fbafa 1px; */
     /*color piel primario */

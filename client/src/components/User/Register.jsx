@@ -5,7 +5,8 @@ import { Link } from "react-router-dom";
 // estilos css 
 import buy_date_party_ from '../../assets/Imgs/buy_date_party_time.svg'
 import s from "../../assets/styles/Register.module.css";
-
+import man_in_bike from '../../assets/Imgs/social_media_guy.svg'
+import date_living_room from '../../assets/Imgs/date_living_room.svg'
 import Swal from "sweetalert2";
 
 const Register = () => {
@@ -202,12 +203,15 @@ const Register = () => {
                 }else if(step === 2){
                     return(<>
                         <div className={s.left}>
-                            <h1 className={s.step}>paso {step}</h1>
-                            <span className={s.description}>Ahora Ingrese los datos adicionales</span>
+                            <img src={date_living_room} alt="" />
+                            <div className={s.headerTitleContainer}>
+                                <h1 className={s.step}>paso {step}</h1>
+                                <span className={s.description}>Ahora Ingrese los datos adicionales</span>
+                            </div>
                         </div>
 
                         {/* <div className={s.sep}></div> */}
-
+                        <div className={s.body}>
                         <form className={s.form} onSubmit={async(e) => {
                             e.preventDefault();
 
@@ -215,10 +219,12 @@ const Register = () => {
 
                             setFormStatus(res.data);
                         }}>
+                            <div className={s.formGrup}>
+                             <label htmlFor="" className={s.omrs_input_underlined}> 
                             <input
                                 type="text" 
                                 value={aditionalData.phone} 
-                                placeholder="phone"
+                                // placeholder="phone"
                                 className={s.input}
                                 onChange={e => {
                                     setAditionalData(prev => {
@@ -229,11 +235,16 @@ const Register = () => {
                                     })
                                 }}
                             />
-
+                            <span className={s.omrs_input_helper}>Telefono</span>
+                            </label>
+                           </div>
+  
+                           <div className={s.formGrup}>
+                            <label htmlFor="" className={s.omrs_input_underlined}> 
                             <input
                                 type="text" 
                                 value={aditionalData.address} 
-                                placeholder="address"
+                                // placeholder="address"
                                 className={s.input}
                                 onChange={e => {
                                     setAditionalData(prev => {
@@ -244,11 +255,17 @@ const Register = () => {
                                     })
                                 }}
                             />
+                            <span className={s.omrs_input_helper}>Direccion</span>
+                            </label>
+                           </div>
+  
+                           <div className={s.formGrup}>
+                             <label htmlFor="" className={s.omrs_input_underlined}> 
                             
                             <input
                                 type="text" 
                                 value={aditionalData.country} 
-                                placeholder="country"
+                                // placeholder="country"
                                 className={s.input}
                                 onChange={e => {
                                     setAditionalData(prev => {
@@ -259,11 +276,16 @@ const Register = () => {
                                     })
                                 }}
                             />
-                            
+                            <span className={s.omrs_input_helper}>Pais</span>
+                            </label>
+                           </div>
+  
+                           <div className={s.formGrup}>
+                             <label htmlFor="" className={s.omrs_input_underlined}> 
                             <input
                                 type="text" 
                                 value={aditionalData.city} 
-                                placeholder="city"
+                                // placeholder="city"
                                 className={s.input}
                                 onChange={e => {
                                     setAditionalData(prev => {
@@ -274,11 +296,17 @@ const Register = () => {
                                     })
                                 }}
                             />
+                            <span className={s.omrs_input_helper}>Ciudad</span>
+                            </label>
+                           </div>
+  
+                           <div className={s.formGrup}>
+                             <label htmlFor="" className={s.omrs_input_underlined}> 
 
                             <input
                                 type="text" 
                                 value={aditionalData.postalcode} 
-                                placeholder="postalcode"
+                                // placeholder="postalcode"
                                 className={s.input}
                                 onChange={e => {
                                     setAditionalData(prev => {
@@ -289,21 +317,31 @@ const Register = () => {
                                     })
                                 }}
                             />
+                            <span className={s.omrs_input_helper}>Codigo postal</span>
+                            </label>
+                           </div>
 
                             <input type="submit" className={`${s.input} ${s.button}`} value="enviar"/>
                         </form>
+                        </div>
                     </>)
                 }else if(step === 3){
                     return(<>
                         <div className={s.left}>
-                            <h1 className={s.step}>paso {step}</h1>
-                            <span className={s.description}>Listo, solo falta iniciar sesión con tu nueva cuenta</span>
+                            <img src={man_in_bike} alt="man_in_bike" />
+                            <div className={s.headerTitleContainer}>
+                                <h1 className={s.step}>paso {step}</h1>
+                                <span className={s.description}>
+                                Listo, solo falta iniciar sesión con tu nueva cuenta
+                                </span>
+                            </div>
                         </div>
 
                         {/* <div className={s.sep}></div> */}
-
-                        <div className={s.form}>
+                        <div className={s.body}>
+                        <div className={`${s.form} ${s.btn}`}>
                             <span className={s.link}><Link to="/login">Ir al login</Link></span>
+                        </div>
                         </div>
                     </>)
                 }
