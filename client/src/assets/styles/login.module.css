@@ -30,15 +30,20 @@
 }
 .body{
   /* height: 700px; */
+
   margin-left: 5em;
   width: 500px;
   /* border: solid #5fbafa 1px; */
   /*color piel primario */
   /* background-color: rgba(252,245,245,255); */
+
   /* background-color: var(--color-login-celeste); */
   /* color: white; */
   box-shadow: 0px  0px 5px rgba(189, 183, 183, 0.904);
   background: var(--omrs-color-bg-high-contrast);
+  background-color: var(--color-login-celeste);
+  /* color: white; */
+  box-shadow: 0px  0px 5px black;
 }
 
 .form{
@@ -55,6 +60,7 @@
   /* flex-direction: row-reverse; */
   display: flex;
   /* color: #fcf5f5; */
+
 }
 
 .title{
@@ -98,14 +104,6 @@
   outline: none;
 }
 
-/* .omrs_input_underlined > .omrs_input_label {
-  position: absolute;
-	top: 0.9375rem;
-	left: 0.875rem;
-	line-height: 147.6%;
-  color: var(--color-lable-text);
-  transition: top .2s;
-} */
 
 .omrs_input_underlined > .omrs_input_helper{
   font-size: 0.9375rem;
@@ -118,13 +116,6 @@
   background: var(--omrs-color-interaction-minus-two);
   border-color: var(--omrs-color-ink-high-contrast);
 }
-
-/* .omrs_input_underlined input:focus + .omrs_input_label,
-.omrs_input_underlined input:valid + .omrs_input_label{
-  top: 0;
-	font-size: 0.8rem;
-	margin-bottom: 32px;
-} */
 
 .omrs_input_underlined input:focus{
   border-color: var(--omrs-color-interaction);
@@ -211,7 +202,6 @@ a.btn{
 
 .error{
   /* old red error color  */
-  /* color: rgb(255, 6, 6); */
   color: var(--omrs-color-danger);
   margin-top: 5px;
   font-weight: 500;
