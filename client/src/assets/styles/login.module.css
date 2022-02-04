@@ -21,6 +21,36 @@
   }
 
   /* inicio del segundo div ---------------------------------------------------- */
+.container *{
+  box-sizing: border-box;
+}
+.container{
+  min-width: 100%;
+  min-height: 100vh;
+  /* height: auto; */
+  /* width: auto; */
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  /* background: var(--omrs-color-bg-high-contrast); */
+}
+.body{
+  /* height: 700px; */
+
+  margin-left: 5em;
+  width: 500px;
+  /* border: solid #5fbafa 1px; */
+  /*color piel primario */
+  /* background-color: rgba(252,245,245,255); */
+
+  /* background-color: var(--color-login-celeste); */
+  /* color: white; */
+  box-shadow: 0px  0px 5px rgba(189, 183, 183, 0.904);
+  background: var(--omrs-color-bg-high-contrast);
+  background-color: var(--color-login-celeste);
+  /* color: white; */
+  box-shadow: 0px  0px 5px black;
+}
 
   .container * {
     box-sizing: border-box;
@@ -102,6 +132,12 @@
     justify-content: center;
     align-items: center;
   }
+.headerLoginContiner{
+  /* flex-direction: row-reverse; */
+  display: flex;
+  /* color: #fcf5f5; */
+
+}
 
   .btn {
     width: 25em;
@@ -308,6 +344,12 @@
     border-radius: 5px;
     
   }
+.error{
+  /* old red error color  */
+  color: var(--omrs-color-danger);
+  margin-top: 5px;
+  font-weight: 500;
+}
 
   .waves img {
     height: 38em;

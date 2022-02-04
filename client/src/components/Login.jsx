@@ -136,11 +136,13 @@ return (
           {/* <span>Password</span> */}
             <input type="password" name="password" onChange={(e)=>handlerChange(e)}/>
             {/* <span className={s.omrs_input_label}>Password</span> */}
+
 					  <span className={s.omrs_input_helper}>Password</span>
           </label>
         </div>
         {error.password?<span className={s.error}>{error.password}</span>:null}
         <div className={s.buttons}>
+
           <button type='submit' className={`${s.btn} ${s.btn_login}`}>
             Login
           </button>
@@ -154,6 +156,7 @@ return (
           </button>
           <hr />
           <Link to="/reset" className={`${s.btn} ${s.btn_forgotpass}`}>Forgot your password?</Link>
+
         </div>
         </form>
       </div>:null}

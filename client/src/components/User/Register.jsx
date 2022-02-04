@@ -58,7 +58,7 @@ const Register = () => {
                     return(<>
                         <div className={s.left}>
                             <img src={buy_date_party_} alt="buy_date_party_" />
-                            <div>
+                            <div className={s.headerTitleContainer}>
                             <h1 className={s.step}> 
                                 step {step} 
                             </h1>
