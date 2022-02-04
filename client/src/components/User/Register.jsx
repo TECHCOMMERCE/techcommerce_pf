@@ -339,7 +339,7 @@ const Register = () => {
 
                         {/* <div className={s.sep}></div> */}
                         <div className={s.body}>
-                        <div className={`${s.form} ${s.btn}`}>
+                        <div className={s.form}>
                             <span className={s.link}><Link to="/login">Ir al login</Link></span>
                         </div>
                         </div>

@@ -137,7 +137,7 @@ return (
             <input type="password" name="password" onChange={(e)=>handlerChange(e)}/>
             {/* <span className={s.omrs_input_label}>Password</span> */}
 
-					  <span className={s.omrs_input_helper}>Password</span>
+					  <span className={s.omrs_input_helper}>Contraseña</span>
           </label>
         </div>
         {error.password?<span className={s.error}>{error.password}</span>:null}
@@ -149,13 +149,13 @@ return (
           <p>O</p>
           <button type='button' className={`${s.btn} ${s.btn_google}`} onClick={extLogin}> 
             <img src={iconGoogle} alt='Google Icon' width={30}/>
-             Continue with Google 
+             Continuar con Google 
           </button>
           <button type='button' className={`${s.btn} ${s.btn_sign}`} onClick={()=>navigate('/register')}>
-            Sign up
+            Iniciar sesion
           </button>
           <hr />
-          <Link to="/reset" className={`${s.btn} ${s.btn_forgotpass}`}>Forgot your password?</Link>
+          <Link to="/reset" className={`${s.btn} ${s.btn_forgotpass}`}>Recuperar contraseña</Link>
 
         </div>
         </form>
