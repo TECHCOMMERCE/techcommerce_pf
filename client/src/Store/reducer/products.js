@@ -5,6 +5,7 @@ import {
   GET_BRANDS_PRODUCTS,
   GET_CATEGORIES_PRODUCTS,
   GET_PRODUCTS_FOR_ADMIN,
+  GET_PRODUCTS_BY_NAME,
 } from "../constanst/actionsTypes";
 
 const initialState = {
@@ -16,8 +17,10 @@ const initialState = {
 };
 
 export function productsReducer(state = initialState, action) {
-
   switch (action.type) {
+    case GET_PRODUCTS_BY_NAME:
+      return { ...state, productsAdmin: action.payload };
+
     case GET_PRODUCTS_FOR_ADMIN:
       return { ...state, productsAdmin: action.payload };
 
@@ -53,5 +56,4 @@ export function productsReducer(state = initialState, action) {
     default:
       return state;
   }
-
 }

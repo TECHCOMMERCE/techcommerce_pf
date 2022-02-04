@@ -34,8 +34,8 @@ import {
 
 const EditProduct = () => {
   const dispatch = useDispatch();
-  const brands = useSelector((state) => state.brandsReducer);
-  const categories = useSelector((state) => state.categoriesReducer);
+  const brands = useSelector((state) => state.brandsReducer.brands);
+  const categories = useSelector((state) => state.categoriesReducer.categories);
   const cloudinaryUrl = useSelector((state) => state.productReducer.url);
   const productDetail = useSelector(
     (state) => state.productReducer.productDetail
@@ -95,7 +95,6 @@ const EditProduct = () => {
         justifyContent: "center",
         alignItems: "center",
         px: 20,
-        mt: 200,
         minWidth: "100vw",
       }}
     >
@@ -167,7 +166,7 @@ const EditProduct = () => {
                 onChange={(e) => handleInputs(e, input, setInput)}
                 required
                 autoFocus
-                maxLength="255"
+                inputProps={{maxLength: 100,}}
                 helperText=""
               />
 
@@ -185,8 +184,6 @@ const EditProduct = () => {
                 defaultValue={productDetail.price && productDetail.price}
                 onChange={(e) => handleInputs(e, input, setInput)}
                 sx={{ textAlign: "right" }}
-                min="0"
-                max="1000000"
                 required
               />
 
@@ -204,7 +201,6 @@ const EditProduct = () => {
                 defaultValue={productDetail.stock && productDetail.stock}
                 onChange={(e) => handleInputs(e, input, setInput)}
                 required
-                min="0"
               />
 
               <TextField
@@ -223,7 +219,7 @@ const EditProduct = () => {
                 }
                 onChange={(e) => handleInputs(e, input, setInput)}
                 required
-                min="0"
+                helperText=""
               />
 
               <TextField
@@ -235,6 +231,7 @@ const EditProduct = () => {
                 id="condition"
                 value={input.condition}
                 onChange={(e) => handleInputs(e, input, setInput)}
+                helperText=""
               >
                 <MenuItem sx={{ display: "none" }}></MenuItem>
                 <MenuItem value="new">New</MenuItem>
@@ -250,9 +247,10 @@ const EditProduct = () => {
                 value={input.brand}
                 id="brand"
                 onChange={(e) => handleInputs(e, input, setInput)}
+                helperText=""
               >
                 <MenuItem sx={{ display: "none" }}></MenuItem>
-                {brands?.length &&
+                {brands[0] &&
                   brands?.map((b) => (
                     <MenuItem key={b.brandid} value={b.brandid}>
                       {b.name}
@@ -273,9 +271,10 @@ const EditProduct = () => {
                 id="categories"
                 onChange={(e) => handleInputs(e, input, setInput)}
                 sx={{ width: "100%" }}
+                helperText=""
               >
                 <MenuItem sx={{ display: "none" }}></MenuItem>
-                {categories?.length &&
+                {categories[0] &&
                   categories?.map((c) => (
                     <MenuItem key={c.categoryid} value={c.name}>
                       {c.name}
@@ -283,25 +282,34 @@ const EditProduct = () => {
                   ))}
               </TextField>
 
-              <List>
-                {input.categories?.map((c, i) => (
-                  <ListItem
-                    sx={{ fontSize: ".8rem" }}
-                    key={i}
-                    name={c.name}
-                    secondaryAction={
-                      <IconButton
-                        name={c}
-                        onClick={(e) => handleCategories(e, input, setInput)}
-                      >
-                        <MdOutlineRemoveCircle style={{ color: "crimson" }} />
-                      </IconButton>
-                    }
-                  >
-                    {c}
-                  </ListItem>
-                ))}
-              </List>
+              {input.categories[0] && (
+                <List
+                  sx={{
+                    maxHeight: "80px",
+                    overflowY: "scroll",
+                    backgroundColor: "#E2E2E8",
+                    borderTopLeftRadius: "5px",
+                  }}
+                >
+                  {input.categories?.map((c, i) => (
+                    <ListItem
+                      sx={{ fontSize: ".8rem" }}
+                      key={i}
+                      name={c.name}
+                      secondaryAction={
+                        <IconButton
+                          name={c}
+                          onClick={(e) => handleCategories(e, input, setInput)}
+                        >
+                          <MdOutlineRemoveCircle style={{ color: "crimson" }} />
+                        </IconButton>
+                      }
+                    >
+                      {c}
+                    </ListItem>
+                  ))}
+                </List>
+              )}
             </Box>
 
             {/* Contiene la imagen, carga de imagen y atributos */}
@@ -394,7 +402,9 @@ const EditProduct = () => {
               size="medium"
               color="error"
               endIcon={<MdArrowBack />}
-              onClick={() => (window.location.href = "/dashboard/products?admin=1")}
+              onClick={() =>
+                (window.location.href = "/dashboard/products?admin=1")
+              }
             >
               BACK
             </Button>

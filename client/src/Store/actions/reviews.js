@@ -10,7 +10,7 @@ import {
         } from '../constanst/actionsTypes';
 
 import axios from 'axios';
-// const url = 'http://localhost:3001';
+
 const SERVER = process.env.REACT_APP_SERVER || 'http://localhost:3001/'
 
 export const postReview = (review,productid) => {
@@ -32,7 +32,6 @@ export const getReviewsByProduct = (productid) => {
           type: GET_REVIEWS,
           payload: res.data
       })
-      // console.log(res.data,'holi');
   })
   .catch((error) => {
       console.log(error);

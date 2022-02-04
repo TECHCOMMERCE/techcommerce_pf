@@ -1,3 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
+/* Manrope */
+
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100;200;400&family=Noto+Sans:wght@400;700&family=Raleway:wght@300;400;700&display=swap');
+/* CSS rules to specify families
+font-family: 'Lexend Deca', sans-serif;
+font-family: 'Noto Sans', sans-serif;
+font-family: 'Raleway', sans-serif; */
+
+:root {
+
+  /* gradiant colors  */
+  --gradiant-login: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
+
+  /* login component  ------ */
+  --font-family: 'Lexend Deca', sans-serif; 
+
+  /* celeste claro (esta en el login box) */
+
+  --color-piel-claro: #fcf5f5e8;
+  --color-login-celeste: rgba(2,174,239,255);
+  --color-strong-green: #127676;
+  --color-light-green: #199b9b;
+  --color-span-text: #1C6DD0;
+  --color-lable-text: #13131599;
+  --omrs-color-ink-lowest-contrast: #2f3c552e;
+	--omrs-color-ink-low-contrast: #3c3c434d;
+	--omrs-color-ink-medium-contrast: #13131599;
+	--omrs-color-interaction: #a2ca34;
+	--omrs-color-interaction-minus-two: #4985e01f;
+	--omrs-color-danger: #b50706;
+	--omrs-color-bg-low-contrast: #eff1f2;
+	--omrs-color-ink-high-contrast: #121212;
+	--omrs-color-bg-high-contrast: #ffffffcc;
+  
+  /* end of login component  ------ */
+}
+
 body {
   margin: 0;
   padding: 0;

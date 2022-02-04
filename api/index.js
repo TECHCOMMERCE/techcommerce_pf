@@ -5,8 +5,22 @@ const {GetProductsAPI} = require("./src/controllers/Products/GetProductsAPI");
 const {User} = require("./src/db");
 
 server.listen(process.env.PORT||3001/* 5000 */,  () => {
-  conn.sync({ force: true }).then( async() => {
-    
+  //SETEO GENERAL
+  conn.sync({ force: false }).then( async() => {
+    //SETEO DE TABLAS
+    conn.models.Product.sync({force: false});
+    conn.models.Brand.sync({force: false});
+    conn.models.Category.sync({force: false});
+    conn.models.products_category.sync({force: false});
+    conn.models.User.sync({force: false});
+    conn.models.Cart.sync({force: false});
+    conn.models.Order.sync({force: false});
+    conn.models.Detail.sync({force: false});
+    conn.models.Review.sync({force: false});
+    conn.models.WishList.sync({force: false});
+    conn.models.product_suscription.sync({force: true});
+
+
     // para crear un usuario admin automáticamente
     const [user, created] = await User.findOrCreate({
       where: { email:"admin@gmail.com", password:"admin123" },
