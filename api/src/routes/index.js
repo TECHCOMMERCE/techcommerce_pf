@@ -11,7 +11,9 @@ const user = require("./user");
 /* const reviewsRoutes = require('./reviewsRoutes') */
 const checkout = require("./checkout");
 const wishlist = require("./WishList");
-const orderRouter = require('./ordersRoutes');
+const orderRouter = require("./ordersRoutes");
+const deliveries = require("./deliveries");
+const delivery = require("./delivery");
 
 //const user = require("../controllers/User/user");
 
@@ -28,19 +30,21 @@ router.use("/brands", brands);
 router.use("/brand", brand);
 router.use("/products", products);
 /* router.use("/review", reviewsRoutes ); */
-router.use("/review", review );
+router.use("/review", review);
 router.use("/product", product);
-router.use('/orders', orderRouter);
+router.use("/orders", orderRouter);
 // router.use(posts);
 router.use("/user", user);
 //router.use('/', productPostingRoute)
-router.use('/cart', cart)
-router.use('/checkout', checkout)
-
+router.use("/cart", cart);
+router.use("/checkout", checkout);
 
 //router.use('/user', user)
 
 // router.use('/review', review)
-router.use('/wishlist',wishlist)
+router.use("/wishlist", wishlist);
+
+router.use("/deliveries", deliveries);
+router.use("/delivery", delivery);
 
 module.exports = router;
