@@ -2,11 +2,16 @@ import React, { useEffect, useState } from "react";
 import { Container, Box, Typography, TextField, Button } from "@mui/material";
 import { MdSave, MdArrowBack } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
-import { getBrandById, putBrand, resetBrandDetail } from "../../Store/actions/brand";
-import {useParams} from "react-router-dom";
+import {
+  getBrandById,
+  putBrand,
+  resetBrandDetail,
+} from "../../Store/actions/brand";
+import { useParams } from "react-router-dom";
+import { swalMessages } from "../../helpers/Swal/swal";
 
 const EditBrand = () => {
-  const brandDetail = useSelector(state => state.brandReducer.brandDetail);
+  const brandDetail = useSelector((state) => state.brandReducer.brandDetail);
   const dispatch = useDispatch();
   const params = useParams();
   const [input, setInput] = useState({
@@ -14,36 +19,36 @@ const EditBrand = () => {
     name: "",
     status: "",
   });
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (document.getElementById("name").value) {
       dispatch(putBrand(input));
-      alert("Brand edited succesfully");
-      window.location.href = `/dashboard/brands/edit/${params.brandid}`;
+      swalMessages("Brand edited succesfully", "Edited", "success").then(() => {
+        window.location.href = `/dashboard/brands/edit/${params.brandid}`;
+      });
     }
   };
-  
+
   const handleInput = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
-  
+
   useEffect(() => {
     setInput({
       ...input,
       brandid: params?.brandid ? brandDetail.brandid : "",
       name: brandDetail?.name ? brandDetail.name : "",
       status: brandDetail?.status,
-    })
+    });
   }, [brandDetail]);
 
   useEffect(() => {
     dispatch(getBrandById(params.brandid));
     return () => {
       dispatch(resetBrandDetail());
-    }
+    };
   }, [dispatch, params.brandid]);
-  
 
   return (
     <Container
