@@ -113,7 +113,7 @@ const CheckoutForm = () => {
 
     useEffect(() => {
         dispatch(getProductsCartUser(idUser)); 
-    }, []); 
+    }, [ dispatch,idUser]); 
     
     
     useEffect(() => {
@@ -121,7 +121,7 @@ const CheckoutForm = () => {
        /*  if(!products.length){
             navigate("/products")
         } */
-    }, [products]); 
+    }, [products, navigate]); 
   
 
     return (
