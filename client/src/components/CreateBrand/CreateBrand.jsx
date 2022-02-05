@@ -3,28 +3,34 @@ import { Container, Box, Typography, TextField, Button } from "@mui/material";
 import { MdSave, MdArrowBack } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { postBrand } from "../../Store/actions/brand";
+import { swalMessages } from "../../helpers/Swal/swal";
 
 const CreateBrand = () => {
-  const response = useSelector(state => state.brandReducer.brandResponse);
+  const response = useSelector((state) => state.brandReducer.brandResponse);
   const dispatch = useDispatch();
   const [input, setInput] = useState({
     name: "",
     status: true,
   });
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (document.getElementById("name").value) {
       dispatch(postBrand(input));
     }
   };
-  
+
   useEffect(() => {
-    if (response) {
-      alert(response);
-      window.location.href = "/dashboard/brands/create";
+    if (response && response === "Brand created") {
+      swalMessages(response, "Created", "success").then(() => {
+        window.location.href = "/dashboard/brands/create";
+      });
+    } else if (response && response === "This brand already exist") {
+      swalMessages(response, null, "error").then(() => {
+        window.location.href = "/dashboard/brands/create";
+      });
     }
-  }, [dispatch, response])
+  }, [dispatch, response]);
 
   const handleInput = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });

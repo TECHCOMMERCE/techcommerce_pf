@@ -1,3 +1,5 @@
+import {swalMessages} from "../Swal/swal";
+
 export const handleAttributes = (e, attributes, setAttributes) => {
   setAttributes({
     ...attributes,
@@ -9,7 +11,7 @@ export const addAttribute = (attributes, input, setInput) => {
   if (!input.attributes?.find((a) => a.name === attributes.name)) {
     setInput({ ...input, attributes: [...input.attributes, attributes] });
   } else {
-    alert("This attribute already exist");
+    swalMessages("This attribute already exist", null , "warning");
   }
 };
 
