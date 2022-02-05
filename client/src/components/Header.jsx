@@ -5,7 +5,6 @@ import {useDispatch, useSelector} from 'react-redux'
 
 import styled from "styled-components";
 import mobile from "../responsive";
-import Logoo from "../assets/Imgs/Logoo.png";
 import Tech from "../assets/Imgs/Tech.png";
 
 import { Search, ShoppingCartOutlined } from "@material-ui/icons";
@@ -64,18 +63,6 @@ const Center = styled.div`
 
 `;
 
-const Logo = styled.img`
-  display: flex;
-  position: relative;
-  width: 25%;
-  margin-bottom: 20px;
-  margin-right: 20px;
-  padding-right: 200px;
-  padding-bottom: 50px;
-  ${mobile({ width: "20%" })}
-  ${mobile({ fontSize: "24px" })}
-`;
-
 const TechC = styled.img`
   display: flex;
   width: 30%;
@@ -108,14 +95,15 @@ const SearchContainer = styled.div`
   ${mobile({ marginLeft: "10px" })}
 `;
 
-
 const Input = styled.input`
   border: none;
   width: 100%;
   height: 20px;
   ${mobile({ width: "50px" })}
 `;
-
+const Cartshopp = styled.div`
+ ${mobile({ width: "50px" })}
+`
 
 const Header = () => {
   const dispatch=useDispatch();
@@ -179,12 +167,10 @@ const Header = () => {
     <Container>
       <Wrapper>
         <Left> 
-         {/*  <Logo src={Logoo} /> */}
          <TechC src={Tech} onClick={()=>navigate("/")} style={{ cursor: "pointer" }}/>
           <Link to="/products">Productos</Link>
         </Left>
         <Center>
-         {/* <TechC src={Tech}/> */}
          {location.pathname=="/products"?<><SearchContainer>
             <form onSubmit={e => {
               e.preventDefault();
@@ -325,9 +311,11 @@ const Header = () => {
          
           <MenuItem>
           <Link to='/cart' className='nav_links' >
+              <Cartshopp> 
               <Badge badgeContent={cart.length} color="secondary">
                 <ShoppingCartOutlined fontSize='large' color='primary'></ShoppingCartOutlined>
               </Badge>
+              </Cartshopp>
             </Link>
         </MenuItem>
         </Right>

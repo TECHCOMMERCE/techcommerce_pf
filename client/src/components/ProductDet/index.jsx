@@ -1,8 +1,6 @@
 // React
-import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { getDetails } from '../../Store/actions/products';
 // Iconos
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 // Bootstrap
@@ -72,7 +70,6 @@ const Product = () => {
 	return (
 		<div>
 		   	<Container className={s.container}>
-				
 				<div className={s.cont_prin}>
 					<Row>
 						<Col xs={12} md={12} lg={8} className={s.cont_img}>
@@ -130,7 +127,7 @@ const Product = () => {
 										<p style={{color: '#2EB8B0'}} >Escribir comentario</p>
 									</div> }
 								</div> */}
-
+<hr/>
 								<div className={s.attributesContainer} >
 
 									<table>
