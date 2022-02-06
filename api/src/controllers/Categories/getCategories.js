@@ -27,7 +27,9 @@ const getCategories = async (query) => {
     if (query.name) {
       return await Category.findAll({
         where: {
-          name: query.name,
+
+          name: query.consolename,
+
         },
         order: [["name", "ASC"]],
       });

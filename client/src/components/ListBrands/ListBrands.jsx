@@ -17,6 +17,7 @@ import {
 } from "react-icons/md";
 import { Container, FormLabel, Box, IconButton } from "@mui/material";
 import BrandsSearchBar from "./BrandsSearchBar";
+import { swalMessages } from "../../helpers/Swal/swal";
 
 const ListBrands = () => {
   const brands = useSelector((state) => state.brandsReducer.brandsAdmin);
@@ -36,8 +37,8 @@ const ListBrands = () => {
 
     dispatch(putBrand(obj));
     brand.status
-      ? alert(`Brand ${brand.name} disabled`)
-      : alert(`Category ${brand.name} enabled`);
+      ? swalMessages(`Brand ${brand.name} disabled`, "Disabled", "success")
+      : swalMessages(`Category ${brand.name} enabled`, "Enabled", "success");
     dispatch(getBrands());
   };
 
