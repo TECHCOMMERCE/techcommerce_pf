@@ -45,3 +45,4 @@ export const GET_ONE_USER = "GET_ONE_USER";
 export const GET_USER_TICKETS = "GET_USER_TICKETS";
 export const GET_ONE_TICKET = "GET_ONE_TICKET";
 export const GET_WISHLIST = "GET_WISHLIST";
+export const GET_DELIVERY= 'GET_DELIVERY';

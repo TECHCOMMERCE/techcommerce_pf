@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { GET_USER_TICKETS, GET_ONE_TICKET } from '../constanst/actionsTypes';
+import { GET_USER_TICKETS, GET_ONE_TICKET, GET_DELIVERY } from '../constanst/actionsTypes';
 const SERVER = process.env.REACT_APP_SERVER || "http://localhost:3001/"
 
 
@@ -22,3 +22,12 @@ export const getOneTicket = (ticketid) => async(dispatch) => {
     payload: data.data
   })
 }
+
+
+export const getDelivery= (deliveryid) =>async(dispatch) => {
+	const data= await axios.get(`${SERVER}delivery/${deliveryid}`);
+	return dispatch({
+		type: GET_DELIVERY,
+		payload: data.data
+	})
+} 

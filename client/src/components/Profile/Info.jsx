@@ -100,15 +100,14 @@ function validatePass(e) {
    await dispatch(editUserFront({
      userid: user.userid,
      password: data.password,
-
      userData: data
    }));
    //window.location.href = '/login';
-   dispatch(getOneUser(local.user.userid))
+   await dispatch(getOneUser(local.user.userid))
    setDisplay('data');
 
   //  Vuelvo a loguearme
-    dispatch(loginAccount({email: user.email, password: data.password, type:'normal'}))
+    //dispatch(loginAccount({email: user.email, password: data.password, type:'normal'}))
   }
 
   function newpassword(e) {
@@ -139,7 +138,7 @@ function validatePass(e) {
   }
   
 useEffect(async() => {
-  dispatch(getOneUser(local.user.userid)).then(res => {
+  await dispatch(getOneUser(local.user.userid)).then(res => {
     // console.log(res)
    return setData({
       name: res.payload.name,
@@ -159,7 +158,7 @@ useEffect(async() => {
     })
   })
   
-}, [dispatch]);
+}, []);
 
 
   return(
@@ -260,8 +259,8 @@ useEffect(async() => {
       }
 
       <div style={{width: '400px', marginLeft: '20%', marginTop: '5%'}}>
-        <Button variant='contained' onClick={onSubmit}  style={{backgroundColor: '#2EB8B0', marginRight: '10%'}} type='submit' disabled={error.length > 0}>Actualizar</Button>
-        <Button variant='contained'  style={{backgroundColor: 'red'}} onClick={cancel}>cancelar</Button>
+        <Button variant='contained' onClick={onSubmit}  style={{backgroundColor: '#2EB8B0', marginRight: '10%', marginTop: '20px'}} type='submit' disabled={error.length > 0}>Actualizar</Button>
+        <Button variant='contained'  style={{backgroundColor: 'red', marginTop: '20px', width:'125px'}} onClick={cancel}>cancelar</Button>
       </div>
     </form>
     <div className={style.formButtons}>

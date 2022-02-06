@@ -12,25 +12,17 @@ module.exports = (sequelize) => {
       },
       status: {
         type: DataTypes.ENUM(
-          "In process",
-          "Dispatched",
-          "In transit",
-          "Delivered",
-          "Canceled"
+          "Requested", // cuando el cliente solicita el envío
+          "In process", // cuando el admin procesa el envío
+          "Dispatched", // cuando el envío está en bodega
+          "In transit", // cuando el envío esté en camino a su destino
+          "Delivered", // cuando el cliente marca el envío como recibido
         ),
         allowNull: false,
+        defaultValue: "Requested",
       },
-      // created: {
-      //   type: DataTypes.DATE,
-      //   defaultValue: new Date(),
-      //   allowNull: false,
-      // },
-      // updated: {
-      //   type: DataTypes.DATEONLY,
-      //   defaultValue: new Date(),
-      //   allowNull: false,
-      // },
-    },
-    // { timestamps: false }
+
+    }
+    // { timestamps: false } // Se requiren las fechas para filtrar y ver cuando fué el envío y cuando el status cambia.
   );
 };

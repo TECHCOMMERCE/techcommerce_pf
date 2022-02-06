@@ -1,8 +1,8 @@
 const { Category } = require("../../db");
 
-const getCategories = async (name) => {
+const getCategories = async (query) => {
   try {
-
+    
     if (query.name && query.page) {
       const count = await Category.count();
       let limiter = Math.floor(count / 10);
@@ -27,12 +27,14 @@ const getCategories = async (name) => {
     if (query.name) {
       return await Category.findAll({
         where: {
-          name: name,
+
+          name: query.consolename,
+
         },
         order: [["name", "ASC"]],
       });
     }
-    
+    console.log('enter here')
     return await Category.findAll({
       order: [["name", "ASC"]],
     });

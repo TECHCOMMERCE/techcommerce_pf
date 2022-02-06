@@ -6,7 +6,7 @@ const {User} = require("./src/db");
 
 server.listen(process.env.PORT||3001/* 5000 */,  () => {
   //SETEO GENERAL
-  conn.sync({ force: true }).then( async() => {
+  conn.sync({ force: false }).then( async() => {
     //SETEO DE TABLAS
     conn.models.Product.sync({force: false});
     conn.models.Brand.sync({force: false});
@@ -19,7 +19,6 @@ server.listen(process.env.PORT||3001/* 5000 */,  () => {
     conn.models.Review.sync({force: false});
     conn.models.WishList.sync({force: false});
     conn.models.product_suscription.sync({force: true});
-
 
     // para crear un usuario admin automáticamente
     const [user, created] = await User.findOrCreate({
