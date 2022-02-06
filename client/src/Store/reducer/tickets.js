@@ -1,10 +1,11 @@
-import {GET_USER_TICKETS, GET_ONE_TICKET} from '../constanst/actionsTypes';
+import {GET_USER_TICKETS, GET_ONE_TICKET, GET_DELIVERY} from '../constanst/actionsTypes';
 
 
 const inicialState = {
 	
 	tickets: [],
-  ticket: {}
+  ticket: {},
+  delivery: {}
 	
 	
 };
@@ -22,6 +23,12 @@ const inicialState = {
     return {
       ...state,
       ticket: action.payload
+    }  
+  
+  case GET_DELIVERY :
+    return{
+      ...state,
+      delivery: action.payload
     }  
    default :
     return state  

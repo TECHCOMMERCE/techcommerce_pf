@@ -13,7 +13,7 @@ const Container = styled.div`
   display: flex;
   position: relative;
   overflow: hidden;
-
+  margin-top:8rem;
   ${mobile({})}
 `;
 
