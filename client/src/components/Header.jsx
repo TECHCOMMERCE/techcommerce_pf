@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import {useDispatch, useSelector} from 'react-redux'
 
 import styled from "styled-components";
-import mobile from "../responsive";
+// import mobile from "../assets/styles/responsive";
 import Logoo from "../assets/Imgs/Logoo.png";
 import Tech from "../assets/Imgs/Tech.png";
 
@@ -23,98 +23,26 @@ import {getuser} from '../Store/actions/users.js'
 import {getProductsCartUser} from '../Store/actions/carts.js'
 import { useLocation } from 'react-router-dom'
 
-import s from "../assets/styles/NavBar.module.css";
+import { Container, 
+         Wrapper,
+         Left,
+         Center,
+         Right,
+         TechC,
+         MenuItem,
+         MenuItemLink,
+         MenuItems,
+         SearchContainer,
+         Input,
+         ButtonSearch
+        } from "../assets/styles/NavBar.elements.js";
+import s from '../assets/styles/NavBar.module.css'
 import { getProductsFront } from "../Store/actions/products";
 import axios from "axios";
 
 
-const Container = styled.div`
- background-color: #fcf5f5;
- position: fixed;
- top:0;
- left:0;
- height: 60px;
- width: 100%;
- z-index:100;
- margin-bottom: 20px;
- ${mobile({ height: "50px" })}
-
-`;
-
-const Wrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 20px;
-  ${mobile({ padding: "5px 0px" })}
-  background-color: #fcf5f5;
-`;
-const Left = styled.div`
-  flex: 1;
-  align-items: center;
-  display: flex;
-`;
 
 
-const Center = styled.div`
-  flex: 1;
-  text-align: center;
-  font-size: 50px;
-  margin-bottom: 20px; 
-
-`;
-
-const Logo = styled.img`
-  display: flex;
-  position: relative;
-  width: 25%;
-  margin-bottom: 20px;
-  margin-right: 20px;
-  padding-right: 200px;
-  padding-bottom: 50px;
-  ${mobile({ width: "20%" })}
-  ${mobile({ fontSize: "24px" })}
-`;
-
-const TechC = styled.img`
-  display: flex;
-  width: 30%;
-  margin-left: 20%;
-  text-align: center;
-  ${mobile({ fontSize: "24px" })}
-`;
- 
-const Right = styled.div`
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  ${mobile({ flex: 2, justifyContent: "center" })}
-`;
-const MenuItem = styled.div`
-  font-size: 14px;
-  cursor: pointer;
-  margin-left: 25px;
-
-  ${mobile({ marginLeft: "5px", fontSize: "12px" })}
-`;
-const SearchContainer = styled.div`
-  border: 0.5px solid lightgray;
-  display: flex;
-  align-items: center;
-  width: 90%;
-  padding: 5px;
-
-  ${mobile({ marginLeft: "10px" })}
-`;
-
-
-const Input = styled.input`
-  border: none;
-  width: 100%;
-  height: 20px;
-  ${mobile({ width: "50px" })}
-`;
 
 
 const Header = () => {
@@ -134,7 +62,7 @@ const Header = () => {
     code: null,
     results: []
   });
-  const [visibility, setVisibility] = useState(s.hidden);
+  // const [visibility, setVisibility] = useState(s.hidden);
 
   useEffect(() => {
     dispatch(getuser())
@@ -176,42 +104,47 @@ const Header = () => {
   };
   
   return (
-    <Container>
+    <Container className={s.container}>
       <Wrapper>
+
         <Left> 
          {/*  <Logo src={Logoo} /> */}
          <TechC src={Tech} onClick={()=>navigate("/")} style={{ cursor: "pointer" }}/>
-          <Link to="/products">Productos</Link>
         </Left>
+
         <Center>
          {/* <TechC src={Tech}/> */}
-         {location.pathname=="/products"?<><SearchContainer>
-            <form onSubmit={e => {
-              e.preventDefault();
-
-              dispatch(getProductsFront({
-                category: '',
-                brand: '',
-                sort:''
-              }, 0, name));
-            }} className={s.form}>
-              <Input 
-                className={s.searchBar} 
-                value={name}
-                placeholder="Search"
-                onChange={e =>{
-                  setName(e.target.value);
-                }}
-                list="searchdata"
+          {location.pathname=="/products"?<>
+            <SearchContainer>
+            <form 
+              onSubmit={e => {
+                e.preventDefault();
+                dispatch(getProductsFront({
+                  category: '',
+                  brand: '',
+                  sort:''
+                }, 0, name));
+            }} >
+                  <Input  
+                    value={name}
+                    placeholder="Search"
+                    onChange={e =>{
+                    setName(e.target.value);
+                  }}
+                  list="searchdata"
                 /* onFocus={() => setVisibility(s.visible)} */
                 // onBlur={() => setVisibility(s.hidden)}
-              />
-              <Search style={{ color: "gray", fontSize: 25}} type="submit"></Search>
-            </form>
+                />
+                <ButtonSearch>
+                  <Search className={s.iconS} type="submit"></Search>
+                </ButtonSearch>
+              </form>
            {/* <Search style={{ color: "gray", fontSize: 25}}></Search> */}
-          </SearchContainer></>:null}
+            </SearchContainer>
+          </>:null}
 
-          {/* <div className={`${s.dataResult} ${visibility}`}>
+          {/*
+           <div className={`${s.dataResult} ${visibility}`}>
             {names.code === null ? null : 
             names.code === 1 ? "No tenemos ese producto" : 
             names.names.map(name => 
@@ -231,14 +164,15 @@ const Header = () => {
                 }}
               >{name.name}</div>
             )}
-          </div> */}
+          </div> 
+          */}
           <datalist id="searchdata">
           {names.code === null ? null : 
             names.code === 1 ? "No tenemos ese producto" : 
             names.names.map(name => 
               <option 
                 key={name.id} 
-                /* className={s.option} */
+                className={s.option}
                 value={name.name}
                 onClick={() => {
                   setName(name.name);
@@ -249,22 +183,61 @@ const Header = () => {
                     sort:''
                   }, 0, name.name));
 
-                  setVisibility(s.hidden);
+                 /* setVisibility(s.hidden) */
                 }}
               >{name.name}</option>
             )}
             </datalist>
         </Center>
-        <Right>
-          {!user.token?<><Link to="/register"><MenuItem>REGISTER</MenuItem></Link>
-          <Link to="/login"><MenuItem>LOGIN</MenuItem></Link></>:<>
-          <Link to="/"><MenuItem>HOME</MenuItem></Link></>}    
-          {user?.user?.type=="admin"?<Link to="/dashboard"><MenuItem>DASHBOARD</MenuItem></Link>:null}
+        
+        <Right className={s.right}>  
+          <Link to="/products" className={s.linksss}>
+            <MenuItems>
+              <MenuItemLink>
+                Productos
+              </MenuItemLink>
+            </MenuItems>
+          </Link>
+          {!user.token?<>
+            <Link to="/register" className={s.linksss}>
+              <MenuItems>
+                <MenuItemLink>
+                  Crea Tu Cuenta!
+                </MenuItemLink>
+              </MenuItems>
+            </Link>
+            <Link to="/login" className={s.linksss}>
+              <MenuItems>
+                <MenuItemLink>
+                 Ingresa 
+                </MenuItemLink>
+              </MenuItems>
+            </Link></>:<>
+            <Link to="/" className={s.linksss}>
+              <MenuItems>
+                <MenuItemLink>
+                  HOME
+                </MenuItemLink>
+              </MenuItems>
+            </Link></>
+          }
+
+          {user?.user?.type=="admin"?
+            <Link to="/dashboard" className={s.linksss}>
+              <MenuItems>
+                <MenuItemLink>
+                  DASHBOARD
+                </MenuItemLink>
+              </MenuItems>
+            </Link>
+          :null}
           
-         
           {user.token&&user.user?<Tooltip title="Account settings">
             <IconButton onClick={handleClick} size="small" sx={{ ml: 2 }}>
-              <Avatar src={userData?.photo?userData.photo:null} sx={{ width: 32, height: 32 }}>{userData?.photo?null:userData?.name?.charAt(0)}</Avatar>
+              <Avatar 
+                src={userData?.photo?userData.photo:null} 
+                sx={{ width: 34, height: 34 }}>{userData?.photo?null:userData?.name?.charAt(0)}
+              </Avatar>
             </IconButton>
           </Tooltip>:null}
           <Menu
@@ -289,7 +262,7 @@ const Header = () => {
                   display: 'block',
                   position: 'absolute',
                   top: 0,
-                  right: 14,
+                  right: 18,
                   width: 10,
                   height: 10,
                   bgcolor: 'background.paper',
@@ -321,16 +294,18 @@ const Header = () => {
             </MenuItem>
             <Divider />
           </Menu>
-
-         
-          <MenuItem>
-          <Link to='/cart' className='nav_links' >
-              <Badge badgeContent={cart.length} color="secondary">
-                <ShoppingCartOutlined fontSize='large' color='primary'></ShoppingCartOutlined>
-              </Badge>
-            </Link>
-        </MenuItem>
+       
+          <Link to='/cart' className={s.linksss}>
+            <MenuItems>
+              <MenuItemLink>
+                <Badge badgeContent={cart.length} color="secondary">
+                  <ShoppingCartOutlined fontSize='large' color='primary'></ShoppingCartOutlined>
+                </Badge>
+              </MenuItemLink>
+            </MenuItems>
+          </Link>
         </Right>
+
       </Wrapper>
     </Container>
   );
