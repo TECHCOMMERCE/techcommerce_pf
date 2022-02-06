@@ -49,7 +49,9 @@ export function getuser(){
 
 export const editUserFront = (data) => async(dispatch) =>{
     try {
+
         let response = await axios.put(`${SERVER}user/` , data)
+        console.log('response', response)
     } catch (error) {
         console.log(error)
     }

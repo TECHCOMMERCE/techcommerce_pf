@@ -8,7 +8,7 @@ router.get("/", async(req, res) => {
 
     return categories ? res.send(categories) : res.send ([])
   }
-
+  console.log('enter here')
   categories = await getCategories();
   return categories ? res.send(categories) : res.send([]);
 })

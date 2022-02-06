@@ -26,6 +26,7 @@ import Header from "./components/Header";
 import Orders from "./components/admin/Orders";
 import OrderDetail from "./components/admin/OrderDetail";
 import { useSelector } from "react-redux";
+import Shipping from "./components/Profile/Shipping";
 
 function App() {
   // Estado que determina si la cuenta logueada (o el invitado) es admin o no. Por defecto es false y cuando se logue, comprobará en un useEffect si es admin
@@ -46,7 +47,7 @@ function App() {
         
         <Route path='/profile/:getDisplay' element={<Profile/>} />
         <Route path='/profile' element={<Profile/>} />
-        
+        <Route path='shipping' element={<Shipping/>} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
 
