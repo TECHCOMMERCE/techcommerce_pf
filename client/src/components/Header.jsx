@@ -124,21 +124,18 @@ const Header = () => {
                   brand: '',
                   sort:''
                 }, 0, name));
-            }} >
-                  <Input  
-                    value={name}
-                    placeholder="Search"
-                    onChange={e =>{
-                    setName(e.target.value);
-                  }}
+              }} 
+            >
+                <Input  
+                  value={name}
+                  placeholder="Search"
+                  onChange={e =>{ setName(e.target.value) }}
                   list="searchdata"
-                /* onFocus={() => setVisibility(s.visible)} */
-                // onBlur={() => setVisibility(s.hidden)}
                 />
-                <ButtonSearch>
+                <ButtonSearch  type="submit">
                   <Search className={s.iconS} type="submit"></Search>
                 </ButtonSearch>
-              </form>
+            </form>
            {/* <Search style={{ color: "gray", fontSize: 25}}></Search> */}
             </SearchContainer>
           </>:null}

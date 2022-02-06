@@ -10,7 +10,11 @@
       /* height: 60px; */
       /* width: 100%; */
       /* z-index: 100%; */
-      /* margin-bottom: 20px; */
+      /* margin-bottom: 20px;
+ margin-bottom: 1px;
+
+  padding: 0 20px;
+       */
   }
   .linksss{
     text-decoration: none;
@@ -39,12 +43,15 @@
   /* top: 0; */
   
   /* position: absolute; */
-	top: 0.9375rem;
-	left: 0.875rem;
-	line-height: 147.6%;
+	/* top: 0.9375rem; */
+	/* left: 0.875rem; */
+	/* line-height: 147.6%; */
   /* color: var(--color-lable-text); */
   transition: top .2s;
   
   } 
+  .iconS:hover{
+    color:aquamarine;
+  }
 
 }
