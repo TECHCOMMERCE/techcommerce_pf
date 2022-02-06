@@ -123,5 +123,8 @@ export const ButtonSearch = styled.button`
     background-color: #3c3c434d;
   }
 `;
+export const Cartshopp = styled.div`
+ ${mobile({ width: "50px" })}
+`;
 
 //width: 90%;

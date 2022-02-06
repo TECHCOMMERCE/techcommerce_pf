@@ -3,8 +3,7 @@ import { Badge } from "@material-ui/core";
 import React, { useState, useEffect } from 'react';
 import {useDispatch, useSelector} from 'react-redux'
 
-import styled from "styled-components";
-import mobile from "../responsive";
+
 import Tech from "../assets/Imgs/Tech.png";
 
 import { Search, ShoppingCartOutlined } from "@material-ui/icons";
@@ -33,7 +32,8 @@ import { Container,
          MenuItems,
          SearchContainer,
          Input,
-         ButtonSearch
+         ButtonSearch,
+         Cartshopp
         } from "../assets/styles/NavBar.elements.js";
 import s from '../assets/styles/NavBar.module.css'
 import { getProductsFront } from "../Store/actions/products";
@@ -41,71 +41,6 @@ import axios from "axios";
 
 
 
-
-const Wrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 20px;
-  ${mobile({ padding: "5px 0px" })}
-  background-color: #fcf5f5;
-`;
-const Left = styled.div`
-  flex: 1;
-  align-items: center;
-  display: flex;
-`;
-
-
-const Center = styled.div`
-  flex: 1;
-  text-align: center;
-  font-size: 50px;
-  margin-bottom: 20px; 
-
-`;
-
-const TechC = styled.img`
-  display: flex;
-  width: 30%;
-  margin-left: 20%;
-  text-align: center;
-  ${mobile({ fontSize: "24px" })}
-`;
- 
-const Right = styled.div`
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  ${mobile({ flex: 2, justifyContent: "center" })}
-`;
-const MenuItem = styled.div`
-  font-size: 14px;
-  cursor: pointer;
-  margin-left: 25px;
-
-  ${mobile({ marginLeft: "5px", fontSize: "12px" })}
-`;
-const SearchContainer = styled.div`
-  border: 0.5px solid lightgray;
-  display: flex;
-  align-items: center;
-  width: 90%;
-  padding: 5px;
-
-  ${mobile({ marginLeft: "10px" })}
-`;
-
-const Input = styled.input`
-  border: none;
-  width: 100%;
-  height: 20px;
-  ${mobile({ width: "50px" })}
-`;
-const Cartshopp = styled.div`
- ${mobile({ width: "50px" })}
-`
 
 const Header = () => {
   const dispatch=useDispatch();
