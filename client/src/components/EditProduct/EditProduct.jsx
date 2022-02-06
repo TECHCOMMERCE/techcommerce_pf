@@ -358,7 +358,7 @@ const EditProduct = () => {
                     }
                     hidden
                   />
-                  Load an Image
+                  Edit Image
                 </Button>
               </Box>
 
