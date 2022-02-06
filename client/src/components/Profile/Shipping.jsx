@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import style from '../../styles/Profile/Shipping.module.css';
 import Img from './linea.png'; 
+import Image from './linea-gris.png';
 import { getDelivery } from '../../Store/actions/tickets';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -8,7 +9,9 @@ const Shipping = (deliveryid) => {
   const dispatch= useDispatch();
   //const {delivery} =useSelector(state => state.tickets)
   //const {deliveryid} =useParams();
-  const [delivery, setDelivery] =useState('Requested');
+  const [delivery, setDelivery] =useState({
+    status: 'Requested'
+  });
 
 
 
@@ -42,7 +45,8 @@ const Shipping = (deliveryid) => {
          </div>
          </div>
          </div>
-    :null
+    :
+   null
   }
 
 { delivery['status'] === "Dispatched" || delivery['status'] === "In transit" || delivery['status'] === "Delivered" ? 
@@ -58,7 +62,21 @@ const Shipping = (deliveryid) => {
              <img src="https://img.icons8.com/cotton/64/000000/send-package.png"/> 
            </div>
            </div>
-    :null
+    :
+    <div className={style.line}>
+    <div className={style.imgcontainer}>
+      <img className={style.img} src={Image} />
+    </div>
+    <div className={style.standar}>
+     
+    <div style={{marginTop: '69px'}}className={style.cardGrey}>
+      <div className={style.cardcontent}>
+      
+      </div>
+      
+    </div>
+    </div>
+    </div>
   }
 
 
@@ -76,7 +94,21 @@ const Shipping = (deliveryid) => {
             </div>
             </div>
       
-    :null
+    :
+    <div className={style.line}>
+    <div className={style.imgcontainer}>
+      <img className={style.img} src={Image} />
+    </div>
+    <div className={style.standar}>
+     
+    <div style={{marginTop: '69px'}}className={style.cardGrey}>
+      <div className={style.cardcontent}>
+      
+      </div>
+      
+    </div>
+    </div>
+    </div>
   }
 
 {  delivery['status'] === "Delivered" ? 
@@ -93,7 +125,20 @@ const Shipping = (deliveryid) => {
           </div>
           </div>
       
-    :null
+    :  <div className={style.line}>
+    <div className={style.imgcontainer}>
+      <img className={style.img} src={Image} />
+    </div>
+    <div className={style.standar}>
+     
+    <div style={{marginTop: '69px'}}className={style.cardGrey}>
+      <div className={style.cardcontent}>
+      
+      </div>
+      
+    </div>
+    </div>
+    </div>
   }
     
      
