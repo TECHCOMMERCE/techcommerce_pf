@@ -11,14 +11,14 @@ export const sliderItems = [
   },
   {
     id: 2,
-    img: "https://www.infotechnology.com/files/image/101/101511/618e8c83532b6.jpg",
+    img: celulares,//"https://www.infotechnology.com/files/image/101/101511/618e8c83532b6.jpg",
     title: "pantalla chica",
     desc: "promos en tablets y celulares.",
     bg: "fcf1ed",
   },
   {
     id: 3,
-    img: "https://www.muycomputer.com/wp-content/uploads/2018/07/PCGaming-1000x600.jpg",
+    img: computacion,//"https://www.muycomputer.com/wp-content/uploads/2018/07/PCGaming-1000x600.jpg",
     title: "hardware pc",
     desc: "promos en PC.",
     bg: "fbf0f4",

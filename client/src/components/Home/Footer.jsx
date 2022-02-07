@@ -87,10 +87,8 @@ const Footer = () => {
       <Left>
         <Logo>Tech-C</Logo>
         <Description>
-
-        Tech-C is a technology-oriented E-commerce that offers a wide variety of quality and high-end products.
-        Sit down and browse our online store.
-
+        Tech-C es un E-commerce orientado a la tecnología que ofrece una amplia variedad de productos de calidad y alta gama.
+        Siéntate y navega por nuestra tienda online.
         </Description>
         <SocialContainer>
           <SocialIcon color="3B5999">
@@ -108,7 +106,7 @@ const Footer = () => {
         </SocialContainer>
       </Left>
       <Center>
-        <Title>USEFUL LINKS</Title>
+        <Title>Rutas:</Title>
         <List>
           <ListItem><a href="http://localhost:3000/">Home</a></ListItem>
           <ListItem><a href="http://localhost:3000/products">Productos</a></ListItem>
@@ -118,17 +116,7 @@ const Footer = () => {
         </List>
       </Center>
       <Right>
-        <Title>CONTACT US</Title>
-        <ContactItem>
-          <LocationOn style={{ marginRight: "20px" }} /> xxxxxxxxxxxxxxxx,
-         xxxxxxxxxxxxxx.
-        </ContactItem>
-        <ContactItem>
-          <Phone style={{ marginRight: "20px" }} /> (+xxx) xxxxxxxxxxx
-        </ContactItem>
-        <ContactItem>
-          <Mail style={{ marginRight: "20px" }} /> xxxxxxxx@xxxxxxxxxxxxxxxx
-        </ContactItem>
+        <Title>Pagos:</Title>
         <Payment src="https://icon-library.com/images/discover-credit-card-icon/discover-credit-card-icon-7.jpg" />
       </Right>
     </Container>

@@ -49,22 +49,17 @@ const Slide = styled.div`
   display: flex;
   align-items: center;
   background-color: #${(props) => props.bg};
-
   ${mobile({ height: "80vh" })}
 `;
 
 const ImgContainer = styled.div`
   height: 100%;
   flex: 1;
-
   ${mobile({ height: "80%" })}
 `;
 
 const Image = styled.img`
-
   height: 80%;
-
-
   ${mobile({ height: "50%" })}
 `;
 
@@ -75,7 +70,6 @@ const InfoContainer = styled.div`
 
 const Title = styled.h1`
   font-size: 70px;
-
   ${mobile({ fontSize: "32px" })}
 `;
 
@@ -84,7 +78,6 @@ const Desc = styled.p`
   font-size: 20px;
   font-weight: 500;
   letter-spacing: 3px;
-
   ${mobile({ margin: "20px 0", letterSpacing: 0, fontSize: "16px" })}
 `;
 
