@@ -31,8 +31,6 @@ export const Wrapper = styled.div`
 
 export const Left = styled.div`
   display: flex;
-
-  /* margin-left: 0.5rem; */
   align-items: center;
   /* background-color: aqua; */
   
@@ -108,18 +106,8 @@ export const MenuItemLink = styled.a`
     /* font-size: 2.8rem; */
     width: 100%;
   }
-  /* @media screen and (min-width: 2000px){ 
-    font-size: 1rem;
-  } */
+  
 `;
-/*
-${laptop(
-  {
-    display:"flex",
-    justifyContent:"center",
-    fontSize:"20px",
-  }
-)}*/
 
 export const Center = styled.div`
 
@@ -131,28 +119,11 @@ export const Center = styled.div`
   /* margin-right: 4em; */
   /* background-color: black; */
   
-  
-  /* @media screen and (max-width: 1024px){
-    margin-right: 4em;
-    margin-left: 4em;
-    width: 500px;
-  }
-  */
-  /* @media screen and (max-width: 1800px){
-    margin-right: 5em;
-    margin-left: 8em;
-    width: 1200px;
-  }  */
-
   @media screen and (max-width: 960px){
     margin-right: 20px;
     margin-left: 1em;
     width: 373px;
   }
-  /* @media screen and (max-width: 360px){
-    margin-right: 1em;
-    width: 400px;
-  } */
 `;
 
 export const SearchContainer = styled.div`
@@ -164,26 +135,9 @@ export const SearchContainer = styled.div`
   /* letter-spacing: 0.0275rem; */
   background-color: white;
 
-  /* @media screen and (max-width: 1800px){
-    margin-right: 10em;
-    margin-right: 2em;
-    margin-left: 0.5em; 
-    width: 900px;
-  } */
-  /*
-  @media screen and (max-width: 1024px){
-    /* margin-right: 5em; 
-    /* margin-right: 2em; 
-    width: 470px;
-  } */
   @media screen and (max-width: 960px){
     width: 372px;
   }
-  /* @media screen and (max-width: 360px){
-    width: 220px;
-
-  } */
-  
  
 `;
 
@@ -200,16 +154,6 @@ export const Input = styled.input`
   /* padding-bottom: 0.5rem; */
   border: none;
   
-  
-  
-  /* @media screen and (max-width: 1024px){
-    margin-left: 5em;
-    width: 420px;
-  } */
-  /* @media screen and (max-width: 1800px){
-    margin-left: 10em;
-    width: 90%;
-  }  */
   @media screen and (max-width: 960px){
     font-size: 0.8rem;
     padding-bottom: 0rem;
@@ -218,12 +162,6 @@ export const Input = styled.input`
   }
   
 `;
-/*
-${laptop(
-  {
-    width:"10rem"
-  }
-)}*/
 
 export const ButtonSearch = styled.button`
   height: 3rem;
@@ -245,14 +183,7 @@ export const ButtonSearch = styled.button`
     width: 10%;
   } 
 `;
-/*
-${laptop(
-    {
-      width:"10rem"
-    }
-  )} */
 
-//width: 90%;
 export const MobileIcon = styled.div`
     display: none;
 
