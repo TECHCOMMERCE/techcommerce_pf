@@ -14,9 +14,9 @@ const Container = styled.div`
   position: relative;
   overflow: hidden;
   margin-top:8rem;
-  @media screen and (max-width: 960px){
+  /* @media screen and (max-width: 960px){
     margin-top: 85px;
-  }
+  } */
 `;
 
 const Arrow = styled.div`
