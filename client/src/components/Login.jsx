@@ -4,8 +4,7 @@ import iconGoogle from '../assets/Imgs/iconGoogle.png'
 import {Google} from '@styled-icons/boxicons-logos/Google'
 import {Link} from 'react-router-dom'
 import {useNavigate} from 'react-router-dom'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser } from '@fortawesome/free-solid-svg-icons'
+
 import {useDispatch, useSelector} from 'react-redux'
 import {getuser,loginAccount} from '../Store/actions/users'
 import swal from 'sweetalert2'
@@ -17,8 +16,10 @@ import { getAuth,
 } from 'firebase/auth';
 
 //styles
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 //waves pic
 import buy_date_party_time from '../assets/Imgs/buy_date_party_time.svg'
+import { faUser } from '@fortawesome/free-solid-svg-icons'
 import friends_ from '../assets/Imgs/friends_.svg'
 
 function Login() {
@@ -108,16 +109,19 @@ function Login() {
 
 return (
   <main className={s.login_design}>
+    {/* primer div  */}
     <div className={s.waves}>
       <img src={friends_} alt="fiends" />
     </div>
+    {/* final del primer div  */}
+    {/* inicio del segundo div  */}
     <div className={s.container}>
-    {!user.token?<div className={s.body}>
-      <form autoComplete='off' className={s.form} onSubmit={handlerSubmit}>
-      <div className={s.headerLoginContiner}>
-          <h2 className={s.title}> Account </h2>
-          <FontAwesomeIcon className={s.iconUser} icon={faUser}/>
-        </div>
+      {!user.token?<div className={s.body}>
+        <form autoComplete='off' className={s.form} onSubmit={handlerSubmit}>
+          <div className={s.headerLoginContiner}>
+            <h2 className={s.title}> Account </h2>
+            <FontAwesomeIcon className={s.iconUser} icon={faUser}/>
+          </div>
         <div className={s.formGrup}>
           <label htmlFor="" className={s.omrs_input_underlined}>
             {/* <span>Email</span> */}
@@ -132,28 +136,32 @@ return (
           {/* <span>Password</span> */}
             <input type="password" name="password" onChange={(e)=>handlerChange(e)}/>
             {/* <span className={s.omrs_input_label}>Password</span> */}
-					  <span className={s.omrs_input_helper}>Password</span>
+
+					  <span className={s.omrs_input_helper}>Contraseña</span>
           </label>
         </div>
         {error.password?<span className={s.error}>{error.password}</span>:null}
         <div className={s.buttons}>
+
           <button type='submit' className={`${s.btn} ${s.btn_login}`}>
             Login
           </button>
           <p>O</p>
           <button type='button' className={`${s.btn} ${s.btn_google}`} onClick={extLogin}> 
-            <img src={iconGoogle} alt='Google Icon' width={35}/>
-             Continue with Google 
+            <img src={iconGoogle} alt='Google Icon' width={30}/>
+             Continuar con Google 
           </button>
           <button type='button' className={`${s.btn} ${s.btn_sign}`} onClick={()=>navigate('/register')}>
-            Sign up
+            Iniciar sesion
           </button>
           <hr />
-          <Link to="/reset" className={`${s.btn} ${s.btn_forgotpass}`}>Forgot your password?</Link>
+          <Link to="/reset" className={`${s.btn} ${s.btn_forgotpass}`}>Recuperar contraseña</Link>
+
         </div>
-      </form>
-    </div>:null}
-  </div>
+        </form>
+      </div>:null}
+    </div>
+    {/* final del segundo div  */}
   </main>
   );
 }
