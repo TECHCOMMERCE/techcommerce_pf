@@ -4,6 +4,7 @@
     padding: 0;
   }
   .login_design {
+/* para que el nav tenga el tamaño suficiente y no choque con el body  */
     margin-top: 85px;
     display: flex;
     flex-direction: column-reverse;
