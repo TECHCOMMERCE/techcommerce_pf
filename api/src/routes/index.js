@@ -15,6 +15,9 @@ const orderRouter = require("./ordersRoutes");
 const deliveries = require("./deliveries");
 const delivery = require("./delivery");
 
+
+
+const psuscription = require('./product_suscription');
 //const user = require("../controllers/User/user");
 
 //importing the routes
@@ -46,5 +49,5 @@ router.use("/wishlist", wishlist);
 
 router.use("/deliveries", deliveries);
 router.use("/delivery", delivery);
-
+router.use('/psuscription',psuscription)
 module.exports = router;

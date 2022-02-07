@@ -11,7 +11,7 @@ import {
   GET_PRODUCTS_BY_NAME,
 } from "../constanst/actionsTypes";
 
-const SERVER = process.env.REACT_APP_SERVER || "http://localhost:3001";
+const SERVER = process.env.REACT_APP_SERVER || "http://localhost:3001/";
 
 export const getProductsByName = (name, page) => {
   try {
