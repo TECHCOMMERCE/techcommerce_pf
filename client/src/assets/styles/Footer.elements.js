@@ -3,10 +3,10 @@ import styled from "styled-components";
 export const Container = styled.div`
   display: flex;
 
-  @media only screen and (min-width: 400px) {
+  /* @media only screen and (min-width: 400px) {
     display: flex;
     flex-direction: column;
-  }
+  } */
 `;
 
 export const Left = styled.div`
