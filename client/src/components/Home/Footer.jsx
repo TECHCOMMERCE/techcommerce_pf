@@ -106,7 +106,7 @@ const Footer = () => {
         </SocialContainer>
       </Left>
       <Center>
-        <Title>Rutas:</Title>
+        <Title>Rutas Utiles:</Title>
         <List>
           <ListItem><a href="http://localhost:3000/">Home</a></ListItem>
           <ListItem><a href="http://localhost:3000/products">Productos</a></ListItem>
@@ -116,7 +116,7 @@ const Footer = () => {
         </List>
       </Center>
       <Right>
-        <Title>Pagos:</Title>
+        <Title>Pagos con:</Title>
         <Payment src="https://icon-library.com/images/discover-credit-card-icon/discover-credit-card-icon-7.jpg" />
       </Right>
     </Container>
