@@ -2,6 +2,8 @@
 import { Badge } from "@material-ui/core";
 import React, { useState, useEffect } from 'react';
 import {useDispatch, useSelector} from 'react-redux'
+import axios from "axios";
+import { getProductsFront } from "../Store/actions/products";
 
 
 import Tech from "../assets/Imgs/Tech.png";
@@ -33,14 +35,10 @@ import { Container,
          SearchContainer,
          Input,
          ButtonSearch,
-         Cartshopp
+         MobileIcon
         } from "../assets/styles/NavBar.elements.js";
 import s from '../assets/styles/NavBar.module.css'
-import { getProductsFront } from "../Store/actions/products";
-import axios from "axios";
-
-
-
+import { FaBars, FaTimes } from 'react-icons/fa'
 
 const Header = () => {
   const dispatch=useDispatch();
@@ -52,7 +50,7 @@ const Header = () => {
   const [userData, setUserData] = useState(null);
   const currentLocation = useLocation();
   const [location,setLocation] = useState(currentLocation);
-  
+  const [showMobileMenu, setShowMobileMenu] = useState(false)
   const [name, setName] = useState("");
 
   const [names, setNames] = useState({
@@ -104,8 +102,11 @@ const Header = () => {
     <Container className={s.container}>
       <Wrapper>
 
-        <Left> 
+        <Left style={{width: "150px"}}> 
+         {/*  <Logo src={Logoo} /> */}
+         <div >
          <TechC src={Tech} onClick={()=>navigate("/")} style={{ cursor: "pointer" }}/>
+         </div>
         </Left>
 
         <Center>
@@ -183,31 +184,37 @@ const Header = () => {
             </datalist>
         </Center>
         
-        <Right className={s.right}>  
+        <MobileIcon onClick={() => setShowMobileMenu(!showMobileMenu)} >
+          {showMobileMenu?
+          <FaTimes value={{style:{fontSize:'2em'}}}/> :<FaBars value={{style:{fontSize:'2em'}}}/>
+          }
+        </MobileIcon>
+
+        <Right open={showMobileMenu} className={s.right}>  
           <Link to="/products" className={s.linksss}>
-            <MenuItems>
+            <MenuItems onClick={() => setShowMobileMenu(!showMobileMenu)}>
               <MenuItemLink>
                 Productos
               </MenuItemLink>
             </MenuItems>
           </Link>
           {!user.token?<>
-            <Link to="/register" className={s.linksss}>
-              <MenuItems>
+            <Link to="/register" className={s.linksss} >
+              <MenuItems onClick={() => setShowMobileMenu(!showMobileMenu)}>
                 <MenuItemLink>
                   Crea Tu Cuenta!
                 </MenuItemLink>
               </MenuItems>
             </Link>
             <Link to="/login" className={s.linksss}>
-              <MenuItems>
+              <MenuItems onClick={() => setShowMobileMenu(!showMobileMenu)}>
                 <MenuItemLink>
                  Ingresa 
                 </MenuItemLink>
               </MenuItems>
             </Link></>:<>
             <Link to="/" className={s.linksss}>
-              <MenuItems>
+              <MenuItems onClick={() => setShowMobileMenu(!showMobileMenu)}>
                 <MenuItemLink>
                   HOME
                 </MenuItemLink>
@@ -217,7 +224,7 @@ const Header = () => {
 
           {user?.user?.type=="admin"?
             <Link to="/dashboard" className={s.linksss}>
-              <MenuItems>
+              <MenuItems onClick={() => setShowMobileMenu(!showMobileMenu)}>
                 <MenuItemLink>
                   DASHBOARD
                 </MenuItemLink>
@@ -287,17 +294,16 @@ const Header = () => {
             </MenuItem>
             <Divider />
           </Menu>
-          <MenuItem>
-          <Link to='/cart' className='nav_links' >
-              <Cartshopp> 
-              <Badge badgeContent={cart.length} color="secondary">
-                <ShoppingCartOutlined fontSize='large' color='primary'></ShoppingCartOutlined>
-              </Badge>
-              </Cartshopp>
-            </Link>
-        </MenuItem>
+          <Link to='/cart' className={s.linksss}>
+            <MenuItems onClick={() => setShowMobileMenu(!showMobileMenu)}>
+              <MenuItemLink>
+                <Badge badgeContent={cart.length} color="secondary">
+                  <ShoppingCartOutlined fontSize='large' color='primary'></ShoppingCartOutlined>
+                </Badge>
+              </MenuItemLink>
+            </MenuItems>
+          </Link>
         </Right>
-
       </Wrapper>
     </Container>
   );

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import mobile from "../../responsive";
+import mobile, {laptop} from "../../responsive";
 
 export const Container = styled.div`
 background-color: #FF6464;
@@ -15,33 +15,54 @@ background-color: #FF6464;
 
 export const Wrapper = styled.div`
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
-  padding-left:5rem;
-  padding-right:5rem;
+  padding-left:4em;
+  padding-right:6em;
   ${mobile({ padding: "5px 0px" })}
   background-color: #FF6464;
+
+  @media screen and (max-width: 960px){
+    padding-left:4%;
+    padding-right:6%;
+  }
 `;
 // position:fixed;
 
 export const Left = styled.div`
   display: flex;
-  flex: 1;
-  margin-left: 0.5rem;
   align-items: center;
-  font-size: 1.2rem;
+  /* background-color: aqua; */
+  
 `;
 
 export const TechC = styled.img`
   width: 8rem;
+  
+  @media screen and (max-width: 960px){
+    width: 5rem;
+  }
 `;
 
 export const Right = styled.ul`
+  
   display: flex;
   flex: 1;
   justify-content: right;
   list-style: none;
-  ${mobile({ flex: 2, justifyContent: "center" })}
+
+  @media screen and (max-width: 960px){
+    align-items: center;
+    background-color:#d63939 ;
+    left: ${({open}) =>( open ? "0": "-100%" )};
+    justify-content: center;
+    flex-direction: column;
+    transition: 0.5s all ease;
+    top: 85px;
+    height: 90vh;
+    position: absolute;
+    width: 100%;
+  }
 `;
 
 export const MenuItem = styled.div`
@@ -54,6 +75,14 @@ export const MenuItem = styled.div`
 
 export const MenuItems = styled.li`
   height: 100%;
+
+  @media screen and (max-width: 960px){
+    width:100%;
+    height:70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 export const MenuItemLink = styled.a`
@@ -64,7 +93,7 @@ export const MenuItemLink = styled.a`
   padding: 0.5rem 1rem;
   color: #13131599;
   font-family: arial;
-  font-size: 1rem;
+  font-size: 12px;
   font-weight: 600;
   cursor: pointer;
   transition: 0.5s all ease;
@@ -73,58 +102,102 @@ export const MenuItemLink = styled.a`
     color: #121212;
     background-color: #3c3c434d;
   }
-  ${mobile({ marginLeft: "5px", fontSize: "12px" })}
+  @media screen and (max-width: 960px){
+    /* font-size: 2.8rem; */
+    width: 100%;
+  }
+  
 `;
 
 export const Center = styled.div`
-  display:flex;
-  flex: 1;
+
   justify-content: center;
   align-items: center;
-  margin-right: 4em;
+  width: 100%;
+  margin-left: 2em;
+  margin-right: 2em;
+  /* margin-right: 4em; */
+  /* background-color: black; */
+  
+  @media screen and (max-width: 960px){
+    margin-right: 20px;
+    margin-left: 1em;
+    width: 373px;
+  }
 `;
 
 export const SearchContainer = styled.div`
-  display: flex;
   flex-direction: row;
   align-items:center;
-  font-size: 0.9rem;
-  letter-spacing: 0.0275rem;
-  margin: 0.125rem 0.875rem;
+  justify-content: center;
+  width: 100%;
+  border-radius: 8px;
+  /* letter-spacing: 0.0275rem; */
+  background-color: white;
 
-  ${mobile({ marginLeft: "10px" })}
+  @media screen and (max-width: 960px){
+    width: 372px;
+  }
+ 
 `;
 
 export const Input = styled.input`
+  width: 90%;
   border-radius: 8px 0 0 8px;
   text-transform: uppercase;
-  height: 3.05rem;
-  width: 30rem;
+  height: 2.8rem;
   align-items: center;
   font-size: 1.3rem;
-  padding-left: 0.9rem;
   line-height: 147.6%;
-  padding-top: 1rem;
-  padding-bottom: 0.5rem;
+  padding-left: 0.9rem;
+  padding-top: 0.5rem;
+  /* padding-bottom: 0.5rem; */
   border: none;
-
-  ${mobile({ width: "50px" })}
+  
+  @media screen and (max-width: 960px){
+    font-size: 0.8rem;
+    padding-bottom: 0rem;
+    height: 3.3rem;
+    width: 90%;
+  }
+  
 `;
 
 export const ButtonSearch = styled.button`
   height: 3rem;
-  width: 3rem;
+  width: 10%;
   border: none;
   border-radius: 0 8px 8px 0;
-  margin-bottom: 0;
   background-color:#fcf5f5;
 
   &:hover {
     background-color: #3c3c434d;
   }
+
+  @media screen and (max-width: 960px){
+    padding-bottom: 0.2rem; 
+    height: 3.28rem;
+    width: 10%;
+  }
+  @media screen and (max-width: 1800px){
+    width: 10%;
+  } 
 `;
 export const Cartshopp = styled.div`
  ${mobile({ width: "50px" })}
 `;
 
-//width: 90%;
+export const MobileIcon = styled.div`
+    display: none;
+
+    @media screen and (max-width: 960px){
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+
+      svg{
+        fill: #000000;
+        margin-right: 0.5rem
+      }
+    }
+`;

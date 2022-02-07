@@ -4,7 +4,8 @@
     padding: 0;
   }
   .login_design {
-    margin-top: 8rem;
+/* para que el nav tenga el tamaño suficiente y no choque con el body  */
+    margin-top: 85px;
     display: flex;
     flex-direction: column-reverse;
     /* flex-direction: column; */
@@ -197,7 +198,7 @@
 @media only screen and (min-width: 1024px) {
 
   .login_design {
-    margin-top: 2rem;
+    margin-top: 4rem;
     display: grid;
     grid-template-columns: repeat(2, 50%);
     /* background-color: var(--color-piel-claro); */
