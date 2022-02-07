@@ -30,6 +30,24 @@ function onSelect(e){
     dispatch(getUserTickets( user.user.userid, status))
 }
 
+const [dimensions, setDimensions] = React.useState({ 
+  height: window.innerHeight,
+  width: window.innerWidth
+})
+React.useEffect(() => {
+  function handleResize() {
+    setDimensions({
+      height: window.innerHeight,
+      width: window.innerWidth
+    })
+}
+  window.addEventListener('resize', handleResize)
+  return _ => {
+    window.removeEventListener('resize', handleResize)
+}
+})
+
+
 useEffect(async() => {
   //setStatus('')
  await  dispatch(getUserTickets( user.user.userid, status))
@@ -51,7 +69,7 @@ useEffect(async() => {
       
     <div className={style.container}>
       
-      <h1 style={{color: '#2EB8B0', borderBottom: '2px solid #2EB8B0', paddingBottom: '2%', width: '50%', textAlign: 'center'}}>Mis Compras</h1>
+      <h1 className={style.title} >Mis Compras</h1>
       <select className={style.select} onChange={onSelect} >
               <option value='' >Todos</option>
               <option value='Created' >Created</option>
@@ -62,7 +80,29 @@ useEffect(async() => {
               
              
             </select>
-    	<table className={style.table}>
+            {
+              dimensions.width < 476 ?
+              <table className={style.tablemobile}>
+                <thead>
+                  <th>FECHA</th>
+                  <th>Detalles</th>
+                </thead>
+                <tbody>
+                { tickets?.length ?
+                        tickets.map( x => {
+                          return(
+                            <tr key={x.orderid}>
+                              <td>{x.createdAt}</td>
+                              <td><Button variant='contained' onClick={()=>onClick(x.orderid)} >Detalles</Button></td>
+
+                            </tr>
+                          )
+                        })
+                       : null }
+                </tbody>
+              </table>
+              :
+              <table className={style.table}>
 										<thead>
 											<tr >
 												 
@@ -70,7 +110,7 @@ useEffect(async() => {
                          <th>DIRECCIÓN </th>
                          <th>ESTADO</th>
                          <th>TOTAL</th>
-                         <th>ENTREGA</th>
+                         <th>FECHA</th>
                          <th>DETALLES</th>
 											</tr>
 										</thead>
@@ -93,6 +133,8 @@ useEffect(async() => {
                        : null }
 											</tbody> 
 										</table>
+            }
+    
       </div>
       </>
       }

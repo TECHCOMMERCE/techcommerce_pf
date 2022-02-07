@@ -1,8 +1,11 @@
 @media only screen and (min-width: 320px) {
   * {
     margin: 0;
+    padding: 0;
   }
   .login_design {
+/* para que el nav tenga el tamaño suficiente y no choque con el body  */
+    margin-top: 85px;
     display: flex;
     flex-direction: column-reverse;
     /* flex-direction: column; */
@@ -62,13 +65,16 @@
     justify-content: center;
     align-items: center;
   }
+  /* df----------------------- */
   .body {
-    width: 380px;
-    /* margin-top: 1rem; */
-    margin-bottom: 2.5rem;
-    border-radius: 5px;
-    box-shadow: 0px 0px 5px rgba(189, 183, 183, 0.904);
+    align-items: center;
     background: var(--omrs-color-bg-high-transparent);
+    box-shadow: 0px 0px 5px rgba(189, 183, 183, 0.904);
+    display: flex;
+    justify-content: center;
+
+    min-height: 20rem;
+    width: 380px;
   }
   .form {
     /* width: 100%; */
@@ -190,7 +196,9 @@
 }
 
 @media only screen and (min-width: 1024px) {
+
   .login_design {
+    margin-top: 4rem;
     display: grid;
     grid-template-columns: repeat(2, 50%);
     /* background-color: var(--color-piel-claro); */
@@ -224,9 +232,9 @@
     /* height: 700px; */
     /* height: 700px; */
     
-    margin-left: 5em;
-    /* margin-left: 2em; */
-    width: 500px;
+    margin-top: 5rem;
+    margin-bottom: 5.5rem;
+    margin-left: 2em;
     /* border: solid #5fbafa 1px; */
     /*color piel primario */
     /* background-color: rgba(252,245,245,255); */
@@ -340,12 +348,13 @@
 @media only screen and (min-width: 1490px) {
 
   .container {
-    min-height: 70rem;
+    /* min-height: 70rem; */
+
   }
   .body {
     width: 40em;
     border-radius: 5px;
-    
+     /* -top: 1em; */
   }
 .error{
   /* old red error color  */

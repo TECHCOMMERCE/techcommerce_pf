@@ -21,6 +21,7 @@ useEffect(() => {
 }, [dispatch]);
 
 
+
   return (
     <>
     {
@@ -34,18 +35,21 @@ useEffect(() => {
           return(
             <div className={style.card} key={x.productid}>
               <img src={x.image} />
-              <Link className={style.link} to={`/Details/${x.productid}`}><p style={{width: '200px'}}>{x.name}</p></Link>
-              <p>${x.price}</p>
-              <p>x{x.detail.quantity}</p>
+              <Link className={style.link} to={`/Details/${x.productid}`}><p className={style.infoCard} style={{width: '200px'}}>{x.name}</p></Link>
+              <p className={style.infoCard}>${x.price}</p>
+              <p className={style.infoCard}>x{x.detail.quantity}</p>
             </div>
           )
         })  : null
     }
        <p className={style.p}><b>Dirección: </b>{ticket.address}</p>
-      <p className={style.p}><b>Estado:</b> {ticket.status}</p>
+      <p className={style.p}><b>Estado:</b> {ticket.delivery?.status? ticket.delivery.status : ticket.status}</p>
+      <div>
+       <a href={`/shipping/${ticket.delivery?.deliveryid}`} ><button disabled={!ticket.delivery}>Seguir Envío</button></a> 
+      </div>
       <p className={style.p} style={{fontSize: '19px'}}><b>TOTAL: </b>${ticket.totalPrice}</p>
 
-    <Button variant='outlined' style={{marginTop: '5%'}} className={style.volver} onClick={()=> setDisplay('tickets')} ><ArrowBackIcon/> Volver</Button>
+    <Button variant='outlined' style={{marginTop: '10%'}} className={style.volver} onClick={()=> setDisplay('tickets')} ><ArrowBackIcon/> Volver</Button>
     </div>
     </>
     
