@@ -37,8 +37,8 @@ const ListBrands = () => {
 
     dispatch(putBrand(obj));
     brand.status
-      ? swalMessages(`Brand ${brand.name} disabled`, "Disabled", "success")
-      : swalMessages(`Category ${brand.name} enabled`, "Enabled", "success");
+      ? swalMessages(`Marca ${brand.name} desactivada exitosamente`, "Desactivada", "success")
+      : swalMessages(`Marca ${brand.name} activada exitosamente`, "Activada", "success");
     dispatch(getBrands());
   };
 
@@ -57,7 +57,7 @@ const ListBrands = () => {
   }, [dispatch]);
 
   return (
-    <Container sx={{ px: 20, minWidth: "100vw" }}>
+    <Container sx={{ px: 20, minWidth: "100vw", mt: "135px", }}>
       <Box
         sx={{
           m: 20,

@@ -183,6 +183,9 @@ export const ButtonSearch = styled.button`
     width: 10%;
   } 
 `;
+export const Cartshopp = styled.div`
+ ${mobile({ width: "50px" })}
+`;
 
 export const MobileIcon = styled.div`
     display: none;

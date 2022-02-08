@@ -26,7 +26,7 @@ const EditCategory = () => {
     e.preventDefault();
     if (document.getElementById("name").value) {
       dispatch(putCategory(input));
-      swalMessages("Category edited succesfully", "Edited", "success").then(
+      swalMessages("Categoría editada exitosamente", "Editada", "success").then(
         () => {
           window.location.href = `/dashboard/categories/edit/${params.categoryid}`;
         }
@@ -61,6 +61,7 @@ const EditCategory = () => {
         justifyContent: "center",
         alignItems: "center",
         width: "100%",
+        mt:"135px",
       }}
     >
       {/* Contiene todo el form y el título */}
@@ -69,7 +70,7 @@ const EditCategory = () => {
           m: 20,
           p: 40,
           pt: 20,
-          width: "400px",
+          width: "500px",
           backgroundColor: "dodgerblue",
           borderRadius: "5px",
           height: "fit-content",
@@ -77,7 +78,7 @@ const EditCategory = () => {
       >
         <Typography
           sx={{ fontSize: "1.5rem", mb: 20 }}
-          color="secondary"
+          color="ghostwhite"
           align="left"
         >
           Edit a Category
@@ -100,7 +101,8 @@ const EditCategory = () => {
         >
           <TextField
             autoFocus
-            label="name"
+            label="Nombre"
+            multiline
             required
             id="name"
             name="name"
@@ -110,6 +112,9 @@ const EditCategory = () => {
             onChange={handleInput}
             placeholder="Monitors"
             sx={{ width: "100%", mb: 30 }}
+            inputProps={{maxLength: 100}}
+            InputLabelProps={{shrink:true}}
+            helperText="100 caracteres como máximo"
           />
 
           {/* Botones */}
@@ -124,7 +129,7 @@ const EditCategory = () => {
               endIcon={<MdSave />}
               size="medium"
             >
-              Save
+              Guardar
             </Button>
             <Button
               color="error"
@@ -133,7 +138,7 @@ const EditCategory = () => {
               size="medium"
               onClick={() => (window.location.href = "/dashboard/categories")}
             >
-              Back
+              Volver
             </Button>
           </Box>
         </form>

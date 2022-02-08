@@ -40,8 +40,8 @@ const ListCategories = () => {
 
     dispatch(putCategory(obj));
     category.status
-      ? swalMessages(`Category ${category.name} disabled`, "Disabled", "success")
-      : swalMessages(`Category ${category.name} enabled`, "Enabled", "success");
+      ? swalMessages(`Categoría ${category.name} desactivada exitosamente`, "Desactivada", "success")
+      : swalMessages(`Categoría ${category.name} activada exitosamente`, "Activada", "success");
     dispatch(getCategories());
   };
 
@@ -60,7 +60,7 @@ const ListCategories = () => {
   }, [dispatch]);
 
   return (
-    <Container sx={{ px: 20, minWidth: "100vw" }}>
+    <Container sx={{ px: 20, minWidth: "100vw", mt: "135px", }}>
       <Box
         sx={{
           m: 20,

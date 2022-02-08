@@ -5,9 +5,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import axios from "axios";
 import { getProductsFront } from "../Store/actions/products";
 
-import styled from "styled-components";
-// import mobile from "../assets/styles/responsive";
-import Logoo from "../assets/Imgs/Logoo.png";
+
 import Tech from "../assets/Imgs/Tech.png";
 
 import { Search, ShoppingCartOutlined } from "@material-ui/icons";
@@ -112,28 +110,28 @@ const Header = () => {
         </Left>
 
         <Center>
-         {/* <TechC src={Tech}/> */}
-          {location.pathname=="/products"?<>
-            <SearchContainer>
-            <form 
-              onSubmit={e => {
-                e.preventDefault();
-                dispatch(getProductsFront({
-                  category: '',
-                  brand: '',
-                  sort:''
-                }, 0, name));
-              }} 
-            >
-                <Input  
-                  value={name}
-                  placeholder="Search"
-                  onChange={e =>{ setName(e.target.value) }}
-                  list="searchdata"
-                />
-                <ButtonSearch  type="submit">
-                  <Search className={s.iconS} type="submit"></Search>
-                </ButtonSearch>
+         {location.pathname=="/products"?<><SearchContainer>
+            <form onSubmit={e => {
+              e.preventDefault();
+
+              dispatch(getProductsFront({
+                category: '',
+                brand: '',
+                sort:''
+              }, 0, name));
+            }} className={s.form}>
+              <Input 
+                className={s.searchBar} 
+                value={name}
+                placeholder="Search"
+                onChange={e =>{
+                  setName(e.target.value);
+                }}
+                list="searchdata"
+                /* onFocus={() => setVisibility(s.visible)} */
+                // onBlur={() => setVisibility(s.hidden)}
+              />
+              <Search style={{ color: "gray", fontSize: 25}} type="submit"></Search>
             </form>
            {/* <Search style={{ color: "gray", fontSize: 25}}></Search> */}
             </SearchContainer>
@@ -296,7 +294,6 @@ const Header = () => {
             </MenuItem>
             <Divider />
           </Menu>
-       
           <Link to='/cart' className={s.linksss}>
             <MenuItems onClick={() => setShowMobileMenu(!showMobileMenu)}>
               <MenuItemLink>
@@ -307,7 +304,6 @@ const Header = () => {
             </MenuItems>
           </Link>
         </Right>
-
       </Wrapper>
     </Container>
   );

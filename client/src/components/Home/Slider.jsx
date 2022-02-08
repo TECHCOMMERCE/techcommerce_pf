@@ -14,9 +14,9 @@ const Container = styled.div`
   position: relative;
   overflow: hidden;
   margin-top:8rem;
-  @media screen and (max-width: 960px){
+  /* @media screen and (max-width: 960px){
     margin-top: 85px;
-  }
+  } */
 `;
 
 const Arrow = styled.div`
@@ -51,22 +51,17 @@ const Slide = styled.div`
   display: flex;
   align-items: center;
   background-color: #${(props) => props.bg};
-
   ${mobile({ height: "80vh" })}
 `;
 
 const ImgContainer = styled.div`
   height: 100%;
   flex: 1;
-
   ${mobile({ height: "80%" })}
 `;
 
 const Image = styled.img`
-
   height: 80%;
-
-
   ${mobile({ height: "50%" })}
 `;
 
@@ -77,7 +72,6 @@ const InfoContainer = styled.div`
 
 const Title = styled.h1`
   font-size: 70px;
-
   ${mobile({ fontSize: "32px" })}
 `;
 
@@ -86,16 +80,11 @@ const Desc = styled.p`
   font-size: 20px;
   font-weight: 500;
   letter-spacing: 3px;
-
   ${mobile({ margin: "20px 0", letterSpacing: 0, fontSize: "16px" })}
 `;
 
-const Button = styled.button`
-  padding: 10px;
-  font-size: 20px;
-  background-color: transparent;
-  cursor: pointer;
-`;
+
+
 //------ Styled-Icons ----------------
 const ArrowBackOutlineIcon = styled(ArrowIosBackOutline)`
 
@@ -114,10 +103,7 @@ const Slider = () => {
     }
   };
 
-  const handleAlert = () => {
-    alert("proximamente esta funcion estara disponible");
-  }
-
+  
   return (
     <Container>
       <Arrow direction="left" onClick={() => handleClick("left")}>
@@ -132,7 +118,6 @@ const Slider = () => {
             <InfoContainer>
               <Title>{item.title}</Title>
               <Desc>{item.desc}</Desc>
-              <Button onClick={() => handleAlert()} >SHOW NOW</Button>
             </InfoContainer>
           </Slide>
         ))}

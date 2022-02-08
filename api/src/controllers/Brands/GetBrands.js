@@ -21,17 +21,18 @@ const getBrands = async (query) => {
       });
     }
 
-    if (query.admin) {
+    if (query.page) {
       const count = await Brand.count();
       let limiter = Math.floor(count / 10);
       return await Brand.findAll({
         order: ["name"],
         limit: 10,
-        offset: (query.admin <= limiter && query.admin) * 10,
+        offset: (query.page <= limiter && query.page) * 10,
       });
     }
 
     return await Brand.findAll({
+      where: { status: true },
       order: [["name", "ASC"]],
     });
   } catch (error) {
