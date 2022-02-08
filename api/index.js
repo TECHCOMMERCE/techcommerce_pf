@@ -14,7 +14,7 @@ server.listen(process.env.PORT||3001/* 5000 */,  () => {
     conn.models.products_category.sync({force: false});
     conn.models.User.sync({force: false});
     conn.models.Cart.sync({force: false});
-    conn.models.Order.sync({force: false});
+    conn.models.Order.sync({force: true});
     conn.models.Detail.sync({force: false});
     conn.models.Review.sync({force: false});
     conn.models.WishList.sync({force: false});
