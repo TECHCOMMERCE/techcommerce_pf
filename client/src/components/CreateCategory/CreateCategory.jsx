@@ -45,6 +45,7 @@ const CreateCategory = () => {
         justifyContent: "center",
         alignItems: "center",
         width: "100%",
+        mt: "135px",
       }}
     >
       {/* Contiene todo el form y el título */}
@@ -61,7 +62,7 @@ const CreateCategory = () => {
       >
         <Typography
           sx={{ fontSize: "1.5rem", mb: 20 }}
-          color="secondary"
+          color="ghostwhite"
           align="left"
         >
           Crear una Categoría
@@ -102,7 +103,7 @@ const CreateCategory = () => {
           {/* Botones */}
           <Box
             width="100%"
-            sx={{ display: "flex", justifyContent: "space-between" }}
+            sx={{ display: "flex", justifyContent: "space-between", }}
           >
             <Button
               type="submit"

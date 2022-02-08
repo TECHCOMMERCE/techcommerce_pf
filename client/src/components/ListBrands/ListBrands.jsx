@@ -57,7 +57,7 @@ const ListBrands = () => {
   }, [dispatch]);
 
   return (
-    <Container sx={{ px: 20, minWidth: "100vw" }}>
+    <Container sx={{ px: 20, minWidth: "100vw", mt: "135px", }}>
       <Box
         sx={{
           m: 20,
