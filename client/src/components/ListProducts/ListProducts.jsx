@@ -44,8 +44,8 @@ const ListProducts = () => {
 
     dispatch(putProduct(obj));
     product.status
-      ? swalMessages(`Product ${product.name} disabled`, "Disabled", "success")
-      : swalMessages(`Product ${product.name} enabled`, "Enabled", "success");
+      ? swalMessages(`Producto ${product.name} desactivado exitosamente`, "Desactivado", "success")
+      : swalMessages(`Producto ${product.name} activado exitosamente`, "Activado", "success");
     dispatch(getProducts());
     dispatch(getProductsForAdmin(currentPage));
   };

@@ -24,7 +24,7 @@ const EditBrand = () => {
     e.preventDefault();
     if (document.getElementById("name").value) {
       dispatch(putBrand(input));
-      swalMessages("Brand edited succesfully", "Edited", "success").then(() => {
+      swalMessages("Marca editada exitosamente", "Editada", "success").then(() => {
         window.location.href = `/dashboard/brands/edit/${params.brandid}`;
       });
     }
@@ -65,7 +65,7 @@ const EditBrand = () => {
           m: 20,
           p: 40,
           pt: 20,
-          width: "400px",
+          width: "500px",
           backgroundColor: "dodgerblue",
           borderRadius: "5px",
           height: "fit-content",
@@ -76,7 +76,7 @@ const EditBrand = () => {
           color="secondary"
           align="left"
         >
-          Edit a Brand
+          Editar una Marca
         </Typography>
 
         {/* formulario */}
@@ -96,8 +96,9 @@ const EditBrand = () => {
         >
           <TextField
             autoFocus
-            label="name"
+            label="Nombre"
             required
+            multiline
             id="name"
             name="name"
             variant="filled"
@@ -105,6 +106,9 @@ const EditBrand = () => {
             value={input.name || (brandDetail?.name && brandDetail.name)}
             onChange={handleInput}
             placeholder="Asus"
+            inputProps={{maxLength: 100}}
+            InputLabelProps={{shrink: true}}
+            helperText="100 caracteres como máximo"
             sx={{ width: "100%", mb: 30 }}
           />
 
@@ -120,7 +124,7 @@ const EditBrand = () => {
               endIcon={<MdSave />}
               size="medium"
             >
-              Save
+              Guardar
             </Button>
             <Button
               color="error"
@@ -129,7 +133,7 @@ const EditBrand = () => {
               size="medium"
               onClick={() => (window.location.href = "/dashboard/brands")}
             >
-              Back
+              Volver
             </Button>
           </Box>
         </form>

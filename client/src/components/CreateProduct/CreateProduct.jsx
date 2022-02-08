@@ -28,6 +28,7 @@ import {
   MdAddCircle,
 } from "react-icons/md";
 import { swalMessages } from "../../helpers/Swal/swal";
+import { formValidator } from "../../helpers/validateForm";
 
 const CreateProduct = () => {
   const dispatch = useDispatch();
@@ -53,7 +54,7 @@ const CreateProduct = () => {
     if (input.brand.length && input.categories.length && !!input.image) {
       dispatch(postProduct(input));
     } else {
-      swalMessages("Please complete all the required fields", null, "error");
+      swalMessages("Todos los campos son requeridos", null, "error");
     }
   };
 
@@ -108,7 +109,7 @@ const CreateProduct = () => {
           color="secondary"
           align="left"
         >
-          Create a Product
+          Crear un Producto
         </Typography>
 
         {/* formulario */}
@@ -123,10 +124,7 @@ const CreateProduct = () => {
             backgroundColor: "ghostwhite",
             borderRadius: "5px",
           }}
-          onSubmit={
-            async (e) => await handleSubmit(e)
-            // await handleSubmit(e, input, setInput, dispatch)
-          }
+          onSubmit={async (e) => await handleSubmit(e)}
         >
           {/* Contiene todo el form */}
           <Box
@@ -151,7 +149,7 @@ const CreateProduct = () => {
               }}
             >
               <TextField
-                label="Name"
+                label="Nombre"
                 variant="filled"
                 name="name"
                 placeholder="Motorola G200"
@@ -162,22 +160,30 @@ const CreateProduct = () => {
                 onChange={(e) => handleInputs(e, input, setInput)}
                 required
                 autoFocus
-                inputProps={{ maxLength: "100" }}
+                inputProps={{ maxLength: 100 }}
+                helperText="100 caracteres como máximo"
               />
 
               <TextField
-                label="Price"
+                onInput={(e) => formValidator(e)}
+                label="Precio"
                 variant="filled"
                 name="price"
                 id="price"
                 type="number"
-                placeholder="200"
+                placeholder="777,50"
                 value={input.price}
                 onChange={(e) => handleInputs(e, input, setInput)}
                 required
+                helperText="10 digitos como máximo"
               />
 
               <TextField
+                onInput={(e) => {
+                  e.target.value = Math.max(0, parseInt(e.target.value))
+                    .toString()
+                    .slice(0, 6);
+                }}
                 label="Stock"
                 variant="filled"
                 name="stock"
@@ -187,11 +193,16 @@ const CreateProduct = () => {
                 value={input.stock}
                 onChange={(e) => handleInputs(e, input, setInput)}
                 required
-                min="0"
+                helperText="6 digitos como máximo"
               />
 
               <TextField
-                label="Sold Quantity"
+                onInput={(e) => {
+                  e.target.value = Math.max(0, parseInt(e.target.value))
+                    .toString()
+                    .slice(0, 6);
+                }}
+                label="Cantidad Vendida"
                 variant="filled"
                 name="sold_quantity"
                 id="sold"
@@ -200,11 +211,11 @@ const CreateProduct = () => {
                 value={input.sold_quantity}
                 onChange={(e) => handleInputs(e, input, setInput)}
                 required
-                min="0"
+                helperText="6 digitos como máximo"
               />
 
               <TextField
-                label="Condition"
+                label="Condición"
                 variant="filled"
                 select
                 required
@@ -212,6 +223,7 @@ const CreateProduct = () => {
                 id="condition"
                 value={input.condition}
                 onChange={(e) => handleInputs(e, input, setInput)}
+                helperText="Elija una condición"
               >
                 <MenuItem sx={{ display: "none" }}></MenuItem>
                 <MenuItem value="new">New</MenuItem>
@@ -226,6 +238,7 @@ const CreateProduct = () => {
                 name="brand"
                 id="brand"
                 onChange={(e) => handleInputs(e, input, setInput)}
+                helperText="Elija una marca"
               >
                 <MenuItem sx={{ display: "none" }}></MenuItem>
                 {brands?.length &&
@@ -237,7 +250,7 @@ const CreateProduct = () => {
               </TextField>
 
               <TextField
-                label="Categories"
+                label="Categorías"
                 variant="filled"
                 select
                 required
@@ -245,6 +258,7 @@ const CreateProduct = () => {
                 id="categories"
                 onChange={(e) => handleInputs(e, input, setInput)}
                 sx={{ width: "100%" }}
+                helperText="Elija una o varias categorías"
               >
                 <MenuItem sx={{ display: "none" }}></MenuItem>
                 {categories[0] &&
@@ -290,7 +304,7 @@ const CreateProduct = () => {
               sx={{ width: "46%", minHeight: "fit-content", height: "500px" }}
             >
               {/* contiene la imagen y el botón para cargar una imagen */}
-              <FormLabel htmlFor="image">Image *</FormLabel>
+              <FormLabel htmlFor="image">Imagen *</FormLabel>
               <Box
                 sx={{
                   display: "flex",
@@ -331,7 +345,7 @@ const CreateProduct = () => {
                     }
                     hidden
                   />
-                  Load an Image
+                  Suba una imagen
                 </Button>
               </Box>
 
@@ -341,7 +355,7 @@ const CreateProduct = () => {
                   <Typography
                     color={input?.size >= 1 ? "crimson" : "success"}
                     sx={{ fontSize: ".8rem", my: 10 }}
-                  >{`Picture size: ${input.size} MB`}</Typography>
+                  >{`Tamaño de la imagen: ${input.size} MB`}</Typography>
                 )}
               </Box>
 
@@ -368,7 +382,7 @@ const CreateProduct = () => {
               endIcon={<MdSave />}
               sx={{ mr: 40 }}
             >
-              CREATE
+              CREAR
             </Button>
             <Button
               variant="contained"
@@ -379,7 +393,7 @@ const CreateProduct = () => {
                 (window.location.href = "/dashboard/products?admin=1")
               }
             >
-              BACK
+              Volver
             </Button>
           </Box>
         </form>

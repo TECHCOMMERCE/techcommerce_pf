@@ -9,6 +9,7 @@ import {
   MdCategory,
   MdPeople,
   MdAssignment,
+  MdLocalShipping
 } from "react-icons/md";
 
 const Dashboard = () => {
@@ -53,50 +54,60 @@ const Dashboard = () => {
                 (window.location.href = `/dashboard/products/`)
               }
             >
-              Products
+              Productos
             </Button>
             <Button
               variant="contained"
-              sx={{ width: "66%", height: "25vh", fontSize: "1.5rem" }}
+              sx={{ width: "30%", height: "25vh", fontSize: "1.5rem" }}
               color="success"
               startIcon={<MdLoyalty />}
               onClick={() => (window.location.href = "/dashboard/brands/")}
             >
-              Brands
+              Marcas
             </Button>
-          </Box>
-          <Box sx={{ display: "flex", justifyContent: "space-between" }}>
             <Button
               variant="contained"
               color="warning"
-              sx={{ mt: 40, width: "30%", height: "30vh", fontSize: "1.5rem" }}
+              sx={{ width: "30%", height: "25vh", fontSize: "1.5rem" }}
               startIcon={<MdCategory />}
               onClick={() => (window.location.href = "/dashboard/categories/")}
             >
-              Categories
+              Categorías
             </Button>
+          </Box>
+
+          <Box sx={{ display: "flex", justifyContent: "space-between" }}>
             <Button
               color="info"
               variant="contained"
               sx={{
                 mt: 40,
-                width: "31%",
+                width: "30%",
                 height: "30vh",
                 fontSize: "1.5rem",
               }}
               startIcon={<MdAssignment />}
               onClick={() => (window.location.href = "/dashboard/orders")}
             >
-              Orders
+              Órdenes
             </Button>
             <Button
               color="primary"
               variant="contained"
-              sx={{ mt: 40, width: "31%", height: "30vh", fontSize: "1.5rem" }}
+              sx={{ mt: 40, width: "30%", height: "30vh", fontSize: "1.5rem" }}
               startIcon={<MdPeople />}
               onClick={() => (window.location.href = "/dashboard/users")}
             >
-              Users
+              Usuarios
+            </Button>
+            <Button
+              variant="contained"
+              color="secondary"
+              sx={{ mt: 40, width: "30%", height: "30vh", fontSize: "1.5rem"}}
+              startIcon={<MdLocalShipping />}
+              onClick={() => (window.location.href = "/dashboard/deliveries")}
+            >
+              Envíos
             </Button>
           </Box>
         </Box>

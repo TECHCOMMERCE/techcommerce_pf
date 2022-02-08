@@ -6,7 +6,7 @@ const theme = createTheme({
       main: "#1E90FF", // dodgerblue
     },
     secondary: {
-      main: "#F8F8FF", // ghostwhite
+      main: "#D2691E", // chocolate
     },
     success: {
       main: "#3CB371", // mediumseagreen

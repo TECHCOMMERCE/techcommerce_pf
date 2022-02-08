@@ -5,21 +5,21 @@ export const swalMessages = (message, title, type) => {
     case "success":
       return Swal.fire({
         icon: type,
-        title: title || "Very good...",
+        title: title || "¡Muy Bien!",
         text: message,
       });
 
     case "warning":
       return Swal.fire({
         icon: type,
-        title: title || "Warning!",
+        title: title || "¡Advertencia!",
         text: message,
       });
 
     default:
       return Swal.fire({
         icon: type,
-        title: title || "Oops...",
+        title: title || "¡Error!",
         text: message,
       });
   }
