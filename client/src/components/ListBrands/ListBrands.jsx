@@ -37,8 +37,8 @@ const ListBrands = () => {
 
     dispatch(putBrand(obj));
     brand.status
-      ? swalMessages(`Brand ${brand.name} disabled`, "Disabled", "success")
-      : swalMessages(`Category ${brand.name} enabled`, "Enabled", "success");
+      ? swalMessages(`Marca ${brand.name} desactivada exitosamente`, "Desactivada", "success")
+      : swalMessages(`Marca ${brand.name} activada exitosamente`, "Activada", "success");
     dispatch(getBrands());
   };
 

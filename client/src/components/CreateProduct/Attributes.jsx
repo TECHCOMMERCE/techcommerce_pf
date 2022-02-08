@@ -19,7 +19,7 @@ const Attributes = ({ input, setInput }) => {
 
   return (
     <Box sx={{ mt: 10 }}>
-      <FormLabel>Product's Attributes</FormLabel>
+      <FormLabel>Atributos del Producto</FormLabel>
       <Box sx={{ display: "flex" }}>
         <Box
           sx={{
@@ -31,7 +31,7 @@ const Attributes = ({ input, setInput }) => {
         >
           <TextField
             variant="filled"
-            label="Attribute"
+            label="Atributo"
             type="text"
             id="attribute-name"
             placeholder="Color"
@@ -44,9 +44,9 @@ const Attributes = ({ input, setInput }) => {
         <Box sx={{ display: "flex", alignItems: "center", width: "80%" }}>
           <TextField
             variant="filled"
-            label="Value"
+            label="Valor"
             type="text"
-            placeholder="Blue"
+            placeholder="Azul"
             id="attribute-value"
             sx={{ width: "90%" }}
             inputProps={{ maxLength: 30}}

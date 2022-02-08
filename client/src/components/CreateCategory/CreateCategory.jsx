@@ -24,11 +24,11 @@ const CreateCategory = () => {
 
   useEffect(() => {
     if (response && response === "Category created") {
-      swalMessages(response, "Created", "success").then(() => {
+      swalMessages("Categoría creada exitosamente", "Creada", "success").then(() => {
         window.location.href = "/dashboard/categories/create";
       });
     } else if(response && response === "This category already exist"){
-      swalMessages(response, null, "error").then(() => {
+      swalMessages("Esta categoría ya existe", null, "error").then(() => {
         window.location.href = "/dashboard/categories/create";
       });
     }
@@ -53,7 +53,7 @@ const CreateCategory = () => {
           m: 20,
           p: 40,
           pt: 20,
-          width: "400px",
+          width: "500px",
           backgroundColor: "dodgerblue",
           borderRadius: "5px",
           height: "fit-content",
@@ -64,7 +64,7 @@ const CreateCategory = () => {
           color="secondary"
           align="left"
         >
-          Create a Category
+          Crear una Categoría
         </Typography>
 
         {/* formulario */}
@@ -84,7 +84,9 @@ const CreateCategory = () => {
         >
           <TextField
             autoFocus
-            label="name"
+            label="Nombre"
+            multiline
+            inputProps={{maxLength: 100}}
             required
             id="name"
             name="name"
@@ -94,6 +96,7 @@ const CreateCategory = () => {
             onChange={handleInput}
             placeholder="Monitors"
             sx={{ width: "100%", mb: 30 }}
+            helperText="100 caracteres como máximo"
           />
 
           {/* Botones */}
@@ -108,7 +111,7 @@ const CreateCategory = () => {
               endIcon={<MdSave />}
               size="medium"
             >
-              Create
+              Crear
             </Button>
             <Button
               color="error"
@@ -117,7 +120,7 @@ const CreateCategory = () => {
               size="medium"
               onClick={() => (window.location.href = "/dashboard/categories")}
             >
-              Back
+              Volver
             </Button>
           </Box>
         </form>

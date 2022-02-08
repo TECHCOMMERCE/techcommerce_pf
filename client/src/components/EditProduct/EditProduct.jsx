@@ -31,6 +31,7 @@ import {
   MdOutlineRemoveCircle,
   MdAddCircle,
 } from "react-icons/md";
+import { formValidator } from "../../helpers/validateForm";
 
 const EditProduct = () => {
   const dispatch = useDispatch();
@@ -115,7 +116,7 @@ const EditProduct = () => {
           color="secondary"
           align="left"
         >
-          Edit a Product
+          Editar un Producto
         </Typography>
 
         {/* formulario */}
@@ -155,8 +156,9 @@ const EditProduct = () => {
               }}
             >
               <TextField
-                label="Name"
+                label="Nombre"
                 variant="filled"
+                multiline
                 name="name"
                 placeholder="Motorola G200"
                 id="name"
@@ -166,21 +168,24 @@ const EditProduct = () => {
                 onChange={(e) => handleInputs(e, input, setInput)}
                 required
                 autoFocus
-                inputProps={{maxLength: 100,}}
-                helperText=""
+                inputProps={{ maxLength: 100 }}
+                helperText="100 caracteres como máximo"
+                InputLabelProps={{shrink: true}}
               />
 
               <TextField
-                label="Price"
+                onInput={(e) => formValidator(e)}
+                label="Precio"
                 variant="filled"
                 name="price"
                 id="price"
                 type="number"
-                placeholder="200"
+                placeholder="250.36"
+                InputLabelProps={{shrink: true}}
                 value={
                   input.price || (productDetail.price && productDetail.price)
                 }
-                helperText=""
+                helperText="10 digitos como máximo"
                 defaultValue={productDetail.price && productDetail.price}
                 onChange={(e) => handleInputs(e, input, setInput)}
                 sx={{ textAlign: "right" }}
@@ -188,8 +193,14 @@ const EditProduct = () => {
               />
 
               <TextField
+                onInput={(e) => {
+                  e.target.value = Math.max(0, parseInt(e.target.value))
+                    .toString()
+                    .slice(0, 6);
+                }}
                 label="Stock"
                 variant="filled"
+                InputLabelProps={{shrink: true}}
                 name="stock"
                 id="stock"
                 placeholder="150"
@@ -197,14 +208,20 @@ const EditProduct = () => {
                 value={
                   input.stock || (productDetail.stock && productDetail.stock)
                 }
-                helperText=""
+                helperText="6 digitos como máximo"
                 defaultValue={productDetail.stock && productDetail.stock}
                 onChange={(e) => handleInputs(e, input, setInput)}
                 required
               />
 
               <TextField
-                label="Sold Quantity"
+                onInput={(e) => {
+                  e.target.value = Math.max(0, parseInt(e.target.value))
+                    .toString()
+                    .slice(0, 6);
+                }}
+                label="Cantidad Vendida"
+                InputLabelProps={{shrink: true}}
                 variant="filled"
                 name="sold_quantity"
                 id="sold"
@@ -219,19 +236,20 @@ const EditProduct = () => {
                 }
                 onChange={(e) => handleInputs(e, input, setInput)}
                 required
-                helperText=""
+                helperText="6 digitos como máximo"
               />
 
               <TextField
-                label="Condition"
+                label="Condición"
                 variant="filled"
                 select
                 required
                 name="condition"
+                InputLabelProps={{shrink: true}}
                 id="condition"
                 value={input.condition}
                 onChange={(e) => handleInputs(e, input, setInput)}
-                helperText=""
+                helperText="Elija una condición"
               >
                 <MenuItem sx={{ display: "none" }}></MenuItem>
                 <MenuItem value="new">New</MenuItem>
@@ -241,13 +259,14 @@ const EditProduct = () => {
               <TextField
                 select
                 required
-                label="Brand"
+                label="Marca"
                 variant="filled"
                 name="brand"
+                InputLabelProps={{shrink: true}}
                 value={input.brand}
                 id="brand"
                 onChange={(e) => handleInputs(e, input, setInput)}
-                helperText=""
+                helperText="Elija una marca"
               >
                 <MenuItem sx={{ display: "none" }}></MenuItem>
                 {brands[0] &&
@@ -264,6 +283,7 @@ const EditProduct = () => {
                 select
                 required
                 name="categories"
+                InputLabelProps={{shrink: true}}
                 value={input.categories}
                 defaultValue={
                   productDetail.categories && productDetail.categories
@@ -271,7 +291,7 @@ const EditProduct = () => {
                 id="categories"
                 onChange={(e) => handleInputs(e, input, setInput)}
                 sx={{ width: "100%" }}
-                helperText=""
+                helperText="Elija una o varias categorías"
               >
                 <MenuItem sx={{ display: "none" }}></MenuItem>
                 {categories[0] &&
@@ -317,7 +337,7 @@ const EditProduct = () => {
               sx={{ width: "46%", minHeight: "fit-content", height: "500px" }}
             >
               {/* contiene la imagen y el botón para cargar una imagen */}
-              <FormLabel htmlFor="image">Image</FormLabel>
+              <FormLabel htmlFor="image">Imagen *</FormLabel>
               <Box
                 sx={{
                   display: "flex",
@@ -358,7 +378,7 @@ const EditProduct = () => {
                     }
                     hidden
                   />
-                  Edit Image
+                  Editar Imagen
                 </Button>
               </Box>
 
@@ -368,7 +388,7 @@ const EditProduct = () => {
                   <Typography
                     color={input?.size >= 1 ? "crimson" : "success"}
                     sx={{ fontSize: ".8rem", mb: 10 }}
-                  >{`Picture size: ${input.size} MB`}</Typography>
+                  >{`Tamaño de la imagen: ${input.size} MB`}</Typography>
                 )}
               </Box>
 
@@ -395,7 +415,7 @@ const EditProduct = () => {
               endIcon={<MdSave />}
               sx={{ mr: 40 }}
             >
-              SAVE
+              Guardar
             </Button>
             <Button
               variant="contained"
@@ -406,7 +426,7 @@ const EditProduct = () => {
                 (window.location.href = "/dashboard/products?admin=1")
               }
             >
-              BACK
+              Volver
             </Button>
           </Box>
         </form>
