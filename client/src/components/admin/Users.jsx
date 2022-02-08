@@ -30,7 +30,7 @@ const Users = () => {
 
     useEffect(() => {
         actualizarTabla()
-    }, [actualizarTabla]);
+    }, [mode]);
 
     return(
         <div className={s.container}>
