@@ -2,38 +2,23 @@ import styled from "styled-components";
 import mobile, {laptop} from "../../responsive";
 
 export const Container = styled.div`
-background-color: #FF6464;
- position: fixed;
- top:0;
- left:0;
- height: 40px;
- width: 100%;
- z-index:100;
- 
- ${mobile({ height: "50px" })}
+ height: 60px;
+  ${mobile({ height: "50px" })}
 `;
+
 
 export const Wrapper = styled.div`
-  display: flex;
-  /* justify-content: space-between; */
-  align-items: center;
-  padding-left:4em;
-  padding-right:6em;
-  ${mobile({ padding: "5px 0px" })}
-  background-color: #FF6464;
+  background-color: #ff3f; 
 
-  @media screen and (max-width: 960px){
-    padding-left:4%;
-    padding-right:6%;
-  }
+  display: flex;
+ 
+  align-items: center;
+  ${mobile({ padding: "10px 0px" })}
 `;
-// position:fixed;
 
 export const Left = styled.div`
   display: flex;
   align-items: center;
-  /* background-color: aqua; */
-  
 `;
 
 export const TechC = styled.img`
@@ -45,7 +30,6 @@ export const TechC = styled.img`
 `;
 
 export const Right = styled.ul`
-  
   display: flex;
   flex: 1;
   justify-content: right;
