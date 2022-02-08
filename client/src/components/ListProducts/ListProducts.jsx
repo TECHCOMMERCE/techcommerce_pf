@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { putProduct } from "../../Store/actions/product";
+import { swalMessages } from "../../helpers/Swal/swal"; 
 import {
   getProducts,
   getProductsByName,
@@ -43,8 +44,8 @@ const ListProducts = () => {
 
     dispatch(putProduct(obj));
     product.status
-      ? alert(`Product ${product.name} disabled`)
-      : alert(`Product ${product.name} enabled`);
+      ? swalMessages(`Product ${product.name} disabled`, "Disabled", "success")
+      : swalMessages(`Product ${product.name} enabled`, "Enabled", "success");
     dispatch(getProducts());
     dispatch(getProductsForAdmin(currentPage));
   };
@@ -101,29 +102,6 @@ const ListProducts = () => {
             ))}
           </Box>
         )}
-        {/* {products[0]?.rows && (
-          <Box>
-            {products[0].rows?.map((p, i) => (
-              <ListedProduct
-                key={i}
-                product={p}
-                handleToggle={handleToggle}
-              />
-            ))}
-          </Box>
-        )}
-
-        {products?.length && (
-          <Box>
-            {products?.map((p, i) => (
-              <ListedProduct
-                key={i}
-                product={p}
-                handleToggle={handleToggle}
-              />
-            ))}
-          </Box>
-        )} */}
 
         <Box
           style={{

@@ -17,6 +17,7 @@ import {
 } from "react-icons/md";
 import { Container, Box, FormLabel, IconButton } from "@mui/material";
 import CategoriesSearchBar from "./CategoriesSearchBar";
+import {swalMessages} from "../../helpers/Swal/swal";
 
 const ListCategories = () => {
   const categories = useSelector(
@@ -39,8 +40,8 @@ const ListCategories = () => {
 
     dispatch(putCategory(obj));
     category.status
-      ? alert(`Category ${category.name} disabled`)
-      : alert(`Category ${category.name} enabled`);
+      ? swalMessages(`Category ${category.name} disabled`, "Disabled", "success")
+      : swalMessages(`Category ${category.name} enabled`, "Enabled", "success");
     dispatch(getCategories());
   };
 

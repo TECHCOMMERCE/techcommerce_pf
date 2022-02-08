@@ -73,10 +73,10 @@ router.put("/", async(req, res) => {
     const data = {
       ...userData
     };
-    if(data.newPassword.length)data["password"] = userData.newPassword
-    else data["password"] = user.password
+    if(userData.newPassword?.length)data["password"] = userData.newPassword
+    else userData["password"] = user.password
 
-    const response = await user.update(data);
+    const response = await user.update(userData);
 
     return res.status(200).send({code: 0, message: "Usuario actualizado Con éxito"});
   }catch(e){

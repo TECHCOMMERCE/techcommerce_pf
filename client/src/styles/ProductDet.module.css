@@ -6,9 +6,8 @@
 	margin-bottom: 10%;
 	height: 60%;
 	width: 80%;
-
+	box-shadow: 0px 0px 5px 3px rgba(221, 220, 220, 1);
 	margin-left: 11%;
-
 	border-radius: 4px;
 }
 .cont_prin {
@@ -34,7 +33,7 @@
 	margin-top: 2%;
 }
 .cont_info {
-	/* background-color: fuchsia; */
+
 	border-top: none;
 	border-bottom: none;
 	font-family: 'Poppins';
@@ -225,12 +224,10 @@
 	background-color: rgb(247, 7, 7) !important;
 }
 .attributesContainer{
-
 	height: 600px;
 	overflow-y: scroll;
 	margin-top: 10%;
 	margin-bottom: 10%;
-	
 	width: 90%;
 	
 	

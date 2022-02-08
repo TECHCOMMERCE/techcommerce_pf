@@ -11,7 +11,8 @@ font-family: 'Raleway', sans-serif; */
 
   /* gradiant colors  */
   --gradiant-login: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
-
+  --green-drack-to-light: linear-gradient(to right, #a8ff78, #78ffd6); 
+  --navbar-blue: linear-gradient(to right, rgba(255, 241, 235, 0.95), rgba(172, 224, 249, 0.95))
   /* login component  ------ */
   --font-family: 'Lexend Deca', sans-serif; 
 
@@ -32,8 +33,10 @@ font-family: 'Raleway', sans-serif; */
 	--omrs-color-bg-low-contrast: #eff1f2;
 	--omrs-color-ink-high-contrast: #121212;
 	--omrs-color-bg-high-contrast: #ffffffcc;
+	--omrs-color-bg-high-transparent: #ffffff70;
   
   /* end of login component  ------ */
+  /* --deskpot-width: (max-width: ); */
 }
 
 body {

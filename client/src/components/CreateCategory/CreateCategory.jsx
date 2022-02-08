@@ -3,6 +3,7 @@ import { Container, Box, Typography, TextField, Button } from "@mui/material";
 import { MdSave, MdArrowBack } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { postCategory } from "../../Store/actions/category";
+import { swalMessages } from "../../helpers/Swal/swal";
 
 const CreateCategory = () => {
   const response = useSelector(
@@ -22,9 +23,14 @@ const CreateCategory = () => {
   };
 
   useEffect(() => {
-    if (response) {
-      alert(response);
-      window.location.href = "/dashboard/categories/create";
+    if (response && response === "Category created") {
+      swalMessages(response, "Created", "success").then(() => {
+        window.location.href = "/dashboard/categories/create";
+      });
+    } else if(response && response === "This category already exist"){
+      swalMessages(response, null, "error").then(() => {
+        window.location.href = "/dashboard/categories/create";
+      });
     }
   }, [response]);
 

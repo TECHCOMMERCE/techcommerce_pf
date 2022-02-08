@@ -3,7 +3,7 @@ const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 const {
-  DB_USER, DB_PASSWORD, DB_HOST, DB_NAME
+  DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, NODE_ENV
 } = process.env;
 
 // PARA LA BASE DE DATOS LOCAL
@@ -14,7 +14,7 @@ const {
 
 // PARA LA BASE DE DATOS EN HEROKU
 let sequelize =
-  process.env.NODE_ENV === "production"
+  NODE_ENV === "production"
     ? new Sequelize({
         database: DB_NAME,
         dialect: "postgres",
@@ -78,6 +78,7 @@ const {
   Product,
   Review,
   User,
+  Delivery,
   // Post,
 } = sequelize.models;
 
@@ -116,6 +117,10 @@ User.belongsToMany(Product,{through: 'product_suscription', as: 'suscriptions', 
 // User ---> Order 1:N
 User.hasMany(Order);
 Order.belongsTo(User);
+
+// Delivery ---> Order 1:N
+Delivery.hasMany(Order);
+Order.belongsTo(Delivery);
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

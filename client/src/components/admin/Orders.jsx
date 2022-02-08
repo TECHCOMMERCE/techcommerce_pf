@@ -26,7 +26,7 @@ const Orders = () => {
 
     useEffect(() => {
         if(orders){
-            console.log(orders);
+          
         }
     }, [orders]);
 

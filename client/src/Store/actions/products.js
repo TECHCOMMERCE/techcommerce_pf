@@ -11,7 +11,7 @@ import {
   GET_PRODUCTS_BY_NAME,
 } from "../constanst/actionsTypes";
 
-const SERVER = process.env.REACT_APP_SERVER || "http://localhost:3001";
+const SERVER = process.env.REACT_APP_SERVER || "http://localhost:3001/";
 
 export const getProductsByName = (name, page) => {
   try {
@@ -45,7 +45,7 @@ export const getProductsForAdmin = (page) => {
 };
 
 export const getCategories = () => async (dispatch) => {
-  console.log("entre aca categories");
+  /* console.log("entre aca categories"); */
   const data = await axios.get(`${SERVER}categories`);
   return dispatch({
     type: GET_CATEGORIES_PRODUCTS,
@@ -54,7 +54,7 @@ export const getCategories = () => async (dispatch) => {
 };
 
 export const getDetails = (id) => async (dispatch) => {
-  console.log("entre");
+  /* console.log("entre"); */
   const data = await axios.get(`${SERVER}product/${id}`);
   console.log("data", data.data);
   return dispatch({
@@ -65,7 +65,7 @@ export const getDetails = (id) => async (dispatch) => {
 
 export const getBrand = () => async (dispatch) => {
   const data = await axios.get(`${SERVER}brands`);
-  console.log("entro aca", data);
+ /*  console.log("entro aca", data); */
   return dispatch({
     type: GET_BRANDS_PRODUCTS,
     payload: data.data,
@@ -73,7 +73,7 @@ export const getBrand = () => async (dispatch) => {
 };
 
 export function getProducts(page, name, category) {
-  console.log("hola");
+  /* console.log("hola"); */
   return (dispatch) => {
     // va armando la url donde hará la petición, agregando las query strings si es que existen
     let finalUrl = `${SERVER}products${category || name ? "?" : ""}${

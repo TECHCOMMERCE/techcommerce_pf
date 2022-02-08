@@ -2,11 +2,18 @@ import React, { useEffect, useState } from "react";
 import { Container, Box, Typography, TextField, Button } from "@mui/material";
 import { MdSave, MdArrowBack } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
-import { getCategoryById, putCategory, resetCategoryDetail } from "../../Store/actions/category";
-import {useParams} from "react-router-dom";
+import {
+  getCategoryById,
+  putCategory,
+  resetCategoryDetail,
+} from "../../Store/actions/category";
+import { useParams } from "react-router-dom";
+import { swalMessages } from "../../helpers/Swal/swal";
 
 const EditCategory = () => {
-  const categoryDetail = useSelector(state => state.categoryReducer.categoryDetail);
+  const categoryDetail = useSelector(
+    (state) => state.categoryReducer.categoryDetail
+  );
   const dispatch = useDispatch();
   const params = useParams();
   const [input, setInput] = useState({
@@ -14,36 +21,38 @@ const EditCategory = () => {
     name: "",
     status: "",
   });
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (document.getElementById("name").value) {
       dispatch(putCategory(input));
-      alert("Category edited succesfully");
-      window.location.href = `/dashboard/categories/edit/${params.categoryid}`;
+      swalMessages("Category edited succesfully", "Edited", "success").then(
+        () => {
+          window.location.href = `/dashboard/categories/edit/${params.categoryid}`;
+        }
+      );
     }
   };
-  
+
   const handleInput = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
-  
+
   useEffect(() => {
     setInput({
       ...input,
       categoryid: params?.categoryid ? categoryDetail.categoryid : "",
       name: categoryDetail?.name ? categoryDetail.name : "",
       status: categoryDetail?.status,
-    })
+    });
   }, [categoryDetail]);
 
   useEffect(() => {
     dispatch(getCategoryById(params.categoryid));
     return () => {
       dispatch(resetCategoryDetail());
-    }
+    };
   }, [dispatch, params.categoryid]);
-  
 
   return (
     <Container

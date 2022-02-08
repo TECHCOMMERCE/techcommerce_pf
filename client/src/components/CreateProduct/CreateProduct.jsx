@@ -7,7 +7,7 @@ import { handleInputs } from "../../helpers/CreateProduct/handleInputs";
 import { handleCategories } from "../../helpers/CreateProduct/handleCategories";
 import { handleImage } from "../../helpers/CreateProduct/handleImage";
 import Attributes from "./Attributes";
-import {postProduct} from "../../Store/actions/product";
+import { postProduct } from "../../Store/actions/product";
 // import { handleSubmit } from "../../helpers/CreateProduct/handleSubmit";
 import {
   Container,
@@ -27,6 +27,7 @@ import {
   MdOutlineRemoveCircle,
   MdAddCircle,
 } from "react-icons/md";
+import { swalMessages } from "../../helpers/Swal/swal";
 
 const CreateProduct = () => {
   const dispatch = useDispatch();
@@ -52,14 +53,21 @@ const CreateProduct = () => {
     if (input.brand.length && input.categories.length && !!input.image) {
       dispatch(postProduct(input));
     } else {
-      alert("Please complete all the required fields");
+      swalMessages("Please complete all the required fields", null, "error");
     }
   };
 
   useEffect(() => {
     if (response) {
-      alert(response);
-      window.location.href = "/dashboard/products/create";
+      if (response && response === "Product created") {
+        swalMessages(response, "Created", "success").then(() => {
+          window.location.href = "/dashboard/products/create";
+        });
+      } else if (response && response === "This product already exist") {
+        swalMessages(response, null, "error").then(() => {
+          window.location.href = "/dashboard/products/create";
+        });
+      }
     }
   }, [dispatch, response]);
 
@@ -115,8 +123,8 @@ const CreateProduct = () => {
             backgroundColor: "ghostwhite",
             borderRadius: "5px",
           }}
-          onSubmit={async (e) =>
-            await handleSubmit(e)
+          onSubmit={
+            async (e) => await handleSubmit(e)
             // await handleSubmit(e, input, setInput, dispatch)
           }
         >
