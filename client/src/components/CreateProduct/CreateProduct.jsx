@@ -90,6 +90,7 @@ const CreateProduct = () => {
         alignItems: "center",
         px: 20,
         minWidth: "100vw",
+        mt: "135px"
       }}
     >
       {/* Contiene todo el form y el título */}
@@ -106,7 +107,7 @@ const CreateProduct = () => {
       >
         <Typography
           sx={{ fontSize: "1.5rem", mb: 20 }}
-          color="secondary"
+          color="ghostwhite"
           align="left"
         >
           Crear un Producto
@@ -135,6 +136,7 @@ const CreateProduct = () => {
               justifyContent: "space-between",
               flexWrap: "wrap",
               width: "100%",
+              height: "fit-content",
             }}
           >
             {/* Todos los inputs del lado izquierdo*/}
@@ -145,7 +147,7 @@ const CreateProduct = () => {
                 justifyContent: "space-between",
                 width: "50%",
                 minHeight: "fit-content",
-                height: "500px",
+                height: "fit-content",
               }}
             >
               <TextField
@@ -364,6 +366,7 @@ const CreateProduct = () => {
             </Box>
           </Box>
           {/* Contiene todo el formulario */}
+
           {/* Botones */}
           <Box
             sx={{
