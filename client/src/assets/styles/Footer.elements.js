@@ -1,14 +1,9 @@
 import styled from "styled-components";
-
+import mobile, {laptop} from "../../responsive";
 export const Container = styled.div`
   display: flex;
-
-  /* @media only screen and (min-width: 400px) {
-    display: flex;
-    flex-direction: column;
-  } */
+  ${mobile({ flexDirection: "column " })}
 `;
-
 export const Left = styled.div`
   flex: 1;
   display: flex;
@@ -32,7 +27,6 @@ export const List = styled.ul`
   display: flex;
   flex-wrap: wrap;
 `;
-
 export const ListItem = styled.li`
   width: 50%;
   margin-bottom: 10px;
@@ -41,7 +35,7 @@ export const ListItem = styled.li`
 export const Right = styled.div`
   flex: 1;
   padding: 20px;
-
+  ${mobile({ backgroundColor: "#eee" })}
 `;
 export const Logo = styled.h1``;
 export const Description = styled.p`
@@ -51,7 +45,6 @@ export const Description = styled.p`
 export const SocialContainer = styled.div`
   display: flex;
 `;
-
 export const SocialIcon = styled.div`
   width: 40px;
   height: 40px;
@@ -62,7 +55,6 @@ export const SocialIcon = styled.div`
   justify-content: center;
   align-items: center;
   margin-right: 20px;
-
   background-color: #${(props) => props.color};
 `;
 

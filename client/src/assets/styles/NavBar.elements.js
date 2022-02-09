@@ -4,18 +4,16 @@ import mobile, {laptop} from "../../responsive";
 export const Container = styled.div`
  height: 60px;
   ${mobile({ height: "50px" })}
+
 `;
 
 
 export const Wrapper = styled.div`
-  background-color: #ff3f; 
-
+  background-color: #2EB8B0; 
   display: flex;
- 
   align-items: center;
   ${mobile({ padding: "10px 0px" })}
 `;
-
 export const Left = styled.div`
   display: flex;
   align-items: center;
@@ -23,7 +21,7 @@ export const Left = styled.div`
 
 export const TechC = styled.img`
   width: 8rem;
-  
+  margin-left: 3rem;
   @media screen and (max-width: 960px){
     width: 5rem;
   }
