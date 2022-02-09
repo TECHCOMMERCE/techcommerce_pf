@@ -272,7 +272,7 @@ function mailChangeStatusOrder(status,orderid){
             </p>`
           
           
-          variable+= `<a class="btn__" href="${SERVER}orders/${orderid}">Ver orden</a>
+          variable+= `<a class="btn__" href="${SERVER}orders/${orderid}" target="_blank">Ver orden</a>
         </article>
       </div>
       <!-- <container class="mail">
