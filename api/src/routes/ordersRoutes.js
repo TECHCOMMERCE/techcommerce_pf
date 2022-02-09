@@ -1,7 +1,8 @@
 const server = require('express').Router(); //Import router from express module.
 const { Order, Product, User, Cart } = require('../db.js'); // Import Categories model.
 const { OK, ERROR, ERROR_SERVER } = require('../constants/index'); // Import Status constants.
-
+const {mailChangeStatusOrder} = require('../controllers/SendMails/mailStatusOrder')
+const {SendEmails} = require('../controllers/SendMails/main')
 
 // Start Routes
 //// 'Get Orders' route in '/'
@@ -48,7 +49,11 @@ server.put("/:id", async(req, res) => {
 	await order.update({
 		status: req.body.status
 	})
-
+	if(order){
+		let user = await User.findOne({where:{userid: order.userUserid}})
+		let html = mailChangeStatusOrder(req.body.status,req.params.id)
+		SendEmails(user.email,'Notificación de estado de tu compra',html)
+	}
 	return res.json({
 		message: 'Sucess',
 		order,
