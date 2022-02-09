@@ -11,6 +11,7 @@ import {brandReducer} from "./reducer/brand";
 import {wishReducer} from "./reducer/wishlist";
 import  TicketReducer from './reducer/tickets';
 import {reviewReducer} from './reducer/reviews';
+import {helpReducer} from './reducer/help'
 
 import thunk from "redux-thunk";
 
@@ -28,6 +29,7 @@ const store = createStore(
     tickets: TicketReducer,
     wishlist: wishReducer,
     review: reviewReducer,
+    help: helpReducer,
   }),
   composeWithDevTools(applyMiddleware(thunk))
 );

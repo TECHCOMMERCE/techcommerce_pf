@@ -25,18 +25,25 @@ import CheckoutError from "./components/checkout/CheckoutError";
 import Header from "./components/Header";
 import Orders from "./components/admin/Orders";
 import OrderDetail from "./components/admin/OrderDetail";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Shipping from "./components/Profile/Shipping";
+import Help from './components/Ayuda/Help'
+import {getPolicies} from './Store/actions/help'
+import DetailHelp from './components/Ayuda/DetailHelp'
 
 function App() {
   // Estado que determina si la cuenta logueada (o el invitado) es admin o no. Por defecto es false y cuando se logue, comprobará en un useEffect si es admin
   const [isAdmin, setIsAdmin] = useState(true);
-
+  const dispatch = useDispatch()
   const user = useSelector(state => state.users.user);
 
   useEffect(() => {
     //console.log(user);
   }, [user]);
+
+  useEffect( () => {
+    dispatch(getPolicies())
+  },[])
 
   return (
     <div className="App">
@@ -47,6 +54,8 @@ function App() {
         
         <Route path='/profile/:getDisplay' element={<Profile/>} />
         <Route path='/profile' element={<Profile/>} />
+        <Route path='/ayuda' element={<Help/>} />
+        <Route path='/ayuda/:id' element={< DetailHelp />} />
         <Route path='shipping' element={<Shipping/>} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />

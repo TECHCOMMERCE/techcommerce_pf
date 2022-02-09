@@ -14,8 +14,8 @@ const wishlist = require("./WishList");
 const orderRouter = require("./ordersRoutes");
 const deliveries = require("./deliveries");
 const delivery = require("./delivery");
-
-
+const help = require("./help")
+const helpcategories = require("./helpcategories")
 
 const psuscription = require('./product_suscription');
 //const user = require("../controllers/User/user");
@@ -43,6 +43,9 @@ router.use("/cart", cart);
 router.use("/checkout", checkout);
 
 //router.use('/user', user)
+router.use("/help",help)
+// router.use("/help",help)
+router.use("/helpcategory", helpcategories)
 
 // router.use('/review', review)
 router.use("/wishlist", wishlist);

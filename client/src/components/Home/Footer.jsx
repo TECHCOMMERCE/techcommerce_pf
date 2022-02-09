@@ -12,6 +12,7 @@ import styled from "styled-components";
 import mobile from "../../responsive";
 import {Link} from "react-router-dom";
 
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import {
   Container,
   Left,
@@ -61,6 +62,9 @@ const Footer = () => {
           <ListItem><a href="http://localhost:3000/register">Register</a></ListItem>
           <ListItem><a href="http://localhost:3000/login">Login</a></ListItem>
           <ListItem><Link to="/dashboard">Dashboard</Link></ListItem>
+          <Link to="/ayuda" >
+                <HelpOutlineIcon /> Ayuda
+              </Link>
         </List>
       </Center>
       <Right>
