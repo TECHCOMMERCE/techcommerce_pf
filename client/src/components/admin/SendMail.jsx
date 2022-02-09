@@ -29,7 +29,7 @@ const SendMail = () => {
                     e.preventDefault();
 
                     try{
-                        const res = await axios.post(`${SERVER}user/sendMail`, data);
+                        const res = await axios.post(`${SERVER}user/mail`, data);
 
                         console.log(res.data);
                     }catch(e){
