@@ -258,9 +258,9 @@ useEffect(async() => {
       </div> : null
       }
 
-      <div style={{width: '400px', marginLeft: '20%', marginTop: '5%'}}>
-        <Button variant='contained' onClick={onSubmit}  style={{backgroundColor: '#2EB8B0', marginRight: '10%', marginTop: '20px'}} type='submit' disabled={error.length > 0 || data.password.length <= 0}>Actualizar</Button>
-        <Button variant='contained'  style={{backgroundColor: 'red', marginTop: '20px', width:'125px'}} onClick={cancel}>cancelar</Button>
+      <div style={{width: '400px',  marginTop: '5%', marginLeft: '10%'}}>
+        <button className={style.btn} variant='contained' onClick={onSubmit}  style={{backgroundColor: '#2EB8B0', marginRight: '15%', marginTop: '20px'}} type='submit' disabled={error.length > 0 || data.password.length <= 0}>Actualizar</button>
+        <button className={style.btn}  style={{backgroundColor: 'red', marginTop: '20px'}} onClick={cancel}>cancelar</button>
       </div>
     </form>
     <div className={style.formButtons}>

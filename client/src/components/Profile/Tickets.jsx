@@ -95,7 +95,7 @@ useEffect(async() => {
                             <tr key={x.orderid}>
                               <td>{x.createdAt}</td>
                               
-                              <td><Button variant='contained' onClick={()=>onClick(x.orderid)} >Detalles</Button></td>
+                              <td><button className={style.btnmat} variant='contained' onClick={()=>onClick(x.orderid)} >Detalles</button></td>
 
                             </tr>
                           )
@@ -127,7 +127,7 @@ useEffect(async() => {
                               <td>{x.status}</td>
                               <td>$ {x.totalPrice}</td>
                               <td>{x.createdAt}</td>
-                              <td><Button variant='contained' onClick={()=>onClick(x.orderid)} >Detalles</Button></td>
+                              <td><button className={style.btnmat} onClick={()=>onClick(x.orderid)} >Detalles</button></td>
 
                             </tr>
                           )

@@ -1,7 +1,7 @@
 import React, {useState} from "react";
-import { Main, Name, Img, Stock, Link, Price } from "./styles.js";
+import { Main, Name, Img, Stock, Link, Price, Button } from "./styles.js";
 import {NavLink} from 'react-router-dom'; 
-import { Button } from '@mui/material';
+//import { Button } from '@mui/material';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';

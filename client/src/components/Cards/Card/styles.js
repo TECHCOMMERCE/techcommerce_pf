@@ -65,3 +65,15 @@ export const Name = styled.p `
   }
 
 `
+
+
+export const Button =styled.button`
+    background-color: #2EB8B0;
+    border-radius: 5px;
+    border:none;
+    width: 100px;
+    height: 40px;
+    text-transform: uppercase;
+    cursor: pointer;
+
+`
