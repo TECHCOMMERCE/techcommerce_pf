@@ -1,12 +1,12 @@
-import {GET_USER_TICKETS, GET_ONE_TICKET, GET_DELIVERY} from '../constanst/actionsTypes';
+import {GET_USER_TICKETS, GET_ONE_TICKET, GET_DELIVERY, GET_DELIVERIES} from '../constanst/actionsTypes';
 
 
 const inicialState = {
 	
 	tickets: [],
   ticket: {},
-  delivery: {}
-	
+  delivery: {},
+	deliveries: []
 	
 };
 
@@ -14,6 +14,9 @@ const inicialState = {
  const TicketReducer = (state = inicialState, action) => {
 	// console.log(action);
 	switch (action.type) {
+  case GET_DELIVERIES: 
+      return {...state, deliveries: action.payload};
+
 	case GET_USER_TICKETS :
     return {
       ...state, 

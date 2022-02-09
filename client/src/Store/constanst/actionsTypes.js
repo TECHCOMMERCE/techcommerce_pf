@@ -46,3 +46,6 @@ export const GET_USER_TICKETS = "GET_USER_TICKETS";
 export const GET_ONE_TICKET = "GET_ONE_TICKET";
 export const GET_WISHLIST = "GET_WISHLIST";
 export const GET_DELIVERY= 'GET_DELIVERY';
+
+export const GET_DELIVERIES = "GET_DELIVERIES";
+export const PUT_DELIVERY = "PUT_DELIVERY";
