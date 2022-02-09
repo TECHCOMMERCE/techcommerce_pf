@@ -126,7 +126,7 @@ const ReviewsCard = ({name='Prueba',lastname='Lopez', stars, description, id,pro
                       type="text"
                       placeholder="Comentario"
                       onChange={(e)=>setTextEdit(e.target.value)}
-                      //value={valueRef.current.value}
+                      value={textEdit}
                    />
                   </Modal.Body>
                   <Modal.Footer>
