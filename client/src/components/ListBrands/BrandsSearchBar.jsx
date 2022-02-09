@@ -35,10 +35,9 @@ const BrandsSearchBar = ({
         <TextField
           sx={{ width: "400px" }}
           label="Buscar"
-          multiline
           variante="filled"
           placeholder="Motorola"
-          inputProps={{ maxLength: "255" }}
+          inputProps={{ maxLength: "50" }}
           onChange={(e) => {
             if (!e.target.value) {
               setSearching(false);
@@ -49,7 +48,7 @@ const BrandsSearchBar = ({
               setInput(e.target.value);
             }
           }}
-          helperText="255 caracteres como máximo"
+          helperText="50 caracteres como máximo"
           autoFocus
           required
         ></TextField>

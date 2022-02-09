@@ -100,7 +100,7 @@ const CreateProduct = () => {
           p: 40,
           pt: 20,
           width: "80%",
-          backgroundColor: "dodgerblue",
+          backgroundColor: "#2eb8b0",
           borderRadius: "5px",
           height: "fit-content",
         }}
@@ -328,8 +328,8 @@ const CreateProduct = () => {
                   endIcon={<MdAddCircle />}
                   variant="contained"
                   component="label"
-                  color="success"
-                  sx={{ mt: 10 }}
+                  color="primary"
+                  sx={{ mt: 10, color: "ghostwhite", }}
                 >
                   <input
                     type="file"
@@ -383,7 +383,7 @@ const CreateProduct = () => {
               size="medium"
               type="submit"
               endIcon={<MdSave />}
-              sx={{ mr: 40 }}
+              sx={{ mr: 40, color: "ghostwhite", }}
             >
               CREAR
             </Button>

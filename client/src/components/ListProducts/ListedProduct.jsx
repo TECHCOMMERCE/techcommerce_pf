@@ -8,7 +8,7 @@ const ListedProduct = ({ product, handleToggle }) => {
     <Box>
       <Box
         sx={{
-          background: product.status ? "dodgerBlue" : "lightblue",
+          background: product.status ? "#2eb8b0" : "lightblue",
           borderRadius: "5px",
           margin: 20,
           display: "flex",
@@ -34,7 +34,7 @@ const ListedProduct = ({ product, handleToggle }) => {
         <Box sx={{ display: "flex" }}>
           <Link to={`/dashboard/products/edit/${product.productid}`} style={{color: "#77817c",}}>
             <Box style={{ background: "ghostwhite", borderRadius: "5px", padding: 5 }}>
-              <MdModeEdit color="success" size="40" />
+              <MdModeEdit size="40" />
             </Box>
           </Link>
 
@@ -51,7 +51,7 @@ const ListedProduct = ({ product, handleToggle }) => {
                 product.status ?
                 <MdOutlineCheckBox
                   name={product.name}
-                  color="#3CB371"
+                  color="#2eb8b0"
                   size="40"
                   onClick={() => handleToggle(product)}
                 />

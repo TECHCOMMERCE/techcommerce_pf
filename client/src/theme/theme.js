@@ -3,7 +3,7 @@ import { createTheme } from "@mui/material/styles";
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#1E90FF", // dodgerblue
+      main: "#2eb8b0", // verde
     },
     secondary: {
       main: "#D2691E", // chocolate
@@ -12,7 +12,7 @@ const theme = createTheme({
       main: "#3CB371", // mediumseagreen
     },
     warning: {
-      main: "#FFD700", // gold
+      main: "#DAA520", // goldendrod
     },
     error: {
       main: "#dc143c", // crimson

@@ -22,9 +22,11 @@ const CreateBrand = () => {
 
   useEffect(() => {
     if (response && response === "Brand created") {
-      swalMessages("Marca creada exitosamente", "Creada", "success").then(() => {
-        window.location.href = "/dashboard/brands/create";
-      });
+      swalMessages("Marca creada exitosamente", "Creada", "success").then(
+        () => {
+          window.location.href = "/dashboard/brands/create";
+        }
+      );
     } else if (response && response === "This brand already exist") {
       swalMessages("Esta marca ya existe", null, "error").then(() => {
         window.location.href = "/dashboard/brands/create";
@@ -53,7 +55,7 @@ const CreateBrand = () => {
           p: 40,
           pt: 20,
           width: "500px",
-          backgroundColor: "dodgerblue",
+          backgroundColor: "#2eb8b0",
           borderRadius: "5px",
           height: "fit-content",
         }}
@@ -92,7 +94,7 @@ const CreateBrand = () => {
             color="primary"
             value={input.name}
             onChange={handleInput}
-            inputProps={{maxLength: 100}}
+            inputProps={{ maxLength: 100 }}
             helperText="100 caracteres como máximo"
             placeholder="Logitech"
             sx={{ width: "100%", mb: 30 }}
@@ -109,6 +111,7 @@ const CreateBrand = () => {
               color="primary"
               endIcon={<MdSave />}
               size="medium"
+              sx={{ color: "ghostwhite" }}
             >
               Crear
             </Button>
