@@ -26,7 +26,7 @@ const CategoriesSearchBar = ({
       }}
     >
       <Typography sx={{ fontSize: "1.5rem", fontWeight: "bold" }}>
-        Categories
+        Categorías
       </Typography>
       <form
         style={{ display: "flex", alignItems: "center" }}
@@ -34,10 +34,10 @@ const CategoriesSearchBar = ({
       >
         <TextField
           sx={{ width: "400px" }}
-          label="Search"
+          label="Buscar"
           variante="filled"
-          placeholder="Cellphones"
-          inputProps={{ maxLength: "255" }}
+          placeholder="Celulares"
+          inputProps={{ maxLength: "100" }}
           onChange={(e) => {
             if (!e.target.value) {
               setSearching(false);
@@ -49,6 +49,7 @@ const CategoriesSearchBar = ({
             }
           }}
           autoFocus
+          helperText="100 caracteres como máximo"
           required
         ></TextField>
         <IconButton type="submit" sx={{ fontSize: "3rem", ml: 10 }}>

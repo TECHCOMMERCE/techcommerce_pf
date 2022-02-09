@@ -26,7 +26,7 @@ const BrandsSearchBar = ({
       }}
     >
       <Typography sx={{ fontSize: "1.5rem", fontWeight: "bold" }}>
-        Brands
+        Marcas
       </Typography>
       <form
         style={{ display: "flex", alignItems: "center" }}
@@ -34,10 +34,10 @@ const BrandsSearchBar = ({
       >
         <TextField
           sx={{ width: "400px" }}
-          label="Search"
+          label="Buscar"
           variante="filled"
-          placeholder="Motobrand"
-          inputProps={{ maxLength: "255" }}
+          placeholder="Motorola"
+          inputProps={{ maxLength: "50" }}
           onChange={(e) => {
             if (!e.target.value) {
               setSearching(false);
@@ -48,6 +48,7 @@ const BrandsSearchBar = ({
               setInput(e.target.value);
             }
           }}
+          helperText="50 caracteres como máximo"
           autoFocus
           required
         ></TextField>

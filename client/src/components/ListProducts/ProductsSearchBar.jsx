@@ -26,7 +26,7 @@ const ProductsSearchBar = ({
       }}
     >
       <Typography sx={{ fontSize: "1.5rem", fontWeight: "bold" }}>
-        Products
+        Productos
       </Typography>
       <form
         style={{ display: "flex", alignItems: "center" }}
@@ -34,10 +34,11 @@ const ProductsSearchBar = ({
       >
         <TextField
           sx={{ width: "400px" }}
-          label="Search"
+          label="Buscar"
           variante="filled"
-          placeholder="Smartphone"
-          inputProps={{ maxLength: "255" }}
+          placeholder="Moto G00"
+          inputProps={{ maxLength: "100" }}
+          helperText="100 caracteres como máximo"
           autoFocus
           required
           onChange={(e) => {

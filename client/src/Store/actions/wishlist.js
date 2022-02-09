@@ -3,7 +3,7 @@ import {
   GET_WISHLIST
 } from '../constanst/actionsTypes'
 
-const SERVER = process.env.REACT_APP_SERVER ||'http://localhost:3001';
+const SERVER = process.env.REACT_APP_SERVER ||'http://localhost:3001/';
 
 
 export function getWishList(userid, productid=null){

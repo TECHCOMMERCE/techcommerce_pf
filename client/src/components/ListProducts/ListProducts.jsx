@@ -44,8 +44,8 @@ const ListProducts = () => {
 
     dispatch(putProduct(obj));
     product.status
-      ? swalMessages(`Product ${product.name} disabled`, "Disabled", "success")
-      : swalMessages(`Product ${product.name} enabled`, "Enabled", "success");
+      ? swalMessages(`Producto ${product.name} desactivado exitosamente`, "Desactivado", "success")
+      : swalMessages(`Producto ${product.name} activado exitosamente`, "Activado", "success");
     dispatch(getProducts());
     dispatch(getProductsForAdmin(currentPage));
   };
@@ -65,7 +65,7 @@ const ListProducts = () => {
   }, [dispatch]);
 
   return (
-    <Container sx={{ px: 20, minWidth: "100vw" }}>
+    <Container sx={{ px: 20, minWidth: "100vw", mt: "135px", }}>
       <Box
         sx={{
           m: 20,
@@ -111,7 +111,7 @@ const ListProducts = () => {
             background: "ghostwhite",
             borderRadius: "50%",
             display: "flex",
-            border: "4px solid #3CB371",
+            border: "4px solid #2eb8b0",
           }}
         >
           <IconButton
@@ -120,7 +120,7 @@ const ListProducts = () => {
               (window.location.href = "/dashboard/products/create")
             }
           >
-            <MdAddCircle size="45" color="success" />
+            <MdAddCircle size="45" color="#2eb8b0" />
           </IconButton>
         </Box>
 
@@ -135,12 +135,11 @@ const ListProducts = () => {
             borderRadius: "5px",
             display: "flex",
             alignItems: "center",
-            border: "4px solid dodgerblue",
+            border: "4px solid #2eb8b0",
           }}
         >
           <IconButton
             name="first-page"
-            color="success"
             onClick={() => {
               if (searching) {
                 dispatch(getProductsByName(input, 0));
@@ -150,12 +149,11 @@ const ListProducts = () => {
               setCurrentPage(0);
             }}
           >
-            <MdOutlineFirstPage size="45" color="dodgerblue" />
+            <MdOutlineFirstPage size="45" color="#2eb8b0" />
           </IconButton>
 
           <IconButton
             name="previous"
-            color="success"
             onClick={() => {
               if (searching) {
                 dispatch(
@@ -169,7 +167,7 @@ const ListProducts = () => {
               setCurrentPage(currentPage > 0 ? currentPage - 1 : 0);
             }}
           >
-            <MdKeyboardArrowLeft size="45" color="dodgerblue" />
+            <MdKeyboardArrowLeft size="45" color="#2eb8b0" />
           </IconButton>
           <FormLabel
             sx={{
@@ -178,14 +176,13 @@ const ListProducts = () => {
               px: 10,
               borderRadius: "5px",
               fontWeight: "bold",
-              backgroundColor: "dodgerblue",
+              backgroundColor: "#2eb8b0",
             }}
           >
             {currentPage + 1}
           </FormLabel>
           <IconButton
             name="next"
-            color="success"
             onClick={() => {
               if (searching) {
                 if (currentPage < Math.floor(products[0].count / 10)) {
@@ -204,12 +201,11 @@ const ListProducts = () => {
               }
             }}
           >
-            <MdKeyboardArrowRight size="45" color="dodgerblue" />
+            <MdKeyboardArrowRight size="45" color="#2eb8b0" />
           </IconButton>
 
           <IconButton
             name="last-page"
-            color="success"
             onClick={() => {
               if (searching) {
                 dispatch(getProductsByName(input, Math.floor(products[0].count / 10)));
@@ -220,7 +216,7 @@ const ListProducts = () => {
               }
             }}
           >
-            <MdOutlineLastPage size="45" color="dodgerblue" />
+            <MdOutlineLastPage size="45" color="#2eb8b0" />
           </IconButton>
         </Box>
 
