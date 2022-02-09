@@ -40,7 +40,7 @@ const Reviews = ({productid}) => {
     <div className={st.container}>
       <div className={st.title}>
         <ThemeProvider theme={theme}>
-          <Typography variant="h3">Reviews about this product</Typography>
+          <Typography variant="h3">Opiniones sobre este producto</Typography>
           {/* <h1>Opiniones sobre el producto </h1> */}
           {/* <Typography variant="h4">Responsive h4</Typography> */}
           {/* <Typography variant="h5">Responsive h5</Typography> */}
@@ -60,13 +60,13 @@ const Reviews = ({productid}) => {
             <div className={st.titleCard}>
               <ThemeProvider theme={theme}>
                 <Typography variant="h5">
-                  This product does not have any review yet
+                Este producto aún no tiene ninguna reseña
                 </Typography>
               </ThemeProvider>
             </div>
             <p className="card-text">
-              Hey! Be the first one to provide a review for this product, you
-              will be able to do it after your purshase.
+            ¡Oye! Sea el primero en proporcionar una reseña de este producto, usted
+              podrá hacerlo después de su compra.
               {/* Se el primero en dejar una review sobre el articulo, podras dejar tu
             review cuando ya lo hayas adquirido. */}
             </p>
@@ -74,9 +74,10 @@ const Reviews = ({productid}) => {
         )}
       </div>
       {user?.token&&review.orders&&!review.review?<div className={st.submitReview}>
-        
+       
         <SubmitReveiw productid={productid} getReviewsByProduct={getReviewsByProduct} />
       </div>:null}
+    
     </div>
   );
 };

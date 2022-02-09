@@ -122,7 +122,7 @@ const SubmitReveiw = ({productid, getReviewsByProduct}) => {
         onChange={handleChange("panel1")}
       >
         <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-          <Typography>Leave a reveiw</Typography>
+          <Typography>Dejar un comentario</Typography>
         </AccordionSummary>
         <AccordionDetails>
           {/* stars rate ------------------------------------------ */}
@@ -133,7 +133,7 @@ const SubmitReveiw = ({productid, getReviewsByProduct}) => {
             }}
           >
             <Typography component="legend">
-              How good was the product?
+            ¿Qué tan buena fue el producto?
             </Typography>
             <Rating
               name="simple-controlled"
