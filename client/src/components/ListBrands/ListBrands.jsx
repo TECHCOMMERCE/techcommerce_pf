@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { putBrand } from "../../Store/actions/brand";
+import NoResults from "../NoResults/NoResults";
 import {
   getBrands,
   getBrandsByName,
@@ -37,8 +38,16 @@ const ListBrands = () => {
 
     dispatch(putBrand(obj));
     brand.status
-      ? swalMessages(`Marca ${brand.name} desactivada exitosamente`, "Desactivada", "success")
-      : swalMessages(`Marca ${brand.name} activada exitosamente`, "Activada", "success");
+      ? swalMessages(
+          `Marca ${brand.name} desactivada exitosamente`,
+          "Desactivada",
+          "success"
+        )
+      : swalMessages(
+          `Marca ${brand.name} activada exitosamente`,
+          "Activada",
+          "success"
+        );
     dispatch(getBrands());
   };
 
@@ -57,7 +66,7 @@ const ListBrands = () => {
   }, [dispatch]);
 
   return (
-    <Container sx={{ px: 20, minWidth: "100vw", mt: "135px", }}>
+    <Container sx={{ px: 20, minWidth: "100vw", mt: "135px" }}>
       <Box
         sx={{
           m: 20,
@@ -188,9 +197,9 @@ const ListBrands = () => {
                 }
               }
 
-              if(currentPage < Math.floor(brandsCount.length / 10)){
+              if (currentPage < Math.floor(brandsCount.length / 10)) {
                 dispatch(getBrandsForAdmin(currentPage + 1));
-                setCurrentPage(currentPage + 1)
+                setCurrentPage(currentPage + 1);
               } else {
                 dispatch(getBrandsForAdmin(currentPage));
               }
@@ -204,9 +213,11 @@ const ListBrands = () => {
             onClick={() => {
               if (searching) {
                 dispatch(getBrandsByName(input, Math.floor(brands.count / 10)));
-                setCurrentPage( Math.floor(brands.count / 10))
+                setCurrentPage(Math.floor(brands.count / 10));
               } else {
-                dispatch(getBrandsForAdmin(Math.floor(brandsCount.length / 10)));
+                dispatch(
+                  getBrandsForAdmin(Math.floor(brandsCount.length / 10))
+                );
                 setCurrentPage(Math.floor(brandsCount.length / 10));
               }
             }}
