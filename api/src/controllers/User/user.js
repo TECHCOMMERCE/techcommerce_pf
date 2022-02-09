@@ -1,6 +1,8 @@
 const router = require("express").Router();
 const { Op } = require("sequelize");
 const {User} = require('../../db');
+const {mailMessage} = require('../SendMails/mailMessage')
+const {SendEmails} = require('../SendMails/main')
 
 const users = [
   {
@@ -60,6 +62,11 @@ router.post("/", async(req, res) => {
 });
 
 router.post("/mail", (req, res) => {
+  const {destinatario, asunto, mensaje} = req.body
+  //generando email
+  let html = mailMessage(mensaje)
+  //enviando mensaje
+  SendEmails(destinatario,asunto,html)
   res.status(200).json(req.body)
 });
 
