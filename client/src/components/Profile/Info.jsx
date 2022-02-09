@@ -153,8 +153,8 @@ useEffect(async() => {
       country: res.payload.country? res.payload.country : '',
       city: res.payload.city? res.payload.city : '' ,
       postalcode: res.payload.postalcode? res.payload.postalcode : 0,
-      
-      password: ""
+      password: "",
+      newpassword: ''
     })
   })
   
@@ -171,7 +171,7 @@ useEffect(async() => {
       </div>
       <div className={style.data}>
         <div className={style.data1}>
-
+        <button className={style.editbtn} onClick={()=>setDisplay('form')} ><EditIcon /></button>
         <p className={style.p}><b>Nombre: </b>  {user?.name ? user.name : ''}</p>
         <p className={style.p}><b>Apellido: </b> {user?.lastname ? user.lastname : ''}</p>
         <p className={style.p}><b>Email: </b>{user?.email ? user.email : ''} </p>
@@ -231,7 +231,7 @@ useEffect(async() => {
       </div>
       <div className={style.inputContainer}>
         <label>Contraseña</label>
-        <input className={style.input} required name='password' type='password' defaultValue={data.password} onChange={(e)=>validatePass(e)}/>
+        <input className={style.input} required name='password' type='password'  onChange={(e)=>validatePass(e)}/>
         {error==='password' ? <span style={{color: 'red'}}>Escriba su contraseña</span> : null}
       </div>
      
@@ -259,7 +259,7 @@ useEffect(async() => {
       }
 
       <div style={{width: '400px', marginLeft: '20%', marginTop: '5%'}}>
-        <Button variant='contained' onClick={onSubmit}  style={{backgroundColor: '#2EB8B0', marginRight: '10%', marginTop: '20px'}} type='submit' disabled={error.length > 0}>Actualizar</Button>
+        <Button variant='contained' onClick={onSubmit}  style={{backgroundColor: '#2EB8B0', marginRight: '10%', marginTop: '20px'}} type='submit' disabled={error.length > 0 || data.password.length <= 0}>Actualizar</Button>
         <Button variant='contained'  style={{backgroundColor: 'red', marginTop: '20px', width:'125px'}} onClick={cancel}>cancelar</Button>
       </div>
     </form>

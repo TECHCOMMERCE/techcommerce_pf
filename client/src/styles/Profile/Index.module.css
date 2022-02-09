@@ -23,6 +23,7 @@
   justify-content: space-between;
   align-items: space-between;
   flex-direction: column;
+  
 }
 
 .buttons{
@@ -30,6 +31,11 @@
   background-color: transparent;
   border: none;
   cursor: pointer;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .buttonP{
@@ -55,4 +61,23 @@
 
 .component{
   width: 70%;
+}
+
+
+
+@media (max-width: 600px) {
+  .container{
+    flex-direction: column;
+    margin-top: 200px;
+  }
+
+
+  .img{
+    width: 150px;
+    height: 150px;
+  }
+
+  .menu{
+    width: 20%;
+  }
 }

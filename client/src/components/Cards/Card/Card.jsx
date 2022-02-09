@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { Main, Name, Img, Stock, Link } from "./styles.js";
+import { Main, Name, Img, Stock, Link, Price } from "./styles.js";
 import {NavLink} from 'react-router-dom'; 
 import { Button } from '@mui/material';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
@@ -25,7 +25,10 @@ const Card = ({id, name, stock, image , price}) => {
       <div style={{height: '12%', overflow: 'hidden'}}>
       <Link  href={`/Details/${id}`}><Name style={{fontFamily: 'Poppins'}}>{name}</Name></Link>
       </div>
-      <p style={{color: '#2EB8B0'}}><b>$ </b>{price}</p>
+      <Price>
+      <p style={{color: '#2EB8B0', textAlign: 'center'}}>$ {price}</p>
+      </Price>
+      
       <p style={{fontFamily: 'Poppins'}}>{stock} {stock===0 ? 'Agotado': 'disponibles!'}</p>
       {/* <Stock>
       <Button onClick={add} size='small' style={{ height: '30px'}} variant="text"><AddIcon/> </Button>

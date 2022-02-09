@@ -5,18 +5,20 @@ import Image from './linea-gris.png';
 import { getDelivery } from '../../Store/actions/tickets';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-const Shipping = (deliveryid) => {
+const Shipping = () => {
   const dispatch= useDispatch();
-  //const {delivery} =useSelector(state => state.tickets)
-  //const {deliveryid} =useParams();
-  const [delivery, setDelivery] =useState({
+  const {delivery} =useSelector(state => state.tickets)
+  const {deliveryid} =useParams();
+  console.log('deliveryid', deliveryid);
+  console.log('delivery' ,delivery)
+/*   const [delivery, setDelivery] =useState({
     status: 'Requested'
-  });
+  }); */
 
 
 
   useEffect(() => {
-    //dispatch(getDelivery(deliveryid))
+    dispatch(getDelivery(deliveryid))
   }, [dispatch]);
   
 

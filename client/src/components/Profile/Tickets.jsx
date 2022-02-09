@@ -81,10 +81,11 @@ useEffect(async() => {
              
             </select>
             {
-              dimensions.width < 476 ?
+              dimensions.width < 600 ?
               <table className={style.tablemobile}>
                 <thead>
                   <th>FECHA</th>
+                  
                   <th>Detalles</th>
                 </thead>
                 <tbody>
@@ -93,6 +94,7 @@ useEffect(async() => {
                           return(
                             <tr key={x.orderid}>
                               <td>{x.createdAt}</td>
+                              
                               <td><Button variant='contained' onClick={()=>onClick(x.orderid)} >Detalles</Button></td>
 
                             </tr>
