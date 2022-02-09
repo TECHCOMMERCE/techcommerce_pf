@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Fragment, useRef } from "react";
-import { useDispatch, useSelector  } from "react-redux";
+import { useDispatch } from "react-redux";
 import { postReview } from '../../../Store/actions/reviews'
 
 //BUTTONS --
@@ -19,7 +19,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 // start rate --
 import Rating from "@mui/material/Rating";
-import { useState } from "react";
+
 import Swal from 'sweetalert2';
 
 const SubmitReveiw = ({productid, getReviewsByProduct}) => {
@@ -42,10 +42,6 @@ const SubmitReveiw = ({productid, getReviewsByProduct}) => {
   }
 
 //-------------HANDLERS --------------------------- 
-
-  function handleClick() {
-    setLoading(true);
-  }
 
   // const handleChanges = (e) => {
     // setInput(e.target.value)
@@ -170,7 +166,7 @@ const SubmitReveiw = ({productid, getReviewsByProduct}) => {
              type="submit"
              color="success"
             >
-              Done
+             Hecho
             </Button>
           </Stack>
           </form>
