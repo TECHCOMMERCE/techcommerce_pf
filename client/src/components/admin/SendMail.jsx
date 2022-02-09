@@ -1,13 +1,10 @@
 import axios from 'axios';
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import s from "../../assets/styles/admin/sendMail.module.css";
 
 import {BiSend} from "react-icons/bi";
 import { Box, Button, MenuItem, Select, TextField } from '@material-ui/core';
-import { useState } from 'react';
-
-
 
 const SendMail = () => {
     const [data, setData] = useState({
@@ -16,18 +13,44 @@ const SendMail = () => {
         mensaje: ""
     });
 
+    const [users, setUsers] = useState([])
+
     const SERVER = process.env.REACT_APP_SERVER || "http://localhost:3001/";
-    // useEffect(async() => {
-    //     const res = axios.get(`${SERVER}`)
-    // }, []);
+    useEffect(async() => {
+        const res = await axios.get(`${SERVER}user?attributes=userid-name-email`);
+
+        setUsers(res.data);
+    }, []);
     
     return (
         <div className={s.padding}>
             <div className={s.container}>
-                <form className={s.form}>
+                <form className={s.form} onSubmit={async(e) => {
+                    e.preventDefault();
+
+                    try{
+                        const res = await axios.post(`${SERVER}user/sendMail`, data);
+
+                        console.log(res.data);
+                    }catch(e){
+                        console.log(e);
+                    }
+                }}>
                     <div className={s.top}>
                         <div className={s.left}>
-                            <TextField className={s.input} id="standard-basic" label="Asunto" variant="standard" />
+                            <TextField 
+                                className={s.input} 
+                                id="standard-basic" 
+                                label="Asunto" 
+                                variant="standard" 
+                                value={data.asunto}
+                                onChange={e => setData(prev => {
+                                    return {
+                                        ...prev,
+                                        asunto: e.target.value
+                                    }
+                                })}
+                            />
                             
                             <div className={s.destinatario}>
                                 <div className={s.text}>
@@ -49,9 +72,8 @@ const SendMail = () => {
                                     label="destinatario"
                                 >
                                     <MenuItem value="destinatario">destinatario</MenuItem>
-                                    <MenuItem value={10}>Ten</MenuItem>
-                                    <MenuItem value={20}>Twenty</MenuItem>
-                                    <MenuItem value={30}>Thirty</MenuItem>
+
+                                    {users?.map(user => <MenuItem key={user.userid} value={user.email}>{user.name}</MenuItem>)}
                                 </Select>
                             </div>
                         </div>
@@ -64,15 +86,22 @@ const SendMail = () => {
                             label="Mensaje"
                             multiline
                             rows={8}
-                            defaultValue={data.mensaje}
+                            value={data.mensaje}
+                            onChange={e => setData(prev => {
+                                return {
+                                    ...prev,
+                                    mensaje: e.target.value
+                                }
+                            })}
                         />
                     </div>
                      
-
-                    <Button className={s.button} variant="contained">
-                        send mail
-                        <BiSend/>
-                    </Button>
+                    <div className={s.buttonArea}>
+                        <Button type='submit' className={s.button} variant="contained">
+                            send mail
+                            <BiSend/>
+                        </Button>
+                    </div>
                 </form>
             </div>
         </div>

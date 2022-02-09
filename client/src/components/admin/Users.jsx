@@ -24,7 +24,9 @@ const Users = () => {
     const SERVER = process.env.REACT_APP_SERVER || "http://localhost:3001/";
 
     async function actualizarTabla(){
+        console.log(SERVER)
         const res = await axios.get(`${SERVER}user`);
+        console.log(res);
         setUsers(res.data);
     }
 
