@@ -24,9 +24,11 @@ const EditBrand = () => {
     e.preventDefault();
     if (document.getElementById("name").value) {
       dispatch(putBrand(input));
-      swalMessages("Marca editada exitosamente", "Editada", "success").then(() => {
-        window.location.href = `/dashboard/brands/edit/${params.brandid}`;
-      });
+      swalMessages("Marca editada exitosamente", "Editada", "success").then(
+        () => {
+          window.location.href = `/dashboard/brands/edit/${params.brandid}`;
+        }
+      );
     }
   };
 
@@ -67,7 +69,7 @@ const EditBrand = () => {
           p: 40,
           pt: 20,
           width: "500px",
-          backgroundColor: "dodgerblue",
+          backgroundColor: "#2eb8b0",
           borderRadius: "5px",
           height: "fit-content",
         }}
@@ -99,7 +101,6 @@ const EditBrand = () => {
             autoFocus
             label="Nombre"
             required
-            multiline
             id="name"
             name="name"
             variant="filled"
@@ -107,9 +108,9 @@ const EditBrand = () => {
             value={input.name || (brandDetail?.name && brandDetail.name)}
             onChange={handleInput}
             placeholder="Asus"
-            inputProps={{maxLength: 100}}
-            InputLabelProps={{shrink: true}}
-            helperText="100 caracteres como máximo"
+            inputProps={{ maxLength: 50 }}
+            InputLabelProps={{ shrink: true }}
+            helperText="50 caracteres como máximo"
             sx={{ width: "100%", mb: 30 }}
           />
 
@@ -124,6 +125,7 @@ const EditBrand = () => {
               color="primary"
               endIcon={<MdSave />}
               size="medium"
+              sx={{ color: "ghostwhite" }}
             >
               Guardar
             </Button>

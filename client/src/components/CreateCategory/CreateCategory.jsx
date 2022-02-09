@@ -24,10 +24,12 @@ const CreateCategory = () => {
 
   useEffect(() => {
     if (response && response === "Category created") {
-      swalMessages("Categoría creada exitosamente", "Creada", "success").then(() => {
-        window.location.href = "/dashboard/categories/create";
-      });
-    } else if(response && response === "This category already exist"){
+      swalMessages("Categoría creada exitosamente", "Creada", "success").then(
+        () => {
+          window.location.href = "/dashboard/categories/create";
+        }
+      );
+    } else if (response && response === "This category already exist") {
       swalMessages("Esta categoría ya existe", null, "error").then(() => {
         window.location.href = "/dashboard/categories/create";
       });
@@ -55,7 +57,7 @@ const CreateCategory = () => {
           p: 40,
           pt: 20,
           width: "500px",
-          backgroundColor: "dodgerblue",
+          backgroundColor: "#2eb8b0",
           borderRadius: "5px",
           height: "fit-content",
         }}
@@ -86,8 +88,7 @@ const CreateCategory = () => {
           <TextField
             autoFocus
             label="Nombre"
-            multiline
-            inputProps={{maxLength: 100}}
+            inputProps={{ maxLength: 100 }}
             required
             id="name"
             name="name"
@@ -103,7 +104,7 @@ const CreateCategory = () => {
           {/* Botones */}
           <Box
             width="100%"
-            sx={{ display: "flex", justifyContent: "space-between", }}
+            sx={{ display: "flex", justifyContent: "space-between" }}
           >
             <Button
               type="submit"
@@ -111,6 +112,7 @@ const CreateCategory = () => {
               color="primary"
               endIcon={<MdSave />}
               size="medium"
+              sx={{ color: "ghostwhite" }}
             >
               Crear
             </Button>

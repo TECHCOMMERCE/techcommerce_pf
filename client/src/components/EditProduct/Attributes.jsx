@@ -12,6 +12,7 @@ import {
   IconButton,
   List,
   ListItem,
+  Typography,
 } from "@mui/material";
 
 const Attributes = ({ input, setInput }) => {
@@ -36,8 +37,7 @@ const Attributes = ({ input, setInput }) => {
             id="attribute-name"
             placeholder="Color"
             name="name"
-            helperText=""
-            inputProps={{ maxLength: 12}}
+            inputProps={{ maxLength: 12 }}
             onChange={(e) => handleAttributes(e, attributes, setAttributes)}
           />
         </Box>
@@ -50,8 +50,7 @@ const Attributes = ({ input, setInput }) => {
             placeholder="Azul"
             id="attribute-value"
             sx={{ width: "90%" }}
-            inputProps={{ maxLength: 30}}
-            helperText=""
+            inputProps={{ maxLength: 30 }}
             name="value"
             onChange={(e) => handleAttributes(e, attributes, setAttributes)}
           />
@@ -64,17 +63,20 @@ const Attributes = ({ input, setInput }) => {
               document.querySelector("#attribute-name").focus();
             }}
           >
-            <MdAddCircle size="40px" color="#3CB371" />
+            <MdAddCircle size="40px" color="#2eb8b0" />
           </IconButton>
         </Box>
       </Box>
+      <Typography sx={{ fontSize: ".75rem", mt: "5px", color: "gray" }}>
+        12 caracteres en Atributo y 30 caracteres en Valor como máximo
+      </Typography>
 
       {input.attributes[0] && (
         <List
           style={{
             fontSize: 11,
             listStyle: "none",
-            maxHeight: "214px",
+            maxHeight: "315px",
             width: "94%",
             overflowY: "scroll",
             marginTop: "10px",

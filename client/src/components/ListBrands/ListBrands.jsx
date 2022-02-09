@@ -105,11 +105,11 @@ const ListBrands = () => {
             background: "ghostwhite",
             borderRadius: "50%",
             display: "flex",
-            border: "4px solid #3CB371",
+            border: "4px solid #2eb8b0",
           }}
         >
           <IconButton
-            color="success"
+            color="primary"
             onClick={() => (window.location.href = "/dashboard/brands/create")}
           >
             <MdAddCircle size="45" color="success" />
@@ -127,7 +127,7 @@ const ListBrands = () => {
             borderRadius: "5px",
             display: "flex",
             alignItems: "center",
-            border: "4px solid dodgerblue",
+            border: "4px solid #2eb8b0",
           }}
         >
           <IconButton
@@ -142,7 +142,7 @@ const ListBrands = () => {
               setCurrentPage(0);
             }}
           >
-            <MdOutlineFirstPage size="45" color="dodgerblue" />
+            <MdOutlineFirstPage size="45" color="#2eb8b0" />
           </IconButton>
 
           <IconButton
@@ -161,7 +161,7 @@ const ListBrands = () => {
               setCurrentPage(currentPage > 0 ? currentPage - 1 : 0);
             }}
           >
-            <MdKeyboardArrowLeft size="45" color="dodgerblue" />
+            <MdKeyboardArrowLeft size="45" color="#2eb8b0" />
           </IconButton>
           <FormLabel
             sx={{
@@ -170,14 +170,14 @@ const ListBrands = () => {
               px: 10,
               borderRadius: "5px",
               fontWeight: "bold",
-              backgroundColor: "dodgerblue",
+              backgroundColor: "#2eb8b0",
             }}
           >
             {currentPage + 1}
           </FormLabel>
           <IconButton
             name="next"
-            color="success"
+            color="primary"
             onClick={() => {
               if (searching) {
                 if (currentPage < Math.floor(brands.count / 10)) {
@@ -196,12 +196,11 @@ const ListBrands = () => {
               }
             }}
           >
-            <MdKeyboardArrowRight size="45" color="dodgerblue" />
+            <MdKeyboardArrowRight size="45" />
           </IconButton>
 
           <IconButton
             name="last-page"
-            color="success"
             onClick={() => {
               if (searching) {
                 dispatch(getBrandsByName(input, Math.floor(brands.count / 10)));
@@ -212,7 +211,7 @@ const ListBrands = () => {
               }
             }}
           >
-            <MdOutlineLastPage size="45" color="dodgerblue" />
+            <MdOutlineLastPage size="45" color="#2eb8b0" />
           </IconButton>
         </Box>
 

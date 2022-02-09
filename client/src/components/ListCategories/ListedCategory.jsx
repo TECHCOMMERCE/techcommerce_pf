@@ -8,7 +8,7 @@ const ListedCategory = ({ category, handleToggle }) => {
     <Box>
       <Box
         sx={{
-          background: category.status ? "dodgerBlue" : "lightblue",
+          background: category.status ? "#2eb8b0" : "lightblue",
           borderRadius: "5px",
           margin: 20,
           display: "flex",
@@ -28,7 +28,7 @@ const ListedCategory = ({ category, handleToggle }) => {
         <Box sx={{ display: "flex" }}>
           <Link to={`/dashboard/categories/edit/${category.categoryid}`} style={{color: "#77817c",}}>
             <Box style={{ background: "ghostwhite", borderRadius: "5px", padding: 5 }}>
-              <MdModeEdit color="success" size="40" />
+              <MdModeEdit size="40" />
             </Box>
           </Link>
 
@@ -45,7 +45,7 @@ const ListedCategory = ({ category, handleToggle }) => {
                 category.status ?
                 <MdOutlineCheckBox
                   name={category.name}
-                  color="#3CB371"
+                  color="#2eb8b0"
                   size="40"
                   onClick={() => handleToggle(category)}
                 />

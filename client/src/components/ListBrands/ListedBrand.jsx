@@ -8,7 +8,7 @@ const ListedBrand = ({ brand, handleToggle }) => {
     <Box>
       <Box
         sx={{
-          background: brand.status ? "dodgerBlue" : "lightblue",
+          background: brand.status ? "#2eb8b0" : "lightblue",
           borderRadius: "5px",
           margin: 20,
           display: "flex",
@@ -28,7 +28,7 @@ const ListedBrand = ({ brand, handleToggle }) => {
         <Box sx={{ display: "flex" }}>
           <Link to={`/dashboard/brands/edit/${brand.brandid}`} style={{color: "#77817c",}}>
             <Box style={{ background: "ghostwhite", borderRadius: "5px", padding: 5 }}>
-              <MdModeEdit color="success" size="40" />
+              <MdModeEdit color="primary" size="40" />
             </Box>
           </Link>
 
@@ -45,7 +45,7 @@ const ListedBrand = ({ brand, handleToggle }) => {
                 brand.status ?
                 <MdOutlineCheckBox
                   name={brand.name}
-                  color="#3CB371"
+                  color="#2eb8b0"
                   size="40"
                   onClick={() => handleToggle(brand)}
                 />
