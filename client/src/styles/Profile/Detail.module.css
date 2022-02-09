@@ -29,12 +29,46 @@
   margin: 3%;
   width: 100%;
 }
+.pdiv{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+ 
+}
 
 .p{
   margin-top: 5%;
+  text-align: center;
+}
+
+.p b{
+  text-align: center;
 }
 
 .volver{
-  margin-left: 45%;
+  
   margin-top: 10%;
+}
+
+
+@media (max-width: 600px) {
+  .ticket{
+    width: 100%;
+    margin-left: 0px;
+    margin-top: 60px;
+  }
+
+  .card{
+    flex-direction: column;
+    margin-top: 40px;
+  }
+
+  .infoCard{
+    margin-top: 12px;
+  }
+.volver{
+  margin-left: 0%;
+}
+
 }

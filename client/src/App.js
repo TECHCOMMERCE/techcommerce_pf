@@ -49,7 +49,7 @@ function App() {
         
         <Route path='/profile/:getDisplay' element={<Profile/>} />
         <Route path='/profile' element={<Profile/>} />
-        <Route path='shipping' element={<Shipping/>} />
+        <Route path='/shipping/:deliveryid' element={<Shipping/>} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
 
