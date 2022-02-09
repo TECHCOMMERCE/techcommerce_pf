@@ -37,7 +37,7 @@ const CategoriesSearchBar = ({
           label="Buscar"
           variante="filled"
           placeholder="Celulares"
-          inputProps={{ maxLength: "255" }}
+          inputProps={{ maxLength: "100" }}
           onChange={(e) => {
             if (!e.target.value) {
               setSearching(false);
@@ -49,7 +49,7 @@ const CategoriesSearchBar = ({
             }
           }}
           autoFocus
-          helperText="255 caracteres como máximo"
+          helperText="100 caracteres como máximo"
           required
         ></TextField>
         <IconButton type="submit" sx={{ fontSize: "3rem", ml: 10 }}>

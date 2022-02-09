@@ -71,7 +71,7 @@ const EditCategory = () => {
           p: 40,
           pt: 20,
           width: "500px",
-          backgroundColor: "dodgerblue",
+          backgroundColor: "#2eb8b0",
           borderRadius: "5px",
           height: "fit-content",
         }}
@@ -102,7 +102,6 @@ const EditCategory = () => {
           <TextField
             autoFocus
             label="Nombre"
-            multiline
             required
             id="name"
             name="name"
@@ -128,6 +127,7 @@ const EditCategory = () => {
               color="primary"
               endIcon={<MdSave />}
               size="medium"
+              sx={{color: "ghostwhite",}}
             >
               Guardar
             </Button>

@@ -20,12 +20,13 @@ const Dashboard = () => {
         justifyContent: "center",
         alignItems: "center",
         height: "100vh",
+        width: "100%",
         mt:"70px",
       }}
     >
       <Box
         sx={{
-          background: "dodgerblue",
+          background: "#2eb8b0",
           p: 20,
           width: "100%",
           height: "fit-content",
@@ -48,7 +49,7 @@ const Dashboard = () => {
           <Box sx={{ display: "flex", justifyContent: "space-between" }}>
             <Button
               variant="contained"
-              sx={{ width: "30%", height: "20vh", fontSize: "1rem" }}
+              sx={{ width: "30%", height: "20vh", fontSize: "1rem", color: "ghostwhite", }}
               color="error"
               startIcon={<MdOutlineQrCode />}
               onClick={() =>
@@ -59,7 +60,7 @@ const Dashboard = () => {
             </Button>
             <Button
               variant="contained"
-              sx={{ width: "30%", height: "20vh", fontSize: "1rem" }}
+              sx={{ width: "30%", height: "20vh", fontSize: "1rem", color: "ghostwhite", }}
               color="success"
               startIcon={<MdLoyalty />}
               onClick={() => (window.location.href = "/dashboard/brands/")}
@@ -69,7 +70,7 @@ const Dashboard = () => {
             <Button
               variant="contained"
               color="warning"
-              sx={{ width: "30%", height: "20vh", fontSize: "1rem" }}
+              sx={{ width: "30%", height: "20vh", fontSize: "1rem", color: "ghostwhite", }}
               startIcon={<MdCategory />}
               onClick={() => (window.location.href = "/dashboard/categories/")}
             >
@@ -77,7 +78,7 @@ const Dashboard = () => {
             </Button>
           </Box>
 
-          <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+          <Box sx={{ display: "flex", justifyContent: "space-between", color: "ghostwhite", }}>
             <Button
               color="info"
               variant="contained"
@@ -95,7 +96,7 @@ const Dashboard = () => {
             <Button
               color="primary"
               variant="contained"
-              sx={{ mt: 40, width: "30%", height: "20vh", fontSize: "1rem" }}
+              sx={{ mt: 40, width: "30%", height: "20vh", fontSize: "1rem", color: "ghostwhite", }}
               startIcon={<MdPeople />}
               onClick={() => (window.location.href = "/dashboard/users")}
             >
@@ -104,7 +105,7 @@ const Dashboard = () => {
             <Button
               variant="contained"
               color="secondary"
-              sx={{ mt: 40, width: "30%", height: "20vh", fontSize: "1rem"}}
+              sx={{ mt: 40, width: "30%", height: "20vh", fontSize: "1rem", color: "ghostwhite",}}
               startIcon={<MdLocalShipping />}
               onClick={() => (window.location.href = "/dashboard/deliveries")}
             >

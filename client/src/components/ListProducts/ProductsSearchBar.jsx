@@ -35,11 +35,10 @@ const ProductsSearchBar = ({
         <TextField
           sx={{ width: "400px" }}
           label="Buscar"
-          multiline
           variante="filled"
           placeholder="Moto G00"
-          inputProps={{ maxLength: "255" }}
-          helperText="255 caracteres como máximo"
+          inputProps={{ maxLength: "100" }}
+          helperText="100 caracteres como máximo"
           autoFocus
           required
           onChange={(e) => {

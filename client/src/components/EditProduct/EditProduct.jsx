@@ -107,7 +107,7 @@ const EditProduct = () => {
           p: 40,
           pt: 20,
           width: "80%",
-          backgroundColor: "dodgerblue",
+          backgroundColor: "#2eb8b0",
           borderRadius: "5px",
           height: "fit-content",
         }}
@@ -361,8 +361,8 @@ const EditProduct = () => {
                   endIcon={<MdAddCircle />}
                   variant="contained"
                   component="label"
-                  color="success"
-                  sx={{ my: 10 }}
+                  color="primary"
+                  sx={{ my: 10, color: "ghostwhite", }}
                 >
                   <input
                     type="file"
@@ -415,7 +415,7 @@ const EditProduct = () => {
               id="submit"
               type="submit"
               endIcon={<MdSave />}
-              sx={{ mr: 40 }}
+              sx={{ mr: 40, color: "ghostwhite", }}
             >
               Guardar
             </Button>
