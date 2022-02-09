@@ -27,6 +27,7 @@ import Orders from "./components/admin/Orders";
 import OrderDetail from "./components/admin/OrderDetail";
 import { useSelector } from "react-redux";
 import Shipping from "./components/Profile/Shipping";
+import SendMail from "./components/admin/SendMail";
 import ListDeliveries from "./components/ListDeliveries/ListDeliveries";
 import EditDelivery from "./components/EditDelivery/EditDelivery";
 
@@ -182,6 +183,7 @@ function App() {
           <Route path="dashboard/users" element={isAdmin ? <Users /> : <h1>No tenes acceso a esta página</h1>}/>
           <Route path="dashboard/orders" element={isAdmin ? <Orders/> : <h1>No tenes acceso a esta página</h1>}/>
           <Route path="dashboard/orders/:orderid" element={isAdmin ? <OrderDetail/> : <h1>No tenes acceso a esta página</h1>}/>
+          <Route path="dashboard/sendMail" element={isAdmin ? <SendMail/> : <h1>No tenes acceso a esta página</h1>}/>
         </>}
 
 
