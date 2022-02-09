@@ -14,6 +14,17 @@
   align-items: center;
   flex-direction: row;
 }
+
+.btn{
+  background-color: #2EB8B0;
+  border-radius: 5px;
+  border:none;
+  width: 140px;
+  height: 40px;
+  text-transform: uppercase;
+  cursor: pointer;
+  color:white;
+}
 .openbtn{
   background-color: transparent;
   border: none;
@@ -61,7 +72,9 @@
   margin: 5%;
 }
 
-
+.editbtn{
+  display: none;
+}
 
 
 
@@ -163,4 +176,49 @@
   display: flex;
   justify-content: space-evenly;
   flex-direction: row;
+}
+
+
+@media (max-width: 600px) {
+
+  .container{
+    margin-top: 30px;
+    border-top: 1px solid black;
+  }
+  .titleContainer{
+    display: none;
+  }
+
+  .data{
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .data1{
+    width: 100%;
+
+  }
+  .data2{
+    width: 100%;
+    
+  }
+
+  p{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    font-weight: 200;
+  }
+  .editbtn{
+    display: flex;
+    margin-left:80% ;
+    margin-top: 10px;
+  }
+  
+  .formContainer{
+    margin-top: 40px;
+    border-top: 1px solid black;
+  }
+
 }

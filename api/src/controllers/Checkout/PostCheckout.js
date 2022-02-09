@@ -89,6 +89,7 @@ const getUserTickets = async(req, res, next) =>{
     let tickets = await Order.findAll({
       where :  {status: status},
       include : [
+        {model: Delivery},
         {model : Product},
         {model: User,
         where: {userid : userid}
@@ -100,6 +101,7 @@ const getUserTickets = async(req, res, next) =>{
   }else {
     let tickets = await Order.findAll({
       include : [
+        {model: Delivery},
         {model : Product},
         {model: User,
         where: {userid : userid}
@@ -122,6 +124,7 @@ const getOneTicket =async(req,res,next) => {
     let ticket = await Order.findOne({
       where : { orderid: ticketid },
       include: [
+        {model: Delivery},
         {
           model: Product
         }

@@ -81,10 +81,11 @@ useEffect(async() => {
              
             </select>
             {
-              dimensions.width < 476 ?
+              dimensions.width < 600 ?
               <table className={style.tablemobile}>
                 <thead>
                   <th>FECHA</th>
+                  
                   <th>Detalles</th>
                 </thead>
                 <tbody>
@@ -93,7 +94,8 @@ useEffect(async() => {
                           return(
                             <tr key={x.orderid}>
                               <td>{x.createdAt}</td>
-                              <td><Button variant='contained' onClick={()=>onClick(x.orderid)} >Detalles</Button></td>
+                              
+                              <td><button className={style.btnmat} variant='contained' onClick={()=>onClick(x.orderid)} >Detalles</button></td>
 
                             </tr>
                           )
@@ -125,7 +127,7 @@ useEffect(async() => {
                               <td>{x.status}</td>
                               <td>$ {x.totalPrice}</td>
                               <td>{x.createdAt}</td>
-                              <td><Button variant='contained' onClick={()=>onClick(x.orderid)} >Detalles</Button></td>
+                              <td><button className={style.btnmat} onClick={()=>onClick(x.orderid)} >Detalles</button></td>
 
                             </tr>
                           )
