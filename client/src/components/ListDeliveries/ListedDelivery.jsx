@@ -15,7 +15,7 @@ const ListedDelivery = ({ delivery, handleSubmit, setInput }) => {
   
   return (
     <TR>
-      <TD>{delivery.deliveryid.slice(0, 8)}</TD>
+      <TD>{delivery ? delivery?.deliveryid?.slice(0, 8) : ""}</TD>
       <TD>
         {
           (delivery.orders[0].orderid).slice(0,8)
@@ -38,8 +38,8 @@ const ListedDelivery = ({ delivery, handleSubmit, setInput }) => {
           </select>
         }
       </TD>
-      <TD>{delivery.createdAt.slice(0, 10)}</TD>
-      <TD>{delivery.updatedAt.slice(0, 10)}</TD>
+      <TD>{delivery ? delivery.createdAt.slice(0, 10) : ""}</TD>
+      <TD>{delivery ? delivery.updatedAt.slice(0, 10) : ""}</TD>
       <TD fSize="1.8rem" tAlign="center" color="#2eb8b0">
         {<MdSave style={{cursor: "pointer"}} onClick={handleSubmit} />}
       </TD>
