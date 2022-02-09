@@ -59,7 +59,7 @@ router.post("/", async(req, res) => {
   }
 });
 
-router.post("/sendMail", (req, res) => {
+router.post("/mail", (req, res) => {
   res.status(200).json(req.body)
 });
 
