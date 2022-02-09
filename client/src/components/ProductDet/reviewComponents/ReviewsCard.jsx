@@ -66,19 +66,23 @@ const ReviewsCard = ({name='Prueba',lastname='Lopez', stars, description, id,pro
   const closeHandler1 = () => {
     setVisible1(false) 
   };
- 
-  const valueRef = useRef('')
+  const [textEdit,setTextEdit] = useState(''+description);
+  //const valueRef = useRef('')
 
-  const sendValue = () => {
+  /* const sendValue = () => {
     return console.log(valueRef.current.value);
-  }
+  } */
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log('description', description)
+    console.log('textEdit', textEdit)
+    console.log('stars', stars)
+    console.log('productid', productid)
     dispatch(postReview(
       {
-        description: valueRef.current.value,
-       
+        description: textEdit,
+        stars
       }
       , productid))
       Swal.fire({
@@ -115,19 +119,21 @@ const ReviewsCard = ({name='Prueba',lastname='Lopez', stars, description, id,pro
                   </Modal.Header>
                   <form action="" onSubmit={e => handleSubmit(e)}>
                   <Modal.Body>
+
                     <Input 
                       label="Comentario"
                       description=""
                       type="text"
                       placeholder="Comentario"
-                      value={valueRef.current.value}
+                      onChange={(e)=>setTextEdit(e.target.value)}
+                      value={textEdit}
                    />
                   </Modal.Body>
                   <Modal.Footer>
                     <Button
                      type="submit"
                      variant="contained"
-                     onClick={sendValue,closeHandler1}>
+                     onClick={closeHandler1}>
                       Guardar
                     </Button>
                   </Modal.Footer>

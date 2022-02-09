@@ -53,7 +53,7 @@ const Reviews = ({productid}) => {
         {review.rating?<div style={{width: '100%', display: 'flex', flexDirection: 'column',alignItems: 'center'}}><h2>Calificación promedio</h2><Rating name="read-only" value={review.rating} readOnly size="large"/><h3>{review.rating} estrellas</h3><br></br></div>:null}
         {review.userreviews? (
           review?.userreviews.map((e,i) => {
-            return <ReviewsCard key={i} name={e.us.name} lastname={e.us.lastname} description={e.description} stars={e.stars} id={e.id}/>;
+            return <ReviewsCard key={i} name={e.us.name} lastname={e.us.lastname} description={e.description} stars={e.stars} id={e.id} productid={productid} getReviewsByProduct={getReviewsByProduct}/>;
           })
         ) : (
           <div className={st.cardB}>
