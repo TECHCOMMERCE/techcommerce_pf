@@ -38,6 +38,7 @@ let sequelize =
         ssl: true,
       })
     : new Sequelize(
+        //`postgres://ddfsfqpt:MMiwKYe-w1RY3arU4Vgbl9SIUWkEHi3Q@castor.db.elephantsql.com/ddfsfqpt`,
         `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
         { logging: false, native: false }
       );

@@ -1,17 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
+require('dotenv').config();
+const {SERVER} = process.env;
+function mailMessage(mensaje){
+  var variable = `
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&family=Raleway:wght@300;400;700&display=swap"
-      rel="stylesheet"
-    />
-    <title>Status Email</title>
-    <style>
+  <style>
 
 
       html {
@@ -235,7 +227,7 @@
       }
 
       .status img {
-        width: 50%;
+        width: 100%;
         height: auto;
       }
 
@@ -250,52 +242,39 @@
   </head>
 
   <body>
-    <div>
-      <header class="div__logo">
-        <div class="logo">
-          <img src="https://i.ibb.co/2yhTKMP/Tech.png" alt="logo" />
-        </div>
-      </header>
-      <h1 class="main-title">Estado de la Orden</h1>
-      <center><span>A continuación se presenta el estado actual s de su pedido</span></center>
-      <div class="status">
-        <img src="https://browntape.com/wp-content/uploads/2017/09/bb.png" alt="status" />
-        <article class="status-article">
-          <h2>Pendiente</h2>
-          <p>
-            Estamos esperando por alguien que tome tu orden en nuestras oficinas
-          </p>
-          <button class="btn__">Ver orden</button>
-        </article>
-      </div>
-      <!-- <container class="mail">
-        <div class="">
-          <img
-            class="img"
-            src="./pics/friendDesign.svg"
-            alt="welcome photo"
-            height="50%"
-          />
-        </div>
-        <div class="text">
-          Si ya paso mas de 1 hora y el estado de la orden sigue siendo el mismo porfavor contate al soporte tecnico y con gusto lo estaremos ayudando.
-        </div>
-        <button class="btn__">Contactar</button>
-      </container> -->
-      <hr />
-      <footer class="footer">
-        <p class="footer-main-text">Techcommerce agradece su preferencia, que disfrute de su compra</p>
-        
-        <div class="footer-img-container">
-          <img src="https://p1.hiclipart.com/preview/1016/686/474/mitu-icon-twitter-png-clipart.jpg" alt="twiter" />
-          <img src="https://i0.wp.com/eltallerdehector.com/wp-content/uploads/2021/06/logo-instagram-icon.png?fit=512%2C512&ssl=1" alt="instagram" />
-          <img src="https://w7.pngwing.com/pngs/982/799/png-transparent-youtube-logo-youtube-logo-internet-marketing-subscribe-television-label-text.png" alt="youtube" />
-        
-        </div>
-        <div class="footer-text-container">
-          <p>© 2022</p>
-        </div>
-      </footer>
+  <div>
+  <header class="div__logo">
+    <div class="logo">
+      <img src="https://i.ibb.co/2yhTKMP/Tech.png" alt="logo" />
     </div>
+  </header>
+  <h1 class="main-title">Mensaje importante!</h1>
+  <center><span>${mensaje}</span></center>
+  <div class="status">
+    <img src="https://www.trecebits.com/wp-content/uploads/2020/03/Apps-pagarle-a-famosos-por-saludos.jpg" alt="status" />
+  </div>
+ 
+  <hr />
+  <footer class="footer">
+    <p class="footer-main-text">Techcommerce agradece su preferencia, que disfrute de su compra</p>
+    
+    <div class="footer-img-container">
+      <img src="https://p1.hiclipart.com/preview/1016/686/474/mitu-icon-twitter-png-clipart.jpg" alt="twiter" />
+      <img src="https://i0.wp.com/eltallerdehector.com/wp-content/uploads/2021/06/logo-instagram-icon.png?fit=512%2C512&ssl=1" alt="instagram" />
+      <img src="https://w7.pngwing.com/pngs/982/799/png-transparent-youtube-logo-youtube-logo-internet-marketing-subscribe-television-label-text.png" alt="youtube" />
+    
+    </div>
+    <div class="footer-text-container">
+      <p>© 2022</p>
+    </div>
+  </footer>
+</div>
   </body>
-</html>
+  `;
+
+  return variable;
+}
+
+module.exports={
+  mailMessage
+}

@@ -12,13 +12,13 @@ const ListedDelivery = ({ delivery, handleSubmit, setInput }) => {
       status: e.target.value,
     })
   }
-  
+
   return (
     <TR>
       <TD>{delivery ? delivery?.deliveryid?.slice(0, 8) : ""}</TD>
       <TD>
         {
-          (delivery.orders[0].orderid).slice(0,8)
+          (delivery?.orders[0]?.orderid)//.slice(0,8)
           // <select name="" id="">
           //   {delivery.orders[0] &&
           //     delivery.orders.map((o, i) => (

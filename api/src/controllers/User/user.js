@@ -1,6 +1,8 @@
 const router = require("express").Router();
 const { Op } = require("sequelize");
 const {User} = require('../../db');
+const {mailMessage} = require('../SendMails/mailMessage')
+const {SendEmails} = require('../SendMails/main')
 
 const users = [
   {
@@ -55,9 +57,17 @@ router.post("/", async(req, res) => {
       return res.status(200).send({code: 2, message: "Ya existe un usuario con esos datos"});
     }
   }catch(e){
-    console.log(e);
     return res.status(200).send({code: 1, message: "Revise los campos"});
   }
+});
+
+router.post("/mail", (req, res) => {
+  const {destinatario, asunto, mensaje} = req.body
+  //generando email
+  let html = mailMessage(mensaje)
+  //enviando mensaje
+  SendEmails(destinatario,asunto,html)
+  res.status(200).json(req.body)
 });
 
 // PUT del perfil
@@ -80,7 +90,6 @@ router.put("/", async(req, res) => {
 
     return res.status(200).send({code: 0, message: "Usuario actualizado Con éxito"});
   }catch(e){
-    console.log(e);
     return res.status(200).send({code: 1, message: "Revise los campos"});
   }
 });
@@ -96,8 +105,6 @@ router.put("/:userid", async(req, res) => {
     
     user.update({...req.body});
 
-    console.log("user: ", user);
-
     return res.status(200).send({code: 0, message: "Usuario actualizado Con éxito"});
   }catch(e){
     
@@ -106,23 +113,41 @@ router.put("/:userid", async(req, res) => {
 });
 
 router.get("/", async(req, res) => {
-  try{
-    const users = await User.findAll({where: {
-      name: {
-        [Op.ne]: "admin"
-      },
+  let users = null;
 
-      lastname: {
-        [Op.ne]: "admin"
-      },
+  try{  
+    if(!req.query.hasOwnProperty("attributes")){
+      users = await User.findAll({where: {
+        name: {
+          [Op.ne]: "admin"
+        },
+  
+        lastname: {
+          [Op.ne]: "admin"
+        },
+  
+        status: true
+      }});
 
-      status: true
-    }});
+    }else{
+      let attributes = req.query.attributes.split("-");
 
-    console.log(users)
+      users = await User.findAll({where: {
+        name: {
+          [Op.ne]: "admin"
+        },
+  
+        lastname: {
+          [Op.ne]: "admin"
+        },
+
+        status: true
+      }, attributes});
+    }
 
     return res.status(200).send(users.map(user => user.dataValues));
   }catch(e){
+    console.log(e)
     return res.status(200).send({code: 1, message: "Hay error", error: e});
   }
 });

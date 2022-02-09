@@ -19,16 +19,11 @@ const Orders = () => {
         
         if(status !== "todos") url += `?status=${status}`;
 
+        console.log(url);
         const res = await axios.get(url);
 
         setOrders(res.data.orders);
     }, [status]);
-
-    useEffect(() => {
-        if(orders){
-          
-        }
-    }, [orders]);
 
     return (
         <div className={s.container}>
@@ -73,7 +68,7 @@ const Orders = () => {
                         </thead>
 
                         <tbody>
-                            {orders.map((order, i) => {
+                            {orders?.map((order, i) => {
                                 return(
                                     <tr 
                                         key={order.orderid} 
