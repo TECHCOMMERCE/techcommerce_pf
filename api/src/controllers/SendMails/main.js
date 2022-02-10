@@ -1,11 +1,11 @@
 const sgMail = require('@sendgrid/mail')
 
-sgMail.setApiKey(process.env.EMAILKEY)
+sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 
 function SendEmails(to, subject, html, sandboxMode = false){    
   const msg = {
     to, 
-    from: 'notifications.henrecommerce@gmail.com',
+    from: 'fernandolba.uiux@gmail.com',
     subject: `${subject}`,
     html: `${html}`,
     mail_settings: {
