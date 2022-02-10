@@ -53,7 +53,7 @@ useEffect(() => {
       
       
       <div>
-       <a href={`/shipping/${ticket.delivery?.deliveryid}`} ><button >Seguir Envío</button></a> 
+       <a href={`/shipping/${ticket.delivery?.deliveryid}`} ><button className={style.btnsend}>Seguir Envío</button></a> 
       </div>
       <p className={style.p} style={{fontSize: '19px'}}><b>TOTAL: </b>${ticket.totalPrice}</p>
 

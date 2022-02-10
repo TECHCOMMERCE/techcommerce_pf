@@ -1,20 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
+require('dotenv').config();
+const {SERVER} = process.env;
+function mailChangeStatusOrder(status,orderid){
+  var variable = `
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&family=Raleway:wght@300;400;700&display=swap"
-      rel="stylesheet"
-    />
-    <title>Status Email</title>
-    <style>
-
-
-      html {
+  <style>
+    html {
         box-sizing: border-box;
         font-family: "Noto Sans";
       }
@@ -261,11 +251,28 @@
       <div class="status">
         <img src="https://browntape.com/wp-content/uploads/2017/09/bb.png" alt="status" />
         <article class="status-article">
-          <h2>Pendiente</h2>
-          <p>
-            Estamos esperando por alguien que tome tu orden en nuestras oficinas
-          </p>
-          <button class="btn__">Ver orden</button>
+          <h2>${status}</h2>`
+          
+          //DEFINIENDO MENSAJE DE ACUERDO AL STATUS
+          if(status==="Processing")
+            variable+=`<p>
+              Estamos esperando por alguien que tome tu orden en nuestras oficinas
+            </p>`
+          if(status==="Send")
+            variable+=`<p>
+              Tu pedido se encuentra en camino, muchas gracias por tu preferencia
+            </p>`
+          if(status==="cancelled")
+            variable+=`<p>
+              Lamentamos que hayas cancelado tu pedido, esperamos que vuelvas pronto, gracias por tu preferencia
+            </p>`
+          if(status==="Completed")
+            variable+=`<p>
+              Tu orden ha sido entregada de forma correcta, que disfrutes de tu pedido, ,Techcommerce agradece tu preferencia
+            </p>`
+          
+          
+          variable+= `<a class="btn__" href="${SERVER}orders/${orderid}" target="_blank">Ver orden</a>
         </article>
       </div>
       <!-- <container class="mail">
@@ -298,4 +305,11 @@
       </footer>
     </div>
   </body>
-</html>
+  `;
+
+  return variable;
+}
+
+module.exports={
+  mailChangeStatusOrder
+}
