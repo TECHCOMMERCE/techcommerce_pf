@@ -1,10 +1,10 @@
-
 import styled from "styled-components";
-import mobile from "../../responsive";
+import mobile, {laptop} from "../../responsive";
+
 
 export const Container = styled.div`
  height: 60px;
-  ${mobile({ height: "50px" })}
+  ${mobile({ height: "10px" })}
 `;
 
 export const Wrapper = styled.div`
@@ -23,9 +23,12 @@ export const Left = styled.div`
 
 export const TechC = styled.img`
   width: 8rem;
-  margin-left: 5rem;
+  margin-left: 2rem;
   margin-top: 3rem;
   ${mobile({ fontSize: "24px" })}
+  @media screen and (max-width: 960px){
+    width: 5rem;
+  }
 `;
 
 export const Right = styled.ul`
@@ -35,7 +38,20 @@ export const Right = styled.ul`
   justify-content: right;
   list-style: none;
   ${mobile({ height: "50px" })}
+  @media screen and (max-width: 960px){
+    align-items: center;
+    background-color:#d63939 ;
+    left: ${({open}) =>( open ? "0": "-100%" )};
+    justify-content: center;
+    flex-direction: column;
+    transition: 0.5s all ease;
+    top: 85px;
+    height: 90vh;
+    position: absolute;
+    width: 100%;
+  }
 `;
+
 
 export const MenuItem = styled.div`
   font-family: arial;
@@ -49,7 +65,15 @@ export const MenuItem = styled.div`
 export const MenuItems = styled.li`
   height: 100%;
   ${mobile({ height: "50px" })}
+  @media screen and (max-width: 960px){
+    width:100%;
+    height:70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 `;
+
 
 export const MenuItemLink = styled.a`
   display: flex;
@@ -68,6 +92,10 @@ export const MenuItemLink = styled.a`
     color: #121212;
     background-color: #3c3c434d;
   }
+  @media screen and (max-width: 960px){
+    /* font-size: 2.8rem; */
+    width: 100%;
+  }
   ${mobile({ height: "50px" })}
 `;
 
@@ -78,20 +106,28 @@ export const Center = styled.div`
   margin-left: 2em;
   margin-right: 2em;
   ${mobile({ height: "10px" })}
+  @media screen and (max-width: 960px){
+    margin-right: 20px;
+    margin-left: 1em;
+    width: 373px;
+  }
 `;
+
 
 export const SearchContainer = styled.div`
   flex-direction: row;
   justify-content: center;
   width: 50%;
-  margin-left: 10em;
+  margin-left: 5em;
   border-radius: 8px;
   letter-spacing: 0.0275rem;
   background-color: white;
   margin-top: 1em;
   margin-bottom: -2em;
   ${mobile({ height: "10px" })}
-  
+  @media screen and (max-width: 960px){
+    width: 372px;
+  }
 `;
 
 export const Input = styled.input`
@@ -106,20 +142,33 @@ export const Input = styled.input`
   padding-top: 0.5rem;
   border: none;
   ${mobile({ height: "50px" })}
-  
+   
+  @media screen and (max-width: 960px){
+    font-size: 0.8rem;
+    padding-bottom: 0rem;
+    height: 3.3rem;
+    width: 90%;
+  }
 `;
 
 export const ButtonSearch = styled.button`
   height: 3rem;
   width: 10%;
-  
   border-radius: 0 8px 8px 0;
   background-color:#fcf5f5;
 
   &:hover {
     background-color: #3c3c434d;
   }
-  ${mobile({ height: "50px" })}
+  ${mobile({  height: "50px" })}
+  @media screen and (max-width: 960px){
+    padding-bottom: 0.2rem; 
+    height: 3.28rem;
+    width: 10%;
+  }
+  @media screen and (max-width: 1800px){
+    width: 10%;
+  } 
 `;
 export const Cartshopp = styled.div`
  ${mobile({ width: "50px" })}
@@ -127,6 +176,16 @@ export const Cartshopp = styled.div`
 
 export const MobileIcon = styled.div`
     display: none;
-
     ${mobile({ display: "flex" })}
+    @media screen and (max-width: 960px){
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+
+      svg{
+        fill: #000000;
+        margin-right: 0.5rem
+      }
+    }
 `;
+

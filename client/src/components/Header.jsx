@@ -48,7 +48,7 @@ const SearchIcon = styled(Search)`
   color: #5f5f5f;
   margin-left: 30px;
   margin-bottom: 10px;
-  ${mobile({ height: "10px" })}
+  ${mobile({width: '5px'})} })};
 `;
 
 const Header = () => {
