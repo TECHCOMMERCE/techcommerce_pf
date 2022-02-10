@@ -8,7 +8,12 @@ export const Main = styled.div `
   justify-content: flex-start;
   align-items: flex-start;
   flex-direction: row;
-  margin-top: 10%;
+  margin-top: 15%;
+  @media (max-width: 600px){
+    flex-direction: column;
+    justify-content: center;
+  align-items: center;
+  }
   
   
 `
@@ -62,12 +67,23 @@ export const Filters = styled.div`
   margin-bottom: 10%;
   margin-top: 10%;
   width: 10%;
+  @media (max-width: 600px){
+    justify-content: center;
+    align-items: center;
+  }
 `
 
 
 export const Select = styled.div`
   position: relative;
   top: 10%;
+  @media (max-width: 600px){
+    display: flex;
+    justify-content: center;
+    align-items: center ;
+    flex-direction: column;
+    position: relative;
+  }
 
 `
 
@@ -79,7 +95,12 @@ export const Options = styled.select`
   margin-left: 10%;
   text-align: center;
   font-size: 15px;
-  font-family: 'Poppins'
+  font-family: 'Poppins';
+
+ @media (max-width: 600px){
+ width: 150px;
+ margin-top: 0px;
+  }
 
 
 `

@@ -11,7 +11,7 @@ export const addAttribute = (attributes, input, setInput) => {
   if (!input.attributes?.find((a) => a.name === attributes.name)) {
     setInput({ ...input, attributes: [...input.attributes, attributes] });
   } else {
-    swalMessages("This attribute already exist", null , "warning");
+    swalMessages("Este atributo ya existe", null , "warning");
   }
 };
 

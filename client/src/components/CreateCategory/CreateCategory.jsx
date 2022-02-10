@@ -24,11 +24,13 @@ const CreateCategory = () => {
 
   useEffect(() => {
     if (response && response === "Category created") {
-      swalMessages(response, "Created", "success").then(() => {
-        window.location.href = "/dashboard/categories/create";
-      });
-    } else if(response && response === "This category already exist"){
-      swalMessages(response, null, "error").then(() => {
+      swalMessages("Categoría creada exitosamente", "Creada", "success").then(
+        () => {
+          window.location.href = "/dashboard/categories/create";
+        }
+      );
+    } else if (response && response === "This category already exist") {
+      swalMessages("Esta categoría ya existe", null, "error").then(() => {
         window.location.href = "/dashboard/categories/create";
       });
     }
@@ -45,6 +47,7 @@ const CreateCategory = () => {
         justifyContent: "center",
         alignItems: "center",
         width: "100%",
+        mt: "135px",
       }}
     >
       {/* Contiene todo el form y el título */}
@@ -53,18 +56,18 @@ const CreateCategory = () => {
           m: 20,
           p: 40,
           pt: 20,
-          width: "400px",
-          backgroundColor: "dodgerblue",
+          width: "500px",
+          backgroundColor: "#2eb8b0",
           borderRadius: "5px",
           height: "fit-content",
         }}
       >
         <Typography
           sx={{ fontSize: "1.5rem", mb: 20 }}
-          color="secondary"
+          color="ghostwhite"
           align="left"
         >
-          Create a Category
+          Crear una Categoría
         </Typography>
 
         {/* formulario */}
@@ -84,7 +87,8 @@ const CreateCategory = () => {
         >
           <TextField
             autoFocus
-            label="name"
+            label="Nombre"
+            inputProps={{ maxLength: 100 }}
             required
             id="name"
             name="name"
@@ -94,6 +98,7 @@ const CreateCategory = () => {
             onChange={handleInput}
             placeholder="Monitors"
             sx={{ width: "100%", mb: 30 }}
+            helperText="100 caracteres como máximo"
           />
 
           {/* Botones */}
@@ -107,8 +112,9 @@ const CreateCategory = () => {
               color="primary"
               endIcon={<MdSave />}
               size="medium"
+              sx={{ color: "ghostwhite" }}
             >
-              Create
+              Crear
             </Button>
             <Button
               color="error"
@@ -117,7 +123,7 @@ const CreateCategory = () => {
               size="medium"
               onClick={() => (window.location.href = "/dashboard/categories")}
             >
-              Back
+              Volver
             </Button>
           </Box>
         </form>

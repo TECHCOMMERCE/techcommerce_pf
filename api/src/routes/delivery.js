@@ -2,6 +2,7 @@ const router = require("express").Router();
 const putDelivery = require("../controllers/Delivery/PutDelivery");
 const getDeliveryById = require("../controllers/Delivery/GetDeliveryById");
 const postDelivery = require("../controllers/Delivery/PostDelivery");
+const {SendEmails} = require("../controllers/SendMails/main");
 
 router.get("/:deliveryid", async (req, res) => {
   console.log(req.params.deliveryid);

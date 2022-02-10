@@ -13,7 +13,7 @@ import { Button } from '@mui/material';
     <>
     <div className={style.container}>
       
-      <h1 style={{color: '#2EB8B0', borderBottom: '2px solid #2EB8B0', paddingBottom: '2%', width: '50%', textAlign: 'center'}}>Mis Favorios</h1>
+      <h1 className={style.titlewhislist} style={{color: '#2EB8B0', borderBottom: '2px solid #2EB8B0', paddingBottom: '2%', width: '50%', textAlign: 'center'}}>Mis Favoritos</h1>
       
     	<table className={style.table}>
         <thead>
@@ -28,7 +28,7 @@ import { Button } from '@mui/material';
                 <tr key={x.productid}>
                   <td>{x.name}</td>
                   <td>{x.stock>0?'Disponible':'No disponible'}</td>
-                  <td><Link to={`/Details/${x.productid}`}><Button variant='contained' /* onClick={()=>onClick(x.orderid)} */ >Detalles</Button></Link></td>
+                  <td><Link to={`/Details/${x.productid}`}><button className={style.btnmat} variant='contained' /* onClick={()=>onClick(x.orderid)} */ >Detalles</button></Link></td>
 
                 </tr>
               )

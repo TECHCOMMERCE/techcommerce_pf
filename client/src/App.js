@@ -30,6 +30,9 @@ import Shipping from "./components/Profile/Shipping";
 import Help from './components/Ayuda/Help'
 // import {getPolicies} from './Store/actions/help'
 import DetailHelp from './components/Ayuda/DetailHelp'
+import SendMail from "./components/admin/SendMail";
+import ListDeliveries from "./components/ListDeliveries/ListDeliveries";
+import EditDelivery from "./components/EditDelivery/EditDelivery";
 
 function App() {
   // Estado que determina si la cuenta logueada (o el invitado) es admin o no. Por defecto es false y cuando se logue, comprobará en un useEffect si es admin
@@ -57,6 +60,7 @@ function App() {
         <Route path='/ayuda' element={<Help/>} />
         <Route path='/ayuda/:id' element={< DetailHelp />} />
         <Route path='shipping' element={<Shipping/>} />
+        <Route path='/shipping/:deliveryid' element={<Shipping/>} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
 
@@ -167,10 +171,29 @@ function App() {
               </>
             }
           />
+
+          <Route
+            path="/dashboard/deliveries"
+            element={
+              <>
+                <ListDeliveries />
+              </>
+            }
+          />
+
+          <Route
+            path="/dashboard/deliveries/edit/:deliveryid"
+            element={
+              <>
+                <EditDelivery />
+              </>
+            }
+          />
           
           <Route path="dashboard/users" element={isAdmin ? <Users /> : <h1>No tenes acceso a esta página</h1>}/>
           <Route path="dashboard/orders" element={isAdmin ? <Orders/> : <h1>No tenes acceso a esta página</h1>}/>
           <Route path="dashboard/orders/:orderid" element={isAdmin ? <OrderDetail/> : <h1>No tenes acceso a esta página</h1>}/>
+          <Route path="dashboard/sendMail" element={isAdmin ? <SendMail/> : <h1>No tenes acceso a esta página</h1>}/>
         </>}
 
 

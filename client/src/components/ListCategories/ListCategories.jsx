@@ -40,8 +40,8 @@ const ListCategories = () => {
 
     dispatch(putCategory(obj));
     category.status
-      ? swalMessages(`Category ${category.name} disabled`, "Disabled", "success")
-      : swalMessages(`Category ${category.name} enabled`, "Enabled", "success");
+      ? swalMessages(`Categoría ${category.name} desactivada exitosamente`, "Desactivada", "success")
+      : swalMessages(`Categoría ${category.name} activada exitosamente`, "Activada", "success");
     dispatch(getCategories());
   };
 
@@ -60,7 +60,7 @@ const ListCategories = () => {
   }, [dispatch]);
 
   return (
-    <Container sx={{ px: 20, minWidth: "100vw" }}>
+    <Container sx={{ px: 20, minWidth: "100vw", mt: "135px", }}>
       <Box
         sx={{
           m: 20,
@@ -108,11 +108,11 @@ const ListCategories = () => {
             background: "ghostwhite",
             borderRadius: "50%",
             display: "flex",
-            border: "4px solid #3CB371",
+            border: "4px solid #2eb8b0",
           }}
         >
           <IconButton
-            color="success"
+            color="primary"
             onClick={() =>
               (window.location.href = "/dashboard/categories/create")
             }
@@ -132,12 +132,11 @@ const ListCategories = () => {
             borderRadius: "5px",
             display: "flex",
             alignItems: "center",
-            border: "4px solid dodgerblue",
+            border: "4px solid #2eb8b0",
           }}
         >
           <IconButton
             name="first-page"
-            color="success"
             onClick={() => {
               if (searching) {
                 dispatch(getCategoriesByName(input, 0));
@@ -147,12 +146,11 @@ const ListCategories = () => {
               setCurrentPage(0);
             }}
           >
-            <MdOutlineFirstPage size="45" color="dodgerblue" />
+            <MdOutlineFirstPage size="45" color="#2eb8b0" />
           </IconButton>
 
           <IconButton
             name="previous"
-            color="success"
             onClick={() => {
               if (searching) {
                 dispatch(
@@ -166,7 +164,7 @@ const ListCategories = () => {
               setCurrentPage(currentPage > 0 ? currentPage - 1 : 0);
             }}
           >
-            <MdKeyboardArrowLeft size="45" color="dodgerblue" />
+            <MdKeyboardArrowLeft size="45" color="#2eb8b0" />
           </IconButton>
           <FormLabel
             sx={{
@@ -175,7 +173,7 @@ const ListCategories = () => {
               px: 10,
               borderRadius: "5px",
               fontWeight: "bold",
-              backgroundColor: "dodgerblue",
+              backgroundColor: "#2eb8b0",
             }}
           >
             {currentPage + 1}
@@ -201,12 +199,11 @@ const ListCategories = () => {
               }
             }}
           >
-            <MdKeyboardArrowRight size="45" color="dodgerblue" />
+            <MdKeyboardArrowRight size="45" color="#2eb8b0" />
           </IconButton>
 
           <IconButton
             name="last-page"
-            color="success"
             onClick={() => {
               if (searching) {
                 dispatch(getCategoriesByName(input, Math.floor(categories.count / 10)));
@@ -217,7 +214,7 @@ const ListCategories = () => {
               }
             }}
           >
-            <MdOutlineLastPage size="45" color="dodgerblue" />
+            <MdOutlineLastPage size="45" color="#2eb8b0" />
           </IconButton>
         </Box>
 

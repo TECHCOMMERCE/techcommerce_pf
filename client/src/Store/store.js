@@ -12,6 +12,7 @@ import {wishReducer} from "./reducer/wishlist";
 import  TicketReducer from './reducer/tickets';
 import {reviewReducer} from './reducer/reviews';
 import {helpReducer} from './reducer/help'
+import deliveryReducer from "./reducer/delivery";
 
 import thunk from "redux-thunk";
 
@@ -30,6 +31,7 @@ const store = createStore(
     wishlist: wishReducer,
     review: reviewReducer,
     help: helpReducer,
+    deliveryReducer,
   }),
   composeWithDevTools(applyMiddleware(thunk))
 );

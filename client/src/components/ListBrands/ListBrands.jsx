@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { putBrand } from "../../Store/actions/brand";
+import NoResults from "../NoResults/NoResults";
 import {
   getBrands,
   getBrandsByName,
@@ -37,8 +38,16 @@ const ListBrands = () => {
 
     dispatch(putBrand(obj));
     brand.status
-      ? swalMessages(`Brand ${brand.name} disabled`, "Disabled", "success")
-      : swalMessages(`Category ${brand.name} enabled`, "Enabled", "success");
+      ? swalMessages(
+          `Marca ${brand.name} desactivada exitosamente`,
+          "Desactivada",
+          "success"
+        )
+      : swalMessages(
+          `Marca ${brand.name} activada exitosamente`,
+          "Activada",
+          "success"
+        );
     dispatch(getBrands());
   };
 
@@ -57,7 +66,7 @@ const ListBrands = () => {
   }, [dispatch]);
 
   return (
-    <Container sx={{ px: 20, minWidth: "100vw" }}>
+    <Container sx={{ px: 20, minWidth: "100vw", mt: "135px" }}>
       <Box
         sx={{
           m: 20,
@@ -105,11 +114,11 @@ const ListBrands = () => {
             background: "ghostwhite",
             borderRadius: "50%",
             display: "flex",
-            border: "4px solid #3CB371",
+            border: "4px solid #2eb8b0",
           }}
         >
           <IconButton
-            color="success"
+            color="primary"
             onClick={() => (window.location.href = "/dashboard/brands/create")}
           >
             <MdAddCircle size="45" color="success" />
@@ -127,7 +136,7 @@ const ListBrands = () => {
             borderRadius: "5px",
             display: "flex",
             alignItems: "center",
-            border: "4px solid dodgerblue",
+            border: "4px solid #2eb8b0",
           }}
         >
           <IconButton
@@ -142,7 +151,7 @@ const ListBrands = () => {
               setCurrentPage(0);
             }}
           >
-            <MdOutlineFirstPage size="45" color="dodgerblue" />
+            <MdOutlineFirstPage size="45" color="#2eb8b0" />
           </IconButton>
 
           <IconButton
@@ -161,7 +170,7 @@ const ListBrands = () => {
               setCurrentPage(currentPage > 0 ? currentPage - 1 : 0);
             }}
           >
-            <MdKeyboardArrowLeft size="45" color="dodgerblue" />
+            <MdKeyboardArrowLeft size="45" color="#2eb8b0" />
           </IconButton>
           <FormLabel
             sx={{
@@ -170,14 +179,14 @@ const ListBrands = () => {
               px: 10,
               borderRadius: "5px",
               fontWeight: "bold",
-              backgroundColor: "dodgerblue",
+              backgroundColor: "#2eb8b0",
             }}
           >
             {currentPage + 1}
           </FormLabel>
           <IconButton
             name="next"
-            color="success"
+            color="primary"
             onClick={() => {
               if (searching) {
                 if (currentPage < Math.floor(brands.count / 10)) {
@@ -188,31 +197,32 @@ const ListBrands = () => {
                 }
               }
 
-              if(currentPage < Math.floor(brandsCount.length / 10)){
+              if (currentPage < Math.floor(brandsCount.length / 10)) {
                 dispatch(getBrandsForAdmin(currentPage + 1));
-                setCurrentPage(currentPage + 1)
+                setCurrentPage(currentPage + 1);
               } else {
                 dispatch(getBrandsForAdmin(currentPage));
               }
             }}
           >
-            <MdKeyboardArrowRight size="45" color="dodgerblue" />
+            <MdKeyboardArrowRight size="45" />
           </IconButton>
 
           <IconButton
             name="last-page"
-            color="success"
             onClick={() => {
               if (searching) {
                 dispatch(getBrandsByName(input, Math.floor(brands.count / 10)));
-                setCurrentPage( Math.floor(brands.count / 10))
+                setCurrentPage(Math.floor(brands.count / 10));
               } else {
-                dispatch(getBrandsForAdmin(Math.floor(brandsCount.length / 10)));
+                dispatch(
+                  getBrandsForAdmin(Math.floor(brandsCount.length / 10))
+                );
                 setCurrentPage(Math.floor(brandsCount.length / 10));
               }
             }}
           >
-            <MdOutlineLastPage size="45" color="dodgerblue" />
+            <MdOutlineLastPage size="45" color="#2eb8b0" />
           </IconButton>
         </Box>
 

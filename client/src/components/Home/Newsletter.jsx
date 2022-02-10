@@ -39,19 +39,21 @@ const Input = styled.input`
   flex: 8;
   font-size: 20px;
   padding-left: 20px;
+${mobile({ fontSize: "48px" })}
 `;
 const Button = styled.button`
   flex: 1;
   border: none;
   background-color: teal;
   color: white;
+  ${mobile({ fontSize: "48px" })}
 `;
 
 export const Newsletter = () => {
   return (
     <Container>
-      <Title>Newsletter</Title>
-      <Description>Get timely updates of your favourite products. </Description>
+      <Title>Boletin informativo</Title>
+      <Description>Obtenga actualizaciones oportunas de sus productos favoritos. </Description>
       <InputContainer>
         <Input placeholder="Enter your email" />
         <br />
@@ -62,3 +64,4 @@ export const Newsletter = () => {
     </Container>
   );
 };
+
