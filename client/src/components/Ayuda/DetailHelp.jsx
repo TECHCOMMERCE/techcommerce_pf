@@ -22,7 +22,7 @@ const DetailHelp = () => {
 
   useEffect(()=>{
     dispatch(getPoliciesId(id))
-  },[])
+  },[detail])
 
 
   return (<Container>
