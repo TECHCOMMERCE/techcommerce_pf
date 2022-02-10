@@ -5,14 +5,12 @@ import mobile from "../../responsive";
 import CategoryItem from "./CategoryItem";
 
 const Container = styled.div`
-  display: flex;
+   display: flex;
   justify-content: space-between;
   padding: 20px;
-  @media only screen and (min-width: 400px) {
-    display: flex;
-    flex-direction: column;
-  }
+  ${mobile({ padding: "10px", flexDirection: "column" })}
 `;
+
 const Categories = () => {
   return (
     <Container>
