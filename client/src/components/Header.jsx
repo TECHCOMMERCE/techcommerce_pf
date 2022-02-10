@@ -103,7 +103,7 @@ const Header = () => {
       <Wrapper>
 
         <Left style={{width: "150px"}}> 
-         {/*  <Logo src={Logoo} /> */}
+         
          <div >
          <TechC src={Tech} onClick={()=>navigate("/")} style={{ cursor: "pointer" }}/>
          </div>
@@ -128,38 +128,13 @@ const Header = () => {
                   setName(e.target.value);
                 }}
                 list="searchdata"
-                /* onFocus={() => setVisibility(s.visible)} */
-                // onBlur={() => setVisibility(s.hidden)}
+                
               />
               <Search style={{ color: "gray", fontSize: 25}} type="submit"></Search>
             </form>
-           {/* <Search style={{ color: "gray", fontSize: 25}}></Search> */}
+           
             </SearchContainer>
           </>:null}
-
-          {/*
-           <div className={`${s.dataResult} ${visibility}`}>
-            {names.code === null ? null : 
-            names.code === 1 ? "No tenemos ese producto" : 
-            names.names.map(name => 
-              <div 
-                key={name.id} 
-                className={s.option}
-                onClick={() => {
-                  setName(name.name);
-
-                  dispatch(getProductsFront({
-                    category: '',
-                    brand: '',
-                    sort:''
-                  }, 0, name.name));
-
-                  setVisibility(s.hidden);
-                }}
-              >{name.name}</div>
-            )}
-          </div> 
-          */}
           <datalist id="searchdata">
           {names.code === null ? null : 
             names.code === 1 ? "No tenemos ese producto" : 
@@ -177,7 +152,7 @@ const Header = () => {
                     sort:''
                   }, 0, name.name));
 
-                 /* setVisibility(s.hidden) */
+                 
                 }}
               >{name.name}</option>
             )}
@@ -275,7 +250,7 @@ const Header = () => {
             anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
           >
             <MenuItem>
-              {/* <Avatar /> */} {`${userData?.name.toUpperCase()} ${userData?.lastname.toUpperCase()}`}
+              {`${userData?.name.toUpperCase()} ${userData?.lastname.toUpperCase()}`}
             </MenuItem>
             <MenuItem onClick={()=>navigate("/profile/WishList")} >
               <ShoppingBagIcon /> My Favorites
