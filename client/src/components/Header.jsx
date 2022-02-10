@@ -43,14 +43,14 @@ import s from '../assets/styles/NavBar.module.css'
 import { FaBars, FaTimes } from 'react-icons/fa'
 
 const SearchIcon = styled(Search)`
-//   width: 20px;
+   width: 20px;
    height: 20px;
    color: #5f5f5f;
-   /* margin-left: 30%; */
-   /* margin-bottom: 10% ;  */
+   margin-bottom: 10px;
+   margin-left: 30px;
    @media only screen and (min-width: 1400px){
     margin-left: 30px;
-    margin-bottom: 10px; 
+    margin-bottom: 100px; 
    }
  `;
 

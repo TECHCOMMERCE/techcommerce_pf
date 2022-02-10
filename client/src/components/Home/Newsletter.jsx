@@ -35,14 +35,14 @@ const InputContainer = styled.div`
   justify-content: space-between;
   border: 1px solid lightgray;
   
-  ${mobile({ width: "80%" })}
+  ${mobile({ width: "50%", height: "40px" })}
   `;
 const Input = styled.input`
   border: none;
   flex: 8;
   font-size: 20px;
   padding-left: 20px;
-  ${mobile({ fontSize: "48px" })}
+  ${mobile({ fontSize: "20px"})}
   `;
 const Button = styled.button`
   flex: 1;
