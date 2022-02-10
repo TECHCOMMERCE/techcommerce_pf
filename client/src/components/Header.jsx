@@ -271,7 +271,7 @@ const Header = () => {
             <MenuItem onClick={()=>navigate("/profile/ShopHistory")}>
               <ShoppingBagIcon /> My Shops
             </MenuItem>
-            <MenuItem>
+            <MenuItem onClick={() => setShowMobileMenu(!showMobileMenu)}>
               <Link to="/ayuda" >
                 <HelpOutlineIcon /> Ayuda
               </Link>

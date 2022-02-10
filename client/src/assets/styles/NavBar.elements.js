@@ -64,6 +64,12 @@ export const MenuItem = styled.div`
   margin-left: 25px;
   margin-right: 25px;
   /* ${mobile({ height: "50px" })} */
+  @media screen and (max-width: 960px){
+    font-size: 35px;
+  cursor: pointer;
+  margin-left: 55px;
+  margin-right: 55px;
+  }
 `;
 
 export const MenuItems = styled.li`
