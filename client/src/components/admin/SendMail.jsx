@@ -73,7 +73,7 @@ const SendMail = () => {
                                 >
                                     <MenuItem value="destinatario">destinatario</MenuItem>
 
-                                    {users?.map(user => <MenuItem key={user.userid} value={user.email}>{user.name}</MenuItem>)}
+                                    {users?.map(user => <MenuItem key={user.userid} value={user.email}>{user.email}</MenuItem>)}
                                 </Select>
                             </div>
                         </div>
