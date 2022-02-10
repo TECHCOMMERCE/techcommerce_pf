@@ -4,30 +4,31 @@ import mobile, {laptop} from "../../responsive";
 
 export const Container = styled.div`
  height: 60px;
-  ${mobile({ height: "10px" })}
+  /* ${mobile({ height: "10px" })} */
 `;
 
 export const Wrapper = styled.div`
   background-color: #2EB8B0; 
   display: flex;
   align-items: center;
-  margin-top:-50px;
-  ${mobile({ padding: "10px 0px" })}
+  margin-top: -10px;
+  /* ${mobile({ padding: "10px 0px" })} */
 `;
 export const Left = styled.div`
   display: flex;
-  margin-bottom: -20px;
+  /* margin-bottom: -20px; */
+  /* background-color: black; */
   align-items: center;
-  ${mobile({ height: "50px" })}
+  /* ${mobile({ height: "50px" })} */
 `;
 
 export const TechC = styled.img`
   width: 8rem;
   margin-left: 2rem;
-  margin-top: 3rem;
-  ${mobile({ fontSize: "24px" })}
+  margin-top: 1.4rem;
+  /* ${mobile({ fontSize: "24px" })} */
   @media screen and (max-width: 960px){
-    width: 5rem;
+    width: 4.5rem;
   }
 `;
 
@@ -37,18 +38,21 @@ export const Right = styled.ul`
   margin-top: 50px;
   justify-content: right;
   list-style: none;
-  ${mobile({ height: "50px" })}
+  margin-bottom: 3rem;
+  padding-right: 1rem;
+  /* ${mobile({ height: "50px" })} */
   @media screen and (max-width: 960px){
     align-items: center;
-    background-color:#d63939 ;
+    background-color:#2EB8B0 ;
     left: ${({open}) =>( open ? "0": "-100%" )};
     justify-content: center;
     flex-direction: column;
     transition: 0.5s all ease;
-    top: 85px;
-    height: 90vh;
+    top: 35px;
+    height: 95vh;
     position: absolute;
     width: 100%;
+    z-index: 100;
   }
 `;
 
@@ -59,18 +63,19 @@ export const MenuItem = styled.div`
   cursor: pointer;
   margin-left: 25px;
   margin-right: 25px;
-  ${mobile({ height: "50px" })}
+  /* ${mobile({ height: "50px" })} */
 `;
 
 export const MenuItems = styled.li`
   height: 100%;
-  ${mobile({ height: "50px" })}
+  /* ${mobile({ height: "50px" })} */
   @media screen and (max-width: 960px){
     width:100%;
     height:70px;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-bottom: 1rem;
   }
 `;
 
@@ -95,8 +100,10 @@ export const MenuItemLink = styled.a`
   @media screen and (max-width: 960px){
     /* font-size: 2.8rem; */
     width: 100%;
+    font-size: 40px;
+    
   }
-  ${mobile({ height: "50px" })}
+  /* ${mobile({ height: "50px" })} */
 `;
 
 export const Center = styled.div`
@@ -105,10 +112,13 @@ export const Center = styled.div`
   width: 100%;
   margin-left: 2em;
   margin-right: 2em;
-  ${mobile({ height: "10px" })}
+  
+
+  /* ${mobile({ height: "10px" })} */
   @media screen and (max-width: 960px){
+    /* background-color: red; */
     margin-right: 20px;
-    margin-left: 1em;
+    /* margin-left: 1em; */
     width: 373px;
   }
 `;
@@ -122,11 +132,13 @@ export const SearchContainer = styled.div`
   border-radius: 8px;
   letter-spacing: 0.0275rem;
   background-color: white;
-  margin-top: 1em;
-  margin-bottom: -2em;
+  /* margin-top: 1em; */
+  /* margin-bottom: -2em; */
   ${mobile({ height: "10px" })}
   @media screen and (max-width: 960px){
     width: 372px;
+    margin-left: .2em;
+    margin-right: 1em;
   }
 `;
 
@@ -141,7 +153,9 @@ export const Input = styled.input`
   padding-left: 0.9rem;
   padding-top: 0.5rem;
   border: none;
-  ${mobile({ height: "50px" })}
+  /*  
+  //${mobile({ height: "50px" })} 
+  */
    
   @media screen and (max-width: 960px){
     font-size: 0.8rem;
@@ -156,11 +170,14 @@ export const ButtonSearch = styled.button`
   width: 10%;
   border-radius: 0 8px 8px 0;
   background-color:#fcf5f5;
-
+  align-items: center;
+  justify-content: center;
+  
+  padding-left: 2px;
   &:hover {
     background-color: #3c3c434d;
   }
-  ${mobile({  height: "50px" })}
+  /* ${mobile({  height: "50px" })} */
   @media screen and (max-width: 960px){
     padding-bottom: 0.2rem; 
     height: 3.28rem;
