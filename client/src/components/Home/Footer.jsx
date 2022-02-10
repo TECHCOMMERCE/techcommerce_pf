@@ -6,8 +6,6 @@ import {
 } from "@material-ui/icons";
 import React from "react";
 
-
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import {
   Container,
   Left,
@@ -20,10 +18,9 @@ import {
   List,
   ListItem,
   Right,
-  ContactItem,
   Payment
 } from '../../assets/styles/Footer.elements'
-import { Link } from "react-router-dom";
+
 
 
 const Footer = () => {
@@ -53,11 +50,11 @@ const Footer = () => {
       <Center>
         <Title>Rutas Utiles:</Title>
         <List>
-          <ListItem href="http://localhost:3000/">Home</ListItem>
+          <ListItem href="http://localhost:3000/">Inicio</ListItem>
           <ListItem href="http://localhost:3000/products">Productos</ListItem>
-          <ListItem href="http://localhost:3000/register">Register </ListItem>
-          <ListItem href="http://localhost:3000/login">Login</ListItem>
-          <ListItem href="http://localhost:3000/dashboard">Dashboard</ListItem>
+          <ListItem href="http://localhost:3000/register">Registrarse </ListItem>
+          <ListItem href="http://localhost:3000/login">acceso</ListItem>
+          <ListItem href="http://localhost:3000/dashboard">Tablero de mandos</ListItem>
           <ListItem href="http://localhost:3000/ayuda">  Ayuda </ListItem>
         </List>
       </Center>
