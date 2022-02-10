@@ -73,7 +73,7 @@ export const Newsletter = () => {
       <Title>Boletin informativo</Title>
       <Description>Obtenga actualizaciones oportunas de sus productos favoritos. </Description>
       <InputContainer>
-        <Input onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
+        <Input value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
         <br />
         <Button>
           <Send  onClick={() => { 
