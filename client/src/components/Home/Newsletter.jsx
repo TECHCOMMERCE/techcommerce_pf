@@ -73,19 +73,26 @@ export const Newsletter = () => {
       <Title>Boletin informativo</Title>
       <Description>Obtenga actualizaciones oportunas de sus productos favoritos. </Description>
       <InputContainer>
-        <Input value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
+        <Input value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Agrega un correo electronico" />
         <br />
         <Button>
           <Send  onClick={() => { 
-            Addsubcription(email)
-            Swal.fire({
-              icon: 'success',
-              text: 'Gracias por subscribirse a Tech-C',
-              showConfirmButton: false,
-              timer: 3000
-            })
+            if(email !== "" && email.includes("@") && email.includes(".")){
+              Addsubcription(email);
+              Swal.fire({
+                title: 'Gracias',
+                text: 'Te has suscrito a nuestro boletin informativo',
+                icon: 'success'
+              })
+            }else{
+              Swal.fire({
+                title: 'Error',
+                text: 'Debes ingresar un correo electronico valido',
+                icon: 'error'
+              })
+            }
             setEmail("")
-            }} />
+          }} />
         </Button>
       </InputContainer>
     </Container>
