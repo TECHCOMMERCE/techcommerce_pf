@@ -1,5 +1,5 @@
 const { Product, Brand, Category } = require("../../db.js");
-
+const {postSuscription} = require("../PSuscription/PostSuscription")
 const PutProduct = async (product) => {
   try {
     // Actualiza el producto y la marca
@@ -20,6 +20,10 @@ const PutProduct = async (product) => {
         where: { productid: product.productid },
       }
     );
+    
+    if(product.stock>0){
+      postSuscription(product.productid)
+    }
 
     // Busca el producto
     const targetProduct = await Product.findByPk(product.productid);

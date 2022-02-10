@@ -55,7 +55,7 @@ export const Newsletter = () => {
       <Title>Boletin informativo</Title>
       <Description>Obtenga actualizaciones oportunas de sus productos favoritos. </Description>
       <InputContainer>
-        <Input placeholder="Enter your email" />
+        <Input placeholder="Introduce tu correo electrónico" />
         <br />
         <Button>
           <Send />
