@@ -5,11 +5,11 @@ const getHelp = async( req, res) => {
     let policy = await Help.findAll({
         include: Helpcategory
       })
-      console.log(Help.findAll());
+      // console.log(Help.findAll());
       // console.log(policy);
-
+      // console.log(policy, 'prueba-----------');
     // return policy
-    res.status(200).json(policy)
+    res.json(policy).status(200)
   }
   catch(err){
     console.log(err)
@@ -18,10 +18,12 @@ const getHelp = async( req, res) => {
 
 const getHelpByName = async (req, res) => {
   const { id } = req.params;
+  console.log(id);
   try {
     const policyName = await Help.findByPk(id,{include:Helpcategory});
-    if (policyName) return res.status(200).json(policyName);
-    return res.status(404).json({ msg: 'policyName not found' });
+    // console.log(policyName);
+    if (policyName) return res.json(policyName).status(200);
+    return res.json({ msg: 'policyName not found' }).status(404);
   } 
   catch (error) {
     console.log(error);

@@ -28,7 +28,7 @@ import OrderDetail from "./components/admin/OrderDetail";
 import { useDispatch, useSelector } from "react-redux";
 import Shipping from "./components/Profile/Shipping";
 import Help from './components/Ayuda/Help'
-import {getPolicies} from './Store/actions/help'
+// import {getPolicies} from './Store/actions/help'
 import DetailHelp from './components/Ayuda/DetailHelp'
 
 function App() {
@@ -41,9 +41,9 @@ function App() {
     //console.log(user);
   }, [user]);
 
-  useEffect( () => {
-    dispatch(getPolicies())
-  },[])
+  // useEffect( () => {
+  //   dispatch(getPolicies())
+  // },[])
 
   return (
     <div className="App">

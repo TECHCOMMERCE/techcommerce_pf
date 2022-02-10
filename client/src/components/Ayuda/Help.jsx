@@ -12,6 +12,7 @@ import {
   filterByHelpCategory
 } from '../../Store/actions/help'
 
+// import { getPolicies } from '../../Store/actions/help';
 // styles 
 import { Search } from "@material-ui/icons";
 import {
@@ -31,18 +32,13 @@ import {
 const Help = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const user = useSelector(state=>state.users)
+  // const user = useSelector(state=>state.users)
   const [name, setName] = useState("")
   const policiess = useSelector(state => state.help.policies)
   // console.log(state);
   // console.log(policiess);
   // console.log(user);
-
-  useEffect( () => {
-    dispatch(getuser())
-    // dispatch(getPoliciesCategory())
-  },[dispatch])
-
+  const user = JSON.parse(localStorage.getItem("user"));
 
   // const handleSubmit = (e) =>{
   //   e.preventDefault();
@@ -55,13 +51,14 @@ const Help = () => {
     dispatch(filterByHelpCategory(e.target.value))
   }
 
-
-
+  useEffect( () => {
+    dispatch(getPolicies())
+  },[])
 
   return (<Container>
     <HeaderTitle className='s.title_ayuda'>
       <Title>
-        Hola! {`${user?.name} `} 
+        Hola! {`${user?.user.name} `} 
       </Title>
       <Span>
         ¿en qué podemos ayudarte hoy?

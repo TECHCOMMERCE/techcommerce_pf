@@ -6,7 +6,7 @@ const getCategoriesHelp = async( req, res) => {
       include: Help
     })
     // return category
-    res.status(200).json(category)
+    res.json(category).status(200)
   } catch (error) {
     console.log(error);
   }

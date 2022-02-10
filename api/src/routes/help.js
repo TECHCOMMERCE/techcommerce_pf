@@ -5,9 +5,8 @@ const {
 } = require("../controllers/Help/GetPolicy");
 const postHelp = require("../controllers/Help/PostPolicy")
 
+router.get("/:id", getHelpByName )
 router.get("/", getHelp)
-
-router.get("/:id",getHelpByName )
 
 router.post("/", async(req, res) =>{
   let help;

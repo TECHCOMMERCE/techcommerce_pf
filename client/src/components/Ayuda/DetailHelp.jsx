@@ -18,7 +18,7 @@ const DetailHelp = () => {
   const {id} = useParams()
   const detail = useSelector(state => state.help.detail)
   console.log(id);
-  console.log(detail);
+  // console.log(detail);
 
   useEffect(()=>{
     dispatch(getPoliciesId(id))
