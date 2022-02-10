@@ -19,6 +19,7 @@ server.listen(process.env.PORT||3001/* 5000 */,  () => {
     conn.models.Review.sync({force: false});
     conn.models.WishList.sync({force: false});
     conn.models.product_suscription.sync({force: true});
+    conn.models.Help.sync({force: true});
 
     // para crear un usuario admin automáticamente
     const [user, created] = await User.findOrCreate({
