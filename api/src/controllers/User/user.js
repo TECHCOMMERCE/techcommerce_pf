@@ -52,6 +52,8 @@ router.post("/", async(req, res) => {
     });
   
     if(created){
+      let html = mailMessage(`Hola ${name} este email es para confirmar tu registro en Techcommerce, agradecemos tu preferencia.`)
+      SendEmails(email,'Confirmación de Registro',html)
       return res.status(200).send({code: 0, message: "El usuario se creó con éxito", userid: user.userid});
     }else{
       return res.status(200).send({code: 2, message: "Ya existe un usuario con esos datos"});
