@@ -86,7 +86,6 @@ function App() {
             path="/dashboard/brands"
             element={
               isAdmin ? <>
-                <Header />
                 <ListBrands />
                 <Footer />
               </> : <h1 className={s.mensajeError}>No tenes acceso a esta página</h1>
@@ -97,7 +96,6 @@ function App() {
             path="/dashboard/brands/create"
             element={
               isAdmin ? <>
-                <Header />
                 <CreateBrand />
                 <Footer />
               </> : <h1 className={s.mensajeError}>No tenes acceso a esta página</h1>
@@ -108,7 +106,6 @@ function App() {
             path="/dashboard/brands/edit/:brandid"
             element={
               isAdmin ? <>
-                <Header />
                 <EditBrand />
                 <Footer />
               </> : <h1 className={s.mensajeError}>No tenes acceso a esta página</h1>
@@ -119,7 +116,6 @@ function App() {
             path="/dashboard/categories"
             element={
               isAdmin ? <>
-                <Header />
                 <ListCategories />
                 <Footer />
               </> : <h1 className={s.mensajeError}>No tenes acceso a esta página</h1>
@@ -130,7 +126,6 @@ function App() {
             path="/dashboard/categories/create"
             element={
               isAdmin ? <>
-                <Header />
                 <CreateCategory />
                 <Footer />
               </> : <h1 className={s.mensajeError}>No tenes acceso a esta página</h1>
@@ -141,7 +136,6 @@ function App() {
             path="/dashboard/categories/edit/:categoryid"
             element={
               isAdmin ? <>
-                <Header />
                 <EditCategory />
                 <Footer />
               </> : <h1 className={s.mensajeError}>No tenes acceso a esta página</h1>
@@ -152,7 +146,6 @@ function App() {
             path="/dashboard/products"
             element={
               isAdmin ? <>
-                <Header />
                 <ListProducts />
                 <Footer />
               </> : <h1 className={s.mensajeError}>No tenes acceso a esta página</h1>
@@ -163,7 +156,6 @@ function App() {
             path="/dashboard/products/create"
             element={
               isAdmin ? <>
-                <Header />
                 <CreateProduct />
                 <Footer />
               </> : <h1 className={s.mensajeError}>No tenes acceso a esta página</h1>
@@ -174,7 +166,6 @@ function App() {
             path="/dashboard/products/edit/:productid"
             element={
               isAdmin ? <>
-                <Header />
                 <EditProduct />
                 <Footer />
               </> : <h1 className={s.mensajeError}>No tenes acceso a esta página</h1>
