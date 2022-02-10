@@ -181,6 +181,12 @@
 	overflow: hidden;
 }
 
+.img{
+	width: 20%;
+	background-color: red;
+	height: 40%;
+}
+
 .icon .emptyStarsCont .emptyStars {
 	width: 500%;
 	font-size: 1.5em;
@@ -235,11 +241,29 @@
 }
 
 @media (max-width: 900px) {
+
+	.container{
+		width: 90%;
+		margin-left: 5%;
+	}
 	.attributesContainer{
 		height: 600px;
 		width: 100%;
 		
 		
+	}
+	.cont_cant2{
+		flex-direction: column;
+	}
+
+	.cont_img{
+		width: 100%;
+	}
+
+	.img{
+		width: 200px;
+		background-color: red;
+		height: 100%;
 	}
 
 }

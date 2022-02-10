@@ -1,6 +1,6 @@
 .container *{
     box-sizing: border-box; 
-    /* margin-top: 10%; */
+     
 }
 .container{
     display: flex;
@@ -11,6 +11,7 @@
     justify-content: center;
     background-color: rgb(234, 236, 238);
     padding-bottom: 50px;
+    margin-top: 4%;
 }
 
 .form{
@@ -20,6 +21,7 @@
     align-items: center;/*  */
     background-color: rgb(248, 246, 246);
     padding: 50px 50px;
+    margin-top: 100px;
 }
 
 .inputs{
@@ -80,6 +82,7 @@
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+    margin-top: 50px;
 }
 
 .products{
@@ -123,8 +126,10 @@
 }
 
 .totalPrice{
-    width: 98%;
+    width: 50%;
     height: 180px;
+    margin-top: -250px;
+   
 }
 
 .totalThings{
@@ -135,13 +140,15 @@
     font-size: 60px;
     font-weight: bold;
     display: flex;
-    justify-content: space-evenly;
-    align-items: flex-end;
+    justify-content: center;
+    align-items: center;
 }
 
 .totalNumber{
-    font-size: 40px;
+    font-size: 38px;
     font-weight: normal;
+    margin-left: 20px;
+    margin-top: 10px;
 }
 
 .pay{
