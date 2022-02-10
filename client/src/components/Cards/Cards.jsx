@@ -140,7 +140,7 @@ const Cards = () => {
       <Items>
         {products?.length ? 
           products.map( product => {
-            return <Card  key={product.productid} id={product.productid} name={product.name} image={product.image} price={product.price} stock={product.stock} />
+            return <Card  key={product.productid} id={product.productid} name={product.name} image={product.image} price={product.price} stock={product.stock} product={product}/>
           }) 
           
           : <Null><p>No existen elementos. Seleccione otro filtro</p></Null>
