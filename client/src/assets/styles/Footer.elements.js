@@ -15,13 +15,13 @@ export const Left = styled.div`
 export const Center = styled.div`
   flex: 1;
   padding: 20px;
-  ${mobile({ fontSize: "50px" })}
+  ${mobile({ fontSize: "35px",flexDirection: "column", margin: "10px"   })}
 `;
 
 export const Title = styled.h3`
   margin-bottom: 20px;
 
-  ${mobile({ fontSize: "60px" })}`;
+  ${mobile({ fontSize: "60px",flexDirection: "column", margin: "10px"   })} })}`;
 
 export const List = styled.ul`
   margin: 0;
@@ -29,12 +29,17 @@ export const List = styled.ul`
   list-style: none;
   display: flex;
   flex-wrap: wrap;
-  ${mobile({ fontSize: "48px" })}
+  ${mobile({ fontSize: "20px", flexDirection: "column", justifyContent: "center", margin: "10px" })}
 `;
 export const ListItem = styled.a`
   width: 50%;
   margin-bottom: 10px;
-  ${mobile({ fontSize: "48px" })}
+ ${mobile({ fontSize: "20px", margin: "10px" })}
+ @media screen and (max-width: 960px){
+    width: 100%;
+    
+  margin:"10px";
+  }
 `;
 
 export const Right = styled.div`
