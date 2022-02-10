@@ -216,7 +216,7 @@ const CheckoutForm = () => {
             </div>
 
             <div className={s.totalPrice}>
-                <span className={s.totalText}>Total <span className={s.totalNumber}>$ {total}</span></span>
+                <span className={s.totalText}>Total : <span className={s.totalNumber}>$ {total}</span></span>
             </div>
         </div>
 
