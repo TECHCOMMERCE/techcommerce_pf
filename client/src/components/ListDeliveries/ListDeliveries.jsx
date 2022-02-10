@@ -35,10 +35,6 @@ const ListDeliveries = () => {
     dispatch(getDeliveries());
   }, []);
 
-  // useEffect(() => {
-  //   dispatch(getDeliveries());
-  // }, [deliveries])
-
   return (
     <Wrapper
      
