@@ -5,12 +5,13 @@ import s from "../../assets/styles/admin/sendMail.module.css";
 
 import {BiSend} from "react-icons/bi";
 import { Box, Button, MenuItem, Select, TextField } from '@material-ui/core';
+import Swal from 'sweetalert2';
 
 const SendMail = () => {
     const [data, setData] = useState({
         destinatario: "destinatario",
         asunto: "",
-        mensaje: ""
+        mensaje: "",
     });
 
     const [users, setUsers] = useState([])
@@ -31,8 +32,26 @@ const SendMail = () => {
                     try{
                         const res = await axios.post(`${SERVER}user/mail`, data);
 
+                        Swal.fire({
+                            icon: 'success',
+                            text: 'Email enviado correctamente!',
+                            showConfirmButton: false,
+                            timer: 3000
+                          })
+
+                          setData({
+                            destinatario: "destinatario",
+                            asunto: "",
+                            mensaje: "",
+                          })
                         console.log(res.data);
                     }catch(e){
+                        Swal.fire({
+                            icon: 'error',
+                            text: 'Error!',
+                            showConfirmButton: false,
+                            timer: 3000
+                          })
                         console.log(e);
                     }
                 }}>
@@ -97,7 +116,7 @@ const SendMail = () => {
                     </div>
                      
                     <div className={s.buttonArea}>
-                        <Button type='submit' className={s.button} variant="contained">
+                        <Button style={{backgroundColor: "#2eb8b0", color:"ghostwhite",}} type='submit' className={s.button} variant="contained">
                             send mail
                             <BiSend/>
                         </Button>

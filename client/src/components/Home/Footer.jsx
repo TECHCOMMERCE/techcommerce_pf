@@ -21,8 +21,6 @@ import {
   Payment
 } from '../../assets/styles/Footer.elements'
 
-
-
 const Footer = () => {
   return (
     <Container>
@@ -50,12 +48,12 @@ const Footer = () => {
       <Center>
         <Title>Rutas Utiles:</Title>
         <List>
-          <ListItem href="http://localhost:3000/">Inicio</ListItem>
-          <ListItem href="http://localhost:3000/products">Productos</ListItem>
-          <ListItem href="http://localhost:3000/register">Registrarse </ListItem>
-          <ListItem href="http://localhost:3000/login">acceso</ListItem>
-          <ListItem href="http://localhost:3000/dashboard">Tablero de mandos</ListItem>
-          <ListItem href="http://localhost:3000/ayuda">  Ayuda </ListItem>
+          <ListItem href="/">Inicio</ListItem>
+          <ListItem href="/products">Productos</ListItem>
+          <ListItem href="/register">Registrarse </ListItem>
+          <ListItem href="/login">acceso</ListItem>
+          <ListItem href="/dashboard">Tablero de mandos</ListItem>
+          <ListItem href="/ayuda">  Ayuda </ListItem>
         </List>
       </Center>
       <Right>
