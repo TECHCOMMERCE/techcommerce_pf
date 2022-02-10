@@ -27,7 +27,7 @@ const Shipping = () => {
     <div className={style.container}>
       <div className={style.shipping}>
     <div className={style.title}>
-    <h1>Order <b>231242325</b></h1>
+    <h1>Order <b>{deliveryid.slice(0, 8)}</b></h1>
     <h3>Sigue tu envio</h3>
     <img src="https://img.icons8.com/external-wanicon-lineal-color-wanicon/64/000000/external-shipping-money-exchange-wanicon-lineal-color-wanicon.png"/>
     </div>
