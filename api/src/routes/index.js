@@ -52,5 +52,5 @@ router.use("/wishlist", wishlist);
 
 router.use("/deliveries", deliveries);
 router.use("/delivery", delivery);
-router.use('/psuscription',psuscription)
+//router.use('/psuscription',psuscription)
 module.exports = router;
