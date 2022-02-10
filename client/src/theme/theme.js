@@ -19,6 +19,9 @@ const theme = createTheme({
     },
     info: {
       main: "#4B0082", // indigo
+    },
+    pop: {
+      main: "#4169E1", // royalblue
     }
   },
   typography: {
