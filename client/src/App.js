@@ -31,14 +31,22 @@ import SendMail from "./components/admin/SendMail";
 import ListDeliveries from "./components/ListDeliveries/ListDeliveries";
 import EditDelivery from "./components/EditDelivery/EditDelivery";
 
+import s from "./assets/styles/app.module.css";
+
 function App() {
   // Estado que determina si la cuenta logueada (o el invitado) es admin o no. Por defecto es false y cuando se logue, comprobará en un useEffect si es admin
-  const [isAdmin, setIsAdmin] = useState(true);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   const user = useSelector(state => state.users.user);
 
   useEffect(() => {
-    //console.log(user);
+    if(user){
+      if(user.type === "admin"){
+        setIsAdmin(true);
+      }else{
+        setIsAdmin(false);
+      }
+    }
   }, [user]);
 
   return (
@@ -61,129 +69,129 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<CheckoutData/>}/>
           <Route path="/checkoutError" element={<CheckoutError/>}/>
-          
-          <Route path="/dashboard" element={<Dashboard />} />
+
+          <Route path="/dashboard" element={isAdmin ? <Dashboard /> : <h1 className={s.mensajeError}>No tenes acceso a esta página</h1>} />
           <Route
             path="/dashboard/brands"
             element={
-              <>
+              isAdmin ? <>
                 <Header />
                 <ListBrands />
                 <Footer />
-              </>
+              </> : <h1 className={s.mensajeError}>No tenes acceso a esta página</h1>
             }
           />
 
           <Route
             path="/dashboard/brands/create"
             element={
-              <>
+              isAdmin ? <>
                 <Header />
                 <CreateBrand />
                 <Footer />
-              </>
+              </> : <h1 className={s.mensajeError}>No tenes acceso a esta página</h1>
             }
           />
 
           <Route
             path="/dashboard/brands/edit/:brandid"
             element={
-              <>
+              isAdmin ? <>
                 <Header />
                 <EditBrand />
                 <Footer />
-              </>
+              </> : <h1 className={s.mensajeError}>No tenes acceso a esta página</h1>
             }
           />
 
           <Route
             path="/dashboard/categories"
             element={
-              <>
+              isAdmin ? <>
                 <Header />
                 <ListCategories />
                 <Footer />
-              </>
+              </> : <h1 className={s.mensajeError}>No tenes acceso a esta página</h1>
             }
           />
 
           <Route
             path="/dashboard/categories/create"
             element={
-              <>
+              isAdmin ? <>
                 <Header />
                 <CreateCategory />
                 <Footer />
-              </>
+              </> : <h1 className={s.mensajeError}>No tenes acceso a esta página</h1>
             }
           />
 
           <Route
             path="/dashboard/categories/edit/:categoryid"
             element={
-              <>
+              isAdmin ? <>
                 <Header />
                 <EditCategory />
                 <Footer />
-              </>
+              </> : <h1 className={s.mensajeError}>No tenes acceso a esta página</h1>
             }
           />
 
           <Route
             path="/dashboard/products"
             element={
-              <>
+              isAdmin ? <>
                 <Header />
                 <ListProducts />
                 <Footer />
-              </>
+              </> : <h1 className={s.mensajeError}>No tenes acceso a esta página</h1>
             }
           />
 
           <Route
             path="/dashboard/products/create"
             element={
-              <>
+              isAdmin ? <>
                 <Header />
                 <CreateProduct />
                 <Footer />
-              </>
+              </> : <h1 className={s.mensajeError}>No tenes acceso a esta página</h1>
             }
           />
 
           <Route
             path="/dashboard/products/edit/:productid"
             element={
-              <>
+              isAdmin ? <>
                 <Header />
                 <EditProduct />
                 <Footer />
-              </>
+              </> : <h1 className={s.mensajeError}>No tenes acceso a esta página</h1>
             }
           />
 
           <Route
             path="/dashboard/deliveries"
             element={
-              <>
+              isAdmin ? <>
                 <ListDeliveries />
-              </>
+              </> : <h1 className={s.mensajeError}>No tenes acceso a esta página</h1>
             }
           />
 
           <Route
             path="/dashboard/deliveries/edit/:deliveryid"
             element={
-              <>
+              isAdmin ? <>
                 <EditDelivery />
-              </>
+              </> : <h1 className={s.mensajeError}>No tenes acceso a esta página</h1>
             }
           />
           
-          <Route path="dashboard/users" element={isAdmin ? <Users /> : <h1>No tenes acceso a esta página</h1>}/>
-          <Route path="dashboard/orders" element={isAdmin ? <Orders/> : <h1>No tenes acceso a esta página</h1>}/>
-          <Route path="dashboard/orders/:orderid" element={isAdmin ? <OrderDetail/> : <h1>No tenes acceso a esta página</h1>}/>
-          <Route path="dashboard/sendMail" element={isAdmin ? <SendMail/> : <h1>No tenes acceso a esta página</h1>}/>
+          <Route path="dashboard/users" element={isAdmin ? <Users /> : <h1 className={s.mensajeError}>No tenes acceso a esta página</h1>}/>
+          <Route path="dashboard/orders" element={isAdmin ? <Orders/> : <h1 className={s.mensajeError}>No tenes acceso a esta página</h1>}/>
+          <Route path="dashboard/orders/:orderid" element={isAdmin ? <OrderDetail/> : <h1 className={s.mensajeError}>No tenes acceso a esta página</h1>}/>
+          <Route path="dashboard/sendMail" element={isAdmin ? <SendMail/> : <h1 className={s.mensajeError}>No tenes acceso a esta página</h1>}/>
         </>}
 
 
