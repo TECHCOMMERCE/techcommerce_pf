@@ -77,7 +77,6 @@ function App() {
             path="/dashboard/brands"
             element={
               <>
-                <Header />
                 <ListBrands />
                 <Footer />
               </>
@@ -88,7 +87,6 @@ function App() {
             path="/dashboard/brands/create"
             element={
               <>
-                <Header />
                 <CreateBrand />
                 <Footer />
               </>
@@ -99,7 +97,6 @@ function App() {
             path="/dashboard/brands/edit/:brandid"
             element={
               <>
-                <Header />
                 <EditBrand />
                 <Footer />
               </>
@@ -110,7 +107,6 @@ function App() {
             path="/dashboard/categories"
             element={
               <>
-                <Header />
                 <ListCategories />
                 <Footer />
               </>
@@ -121,7 +117,6 @@ function App() {
             path="/dashboard/categories/create"
             element={
               <>
-                <Header />
                 <CreateCategory />
                 <Footer />
               </>
@@ -132,7 +127,6 @@ function App() {
             path="/dashboard/categories/edit/:categoryid"
             element={
               <>
-                <Header />
                 <EditCategory />
                 <Footer />
               </>
@@ -143,7 +137,6 @@ function App() {
             path="/dashboard/products"
             element={
               <>
-                <Header />
                 <ListProducts />
                 <Footer />
               </>
@@ -154,7 +147,6 @@ function App() {
             path="/dashboard/products/create"
             element={
               <>
-                <Header />
                 <CreateProduct />
                 <Footer />
               </>
@@ -165,7 +157,6 @@ function App() {
             path="/dashboard/products/edit/:productid"
             element={
               <>
-                <Header />
                 <EditProduct />
                 <Footer />
               </>
@@ -177,6 +168,7 @@ function App() {
             element={
               <>
                 <ListDeliveries />
+                <Footer />
               </>
             }
           />
@@ -186,6 +178,7 @@ function App() {
             element={
               <>
                 <EditDelivery />
+                <Footer />
               </>
             }
           />
