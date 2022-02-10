@@ -6,8 +6,9 @@ import axios from "axios";
 import { getProductsFront } from "../Store/actions/products";
 
 
-import Tech from "../assets/Imgs/Tech.png";
 
+import Tech from "../assets/Imgs/Tech.png";
+//
 import { Search, ShoppingCartOutlined } from "@material-ui/icons";
 import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
