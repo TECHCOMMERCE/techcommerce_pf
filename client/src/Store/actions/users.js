@@ -12,6 +12,9 @@ export function loginAccount(payload){
   return async function(dispatch){
     try{
         const {data} = await axios.post(`${SERVER}user/login`, payload);        
+
+        console.log(data);
+
         if(typeof data === 'object'){
             return dispatch({
                 type: SET_USER_DATA,
@@ -49,7 +52,7 @@ export function getuser(){
 
 export const editUserFront = (data) => async(dispatch) =>{
     try {
-
+        console.log(data);
         let response = await axios.put(`${SERVER}user/` , data)
         console.log('response', response)
     } catch (error) {

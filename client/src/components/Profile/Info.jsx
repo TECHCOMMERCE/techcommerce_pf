@@ -103,11 +103,30 @@ function validatePass(e) {
      userData: data
    }));
    //window.location.href = '/login';
-   await dispatch(getOneUser(local.user.userid))
+  //  await dispatch(getOneUser(local.user.userid))
    setDisplay('data');
-
+   
   //  Vuelvo a loguearme
-    //dispatch(loginAccount({email: user.email, password: data.password, type:'normal'}))
+    await dispatch(loginAccount({email: user.email, password: data.newPassword ? data.newPassword : data.password, type:'normal'}))
+
+    dispatch(getOneUser(local.user.userid)).then(res => {
+      // console.log(res)
+     return setData({
+        name: res.payload.name,
+        lastname: res.payload.lastname,
+        email: res.payload.email,
+        address: res.payload.address,
+        force: false,
+        type: res.payload.type,
+        phone: res.payload.phone? res.payload.phone : '',
+        userid: res.payload.userid,
+        photo: res.payload.photo? res.payload.photo : '',
+        country: res.payload.country? res.payload.country : '',
+        city: res.payload.city? res.payload.city : '' ,
+        postalcode: res.payload.postalcode? res.payload.postalcode : 0,
+        password: "",
+      })
+    })
   }
 
   function newpassword(e) {
@@ -154,11 +173,10 @@ useEffect(async() => {
       city: res.payload.city? res.payload.city : '' ,
       postalcode: res.payload.postalcode? res.payload.postalcode : 0,
       password: "",
-      newpassword: ''
     })
   })
   
-}, []);
+}, [dispatch]);
 
 
   return(
@@ -246,7 +264,7 @@ useEffect(async() => {
       {newPass === 'active' ?
         <div  style={{display: 'flex', alignItems: 'center', flexDirection: 'column'}}>
         <label>nueva contraseña</label>
-        <input className={style.input} name='newpassword' type='password'  onChange={e => {
+        <input className={style.input} name='newPassword' type='password'  onChange={e => {
           setData(prev => {
             return {
               ...prev,
