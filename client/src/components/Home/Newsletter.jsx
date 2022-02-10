@@ -2,6 +2,9 @@ import { Send } from "@material-ui/icons";
 import React from "react";
 import styled from "styled-components";
 import mobile from "../../responsive";
+import axios from "axios";
+import { useDispatch } from 'react-redux';
+import Swal from 'sweetalert2';
 
 const Container = styled.div`
   height: 60vh;
@@ -10,20 +13,20 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-`;
+  `;
 const Title = styled.h1`
   font-size: 70px;
   margin-bottom: 20px;
-
+  
   ${mobile({ fontSize: "48px" })}
-`;
+  `;
 const Description = styled.p`
   font-size: 24px;
   margin-bottom: 20px;
   font-weight: 300;
-
+  
   ${mobile({ textAlign: "center", fontSize: "18px" })}
-`;
+  `;
 const InputContainer = styled.div`
   width: 50%;
   height: 40px;
@@ -31,34 +34,58 @@ const InputContainer = styled.div`
   display: flex;
   justify-content: space-between;
   border: 1px solid lightgray;
-
+  
   ${mobile({ width: "80%" })}
-`;
+  `;
 const Input = styled.input`
   border: none;
   flex: 8;
   font-size: 20px;
   padding-left: 20px;
-${mobile({ fontSize: "48px" })}
-`;
+  ${mobile({ fontSize: "48px" })}
+  `;
 const Button = styled.button`
   flex: 1;
   border: none;
   background-color: teal;
   color: white;
   ${mobile({ fontSize: "48px" })}
-`;
+  `;
+
+
+
 
 export const Newsletter = () => {
+ 
+  const SERVER = process.env.REACT_APP_SERVER ||'http://localhost:3001/';
+  const dispatch= useDispatch();
+  const [email, setEmail] = React.useState("");
+
+  const Addsubcription  = async (email) => {
+    let data = await axios.post(`${SERVER}suscription`, { email });
+    dispatch({ type: "ADD_SUBSCRIPTION", payload: data.data,   });
+  
+  }
+
+
   return (
     <Container>
       <Title>Boletin informativo</Title>
       <Description>Obtenga actualizaciones oportunas de sus productos favoritos. </Description>
       <InputContainer>
-        <Input placeholder="Introduce tu correo electrónico" />
+        <Input onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
         <br />
         <Button>
-          <Send />
+          <Send  onClick={() => { 
+            Addsubcription(email)
+            Swal.fire({
+              icon: 'success',
+              text: 'Gracias por subscribirse a Tech-C',
+              showConfirmButton: false,
+              timer: 3000
+            })
+            setEmail("")
+            }} />
         </Button>
       </InputContainer>
     </Container>
