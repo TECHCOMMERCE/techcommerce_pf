@@ -41,8 +41,10 @@ const ListDeliveries = () => {
 
   return (
     <Wrapper
-      bground="ghostwhite"
-      height="100vh"
+     
+    bground="ghostwhite"
+    margin="105px 0 0 0"  
+    height="100vh"
       width="100vw"
       padding="175px 50px"
     >

@@ -1,6 +1,6 @@
 @media only screen and (min-width: 320px){
   .container{
-    margin-top: 85px;
+    padding-top: 85px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -126,7 +126,7 @@
     /* background-color: rgb(217, 227, 235); */
     display: grid;
     grid-template-columns: repeat(2, 50%);
-    margin-top: 8.5em;
+    margin-top: 5em;
     padding-bottom: 12em;
     /* display: flex; */
     /* align-items: center; */

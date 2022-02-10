@@ -4,11 +4,12 @@ import React, { useState, useEffect } from 'react';
 import {useDispatch, useSelector} from 'react-redux'
 import axios from "axios";
 import { getProductsFront } from "../Store/actions/products";
-
+import mobile from "../responsive";
 
 import Tech from "../assets/Imgs/Tech.png";
-
-import { Search, ShoppingCartOutlined } from "@material-ui/icons";
+import styled from "styled-components";
+import { Search } from "@styled-icons/zondicons/Search";
+import {ShoppingCartOutlined } from "@material-ui/icons";
 import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
 import Divider from '@mui/material/Divider';
@@ -40,6 +41,18 @@ import { Container,
         } from "../assets/styles/NavBar.elements.js";
 import s from '../assets/styles/NavBar.module.css'
 import { FaBars, FaTimes } from 'react-icons/fa'
+
+const SearchIcon = styled(Search)`
+//   width: 20px;
+   height: 20px;
+   color: #5f5f5f;
+   /* margin-left: 30%; */
+   /* margin-bottom: 10% ;  */
+   @media only screen and (min-width: 1400px){
+    margin-left: 30px;
+    margin-bottom: 10px; 
+   }
+ `;
 
 const Header = () => {
   const dispatch=useDispatch();
@@ -102,15 +115,14 @@ const Header = () => {
   return (
     <Container className={s.container}>
       <Wrapper>
-
         <Left style={{width: "150px"}}> 
-         {/*  <Logo src={Logoo} /> */}
+         
          <div >
          <TechC src={Tech} onClick={()=>navigate("/")} style={{ cursor: "pointer" }}/>
          </div>
         </Left>
 
-        <Center>
+     
          {location.pathname=="/products"?<><SearchContainer>
             <form onSubmit={e => {
               e.preventDefault();
@@ -129,38 +141,13 @@ const Header = () => {
                   setName(e.target.value);
                 }}
                 list="searchdata"
-                /* onFocus={() => setVisibility(s.visible)} */
-                // onBlur={() => setVisibility(s.hidden)}
+                
               />
-              <Search style={{ color: "gray", fontSize: 25}} type="submit"></Search>
+              <SearchIcon type="submit"></SearchIcon>
             </form>
-           {/* <Search style={{ color: "gray", fontSize: 25}}></Search> */}
+           
             </SearchContainer>
           </>:null}
-
-          {/*
-           <div className={`${s.dataResult} ${visibility}`}>
-            {names.code === null ? null : 
-            names.code === 1 ? "No tenemos ese producto" : 
-            names.names.map(name => 
-              <div 
-                key={name.id} 
-                className={s.option}
-                onClick={() => {
-                  setName(name.name);
-
-                  dispatch(getProductsFront({
-                    category: '',
-                    brand: '',
-                    sort:''
-                  }, 0, name.name));
-
-                  setVisibility(s.hidden);
-                }}
-              >{name.name}</div>
-            )}
-          </div> 
-          */}
           <datalist id="searchdata">
           {names.code === null ? null : 
             names.code === 1 ? "No tenemos ese producto" : 
@@ -178,12 +165,12 @@ const Header = () => {
                     sort:''
                   }, 0, name.name));
 
-                 /* setVisibility(s.hidden) */
+                 
                 }}
               >{name.name}</option>
             )}
             </datalist>
-        </Center>
+      
         
         <MobileIcon onClick={() => setShowMobileMenu(!showMobileMenu)} >
           {showMobileMenu?
@@ -234,7 +221,7 @@ const Header = () => {
           :null}
           
           {user.token&&user.user?<Tooltip title="Account settings">
-            <IconButton onClick={handleClick} size="small" sx={{ ml: 2 }}>
+            <IconButton onClick={handleClick} size="medium" sx={{ ml: 2 }}>
               <Avatar 
                 src={userData?.photo?userData.photo:null} 
                 sx={{ width: 34, height: 34 }}>{userData?.photo?null:userData?.name?.charAt(0)}
@@ -276,7 +263,7 @@ const Header = () => {
             anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
           >
             <MenuItem>
-              {/* <Avatar /> */} {`${userData?.name.toUpperCase()} ${userData?.lastname.toUpperCase()}`}
+              {`${userData?.name.toUpperCase()} ${userData?.lastname.toUpperCase()}`}
             </MenuItem>
             <MenuItem onClick={()=>navigate("/profile/WishList")} >
               <ShoppingBagIcon /> My Favorites

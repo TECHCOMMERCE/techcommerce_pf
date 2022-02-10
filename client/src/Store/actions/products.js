@@ -56,7 +56,6 @@ export const getCategories = () => async (dispatch) => {
 export const getDetails = (id) => async (dispatch) => {
   /* console.log("entre"); */
   const data = await axios.get(`${SERVER}product/${id}`);
-  console.log("data", data.data);
   return dispatch({
     type: GET_DETAILS,
     payload: data.data,
