@@ -76,7 +76,7 @@ router.post("/mail", (req, res) => {
 router.put("/", async(req, res) => {
   try{
     const {userid, password, userData} = req.body;
-    
+
     const user = await User.findOne({where: {
       userid,
       password
@@ -88,7 +88,7 @@ router.put("/", async(req, res) => {
     if(userData.newPassword?.length)data["password"] = userData.newPassword
     else userData["password"] = user.password
 
-    const response = await user.update(userData);
+    const response = await user.update(data);
 
     return res.status(200).send({code: 0, message: "Usuario actualizado Con éxito"});
   }catch(e){
