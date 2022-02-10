@@ -10,8 +10,8 @@ import {
   FILTER_BY_CATEGORY_POLICY
 } from '../constanst/actionsTypes'
 
-// const SERVER = process.env.REACT_APP_SERVER || "http://localhost:3001/";
-const SERVER = "http://localhost:3001/";
+const SERVER = process.env.REACT_APP_SERVER || "http://localhost:3001/";
+// const SERVER = "http://localhost:3001/";
 
 export const getPolicies = () => {
   return async(dispatch) =>{
@@ -21,8 +21,7 @@ export const getPolicies = () => {
       type: GET_POLICY,
       payload: response.data
     })
-  }
-  
+  } 
 }
 
 // export const getPolicies =()=> {
