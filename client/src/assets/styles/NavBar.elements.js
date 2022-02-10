@@ -1,6 +1,6 @@
-import { Search } from "@material-ui/icons";
+
 import styled from "styled-components";
-import mobile, {laptop} from "../../responsive";
+import mobile from "../../responsive";
 
 export const Container = styled.div`
  height: 60px;
@@ -12,6 +12,7 @@ export const Wrapper = styled.div`
   background-color: #2EB8B0; 
   display: flex;
   align-items: center;
+  margin-top:-50px;
   ${mobile({ padding: "10px 0px" })}
 `;
 export const Left = styled.div`
@@ -21,7 +22,8 @@ export const Left = styled.div`
 
 export const TechC = styled.img`
   width: 8rem;
-  margin-left: 3rem;
+  margin-left: 5rem;
+  margin-top: 3rem;
   @media screen and (max-width: 960px){
     width: 5rem;
   }

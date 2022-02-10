@@ -111,7 +111,6 @@ const Header = () => {
   return (
     <Container className={s.container}>
       <Wrapper>
-
         <Left style={{width: "150px"}}> 
          {/*  <Logo src={Logoo} /> */}
          <div >
