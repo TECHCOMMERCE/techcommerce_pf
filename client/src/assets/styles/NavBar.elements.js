@@ -1,5 +1,6 @@
+
 import styled from "styled-components";
-import mobile, {laptop} from "../../responsive";
+import mobile from "../../responsive";
 
 export const Container = styled.div`
  height: 60px;
@@ -7,11 +8,11 @@ export const Container = styled.div`
 
 `;
 
-
 export const Wrapper = styled.div`
   background-color: #2EB8B0; 
   display: flex;
   align-items: center;
+  margin-top:-50px;
   ${mobile({ padding: "10px 0px" })}
 `;
 export const Left = styled.div`
@@ -21,7 +22,8 @@ export const Left = styled.div`
 
 export const TechC = styled.img`
   width: 8rem;
-  margin-left: 3rem;
+  margin-left: 5rem;
+  margin-top: 3rem;
   @media screen and (max-width: 960px){
     width: 5rem;
   }
@@ -110,13 +112,14 @@ export const Center = styled.div`
 
 export const SearchContainer = styled.div`
   flex-direction: row;
-  align-items:center;
   justify-content: center;
-  width: 100%;
+  width: 50%;
+  margin-left: 10em;
   border-radius: 8px;
-  /* letter-spacing: 0.0275rem; */
+  letter-spacing: 0.0275rem;
   background-color: white;
-
+  padding: 0.5rem;
+  margin-top: 1em;
   @media screen and (max-width: 960px){
     width: 372px;
   }
@@ -148,7 +151,7 @@ export const Input = styled.input`
 export const ButtonSearch = styled.button`
   height: 3rem;
   width: 10%;
-  border: none;
+  
   border-radius: 0 8px 8px 0;
   background-color:#fcf5f5;
 

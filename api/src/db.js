@@ -80,6 +80,8 @@ const {
   Review,
   User,
   Delivery,
+  Help,
+  Helpcategory
   // Post,
 } = sequelize.models;
 
@@ -122,6 +124,10 @@ Order.belongsTo(User);
 // Delivery ---> Order 1:N
 Delivery.hasMany(Order);
 Order.belongsTo(Delivery);
+
+// Help <--- HelpCategory N:1
+Helpcategory.hasMany(Help,{foreignKey:"HelpcategoryId"});
+Help.belongsTo(Helpcategory);
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

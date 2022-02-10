@@ -7,13 +7,15 @@ import { getProductsFront } from "../Store/actions/products";
 
 
 import Tech from "../assets/Imgs/Tech.png";
-
-import { Search, ShoppingCartOutlined } from "@material-ui/icons";
+import styled from "styled-components";
+import { Search } from "@styled-icons/zondicons/Search";
+import {ShoppingCartOutlined } from "@material-ui/icons";
 import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
 import Divider from '@mui/material/Divider';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import Settings from '@mui/icons-material/Settings';
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import Logout from '@mui/icons-material/Logout';
 import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
@@ -39,6 +41,14 @@ import { Container,
         } from "../assets/styles/NavBar.elements.js";
 import s from '../assets/styles/NavBar.module.css'
 import { FaBars, FaTimes } from 'react-icons/fa'
+
+const SearchIcon = styled(Search)`
+  width: 20px;
+  height: 20px;
+  color: #5f5f5f;
+  margin-left: 30px;
+  margin-bottom: 10px;
+`;
 
 const Header = () => {
   const dispatch=useDispatch();
@@ -101,7 +111,6 @@ const Header = () => {
   return (
     <Container className={s.container}>
       <Wrapper>
-
         <Left style={{width: "150px"}}> 
          
          <div >
@@ -109,7 +118,7 @@ const Header = () => {
          </div>
         </Left>
 
-        <Center>
+     
          {location.pathname=="/products"?<><SearchContainer>
             <form onSubmit={e => {
               e.preventDefault();
@@ -130,7 +139,7 @@ const Header = () => {
                 list="searchdata"
                 
               />
-              <Search style={{ color: "gray", fontSize: 25}} type="submit"></Search>
+              <SearchIcon type="submit"></SearchIcon>
             </form>
            
             </SearchContainer>
@@ -157,7 +166,7 @@ const Header = () => {
               >{name.name}</option>
             )}
             </datalist>
-        </Center>
+      
         
         <MobileIcon onClick={() => setShowMobileMenu(!showMobileMenu)} >
           {showMobileMenu?
@@ -257,6 +266,11 @@ const Header = () => {
             </MenuItem>
             <MenuItem onClick={()=>navigate("/profile/ShopHistory")}>
               <ShoppingBagIcon /> My Shops
+            </MenuItem>
+            <MenuItem>
+              <Link to="/ayuda" >
+                <HelpOutlineIcon /> Ayuda
+              </Link>
             </MenuItem>
             <MenuItem onClick={()=>navigate('/profile')}>
               <Settings /> Edit Profile

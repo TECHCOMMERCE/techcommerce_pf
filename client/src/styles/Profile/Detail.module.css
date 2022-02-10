@@ -9,6 +9,7 @@
   box-shadow: 0 1rem 2rem hsl(0 0% 0% / 20%);
   padding: 5%;
   margin-bottom: 10%;
+  
 
 }
 
@@ -28,6 +29,7 @@
   flex-direction: row;
   margin: 3%;
   width: 100%;
+  margin-bottom: 50px;
 }
 .pdiv{
   display: flex;
@@ -51,6 +53,16 @@
   margin-top: 10%;
 }
 
+.btnsend{
+  width: 100px;
+  height: 30px;
+  border: none;
+  border-radius: 5px;
+  background-color:#2EB8B0 ;
+  margin-top: 15px;
+  cursor: pointer;
+  color: white;
+}
 
 @media (max-width: 600px) {
   .ticket{
