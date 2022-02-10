@@ -35,7 +35,7 @@ export const Right = styled.ul`
 
   @media screen and (max-width: 960px){
     align-items: center;
-    background-color:#d63939 ;
+    background-color:#2EB8B0 ;
     left: ${({open}) =>( open ? "0": "-100%" )};
     justify-content: center;
     flex-direction: column;
@@ -44,6 +44,7 @@ export const Right = styled.ul`
     height: 90vh;
     position: absolute;
     width: 100%;
+    z-index: 100;
   }
 `;
 
