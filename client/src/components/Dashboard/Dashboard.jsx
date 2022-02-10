@@ -9,7 +9,8 @@ import {
   MdCategory,
   MdPeople,
   MdAssignment,
-  MdLocalShipping
+  MdLocalShipping,
+  MdOutgoingMail
 } from "react-icons/md";
 
 const Dashboard = () => {
@@ -110,6 +111,17 @@ const Dashboard = () => {
               onClick={() => (window.location.href = "/dashboard/deliveries")}
             >
               Envíos
+            </Button>
+          </Box>
+          <Box>
+          <Button
+              variant="contained"
+              color="pop"
+              sx={{ mt: 40, width: "100%", height: "20vh", fontSize: "1rem", color: "ghostwhite",}}
+              startIcon={<MdOutgoingMail />}
+              onClick={() => (window.location.href = "/dashboard/sendMail")}
+            >
+              Envío de Mails
             </Button>
           </Box>
         </Box>
