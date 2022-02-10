@@ -7,6 +7,7 @@ import {
 import React from "react";
 
 
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import {
   Container,
   Left,
@@ -22,6 +23,7 @@ import {
   ContactItem,
   Payment
 } from '../../assets/styles/Footer.elements'
+import { Link } from "react-router-dom";
 
 
 const Footer = () => {
@@ -55,6 +57,10 @@ const Footer = () => {
           <ListItem><a href="http://localhost:3000/products">Productos</a></ListItem>
           <ListItem><a href="http://localhost:3000/register">Register</a></ListItem>
           <ListItem><a href="http://localhost:3000/login">Login</a></ListItem>
+          <ListItem><Link to="/dashboard">Dashboard</Link></ListItem>
+          <Link to="/ayuda" >
+            Ayuda<HelpOutlineIcon /> 
+          </Link>
         </List>
       </Center>
       <Right>

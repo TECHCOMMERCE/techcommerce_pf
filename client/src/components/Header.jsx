@@ -14,6 +14,7 @@ import IconButton from '@mui/material/IconButton';
 import Divider from '@mui/material/Divider';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import Settings from '@mui/icons-material/Settings';
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import Logout from '@mui/icons-material/Logout';
 import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
@@ -282,6 +283,11 @@ const Header = () => {
             </MenuItem>
             <MenuItem onClick={()=>navigate("/profile/ShopHistory")}>
               <ShoppingBagIcon /> My Shops
+            </MenuItem>
+            <MenuItem>
+              <Link to="/ayuda" >
+                <HelpOutlineIcon /> Ayuda
+              </Link>
             </MenuItem>
             <MenuItem onClick={()=>navigate('/profile')}>
               <Settings /> Edit Profile
