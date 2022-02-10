@@ -1,3 +1,4 @@
+import { Search } from "@material-ui/icons";
 import styled from "styled-components";
 import mobile, {laptop} from "../../responsive";
 
@@ -144,7 +145,6 @@ export const Input = styled.input`
   }
   
 `;
-
 
 export const ButtonSearch = styled.button`
   height: 3rem;
