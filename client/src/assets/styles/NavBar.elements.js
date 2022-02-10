@@ -5,7 +5,6 @@ import mobile from "../../responsive";
 export const Container = styled.div`
  height: 60px;
   ${mobile({ height: "50px" })}
-
 `;
 
 export const Wrapper = styled.div`
@@ -17,36 +16,25 @@ export const Wrapper = styled.div`
 `;
 export const Left = styled.div`
   display: flex;
+  margin-bottom: -20px;
   align-items: center;
+  ${mobile({ height: "50px" })}
 `;
 
 export const TechC = styled.img`
   width: 8rem;
   margin-left: 5rem;
   margin-top: 3rem;
-  @media screen and (max-width: 960px){
-    width: 5rem;
-  }
+  ${mobile({ fontSize: "24px" })}
 `;
 
 export const Right = styled.ul`
   display: flex;
   flex: 1;
+  margin-top: 50px;
   justify-content: right;
   list-style: none;
-
-  @media screen and (max-width: 960px){
-    align-items: center;
-    background-color:#d63939 ;
-    left: ${({open}) =>( open ? "0": "-100%" )};
-    justify-content: center;
-    flex-direction: column;
-    transition: 0.5s all ease;
-    top: 85px;
-    height: 90vh;
-    position: absolute;
-    width: 100%;
-  }
+  ${mobile({ height: "50px" })}
 `;
 
 export const MenuItem = styled.div`
@@ -55,18 +43,12 @@ export const MenuItem = styled.div`
   cursor: pointer;
   margin-left: 25px;
   margin-right: 25px;
+  ${mobile({ height: "50px" })}
 `;
 
 export const MenuItems = styled.li`
   height: 100%;
-
-  @media screen and (max-width: 960px){
-    width:100%;
-    height:70px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+  ${mobile({ height: "50px" })}
 `;
 
 export const MenuItemLink = styled.a`
@@ -86,28 +68,16 @@ export const MenuItemLink = styled.a`
     color: #121212;
     background-color: #3c3c434d;
   }
-  @media screen and (max-width: 960px){
-    /* font-size: 2.8rem; */
-    width: 100%;
-  }
-  
+  ${mobile({ height: "50px" })}
 `;
 
 export const Center = styled.div`
-
   justify-content: center;
   align-items: center;
   width: 100%;
   margin-left: 2em;
   margin-right: 2em;
-  /* margin-right: 4em; */
-  /* background-color: black; */
-  
-  @media screen and (max-width: 960px){
-    margin-right: 20px;
-    margin-left: 1em;
-    width: 373px;
-  }
+  ${mobile({ height: "10px" })}
 `;
 
 export const SearchContainer = styled.div`
@@ -118,33 +88,24 @@ export const SearchContainer = styled.div`
   border-radius: 8px;
   letter-spacing: 0.0275rem;
   background-color: white;
-  padding: 0.5rem;
   margin-top: 1em;
-  @media screen and (max-width: 960px){
-    width: 372px;
-  }
- 
+  margin-bottom: -2em;
+  ${mobile({ height: "10px" })}
+  
 `;
 
 export const Input = styled.input`
   width: 90%;
   border-radius: 8px 0 0 8px;
   text-transform: uppercase;
-  height: 2.8rem;
+  height: 2.5rem;
   align-items: center;
   font-size: 1.3rem;
   line-height: 147.6%;
   padding-left: 0.9rem;
   padding-top: 0.5rem;
-  /* padding-bottom: 0.5rem; */
   border: none;
-  
-  @media screen and (max-width: 960px){
-    font-size: 0.8rem;
-    padding-bottom: 0rem;
-    height: 3.3rem;
-    width: 90%;
-  }
+  ${mobile({ height: "50px" })}
   
 `;
 
@@ -158,15 +119,7 @@ export const ButtonSearch = styled.button`
   &:hover {
     background-color: #3c3c434d;
   }
-
-  @media screen and (max-width: 960px){
-    padding-bottom: 0.2rem; 
-    height: 3.28rem;
-    width: 10%;
-  }
-  @media screen and (max-width: 1800px){
-    width: 10%;
-  } 
+  ${mobile({ height: "50px" })}
 `;
 export const Cartshopp = styled.div`
  ${mobile({ width: "50px" })}
@@ -175,14 +128,5 @@ export const Cartshopp = styled.div`
 export const MobileIcon = styled.div`
     display: none;
 
-    @media screen and (max-width: 960px){
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-
-      svg{
-        fill: #000000;
-        margin-right: 0.5rem
-      }
-    }
+    ${mobile({ display: "flex" })}
 `;

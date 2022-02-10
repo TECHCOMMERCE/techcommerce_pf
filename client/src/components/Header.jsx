@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import {useDispatch, useSelector} from 'react-redux'
 import axios from "axios";
 import { getProductsFront } from "../Store/actions/products";
-
+import mobile from "../responsive";
 
 import Tech from "../assets/Imgs/Tech.png";
 import styled from "styled-components";
@@ -48,6 +48,7 @@ const SearchIcon = styled(Search)`
   color: #5f5f5f;
   margin-left: 30px;
   margin-bottom: 10px;
+  ${mobile({ height: "10px" })}
 `;
 
 const Header = () => {
