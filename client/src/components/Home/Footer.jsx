@@ -53,14 +53,12 @@ const Footer = () => {
       <Center>
         <Title>Rutas Utiles:</Title>
         <List>
-          <ListItem><a href="http://localhost:3000/">Home</a></ListItem>
-          <ListItem><a href="http://localhost:3000/products">Productos</a></ListItem>
-          <ListItem><a href="http://localhost:3000/register">Register</a></ListItem>
-          <ListItem><a href="http://localhost:3000/login">Login</a></ListItem>
-          <ListItem><Link to="/dashboard">Dashboard</Link></ListItem>
-          <Link to="/ayuda" >
-            Ayuda<HelpOutlineIcon /> 
-          </Link>
+          <ListItem href="http://localhost:3000/">Home</ListItem>
+          <ListItem href="http://localhost:3000/products">Productos</ListItem>
+          <ListItem href="http://localhost:3000/register">Register </ListItem>
+          <ListItem href="http://localhost:3000/login">Login</ListItem>
+          <ListItem href="http://localhost:3000/dashboard">Dashboard</ListItem>
+          <ListItem href="http://localhost:3000/ayuda">  Ayuda </ListItem>
         </List>
       </Center>
       <Right>

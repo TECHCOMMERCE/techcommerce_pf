@@ -31,7 +31,7 @@ export const List = styled.ul`
   flex-wrap: wrap;
   ${mobile({ fontSize: "48px" })}
 `;
-export const ListItem = styled.li`
+export const ListItem = styled.a`
   width: 50%;
   margin-bottom: 10px;
   ${mobile({ fontSize: "48px" })}
