@@ -56,7 +56,7 @@ const Footer = () => {
           <ListItem href="/ayuda">  Ayuda </ListItem>
         </List>
       </Center>
-      <Right>
+      <Right className="nomobile">
         <Title>Pagos con:</Title>
         <Payment src="https://icon-library.com/images/discover-credit-card-icon/discover-credit-card-icon-7.jpg" />
       </Right>

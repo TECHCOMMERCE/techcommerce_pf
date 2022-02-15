@@ -143,7 +143,7 @@ const Header = () => {
                 list="searchdata"
                 
               />
-              <SearchIcon type="submit"></SearchIcon>
+              {/* <SearchIcon type="submit" className="nomobile"></SearchIcon> */}
             </form>
            
             </SearchContainer>
