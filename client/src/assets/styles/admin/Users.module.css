@@ -1,6 +1,7 @@
 .container{
     width: 100%;
     height: auto;
+    margin-top: 70px;
     /* max-height: 50vh; */
 
     /* background-color: rgb(217, 227, 235); */
@@ -75,7 +76,7 @@
 
 .table{
     width: 100%;
-
+    
     /* table-layout: fixed; */
     text-align: center;
     border-collapse: collapse;

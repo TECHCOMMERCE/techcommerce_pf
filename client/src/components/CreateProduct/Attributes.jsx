@@ -12,6 +12,7 @@ import {
   IconButton,
   List,
   ListItem,
+  Typography,
 } from "@mui/material";
 
 const Attributes = ({ input, setInput }) => {
@@ -19,7 +20,7 @@ const Attributes = ({ input, setInput }) => {
 
   return (
     <Box sx={{ mt: 10 }}>
-      <FormLabel>Product's Attributes</FormLabel>
+      <FormLabel>Atributos del Producto</FormLabel>
       <Box sx={{ display: "flex" }}>
         <Box
           sx={{
@@ -31,7 +32,7 @@ const Attributes = ({ input, setInput }) => {
         >
           <TextField
             variant="filled"
-            label="Attribute"
+            label="Atributo"
             type="text"
             id="attribute-name"
             placeholder="Color"
@@ -44,9 +45,9 @@ const Attributes = ({ input, setInput }) => {
         <Box sx={{ display: "flex", alignItems: "center", width: "80%" }}>
           <TextField
             variant="filled"
-            label="Value"
+            label="Valor"
             type="text"
-            placeholder="Blue"
+            placeholder="Azul"
             id="attribute-value"
             sx={{ width: "90%" }}
             inputProps={{ maxLength: 30}}
@@ -62,17 +63,20 @@ const Attributes = ({ input, setInput }) => {
               document.querySelector("#attribute-name").focus();
             }}
           >
-            <MdAddCircle size="40px" color="#3CB371" />
+            <MdAddCircle size="40px" color="#2eb8b0" />
           </IconButton>
         </Box>
       </Box>
+      <Typography sx={{ fontSize: ".75rem", mt: "5px", color: "gray" }}>
+        12 caracteres en Atributo y 30 caracteres en Valor como máximo
+      </Typography>
 
       {input.attributes[0] && (
         <List
           style={{
             fontSize: 11,
             listStyle: "none",
-            maxHeight: "215px",
+            maxHeight: "325px",
             width: "94%",
             overflowY: "scroll",
             marginTop: "10px",

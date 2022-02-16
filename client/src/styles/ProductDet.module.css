@@ -2,13 +2,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
 .container {
 	padding: 0px !important;
-	margin-top: 30px;
+	margin-top: 150px;
 	margin-bottom: 10%;
 	height: 60%;
 	width: 80%;
 	box-shadow: 0px 0px 5px 3px rgba(221, 220, 220, 1);
 	margin-left: 11%;
 	border-radius: 4px;
+
 }
 .cont_prin {
 	width: 100%;
@@ -180,6 +181,12 @@
 	overflow: hidden;
 }
 
+.img{
+	width: 20%;
+	background-color: red;
+	height: 40%;
+}
+
 .icon .emptyStarsCont .emptyStars {
 	width: 500%;
 	font-size: 1.5em;
@@ -234,11 +241,29 @@
 }
 
 @media (max-width: 900px) {
+
+	.container{
+		width: 90%;
+		margin-left: 5%;
+	}
 	.attributesContainer{
 		height: 600px;
 		width: 100%;
 		
 		
+	}
+	.cont_cant2{
+		flex-direction: column;
+	}
+
+	.cont_img{
+		width: 100%;
+	}
+
+	.img{
+		width: 200px;
+		background-color: red;
+		height: 100%;
 	}
 
 }

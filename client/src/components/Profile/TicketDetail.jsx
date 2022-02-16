@@ -15,7 +15,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
   const {ticket} =useSelector(state => state.tickets)
   console.log('ticket', ticket);
   const [display, setDisplay] = useState('')
-
+  
 useEffect(() => {
   dispatch(getOneTicket(id))
 }, [dispatch]);
@@ -42,10 +42,18 @@ useEffect(() => {
           )
         })  : null
     }
-       <p className={style.p}><b>Dirección: </b>{ticket.address}</p>
-      <p className={style.p}><b>Estado:</b> {ticket.delivery?.status? ticket.delivery.status : ticket.status}</p>
+    <div className={style.pdiv}>
+     <p><b>Direccion: </b></p> 
+    <p className={style.p}>{ticket.address}</p>
+    </div>
+    <div className={style.pdiv}>
+     <p><b>Estado: </b></p> 
+     <p className={style.p}> {ticket.delivery?.status? ticket.delivery.status : ticket.status}</p>
+    </div>
+      
+      
       <div>
-       <a href={`/shipping/${ticket.delivery?.deliveryid}`} ><button disabled={!ticket.delivery}>Seguir Envío</button></a> 
+       <a href={`/shipping/${ticket.delivery?.deliveryid}`} ><button className={style.btnsend}>Seguir Envío</button></a> 
       </div>
       <p className={style.p} style={{fontSize: '19px'}}><b>TOTAL: </b>${ticket.totalPrice}</p>
 

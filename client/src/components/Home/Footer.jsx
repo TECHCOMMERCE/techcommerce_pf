@@ -2,15 +2,9 @@ import {
   Facebook,
   Instagram,
   LinkedIn,
-  LocationOn,
-  Mail,
-  Phone,
   Twitter,
 } from "@material-ui/icons";
 import React from "react";
-import styled from "styled-components";
-import mobile from "../../responsive";
-import {Link} from "react-router-dom";
 
 import {
   Container,
@@ -24,10 +18,8 @@ import {
   List,
   ListItem,
   Right,
-  ContactItem,
   Payment
 } from '../../assets/styles/Footer.elements'
-
 
 const Footer = () => {
   return (
@@ -56,14 +48,15 @@ const Footer = () => {
       <Center>
         <Title>Rutas Utiles:</Title>
         <List>
-          <ListItem><a href="http://localhost:3000/">Home</a></ListItem>
-          <ListItem><a href="http://localhost:3000/products">Productos</a></ListItem>
-          <ListItem><a href="http://localhost:3000/register">Register</a></ListItem>
-          <ListItem><a href="http://localhost:3000/login">Login</a></ListItem>
-          <ListItem><Link to="/dashboard">Dashboard</Link></ListItem>
+          <ListItem href="/">Inicio</ListItem>
+          <ListItem href="/products">Productos</ListItem>
+          <ListItem href="/register">Registrarse </ListItem>
+          <ListItem href="/login">acceso</ListItem>
+          <ListItem href="/dashboard">Tablero de mandos</ListItem>
+          <ListItem href="/ayuda">  Ayuda </ListItem>
         </List>
       </Center>
-      <Right>
+      <Right className="nomobile">
         <Title>Pagos con:</Title>
         <Payment src="https://icon-library.com/images/discover-credit-card-icon/discover-credit-card-icon-7.jpg" />
       </Right>

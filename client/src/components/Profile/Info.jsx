@@ -103,11 +103,30 @@ function validatePass(e) {
      userData: data
    }));
    //window.location.href = '/login';
-   await dispatch(getOneUser(local.user.userid))
+  //  await dispatch(getOneUser(local.user.userid))
    setDisplay('data');
-
+   
   //  Vuelvo a loguearme
-    //dispatch(loginAccount({email: user.email, password: data.password, type:'normal'}))
+    await dispatch(loginAccount({email: user.email, password: data.newPassword ? data.newPassword : data.password, type:'normal'}))
+
+    dispatch(getOneUser(local.user.userid)).then(res => {
+      // console.log(res)
+     return setData({
+        name: res.payload.name,
+        lastname: res.payload.lastname,
+        email: res.payload.email,
+        address: res.payload.address,
+        force: false,
+        type: res.payload.type,
+        phone: res.payload.phone? res.payload.phone : '',
+        userid: res.payload.userid,
+        photo: res.payload.photo? res.payload.photo : '',
+        country: res.payload.country? res.payload.country : '',
+        city: res.payload.city? res.payload.city : '' ,
+        postalcode: res.payload.postalcode? res.payload.postalcode : 0,
+        password: "",
+      })
+    })
   }
 
   function newpassword(e) {
@@ -153,12 +172,11 @@ useEffect(async() => {
       country: res.payload.country? res.payload.country : '',
       city: res.payload.city? res.payload.city : '' ,
       postalcode: res.payload.postalcode? res.payload.postalcode : 0,
-      
-      password: ""
+      password: "",
     })
   })
   
-}, []);
+}, [dispatch]);
 
 
   return(
@@ -171,7 +189,7 @@ useEffect(async() => {
       </div>
       <div className={style.data}>
         <div className={style.data1}>
-
+        <button className={style.editbtn} onClick={()=>setDisplay('form')} ><EditIcon /></button>
         <p className={style.p}><b>Nombre: </b>  {user?.name ? user.name : ''}</p>
         <p className={style.p}><b>Apellido: </b> {user?.lastname ? user.lastname : ''}</p>
         <p className={style.p}><b>Email: </b>{user?.email ? user.email : ''} </p>
@@ -231,7 +249,7 @@ useEffect(async() => {
       </div>
       <div className={style.inputContainer}>
         <label>Contraseña</label>
-        <input className={style.input} required name='password' type='password' defaultValue={data.password} onChange={(e)=>validatePass(e)}/>
+        <input className={style.input} required name='password' type='password'  onChange={(e)=>validatePass(e)}/>
         {error==='password' ? <span style={{color: 'red'}}>Escriba su contraseña</span> : null}
       </div>
      
@@ -246,7 +264,7 @@ useEffect(async() => {
       {newPass === 'active' ?
         <div  style={{display: 'flex', alignItems: 'center', flexDirection: 'column'}}>
         <label>nueva contraseña</label>
-        <input className={style.input} name='newpassword' type='password'  onChange={e => {
+        <input className={style.input} name='newPassword' type='password'  onChange={e => {
           setData(prev => {
             return {
               ...prev,
@@ -258,9 +276,9 @@ useEffect(async() => {
       </div> : null
       }
 
-      <div style={{width: '400px', marginLeft: '20%', marginTop: '5%'}}>
-        <Button variant='contained' onClick={onSubmit}  style={{backgroundColor: '#2EB8B0', marginRight: '10%', marginTop: '20px'}} type='submit' disabled={error.length > 0}>Actualizar</Button>
-        <Button variant='contained'  style={{backgroundColor: 'red', marginTop: '20px', width:'125px'}} onClick={cancel}>cancelar</Button>
+      <div style={{width: '400px',  marginTop: '5%', marginLeft: '10%'}}>
+        <button className={style.btn} variant='contained' onClick={onSubmit}  style={{backgroundColor: '#2EB8B0', marginRight: '15%', marginTop: '20px'}} type='submit' disabled={error.length > 0 || data.password.length <= 0}>Actualizar</button>
+        <button className={style.btn}  style={{backgroundColor: 'red', marginTop: '20px'}} onClick={cancel}>cancelar</button>
       </div>
     </form>
     <div className={style.formButtons}>

@@ -37,6 +37,24 @@ const CheckoutForm = () => {
         city: "",
         postalCode: "",
     })
+    const inputStyle = {
+        iconColor: '#c4f0ff',
+        /* color: '#87BBFD', */
+        color: '#000',
+        borderColor: "#D2C5C5",
+        borderSize: "2px",
+        borderStyle: "solid",
+        fontWeight: '500',
+        fontFamily: 'Roboto, Open Sans, Segoe UI, sans-serif',
+        fontSize: '16px',
+        fontSmoothing: 'antialiased',
+        /* ':-webkit-autofill': {
+          color: '#87BBFD',
+        }, */
+        '::placeholder': {
+          color: '#001FCA',
+        },
+  }
   
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -59,9 +77,11 @@ const CheckoutForm = () => {
 
                 // console.log(paymentMethod)
                 console.log('error', error);
-                const { id } = paymentMethod;
-                console.log('id', id);
-                if(id){
+                
+                
+                if(paymentMethod.id){
+                    const { id } = paymentMethod;
+                    console.log('id', id);
                     const { data } = await axios.post(
                         `${SERVER}checkout/order`,
                         {
@@ -71,7 +91,7 @@ const CheckoutForm = () => {
                             datapaymant: {...dataCheck},
                             user
                         }
-                    );/**/
+                    );
                     if(data.redirect==='Completed'){
                         dispatch(getProductsCartUser(idUser))
                         Swal.fire({title: 'Compra realizada', text: 'Felicidades, su compra ha sido confirmada',icon:'success'})
@@ -112,16 +132,25 @@ const CheckoutForm = () => {
 
 
     useEffect(() => {
+        if(!idUser){
+            navigate("/products")
+        }
+    }, []); 
+    useEffect(() => {
+        
         dispatch(getProductsCartUser(idUser)); 
     }, [ dispatch,idUser]); 
     
     
     useEffect(() => {
         gettotal(products)
-       /*  if(!products.length){
-            navigate("/products")
-        } */
-    }, [products, navigate]); 
+        
+        //setTimeout(()=>{
+            /* if(!user.token){
+                navigate("/products")
+            } */
+        //},2000)
+    }, [products]); 
   
 
     return (
@@ -181,22 +210,33 @@ const CheckoutForm = () => {
                         onChange={handlerChange}
                     />  
                 </div>
-            </div>
-            {/* User Card Input */}
+                {/* User Card Input */}
             <div className={s.pay}>
-            <CardElement/>
+            <CardElement options={{
+   style: {
+     base: inputStyle,
+   },
+ }}/>
             </div>
             <div className={s.inputContainer}>
-                <button type="submit" disabled={!stripe} className={s.button}>
+                {products?.length && dataCheck.name && dataCheck.lastName && dataCheck.email && dataCheck.street && dataCheck.city && dataCheck.postalCode &&user.token?<button type="submit" disabled={!stripe} className={s.button}>
                 {loading ? (
-                    <div className="spinner-border text-light" role="status">
+                   /*  <div className="spinner-border text-light" role="status"> */
                     <span className="sr-only">Cargando...</span>
-                    </div>
+                    /* </div> */
                 ) : (
                     "Comprar ahora"
                 )}
-                </button>
+                </button>:<span style={
+                    {
+                        color: 'red',
+                        fontSize: '22px',
+                        fontWeight: '800'
+                    }
+            }>Rellene los datos para continuar</span>}
             </div>
+            </div>
+            
         </form>
         <div className={s.cart}>
             <div className={s.products}>
@@ -216,7 +256,7 @@ const CheckoutForm = () => {
             </div>
 
             <div className={s.totalPrice}>
-                <span className={s.totalText}>Total <span className={s.totalNumber}>$ {total}</span></span>
+                <span className={s.totalText}>Total : <span className={s.totalNumber}>$ {total}</span></span>
             </div>
         </div>
 

@@ -1,6 +1,6 @@
 
 const Stripe = require("stripe");
-const {Product, Order, Detail, Cart, User} = require("../../db")
+const {Product, Order, Detail, Cart, User, Delivery} = require("../../db")
 require('dotenv').config();
 const {STRIPE_CONN} = process.env;
 const stripe = new Stripe(STRIPE_CONN);
@@ -42,12 +42,17 @@ const PostCheckout = async (req,res,next)=>{
      }else{
       redirect="Cancelled"
     } 
-    //console.log('user', user);
+
+    // Crea el delivery
+    const delivery = await Delivery.create(); // fer
+
+    console.log('user', user);
     let orderuser = await Order.create({
       address: `${datapaymant.street}, ${datapaymant.city}, CP: ${datapaymant.postalCode}`,
       totalPrice: amount,
       status: redirect,
       userUserid: user.user.userid,
+      deliveryDeliveryid: delivery.dataValues.deliveryid, // fer
     })
     
     await orderuser.addProduct(productsDB);
@@ -68,7 +73,7 @@ const PostCheckout = async (req,res,next)=>{
     
     return res.status(200).json({payment, redirect});
   }catch(err){
-    console.log("Get users/checkout/:id", err);
+    // console.log("Get users/checkout/:id", err);
     return res.status(200).json({redirect: "Cancelled"});
     //next(err)
   }
@@ -84,6 +89,7 @@ const getUserTickets = async(req, res, next) =>{
     let tickets = await Order.findAll({
       where :  {status: status},
       include : [
+        {model: Delivery},
         {model : Product},
         {model: User,
         where: {userid : userid}
@@ -95,6 +101,7 @@ const getUserTickets = async(req, res, next) =>{
   }else {
     let tickets = await Order.findAll({
       include : [
+        {model: Delivery},
         {model : Product},
         {model: User,
         where: {userid : userid}
@@ -117,6 +124,7 @@ const getOneTicket =async(req,res,next) => {
     let ticket = await Order.findOne({
       where : { orderid: ticketid },
       include: [
+        {model: Delivery},
         {
           model: Product
         }

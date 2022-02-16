@@ -14,10 +14,11 @@ const wishlist = require("./WishList");
 const orderRouter = require("./ordersRoutes");
 const deliveries = require("./deliveries");
 const delivery = require("./delivery");
-
-
-
-const psuscription = require('./product_suscription');
+const help = require("./help")
+const helpcategories = require("./helpcategories")
+const {SendEmails} = require("../controllers/SendMails/main")
+const {mailSuscription} = require("../controllers/SendMails/mailSuscription")
+//const psuscription = require('./product_suscription');
 //const user = require("../controllers/User/user");
 
 //importing the routes
@@ -43,11 +44,20 @@ router.use("/cart", cart);
 router.use("/checkout", checkout);
 
 //router.use('/user', user)
+router.use("/help",help)
+// router.use("/help",help)
+router.use("/helpcategory", helpcategories)
 
 // router.use('/review', review)
 router.use("/wishlist", wishlist);
 
 router.use("/deliveries", deliveries);
 router.use("/delivery", delivery);
-router.use('/psuscription',psuscription)
+//router.use('/psuscription',psuscription)
+router.use('/suscription',(req,res)=>{
+  let email = req.body.email
+  let html = mailSuscription();
+  SendEmails(email,'Notificacion de suscripcion',html)
+  return res.send('Correo enviado correctamente').status(200)
+})
 module.exports = router;

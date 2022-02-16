@@ -81,7 +81,15 @@ function gettotal (array) {
       <div className={style.buttonContainer}>
       <Button variant='contained' style={{backgroundColor: '#2EB8B0'}} className={style.button} 
       onClick={()=>{
-        if(idUser)navigate('/checkout')
+        if(idUser && data.length)navigate('/checkout')
+        else{
+          Swal.fire({
+            icon: 'error',
+            text: 'No cuenta con ningun producto en el carrito!',
+            showConfirmButton: false,
+            timer: 3000
+          })
+        }
       }} disabled={!idUser?true:false}> Pagar </Button>
       {!idUser?<span style={{color: '#EB2020', display: 'block',textAlign: 'center'}}>Debe inicia Sesión</span>:null}
       </div>

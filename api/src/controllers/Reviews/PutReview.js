@@ -9,9 +9,16 @@ const putReview = async( req, res, next ) => {
 		//let user = await User.findOne({where:{userid: userId}});
 		console.log('ReproductId', productId);
 		console.log('ReuserId', userId);
-		let review= await Review.findOne({where: {productid: productId}});
+		let review= await Review.findOne({
+			where: {
+				[Op.and]:[
+					{productid: productId},
+					{userid:userId}
+				]
+			}
+		});
 		if(review){
-			Review.update({stars, description},{
+			let upd=await Review.update({stars, description},{
 				where: {
 					[Op.and]:[
 						{userid: userId},
@@ -20,15 +27,15 @@ const putReview = async( req, res, next ) => {
 
 				}
 			})
-			return res.status(OK).send('update Review Ok')
+			return res.status(OK).send({upd})
 		}else{
-			Review.create({
+			let crea=await Review.create({
 				productid: productId,
 				stars,
 				description,
 				userid: userId,
 			})
-			return res.status(OK).send('create Review Ok')
+			return res.status(OK).send({crea})
 		}
 		
 	}catch (err) {

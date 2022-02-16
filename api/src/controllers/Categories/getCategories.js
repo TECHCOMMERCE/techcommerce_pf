@@ -1,3 +1,4 @@
+const { Op } = require("sequelize");
 const { Category } = require("../../db");
 
 const getCategories = async (query) => {
@@ -26,9 +27,7 @@ const getCategories = async (query) => {
     if (query.name) {
       return await Category.findAll({
         where: {
-
           name: query.consolename,
-
         },
         order: [["name", "ASC"]],
       });

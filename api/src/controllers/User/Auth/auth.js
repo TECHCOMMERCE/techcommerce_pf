@@ -2,6 +2,8 @@ let jwt= require('jsonwebtoken')
 require('dotenv').config();
 const {SECRET_KEY} = process.env
 const {User} = require('../../../db.js')
+const {mailMessage} = require('../../SendMails/mailMessage')
+const {SendEmails} = require('../../SendMails/main')
 async function auth(req, res, next) {
   try{
     const {email, password, type,uid=null, name,lastname,photo=null} = req.body
@@ -36,6 +38,8 @@ async function auth(req, res, next) {
             password: '-',
             photo
         })
+        let html = mailMessage(`Hola ${name} este email es para confirmar tu registro en Techcommerce, agradecemos tu preferencia.`)
+        SendEmails(email,'Confirmación de Registro',html)
         search = {
           userid: search.userid,
           type: search.type,

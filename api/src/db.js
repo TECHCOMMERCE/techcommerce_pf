@@ -38,6 +38,7 @@ let sequelize =
         ssl: true,
       })
     : new Sequelize(
+        //`postgres://ddfsfqpt:MMiwKYe-w1RY3arU4Vgbl9SIUWkEHi3Q@castor.db.elephantsql.com/ddfsfqpt`,
         `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
         { logging: false, native: false }
       );
@@ -79,6 +80,8 @@ const {
   Review,
   User,
   Delivery,
+  Help,
+  Helpcategory
   // Post,
 } = sequelize.models;
 
@@ -121,6 +124,10 @@ Order.belongsTo(User);
 // Delivery ---> Order 1:N
 Delivery.hasMany(Order);
 Order.belongsTo(Delivery);
+
+// Help <--- HelpCategory N:1
+Helpcategory.hasMany(Help,{foreignKey:"HelpcategoryId"});
+Help.belongsTo(Helpcategory);
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

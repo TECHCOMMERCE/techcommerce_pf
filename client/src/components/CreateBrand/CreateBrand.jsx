@@ -22,11 +22,13 @@ const CreateBrand = () => {
 
   useEffect(() => {
     if (response && response === "Brand created") {
-      swalMessages(response, "Created", "success").then(() => {
-        window.location.href = "/dashboard/brands/create";
-      });
+      swalMessages("Marca creada exitosamente", "Creada", "success").then(
+        () => {
+          window.location.href = "/dashboard/brands/create";
+        }
+      );
     } else if (response && response === "This brand already exist") {
-      swalMessages(response, null, "error").then(() => {
+      swalMessages("Esta marca ya existe", null, "error").then(() => {
         window.location.href = "/dashboard/brands/create";
       });
     }
@@ -43,6 +45,7 @@ const CreateBrand = () => {
         justifyContent: "center",
         alignItems: "center",
         width: "100%",
+        mt: "135px",
       }}
     >
       {/* Contiene todo el form y el título */}
@@ -51,18 +54,18 @@ const CreateBrand = () => {
           m: 20,
           p: 40,
           pt: 20,
-          width: "400px",
-          backgroundColor: "dodgerblue",
+          width: "500px",
+          backgroundColor: "#2eb8b0",
           borderRadius: "5px",
           height: "fit-content",
         }}
       >
         <Typography
           sx={{ fontSize: "1.5rem", mb: 20 }}
-          color="secondary"
+          color="ghostwhite"
           align="left"
         >
-          Create a Brand
+          Crear una Marca
         </Typography>
 
         {/* formulario */}
@@ -82,15 +85,18 @@ const CreateBrand = () => {
         >
           <TextField
             autoFocus
-            label="name"
+            label="Nombre"
             required
+            multiline
             id="name"
             name="name"
             variant="filled"
             color="primary"
             value={input.name}
             onChange={handleInput}
-            placeholder="Monitors"
+            inputProps={{ maxLength: 100 }}
+            helperText="100 caracteres como máximo"
+            placeholder="Logitech"
             sx={{ width: "100%", mb: 30 }}
           />
 
@@ -105,8 +111,9 @@ const CreateBrand = () => {
               color="primary"
               endIcon={<MdSave />}
               size="medium"
+              sx={{ color: "ghostwhite" }}
             >
-              Create
+              Crear
             </Button>
             <Button
               color="error"
@@ -115,7 +122,7 @@ const CreateBrand = () => {
               size="medium"
               onClick={() => (window.location.href = "/dashboard/brands")}
             >
-              Back
+              Volver
             </Button>
           </Box>
         </form>

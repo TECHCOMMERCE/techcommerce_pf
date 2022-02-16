@@ -12,7 +12,8 @@ const Card = ({productid, name, image, price, qty, row,idUser,handlerChangeQty,h
     <div className={style.container}>
       <img src={image} />
       <Link to={`/Details/${productid}`}><p className={style.name}>{name}</p></Link>
-      <p >x <input name="amount" type="number" min={1} max={row.stock} value={qty} onChange={(e)=>handlerChangeQty(row,idUser,e)}></input>  </p>
+      <p >x <input name="amount" type="number" min={1} max={row.stock} value={qty} onChange={(e)=>handlerChangeQty(row,idUser,e)}></input></p>
+      <p>$ {price}c/u</p>
       <p>$ {price * qty}</p>
       <button className={style.button} onClick={()=>handleDeleteItem(row.productid)}><FontAwesomeIcon icon={faTrashAlt}/></button>
     </div>

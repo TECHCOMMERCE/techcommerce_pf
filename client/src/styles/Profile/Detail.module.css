@@ -9,6 +9,7 @@
   box-shadow: 0 1rem 2rem hsl(0 0% 0% / 20%);
   padding: 5%;
   margin-bottom: 10%;
+  
 
 }
 
@@ -28,13 +29,58 @@
   flex-direction: row;
   margin: 3%;
   width: 100%;
+  margin-bottom: 50px;
+}
+.pdiv{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+ 
 }
 
 .p{
   margin-top: 5%;
+  text-align: center;
+}
+
+.p b{
+  text-align: center;
 }
 
 .volver{
-  margin-left: 45%;
+  
   margin-top: 10%;
+}
+
+.btnsend{
+  width: 100px;
+  height: 30px;
+  border: none;
+  border-radius: 5px;
+  background-color:#2EB8B0 ;
+  margin-top: 15px;
+  cursor: pointer;
+  color: white;
+}
+
+@media (max-width: 600px) {
+  .ticket{
+    width: 100%;
+    margin-left: 0px;
+    margin-top: 60px;
+  }
+
+  .card{
+    flex-direction: column;
+    margin-top: 40px;
+  }
+
+  .infoCard{
+    margin-top: 12px;
+  }
+.volver{
+  margin-left: 0%;
+}
+
 }

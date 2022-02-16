@@ -26,7 +26,8 @@ export const getReviewsByProduct = (productid) => {
   return async(dispatch) =>{
     const user = JSON.parse(localStorage.getItem("user"));
     const idUser = !user?null:user.user.userid;
-   axios.get(`${SERVER}review/${productid}/user/${idUser}`)
+    let usurl=idUser?`/user/${idUser}`:''
+   axios.get(`${SERVER}review/${productid}${usurl}`)
     .then((res) => {
       dispatch({
           type: GET_REVIEWS,

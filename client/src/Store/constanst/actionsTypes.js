@@ -46,3 +46,12 @@ export const GET_USER_TICKETS = "GET_USER_TICKETS";
 export const GET_ONE_TICKET = "GET_ONE_TICKET";
 export const GET_WISHLIST = "GET_WISHLIST";
 export const GET_DELIVERY= 'GET_DELIVERY';
+
+export const GET_POLICY = "GET_POLICY";
+export const GET_TYPE = "GET_TYPE";
+export const GET_ONE_POLICY = "GET_ONE_POLICY";
+export const POST_POLICY = "PUT_POLICY";
+export const DELETE_POLICY = "DELETE_POLICY";
+export const FILTER_BY_CATEGORY_POLICY="FILTER_BY_CATEGORY_POLICY";
+export const GET_DELIVERIES = "GET_DELIVERIES";
+export const PUT_DELIVERY = "PUT_DELIVERY";

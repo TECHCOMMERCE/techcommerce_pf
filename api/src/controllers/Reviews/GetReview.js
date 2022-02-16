@@ -31,9 +31,7 @@ const getReview = async( req, res, next ) => {
 		let userreviews = await product.getReviews();
 		//console.log('userreviews', userreviews);
     userreviews =userreviews?userreviews.map(review=> review.review):[]
-		let rating = userreviews.map(review=>review.stars)
-		if(rating>0)rating=rating.reduce((previousValue, currentValue) => previousValue + currentValue)
-		rating = Math.round(rating/userreviews.length)
+		
 
 		let data=[] //buscar datos de usuario para unificarlo a la review
 		for(let i=0; i<userreviews.length; i++){
@@ -43,10 +41,19 @@ const getReview = async( req, res, next ) => {
 				us
 			})
 		}
+		let starts = data.map(review=>review.stars)
+		let rating = 0;
+		console.log('starts', starts)
+		if(starts.length){
+			rating=starts.reduce((previousValue, currentValue) => previousValue + currentValue)
+			console.log('sumatoria', rating)
+			rating = Math.round(rating/starts.length)
+			console.log('promedio', rating)
+		}
 
 		
 		//console.log('result', {review: !!review, userreviews});
-		res.status(OK).send({review: !!review.length, userreviews: data, rating, orders})
+		res.status(OK).send({review: !!review?.length, userreviews: data, rating, orders})
 	}catch (err) {
 		console.log('err', err);
 		res.status(ERROR).send(err.message)
